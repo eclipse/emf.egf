@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <ftask:Task xmi:id="_lIo_MKtsEd-IItjEL3Zf6g" name="Model Driven Validation Pattern Strategy Task"
+      kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.DomainDrivenValidationStrategyTask"
+      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+    <contractContainer xmi:id="_rcBBwKtsEd-IItjEL3Zf6g">
+      <contracts xmi:id="_ryXFMKtsEd-IItjEL3Zf6g" name="diagnostic" mode="Out">
+        <type xmi:type="types:TypeClass" xmi:id="_WykJIat6Ed-xWOtf2UFr8g" value="java.lang.Object"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <fcore:FactoryComponent xmi:id="_fVLN8Kt7Ed-0oekoriqU8Q" name="Model Driven Validation Pattern Strategy Patterns">
+    <viewpointContainer xmi:id="_fuqE8Kt7Ed-0oekoriqU8Q">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_gfOmQKt7Ed-0oekoriqU8Q">
+        <libraries xmi:id="_gzpXEKt7Ed-0oekoriqU8Q" name="org.eclipse.egf.pattern.validation">
+          <elements xmi:type="pattern:Pattern" xmi:id="_jKJUYKt7Ed-0oekoriqU8Q" name="AbstractValidationPattern"
+              headerMethod="#_jKJUYat7Ed-0oekoriqU8Q" footerMethod="#_jKJUZat7Ed-0oekoriqU8Q"
+              initMethod="#_jKJUYqt7Ed-0oekoriqU8Q" conditionMethod="#_jKJUY6t7Ed-0oekoriqU8Q">
+            <methods xmi:id="_jKJUYat7Ed-0oekoriqU8Q" name="header" patternFilePath="templates/pattern._jKJUYKt7Ed-0oekoriqU8Q/method._jKJUYat7Ed-0oekoriqU8Q.pt"/>
+            <methods xmi:id="_jKJUYqt7Ed-0oekoriqU8Q" name="init" patternFilePath="templates/pattern._jKJUYKt7Ed-0oekoriqU8Q/method._jKJUYqt7Ed-0oekoriqU8Q.pt"/>
+            <methods xmi:id="_jKJUY6t7Ed-0oekoriqU8Q" name="preCondition" patternFilePath="templates/pattern._jKJUYKt7Ed-0oekoriqU8Q/method._jKJUY6t7Ed-0oekoriqU8Q.pt"/>
+            <methods xmi:id="_jKJUZKt7Ed-0oekoriqU8Q" name="getDiagnosticChainFromContext"
+                patternFilePath="templates/pattern._jKJUYKt7Ed-0oekoriqU8Q/method._jKJUZKt7Ed-0oekoriqU8Q.pt"/>
+            <methods xmi:id="_jKJUZat7Ed-0oekoriqU8Q" name="footer" patternFilePath="templates/pattern._jKJUYKt7Ed-0oekoriqU8Q/method._jKJUZat7Ed-0oekoriqU8Q.pt"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_pBEEcKt7Ed-0oekoriqU8Q"
+                called="#_jKJUZKt7Ed-0oekoriqU8Q"/>
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_jKJUZ6t7Ed-0oekoriqU8Q"
+                name="Java"/>
+            <variables xmi:id="_lPqPYKt7Ed-0oekoriqU8Q" name="diagnosticChain" type="org.eclipse.emf.common.util.DiagnosticChain"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+  </fcore:FactoryComponent>
+</xmi:XMI>

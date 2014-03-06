@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.egf.Examples"
+            name="EGF Examples"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.egf.Examples"
+            class="org.eclipse.egf.portfolio.atl.examples.installer.EGFExamplesInstallerWizard"
+            hasPages="false"
+            icon="icons/Icon.gif"
+            id="org.eclipse.egf.portfolio.atl.examples.installer.Wizard"
+            name="EGF Examples for ATL"
+            project="true">
+      </wizard>
+   </extension>
+
+
+</plugin>

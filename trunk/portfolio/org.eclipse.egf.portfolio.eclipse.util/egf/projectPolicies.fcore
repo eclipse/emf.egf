@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_w-GuwCJbEd-1iJf80lotFg" description="Populate the plugin contents"
+      name="plugin.files.generation">
+    <contractContainer xmi:id="_SFBvgCJgEd-QbLE3s54hPw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_T7Mm8CJgEd-QbLE3s54hPw"
+          description="Project where the file is generated" name="targetProjetName"
+          mandatory="true" invocationContracts="#_Z7pGdSJgEd-QbLE3s54hPw #_m5CxBSJgEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_T7Mm8SJgEd-QbLE3s54hPw" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_8_sT4CK0Ed-QbLE3s54hPw"
+          description="Project where the file is generated" name="providerName" invocationContracts="#_LkzjICK1Ed-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_8_sT4SK0Ed-QbLE3s54hPw" value="Undefined Provider Name"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_GeBPgCK1Ed-QbLE3s54hPw"
+          description="Project where the file is generated" name="pluginName" invocationContracts="#_P7AuYCK1Ed-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_GeBPgSK1Ed-QbLE3s54hPw" value="Undefined Plugin Name"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Ulh7wCLAEd-QbLE3s54hPw"
+          name="copyright" invocationContracts="#_FIoBgCLDEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_W-jooCLAEd-QbLE3s54hPw" value="Undefined Copyright"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Zn_JACLAEd-QbLE3s54hPw"
+          name="contributors" invocationContracts="#_IJJzQCLDEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_bauR8CLAEd-QbLE3s54hPw" value="Undefined Contributors"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_W16EkCJgEd-QbLE3s54hPw">
+      <invocations xmi:id="_Z7pGcCJgEd-QbLE3s54hPw" invokedActivity="#_zuYCgCJREd-1iJf80lotFg">
+        <invocationContractContainer xmi:id="_Z7pGcSJgEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_Z7pGdSJgEd-QbLE3s54hPw" factoryComponentContract="#_T7Mm8CJgEd-QbLE3s54hPw"
+              invokedContract="#_87cZkCJSEd-1iJf80lotFg"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_m5CxACJgEd-QbLE3s54hPw" invokedActivity="#_nDSg4CJaEd-1iJf80lotFg">
+        <invocationContractContainer xmi:id="_m5CxASJgEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_m5CxBSJgEd-QbLE3s54hPw" factoryComponentContract="#_T7Mm8CJgEd-QbLE3s54hPw"
+              invokedContract="#_HRnCgSJbEd-1iJf80lotFg"/>
+          <invocationContracts xmi:id="_LkzjICK1Ed-QbLE3s54hPw" factoryComponentContract="#_8_sT4CK0Ed-QbLE3s54hPw"
+              invokedContract="#_GtymUCK0Ed-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_P7AuYCK1Ed-QbLE3s54hPw" factoryComponentContract="#_GeBPgCK1Ed-QbLE3s54hPw"
+              invokedContract="#_SZYDsCK0Ed-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_FIoBgCLDEd-QbLE3s54hPw" factoryComponentContract="#_Ulh7wCLAEd-QbLE3s54hPw"
+              invokedContract="#_1njLMCLAEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_IJJzQCLDEd-QbLE3s54hPw" factoryComponentContract="#_Zn_JACLAEd-QbLE3s54hPw"
+              invokedContract="#_1njLMiLAEd-QbLE3s54hPw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_zuYCgCJREd-1iJf80lotFg" description="Generation of the Eclipse license about.html file"
+      name="eclipseabout.generation">
+    <contractContainer xmi:id="_8VvrgCJSEd-1iJf80lotFg">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_oALfkCJdEd-1iJf80lotFg"
+          description="Source project of the reference file" name="sourceProjectName"
+          invocationContracts="#_ZL3kciJiEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_8SgwUCJdEd-1iJf80lotFg" value="org.eclipse.egf.portfolio.eclipse.util"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="__MenECJdEd-1iJf80lotFg"
+          description="Source folder of the reference file" name="sourceFolderName"
+          invocationContracts="#_ZL3kcyJiEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_Erso0CJeEd-1iJf80lotFg" value="templates"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_nJ9z0CJeEd-1iJf80lotFg"
+          description="Source file name" name="sourceFileName" invocationContracts="#_ZL3kdCJiEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_nJ9z0SJeEd-1iJf80lotFg" value="about.html"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_87cZkCJSEd-1iJf80lotFg"
+          description="Project where the file is generated" name="targetProjetName"
+          mandatory="true" invocationContracts="#_ZL3kdSJiEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_IUHiACJTEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_o9eH4CJVEd-1iJf80lotFg"
+          description="Folder where the file is generated" name="targetFolderName"
+          invocationContracts="#_ZL3kdiJiEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_s9njkCJVEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_svcOkCJeEd-1iJf80lotFg"
+          description="Target file name" name="targetFileName" invocationContracts="#_ZL3kdyJiEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_svcOkSJeEd-1iJf80lotFg" value="about.html"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_m_A-gCJSEd-1iJf80lotFg">
+      <invocations xmi:id="_ZL3kcCJiEd-QbLE3s54hPw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_qIpEECJhEd-QbLE3s54hPw">
+        <invocationContractContainer xmi:id="_ZL3kcSJiEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_ZL3kciJiEd-QbLE3s54hPw" factoryComponentContract="#_oALfkCJdEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb4SJhEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_ZL3kcyJiEd-QbLE3s54hPw" factoryComponentContract="#__MenECJdEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb4yJhEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_ZL3kdCJiEd-QbLE3s54hPw" factoryComponentContract="#_nJ9z0CJeEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb5SJhEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_ZL3kdSJiEd-QbLE3s54hPw" factoryComponentContract="#_87cZkCJSEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb5yJhEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_ZL3kdiJiEd-QbLE3s54hPw" factoryComponentContract="#_o9eH4CJVEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb6SJhEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_ZL3kdyJiEd-QbLE3s54hPw" factoryComponentContract="#_svcOkCJeEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb6yJhEd-QbLE3s54hPw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_nDSg4CJaEd-1iJf80lotFg" description="Generation of the plugin.properties file"
+      name="plugin.properties.generation">
+    <contractContainer xmi:id="_HRnCgCJbEd-1iJf80lotFg">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mywYQSJfEd-QbLE3s54hPw"
+          description="Source project of the reference file" name="sourceProjectName"
+          invocationContracts="#_MHZswiJbEd-1iJf80lotFg">
+        <type xmi:type="types:TypeString" xmi:id="_mywYQiJfEd-QbLE3s54hPw" value="org.eclipse.egf.portfolio.eclipse.util"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mywYQyJfEd-QbLE3s54hPw"
+          description="Source folder of the reference file" name="sourceFolderName"
+          invocationContracts="#_MHZsxCJbEd-1iJf80lotFg">
+        <type xmi:type="types:TypeString" xmi:id="_mywYRCJfEd-QbLE3s54hPw" value="templates"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mywYRSJfEd-QbLE3s54hPw"
+          description="Source file name" name="sourceFileName" invocationContracts="#_MHZsxiJbEd-1iJf80lotFg">
+        <type xmi:type="types:TypeString" xmi:id="_mywYRiJfEd-QbLE3s54hPw" value="plugin.properties"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_HRnCgSJbEd-1iJf80lotFg"
+          description="Project where the file is generated" name="targetProjetName"
+          mandatory="true" invocationContracts="#_MHZszCJbEd-1iJf80lotFg">
+        <type xmi:type="types:TypeString" xmi:id="_HRnCgiJbEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_HRnCgyJbEd-1iJf80lotFg"
+          description="Folder where the file is generated" name="targetFolderName"
+          invocationContracts="#_MHZszSJbEd-1iJf80lotFg">
+        <type xmi:type="types:TypeString" xmi:id="_HRnChCJbEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mywYRyJfEd-QbLE3s54hPw"
+          description="Target file name" name="targetFileName" invocationContracts="#_MHZsziJbEd-1iJf80lotFg">
+        <type xmi:type="types:TypeString" xmi:id="_mywYSCJfEd-QbLE3s54hPw" value="plugin.properties"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_GtymUCK0Ed-QbLE3s54hPw"
+          name="providerName" invocationContracts="#_nRDvJCKyEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_HftLcCK0Ed-QbLE3s54hPw" value="Undefined Provider Name"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_SZYDsCK0Ed-QbLE3s54hPw"
+          name="pluginName" invocationContracts="#_di2ShCK0Ed-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_SZYDsSK0Ed-QbLE3s54hPw" value="Undefined Plugin Name"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1njLMCLAEd-QbLE3s54hPw"
+          name="copyright" invocationContracts="#_NcPIZSLBEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_1njLMSLAEd-QbLE3s54hPw" value="Undefined Copyright"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1njLMiLAEd-QbLE3s54hPw"
+          name="contributors" invocationContracts="#_u7efVSLBEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_1njLMyLAEd-QbLE3s54hPw" value="Undefined Contributors"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_JqovYCJbEd-1iJf80lotFg">
+      <invocations xmi:id="_MHZswCJbEd-1iJf80lotFg" name="Read plugin properties"
+          invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_4N3NwCIeEd-yj8XsBx2_pg">
+        <invocationContractContainer xmi:id="_MHZswSJbEd-1iJf80lotFg">
+          <invocationContracts xmi:id="_MHZswiJbEd-1iJf80lotFg" factoryComponentContract="#_mywYQSJfEd-QbLE3s54hPw"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr8yIgEd-yj8XsBx2_pg"/>
+          <invocationContracts xmi:id="_MHZsxCJbEd-1iJf80lotFg" factoryComponentContract="#_mywYQyJfEd-QbLE3s54hPw"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr9SIgEd-yj8XsBx2_pg"/>
+          <invocationContracts xmi:id="_MHZsxiJbEd-1iJf80lotFg" factoryComponentContract="#_mywYRSJfEd-QbLE3s54hPw"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr9yIgEd-yj8XsBx2_pg"/>
+          <invocationContracts xmi:id="_MHZsyCJbEd-1iJf80lotFg" targetInvocationContract="#_nRDvIiKyEd-QbLE3s54hPw"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr8SIgEd-yj8XsBx2_pg">
+            <type xmi:type="types:TypeString" xmi:id="_MHZsySJbEd-1iJf80lotFg"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_nRDvICKyEd-QbLE3s54hPw" name="Change provider name" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_Hz4MACKxEd-QbLE3s54hPw">
+        <invocationContractContainer xmi:id="_nRDvISKyEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_nRDvIiKyEd-QbLE3s54hPw" sourceInvocationContract="#_MHZsyCJbEd-1iJf80lotFg"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_WtGqECKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_nRDvIyKyEd-QbLE3s54hPw" invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_cbOqgCKxEd-QbLE3s54hPw">
+            <type xmi:type="types:TypeString" xmi:id="_sNGyYCKyEd-QbLE3s54hPw" value="&lt;%providerName%>"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_nRDvJCKyEd-QbLE3s54hPw" factoryComponentContract="#_GtymUCK0Ed-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_qzqvsCKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_nRDvJSKyEd-QbLE3s54hPw" targetInvocationContract="#_di2SgiK0Ed-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_l-eiYCKxEd-QbLE3s54hPw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_di2SgCK0Ed-QbLE3s54hPw" name="Change plugin name" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_Hz4MACKxEd-QbLE3s54hPw">
+        <invocationContractContainer xmi:id="_di2SgSK0Ed-QbLE3s54hPw">
+          <invocationContracts xmi:id="_di2SgiK0Ed-QbLE3s54hPw" sourceInvocationContract="#_nRDvJSKyEd-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_WtGqECKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_di2SgyK0Ed-QbLE3s54hPw" invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_cbOqgCKxEd-QbLE3s54hPw">
+            <type xmi:type="types:TypeString" xmi:id="_vSdu4CK0Ed-QbLE3s54hPw" value="&lt;%pluginName%>"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_di2ShCK0Ed-QbLE3s54hPw" factoryComponentContract="#_SZYDsCK0Ed-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_qzqvsCKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_di2ShiK0Ed-QbLE3s54hPw" targetInvocationContract="#_NcPIYiLBEd-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_l-eiYCKxEd-QbLE3s54hPw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_NcPIYCLBEd-QbLE3s54hPw" name="Change copyright" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_Hz4MACKxEd-QbLE3s54hPw">
+        <invocationContractContainer xmi:id="_NcPIYSLBEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_NcPIYiLBEd-QbLE3s54hPw" sourceInvocationContract="#_di2ShiK0Ed-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_WtGqECKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_NcPIYyLBEd-QbLE3s54hPw" invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_cbOqgCKxEd-QbLE3s54hPw">
+            <type xmi:type="types:TypeString" xmi:id="_NcPIZCLBEd-QbLE3s54hPw" value="&lt;%copyright%>"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_NcPIZSLBEd-QbLE3s54hPw" factoryComponentContract="#_1njLMCLAEd-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_qzqvsCKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_NcPIZiLBEd-QbLE3s54hPw" targetInvocationContract="#_u7efUiLBEd-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_l-eiYCKxEd-QbLE3s54hPw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_u7efUCLBEd-QbLE3s54hPw" name="Change contributors" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_Hz4MACKxEd-QbLE3s54hPw">
+        <invocationContractContainer xmi:id="_u7efUSLBEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_u7efUiLBEd-QbLE3s54hPw" sourceInvocationContract="#_NcPIZiLBEd-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_WtGqECKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_u7efUyLBEd-QbLE3s54hPw" invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_cbOqgCKxEd-QbLE3s54hPw">
+            <type xmi:type="types:TypeString" xmi:id="_u7efVCLBEd-QbLE3s54hPw" value="&lt;%contributors%>"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_u7efVSLBEd-QbLE3s54hPw" factoryComponentContract="#_1njLMiLAEd-QbLE3s54hPw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_qzqvsCKxEd-QbLE3s54hPw"/>
+          <invocationContracts xmi:id="_u7efViLBEd-QbLE3s54hPw" targetInvocationContract="#_MHZs0CJbEd-1iJf80lotFg"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.type/egf/stringManagement.fcore#_l-eiYCKxEd-QbLE3s54hPw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_MHZsyiJbEd-1iJf80lotFg" name="Read plugin properties"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_gYv1wCH9Ed-c_qcjB49Qng">
+        <invocationContractContainer xmi:id="_MHZsyyJbEd-1iJf80lotFg">
+          <invocationContracts xmi:id="_MHZszCJbEd-1iJf80lotFg" factoryComponentContract="#_HRnCgSJbEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_JqxnACITEd-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_MHZszSJbEd-1iJf80lotFg" factoryComponentContract="#_HRnCgyJbEd-1iJf80lotFg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_PXjjoCITEd-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_MHZsziJbEd-1iJf80lotFg" factoryComponentContract="#_mywYRyJfEd-QbLE3s54hPw"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_XPODcCITEd-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_MHZs0CJbEd-1iJf80lotFg" sourceInvocationContract="#_u7efViLBEd-QbLE3s54hPw"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_0rJLYCISEd-c_qcjB49Qng"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>

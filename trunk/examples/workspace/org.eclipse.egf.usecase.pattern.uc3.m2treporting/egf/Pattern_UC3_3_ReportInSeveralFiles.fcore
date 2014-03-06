@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_1AQBoDuPEeGNEYR44V5c8A"
+    name="Pattern_UC3_3_ReportInSeveralFiles">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_cEM28DuTEeGNEYR44V5c8A">
+    <invocations xmi:id="_kr0iIDuVEeGNEYR44V5c8A" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc3.m2treporting/egf/Pattern_UC3_2_ReportInOneFile.fcore#_35zgIDt4EeGNEYR44V5c8A">
+      <invocationContractContainer xmi:id="_kr0iITuVEeGNEYR44V5c8A">
+        <invocationContracts xmi:id="_kr0iIjuVEeGNEYR44V5c8A" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.pattern.uc3.m2treporting/egf/Pattern_UC3_2_ReportInOneFile.fcore#_QgqCoDuQEeGNEYR44V5c8A">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_lnRdwDuVEeGNEYR44V5c8A"
+              value="org.eclipse.egf.usecase.pattern.uc3.m2treporting.reporter.OutputInSeveralFilesReporter"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

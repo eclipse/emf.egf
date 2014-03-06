@@ -1,0 +1,35 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.eclipse.egf.portfolio.task.ant.engine;
+
+import java.io.PrintStream;
+
+import org.apache.tools.ant.DefaultLogger;
+import org.eclipse.egf.model.EGFFtaskPlugin;
+
+/**
+ * @author xiaoru chen
+ * 
+ */
+public class AntTaskBuildLogger extends DefaultLogger {
+    @Override
+    protected void printMessage(String message, PrintStream stream, int priority) {
+        if (stream.equals(err)) {
+            EGFFtaskPlugin.getPlugin().logError(message);
+        } else if (stream.equals(out)) {
+            EGFFtaskPlugin.getPlugin().logInfo(message);
+        }
+    }
+}

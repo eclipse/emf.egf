@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+<cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.buckminster.releng" componentType="buckminster" version="1.0.0">
+    <cs:dependencies>
+        <cs:dependency name="org.eclipse.egf.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.egf.examples" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.egf.test" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>
+    </cs:dependencies>
+</cs:cspec>

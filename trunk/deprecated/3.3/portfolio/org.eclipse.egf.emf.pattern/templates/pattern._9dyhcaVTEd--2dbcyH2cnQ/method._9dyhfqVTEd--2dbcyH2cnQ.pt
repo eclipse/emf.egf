@@ -1,0 +1,14 @@
+
+
+    <%for (GenClass createClass : genClass.getCrossPackageChildrenClasses(createFeature)) { %>
+
+		newChildDescriptors.add
+			(createChildParameter
+				(<%=createFeature.getQualifiedFeatureAccessor()%>,
+      <%if (createClass.isMapEntry()) { %>
+				 <%=createClass.getGenPackage().getQualifiedEFactoryInstanceAccessor()%>.create(<%=createClass.getQualifiedClassifierAccessor()%>)));
+      <%} else {%>
+				 <%=createClass.getGenPackage().getQualifiedFactoryInstanceAccessor()%>.create<%=createClass.getName()%>()));
+      <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsCrossPackageFeature.insert" args="createClass:createClass,createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
+    <%}%>

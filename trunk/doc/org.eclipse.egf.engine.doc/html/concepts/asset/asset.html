@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="asset"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Asset</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;Asset
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">An asset is a software artifact defined and playing a role in a software development process.</p>
+  
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">The purpose of a factory component is to automate production of software artifacts from input software artifacts. The term "Asset" is a generic term to designate any software artifact (e.g., a model, a document, code, a framework) used and produce by a factory component.</p>
+
+<a name="structure"><h2>Structure</h2></a>
+
+<p class="Para">An asset conforms to an asset type (e.g., a model, a language, a framework, a tool) defined in a language. This language is represented or not by a model. The list of asset types is open, however the major ones are: basic types (e.g., Integer, Boolean, etc.), model, (general or specific) language, framework, library, component and tool. Complex assets are broken down into assets. Complex assets can be built at once or at different stages across a software process. For instance, generation of tool code and configuration files of this tool can be built simultaneously or by several factory components.</p>
+<p class="Para">While an asset type is a logical representation, an asset has a physical representation (e.g., a web site asset is materialized by a set of html files). This physical representation must be taken into account during a generation. For executable assets, an asset behavior conforms to an execution semantics on a specific execution platform.</p>
+ 
+<p class="Para">Software product line engineering differentiates two kinds of asset: reusable assets and products. Reusable assets are usable or not as is, or partially, and need to be customized to give products. In software engineering, a product is for instance a software application.</p>
+
+<p align="center">
+<img src="./images/assetStructure.jpg" alt="Asset Structure"/>
+</p>
+<p align="center">
+<i>Figure 1. Example of assets</i>
+</p>
+
+
+<a name="inEgf"><h2>In EGF</h2></a>
+<p class="Para">An Orchestration used input/output data. Those data have a type defined 1) in the extendable default EGF basic type list, or 2) in a viewpoint (e.g., a domain model).</p>
+
+<br>
+
+</body>
+</html>

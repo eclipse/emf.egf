@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/Pattern_UC3_1_ReportOnConsole.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC3_2_ReportInOneFile.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC3_3_ReportInSeveralFiles.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC3_4_ReportWithAdditionalReportParameters.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC3_5_patternOutputProcessor.fcore">
+      </fcore>
+   </extension>
+
+
+</plugin>

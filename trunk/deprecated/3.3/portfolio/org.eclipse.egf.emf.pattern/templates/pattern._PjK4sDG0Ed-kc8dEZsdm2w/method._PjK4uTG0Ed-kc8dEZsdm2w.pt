@@ -1,0 +1,421 @@
+
+<%
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2002-2007 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ */
+%>
+<%GenClass genClass = (GenClass)argument; GenPackage genPackage = genClass.getGenPackage(); GenModel genModel=genPackage.getGenModel();%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+package <%=genPackage.getProviderPackageName()%>;
+
+
+<%genModel.addImport("org.eclipse.emf.common.notify.AdapterFactory");%>
+<%genModel.addImport("org.eclipse.emf.common.notify.Notification");%>
+<%genModel.addImport("org.eclipse.emf.common.util.ResourceLocator");%>
+<%genModel.addImport("org.eclipse.emf.edit.provider.IEditingDomainItemProvider");%>
+<%genModel.addImport("org.eclipse.emf.edit.provider.IItemLabelProvider");%>
+<%genModel.addImport("org.eclipse.emf.edit.provider.IItemPropertySource");%>
+<%genModel.addImport("org.eclipse.emf.edit.provider.IStructuredItemContentProvider");%>
+<%genModel.addImport("org.eclipse.emf.edit.provider.ITreeItemContentProvider");%>
+<%String _List = genModel.getImportedName(genModel.useGenerics() ? "java.util.List<org.eclipse.emf.edit.provider.IItemPropertyDescriptor>" : "java.util.List");%>
+<%genModel.markImportLocation(stringBuffer);%>
+
+/**
+ * This is the item provider adapter for a {@link <%=genClass.getQualifiedInterfaceName()%>} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class <%=genClass.getProviderClassName()%>
+	extends <%=genClass.getProviderBaseClassName() != null ? genClass.getProviderBaseClassName() : genModel.getImportedName("org.eclipse.emf.edit.provider.ItemProviderAdapter")%>
+	implements
+<%for (Iterator<String> i = genPackage.getProviderSupportedTypes().iterator(); i.hasNext(); ) {%>	
+		<%=genModel.getImportedName(i.next())%><%if (i.hasNext()){%>,<%}%>
+<%}%>		
+{
+<%if (genModel.hasCopyrightField()) {%>
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final <%=genModel.getImportedName("java.lang.String")%> copyright = <%=genModel.getCopyrightFieldLiteral()%>;<%=genModel.getNonNLS()%>
+
+<%}%>
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public <%=genClass.getProviderClassName()%>(AdapterFactory adapterFactory)
+	{
+		super(adapterFactory);
+	}
+
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public <%=_List%> getPropertyDescriptors(Object object)
+	{
+		if (itemPropertyDescriptors == null)
+		{
+			super.getPropertyDescriptors(object);
+
+<%for (GenFeature genFeature : genClass.getPropertyFeatures()) { %>
+			add<%=genFeature.getCapName()%>PropertyDescriptor(object);
+<%}%>
+		}
+		return itemPropertyDescriptors;
+	}
+
+<%for (GenFeature genFeature : genClass.getPropertyFeatures()) { %>
+	/**
+	 * This adds a property descriptor for the <%=genFeature.getFormattedName()%> feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void add<%=genFeature.getCapName()%>PropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((<%=genModel.getImportedName("org.eclipse.emf.edit.provider.ComposeableAdapterFactory")%>)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_feature"),<%=genModel.getNonNLS()%>
+  <%if (genFeature.getPropertyDescription() == null || genFeature.getPropertyDescription().length() == 0) {%>
+				 getString("_UI_PropertyDescriptor_description", "_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_feature", "_UI_<%=genFeature.getGenClass().getName()%>_type"),<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%><%=genModel.getNonNLS(3)%>
+  <%} else {%>
+				 getString("_UI_<%=genFeature.getGenClass().getName()%>_<%=genFeature.getName()%>_description"),<%=genModel.getNonNLS()%>
+  <%}%>
+				 <%=genFeature.getQualifiedFeatureAccessor()%>,
+				 <%=genFeature.getProperty() == GenPropertyKind.EDITABLE_LITERAL ? "true" : "false"%>,
+				 <%=genFeature.isPropertyMultiLine() ? "true" : "false"%>,
+				 <%=genFeature.isPropertySortChoices() ? "true" : "false"%>,
+  <%if (genFeature.isReferenceType()) {%>
+				 null,
+  <%} else {%>
+				 <%=genModel.getImportedName("org.eclipse.emf.edit.provider.ItemPropertyDescriptor")%>.<%=genFeature.getPropertyImageName()%>,
+  <%}%>
+  <%if (genFeature.getPropertyCategory() == null || genFeature.getPropertyCategory().length() == 0) {%>
+				 null,
+  <%} else {%>
+				 getString("<%=genModel.getPropertyCategoryKey(genFeature.getPropertyCategory())%>"),<%=genModel.getNonNLS()%>
+  <%}%>
+  <%if (genFeature.getPropertyFilterFlags().isEmpty()) {%>
+				 null));
+  <%} else {%>
+				 new String[] {
+    <%for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) { String filterFlag = j.next();%>
+      <%if (filterFlag != null && filterFlag.length() > 0) {%>
+					"<%=filterFlag%>"<%if (j.hasNext()) {%>,<%}%><%=genModel.getNonNLS()%>
+      <%}%>
+    <%}%>
+				 }));
+  <%}%>
+	}
+
+<%}%>
+<%if (!genClass.getChildrenFeatures().isEmpty()) {%>
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public <%=genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<? extends org.eclipse.emf.ecore.EStructuralFeature>" : "java.util.Collection")%> getChildrenFeatures(Object object)
+	{
+		if (childrenFeatures == null)
+		{
+			super.getChildrenFeatures(object);
+<%for (GenFeature genFeature : genClass.getChildrenFeatures()) { %>
+			childrenFeatures.add(<%=genFeature.getQualifiedFeatureAccessor()%>);
+<%}%>
+		}
+		return childrenFeatures;
+	}
+
+<%if (!genClass.getChildrenFeatures().isEmpty()) {%>
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	protected <%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%> getChildFeature(Object object, Object child)
+	{
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+<%}%>
+<%}%>
+<%if (genClass.isImage()) {%>
+	/**
+	 * This returns <%=genClass.getName()%>.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public Object getImage(Object object)
+	{
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/<%=genClass.getName()%>"));<%=genModel.getNonNLS()%>
+	}
+
+<%}%>
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public String getText(Object object)
+	{
+<%if (genClass.isMapEntry()) {%>
+		<%=genClass.getImportedInterfaceName()%><%if (genModel.useGenerics()) {%><?, ?><%}%> <%=genClass.getSafeUncapName()%> = (<%=genClass.getImportedInterfaceName()%><%if (genModel.useGenerics()) {%><?, ?><%}%>)object;
+  <%if (!genClass.getMapEntryKeyFeature().isPropertyMultiLine() && !genClass.getMapEntryValueFeature().isPropertyMultiLine()) {%>
+		return "" + <%=genClass.getSafeUncapName()%>.getKey() + " -> " + <%=genClass.getSafeUncapName()%>.getValue();<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
+  <%} else {%>
+    <%if (genClass.getMapEntryKeyFeature().isPropertyMultiLine()) {%>
+		String key = crop("" + <%=genClass.getSafeUncapName()%>.getKey());<%=genModel.getNonNLS()%>
+    <%} else {%>
+		String key = "" + <%=genClass.getSafeUncapName()%>.getKey();<%=genModel.getNonNLS()%>
+    <%}%>
+    <%if (genClass.getMapEntryValueFeature().isPropertyMultiLine()) {%>
+		String value = crop("" + <%=genClass.getSafeUncapName()%>.getValue());<%=genModel.getNonNLS()%>
+    <%} else {%>
+		String value = "" + <%=genClass.getSafeUncapName()%>.getValue();<%=genModel.getNonNLS()%>
+    <%}%>
+		return key + " -> " + value;<%=genModel.getNonNLS()%>
+  <%}%>
+<%} else if (genClass.getLabelFeature() != null) { GenFeature labelFeature = genClass.getLabelFeature();%>
+  <%if (labelFeature.isPrimitiveType() && !labelFeature.getGenClass().isDynamic() && !labelFeature.isSuppressedGetVisibility()) {%>
+		<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%> <%=genClass.getSafeUncapName()%> = (<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)object;
+		return getString("_UI_<%=genClass.getName()%>_type") + " " + <%=genClass.getSafeUncapName()%>.<%=genClass.getLabelFeature().getGetAccessor()%>();<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
+  <%} else {%>
+    <%if (labelFeature.isStringType() && !labelFeature.getGenClass().isDynamic() && !labelFeature.isSuppressedGetVisibility()) {%>
+      <%if (labelFeature.isPropertyMultiLine()) {%>
+		String label = crop(((<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)object).<%=labelFeature.getGetAccessor()%>());
+      <%} else {%>
+		String label = ((<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)object).<%=labelFeature.getGetAccessor()%>();
+      <%}%>
+    <%} else {%>
+      <%if (labelFeature.isSuppressedGetVisibility() || labelFeature.getGenClass().isDynamic()) {%>
+		<%=genModel.getImportedName("java.lang.Object")%> labelValue = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.EObject")%>)object).eGet(<%=labelFeature.getQualifiedFeatureAccessor()%>);
+      <%} else {%>
+		<%=labelFeature.getRawImportedType()%> labelValue = ((<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)object).<%=labelFeature.getGetAccessor()%>();
+      <%}%>
+		String label = labelValue == null ? null : labelValue.toString();
+    <%}%>
+		return label == null || label.length() == 0 ?
+			getString("_UI_<%=genClass.getName()%>_type") :<%=genModel.getNonNLS()%>
+			getString("_UI_<%=genClass.getName()%>_type") + " " + label;<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
+  <%}%>
+<%} else {%>
+		return getString("_UI_<%=genClass.getName()%>_type");<%=genModel.getNonNLS()%>
+<%}%>
+	}
+
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public void notifyChanged(Notification notification)
+	{
+		updateChildren(notification);
+<%if (!genClass.getLabelNotifyFeatures().isEmpty() || !genClass.getContentNotifyFeatures().isEmpty() || !genClass.getLabelAndContentNotifyFeatures().isEmpty()) {%>
+
+		switch (notification.getFeatureID(<%=genClass.getImportedInterfaceName()%>.class))
+		{
+  <%if (!genClass.getLabelNotifyFeatures().isEmpty()) {%>
+    <%for (GenFeature genFeature : genClass.getLabelNotifyFeatures()) { %>
+			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
+    <%}%>
+				fireNotifyChanged(new <%=genModel.getImportedName("org.eclipse.emf.edit.provider.ViewerNotification")%>(notification, notification.getNotifier(), false, true));
+				return;
+  <%}%>
+  <%if (!genClass.getContentNotifyFeatures().isEmpty()) {%>
+    <%for (GenFeature genFeature : genClass.getContentNotifyFeatures()) { %>
+			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
+    <%}%>
+				fireNotifyChanged(new <%=genModel.getImportedName("org.eclipse.emf.edit.provider.ViewerNotification")%>(notification, notification.getNotifier(), true, false));
+				return;
+  <%}%>
+  <%if (!genClass.getLabelAndContentNotifyFeatures().isEmpty()) {%>
+    <%for (GenFeature genFeature : genClass.getLabelAndContentNotifyFeatures()) { %>
+			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
+    <%}%>
+				fireNotifyChanged(new <%=genModel.getImportedName("org.eclipse.emf.edit.provider.ViewerNotification")%>(notification, notification.getNotifier(), true, true));
+				return;
+  <%}%>
+		}
+<%}%>
+		super.notifyChanged(notification);
+	}
+
+<%if (genModel.isCreationCommands()) {%>
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	protected void collectNewChildDescriptors(<%=genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<java.lang.Object>" : "java.util.Collection")%> newChildDescriptors, Object object)
+	{
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+  <%for (GenFeature createFeature : genClass.getCrossPackageCreateChildFeatures()) { %>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsCrossPackageFeature.override" args="createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsCrossPackageFeature.override.javajetinc%>
+  <%}%>
+  <%for (GenFeature createFeature : genClass.getCreateChildFeatures()) { %>
+    <%if (createFeature.isFeatureMapType()) {%>
+      <%for (GenFeature delegatedFeature : createFeature.getDelegatedFeatures()) { %>
+        <%if (delegatedFeature.isReferenceType()) {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override" args="delegatedFeature:delegatedFeature,createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc%>
+        <%} else {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override" args="delegatedFeature:delegatedFeature,createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc%>
+        <%}%>
+      <%}%>
+    <%} else if (createFeature.isReferenceType()) {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override" args="createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc %>
+    <%} else {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override" args="createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc%>
+    <%}%>
+  <%}%>
+	}
+
+  <%if (!genClass.getSharedClassCreateChildFeatures().isEmpty()) {%>
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public String getCreateChildText(Object owner, Object feature, Object child, <%=genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<?>" : "java.util.Collection")%> selection)
+	{
+		Object childFeature = feature;
+		Object childObject = child;
+
+    <%if (genClass.hasFeatureMapCreateChildFeatures()) {%>
+		if (childFeature instanceof <%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%> && <%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMapUtil")%>.isFeatureMap((EStructuralFeature)childFeature))
+		{
+			<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Entry entry = (FeatureMap.Entry)childObject;
+			childFeature = entry.getEStructuralFeature();
+			childObject = entry.getValue();
+		}
+
+    <%}%>
+		boolean qualify =
+    <%for (Iterator<GenFeature> i = genClass.getSharedClassCreateChildFeatures().iterator(); i.hasNext();) { GenFeature createFeature = i.next();%>
+			childFeature == <%=createFeature.getQualifiedFeatureAccessor()%><%=i.hasNext() ? " ||" : ";"%>
+    <%}%>
+
+		if (qualify)
+		{
+			return getString
+				("_UI_CreateChild_text2",<%=genModel.getNonNLS()%>
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
+	}
+
+  <%}%>
+  <%if (!genModel.isCreationIcons() && genClass.isModelRoot()) {%>
+	/**
+	 * This returns the icon image for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public Object getCreateChildImage(Object owner, Object feature, Object child, <%=genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<?>" : "java.util.Collection")%> selection)
+	{
+		if (feature instanceof <%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%> && <%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMapUtil")%>.isFeatureMap((<%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%>)feature))
+		{
+			<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Entry entry = (<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Entry)child;
+			feature = entry.getEStructuralFeature();
+			child = entry.getValue();        
+		}
+
+		if (feature instanceof <%=genModel.getImportedName("org.eclipse.emf.ecore.EReference")%> && child instanceof <%=genModel.getImportedName("org.eclipse.emf.ecore.EObject")%>)
+		{
+			String name = "full/obj16/" + ((EObject)child).eClass().getName();<%=genModel.getNonNLS()%>
+
+			try
+			{
+				return getResourceLocator().getImage(name);
+			}
+			catch (Exception e)
+			{
+				<%=genClass.getGenPackage().getImportedEditPluginClassName()%>.INSTANCE.log(e);
+			}
+		}
+
+		return super.getCreateChildImage(owner, feature, child, selection);
+	}
+
+  <%}%>
+<%}%>
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	public ResourceLocator getResourceLocator()
+	{
+		return <%=genPackage.getImportedEditPluginClassName()%>.INSTANCE;
+	}
+
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
+}
+<%genModel.emitSortedImports();%>

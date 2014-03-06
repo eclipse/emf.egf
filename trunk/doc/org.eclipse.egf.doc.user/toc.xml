@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<toc label="EGF Eclipse Generation Factories Guide">
+   <topic href="html/overview/overview.html" label="Overview">
+      <anchor id="egfOverviews"/>
+   </topic>
+   <topic label="Getting Started">
+      <topic href="http://eclipse.org/egf/" label="EGF Project Page">
+      </topic>
+      <topic href="http://wiki.eclipse.org/EGF" label="EGF Wiki">
+      </topic>
+      <topic href="http://wiki.eclipse.org/images/6/66/EGF_Introduction.pdf" label="Introduction to EGF (slides on-line)">
+      </topic>
+      <anchor id="gettingstarted"/>
+   </topic>
+   <topic label="Tutorials">
+      <anchor id="egfEngineTutorials"/>
+      <topic label="On-line Tutorials">
+         <topic href="http://wiki.eclipse.org/EGF_Tutorial_and_Use_Cases" label="All the tutorials">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/5/50/EGF_Tutorial_Generation_Chain_v0.1.0.pdf" label="Generation Chain">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/5/5c/EGF_Tutorial_M2TReporting.pdf" label="Model-to-text: post-processing and reporting">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/b/bd/EGF_Tutorial_Pattern_Trace.pdf" label="Pattern Trace">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/4/43/EGF-Tutorial_reuse_and_customization_v0.1.0.pdf" label="Pattern reuse and customization">
+         </topic>
+      </topic>
+   </topic>
+   <topic label="Concepts">
+      <anchor id="concepts"/>
+   </topic>
+   <topic label="Tasks">
+      <anchor id="tasks"/>
+   </topic>
+   <!--<topic label="Process">
+      <anchor id="process"/>
+   </topic>-->
+   <topic label="Reference">
+      <anchor id="reference"/>
+   </topic>
+   <topic label="Portfolio">
+      <anchor id="factoryComponents"/>
+   </topic>
+   <topic label="What's new" href="http://wiki.eclipse.org/EGF/Releases"/>
+   <topic label="Legal" href="html/notices.html"/>
+</toc>

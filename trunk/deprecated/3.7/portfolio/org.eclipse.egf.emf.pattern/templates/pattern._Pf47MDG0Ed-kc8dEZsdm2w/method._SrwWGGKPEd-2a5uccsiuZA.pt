@@ -1,0 +1,4 @@
+<%
+GenEnum genEnum = parameter;
+argument = parameter;
+%>

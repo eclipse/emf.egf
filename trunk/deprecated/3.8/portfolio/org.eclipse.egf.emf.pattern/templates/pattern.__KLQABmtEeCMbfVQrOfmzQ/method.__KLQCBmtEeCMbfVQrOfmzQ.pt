@@ -1,0 +1,6 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getEditorDirectory() + "/" + genModel.getQualifiedEditorModuleName().replace(".","/")+ ".gwt.xml";
+overwrite = false;
+encoding = "UTF-8";
+%>

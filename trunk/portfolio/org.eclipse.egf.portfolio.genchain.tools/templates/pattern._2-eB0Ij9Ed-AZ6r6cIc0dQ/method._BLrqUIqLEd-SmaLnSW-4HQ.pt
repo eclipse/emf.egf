@@ -1,0 +1,3 @@
+        if (importer != null) {
+            importer.saveGenModelAndEPackages(new BasicMonitor());
+        }

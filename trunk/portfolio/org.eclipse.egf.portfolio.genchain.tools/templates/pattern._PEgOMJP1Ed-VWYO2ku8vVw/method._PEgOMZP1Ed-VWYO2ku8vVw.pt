@@ -1,0 +1,25 @@
+package PACKAGE;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fprod.ProductionPlan;
+import org.eclipse.egf.model.pattern.*;
+import org.eclipse.egf.pattern.execution.*;
+import org.eclipse.egf.pattern.query.IQuery;
+import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
+import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
+import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
+import org.eclipse.egf.portfolio.genchain.tools.utils.FCMatcher;
+
+
+public class CLASS {
+
+	public CLASS() {
+		//Here is the constructor
+	}
+
+

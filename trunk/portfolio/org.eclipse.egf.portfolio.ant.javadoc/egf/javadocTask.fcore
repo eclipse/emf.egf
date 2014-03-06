@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_84pKcDKUEeC3FtpPN6Y5Kw" name="Javadoc Generation">
+    <contractContainer xmi:id="_FCCTcDKVEeC3FtpPN6Y5Kw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_8DPkYED2EeCyw4ARHGEa-Q"
+          name="inputFolderPaths" mandatory="true" invocationContracts="#_yGR6EUD4EeCrkYIiCYH_9g">
+        <type xmi:type="types:TypeString" xmi:id="_-d63EED2EeCyw4ARHGEa-Q"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Feyg4DKVEeC3FtpPN6Y5Kw"
+          name="outputProjectName" mandatory="true" invocationContracts="#_P98AUjKVEeC3FtpPN6Y5Kw #_LEm8sED1EeCyw4ARHGEa-Q #_3yWPkkD5EeCrkYIiCYH_9g">
+        <type xmi:type="types:TypeString" xmi:id="_HJCcMDKVEeC3FtpPN6Y5Kw"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_KPhsADKVEeC3FtpPN6Y5Kw"
+          name="outputFolderName" mandatory="true" invocationContracts="#_LbtOEED1EeCyw4ARHGEa-Q">
+        <type xmi:type="types:TypeString" xmi:id="_KPhsATKVEeC3FtpPN6Y5Kw"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_knknUED6EeCSwvjW2nMIJw"
+          name="pattern substitutions" invocationContracts="#_jRSw4UD6EeCSwvjW2nMIJw">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_lUILUED6EeCSwvjW2nMIJw"/>
+      </contracts>
+    </contractContainer>
+    <viewpointContainer xmi:id="_b-1mYDKVEeC3FtpPN6Y5Kw">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_c6JYEDKVEeC3FtpPN6Y5Kw">
+        <libraries xmi:id="_eYLcUDKVEeC3FtpPN6Y5Kw" name="org.eclipse.egf.portfolio.ant.javadoc">
+          <elements xmi:id="_F3ro0EDJEeCyO49uPYUf-g" name="ant" headerMethod="#_F3ro0kDJEeCyO49uPYUf-g"
+              conditionMethod="#_F3ro1EDJEeCyO49uPYUf-g" initMethod="#_F3ro00DJEeCyO49uPYUf-g"
+              footerMethod="#_F3ro1kDJEeCyO49uPYUf-g">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_F3ro0UDJEeCyO49uPYUf-g"
+                name="JET"/>
+            <methods xmi:id="_F3ro0kDJEeCyO49uPYUf-g" name="header" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._F3ro0kDJEeCyO49uPYUf-g.pt"/>
+            <methods xmi:id="_F3ro00DJEeCyO49uPYUf-g" name="init" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._F3ro00DJEeCyO49uPYUf-g.pt"/>
+            <methods xmi:id="_F3ro1EDJEeCyO49uPYUf-g" name="preCondition" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._F3ro1EDJEeCyO49uPYUf-g.pt"/>
+            <methods xmi:id="_F3ro1kDJEeCyO49uPYUf-g" name="footer" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._F3ro1kDJEeCyO49uPYUf-g.pt"/>
+            <methods xmi:id="_pqSiAED0EeCyw4ARHGEa-Q" name="computeVariables" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._pqSiAED0EeCyw4ARHGEa-Q.pt"/>
+            <methods xmi:id="_XfYigEDNEeCyO49uPYUf-g" name="begin" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._XfYigEDNEeCyO49uPYUf-g.pt"/>
+            <methods xmi:id="_TNwpMEMmEeCsTOf7AAu11w" name="additionalBeginXml" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._TNwpMEMmEeCsTOf7AAu11w.pt"/>
+            <methods xmi:id="_YSk9YED2EeCyw4ARHGEa-Q" name="deleteOutput" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._YSk9YED2EeCyw4ARHGEa-Q.pt"/>
+            <methods xmi:id="_cvVckED2EeCyw4ARHGEa-Q" name="beginJavadoc" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._cvVckED2EeCyw4ARHGEa-Q.pt"/>
+            <methods xmi:id="_iPAKQED2EeCyw4ARHGEa-Q" name="javadocLinks" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._iPAKQED2EeCyw4ARHGEa-Q.pt"/>
+            <methods xmi:id="_sCyYgED2EeCyw4ARHGEa-Q" name="javadocInput" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._sCyYgED2EeCyw4ARHGEa-Q.pt"/>
+            <methods xmi:id="_j49QoEMlEeCsTOf7AAu11w" name="additionalJavadocXml"
+                patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._j49QoEMlEeCsTOf7AAu11w.pt"/>
+            <methods xmi:id="_nkF_oED2EeCyw4ARHGEa-Q" name="endJavadoc" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._nkF_oED2EeCyw4ARHGEa-Q.pt"/>
+            <methods xmi:id="_X-yvQEMmEeCsTOf7AAu11w" name="additionalEndXml" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._X-yvQEMmEeCsTOf7AAu11w.pt"/>
+            <methods xmi:id="_MCF_0EDNEeCyO49uPYUf-g" name="end" patternFilePath="templates/pattern._F3ro0EDJEeCyO49uPYUf-g/method._MCF_0EDNEeCyO49uPYUf-g.pt"/>
+            <variables xmi:id="_AxWZoED0EeCyw4ARHGEa-Q" name="outputFolderPath" type="java.lang.String"/>
+            <variables xmi:id="_ILJxYED3EeCyw4ARHGEa-Q" name="inputFolderPathsList"
+                type="java.util.List"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_7HT9EED1EeCyw4ARHGEa-Q"
+                called="#_pqSiAED0EeCyw4ARHGEa-Q"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_hWcHMEDNEeCyO49uPYUf-g"
+                called="#_XfYigEDNEeCyO49uPYUf-g"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ULmxgEMmEeCsTOf7AAu11w"
+                called="#_TNwpMEMmEeCsTOf7AAu11w"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ZZ81IED2EeCyw4ARHGEa-Q"
+                called="#_YSk9YED2EeCyw4ARHGEa-Q"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_gOQagED2EeCyw4ARHGEa-Q"
+                called="#_cvVckED2EeCyw4ARHGEa-Q"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_jiTlMED2EeCyw4ARHGEa-Q"
+                called="#_iPAKQED2EeCyw4ARHGEa-Q"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_s3_iMED2EeCyw4ARHGEa-Q"
+                called="#_sCyYgED2EeCyw4ARHGEa-Q"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_HJlssEMmEeCsTOf7AAu11w"
+                called="#_j49QoEMlEeCsTOf7AAu11w"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_olDtYED2EeCyw4ARHGEa-Q"
+                called="#_nkF_oED2EeCyw4ARHGEa-Q"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Ynnp0EMmEeCsTOf7AAu11w"
+                called="#_X-yvQEMmEeCsTOf7AAu11w"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_id0mAEDNEeCyO49uPYUf-g"
+                called="#_MCF_0EDNEeCyO49uPYUf-g"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_DzD-4DKVEeC3FtpPN6Y5Kw">
+      <invocations xmi:id="_P98AUDKVEeC3FtpPN6Y5Kw" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_d5v1IAqCEd-JA8Js2pdQ0g">
+        <invocationContractContainer xmi:id="_P98AUTKVEeC3FtpPN6Y5Kw">
+          <invocationContracts xmi:id="_P98AUjKVEeC3FtpPN6Y5Kw" factoryComponentContract="#_Feyg4DKVEeC3FtpPN6Y5Kw"
+              invokedContract="platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_1_fQoAqDEd-JA8Js2pdQ0g"/>
+          <invocationContracts xmi:id="_P98AUzKVEeC3FtpPN6Y5Kw" invokedContract="platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_1YyAgAqEEd-JA8Js2pdQ0g"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_wv0TsEDHEeCyO49uPYUf-g" invokedActivity="#_K6BxQEDdEeCyO49uPYUf-g">
+        <invocationContractContainer xmi:id="_wv0TsUDHEeCyO49uPYUf-g">
+          <invocationContracts xmi:id="_wv0TskDHEeCyO49uPYUf-g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_It7dMEDJEeCyO49uPYUf-g"
+                elements="#_F3ro0EDJEeCyO49uPYUf-g"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_7AqyQEDkEeCyO49uPYUf-g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
+            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_8Wf8wEDkEeCyO49uPYUf-g"
+                value="org.eclipse.egf.portfolio.ant.javadoc.OutputReporter"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_jRSw4UD6EeCSwvjW2nMIJw" factoryComponentContract="#_knknUED6EeCSwvjW2nMIJw"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_Y2fXwUhpEd-A7KV9v5yLhw"/>
+          <invocationContracts xmi:id="_yGR6EUD4EeCrkYIiCYH_9g" factoryComponentContract="#_8DPkYED2EeCyw4ARHGEa-Q"
+              invokedContract="#_0qyeMED4EeCrkYIiCYH_9g"/>
+          <invocationContracts xmi:id="_LEm8sED1EeCyw4ARHGEa-Q" factoryComponentContract="#_Feyg4DKVEeC3FtpPN6Y5Kw"
+              invokedContract="#_btHcgED0EeCyw4ARHGEa-Q"/>
+          <invocationContracts xmi:id="_LbtOEED1EeCyw4ARHGEa-Q" factoryComponentContract="#_KPhsADKVEeC3FtpPN6Y5Kw"
+              invokedContract="#_cACYgED0EeCyw4ARHGEa-Q"/>
+          <invocationContracts xmi:id="_etWbsEDmEeCyO49uPYUf-g" targetInvocationContract="#_cnY0wkDmEeCyO49uPYUf-g"
+              invokedContract="#_We2X8EDgEeCyO49uPYUf-g"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_cnY0wEDmEeCyO49uPYUf-g" invokedActivity="#__-cF8S7fEeCwKqAL_nTBFg">
+        <invocationContractContainer xmi:id="_cnY0wUDmEeCyO49uPYUf-g">
+          <invocationContracts xmi:id="_cnY0wkDmEeCyO49uPYUf-g" sourceInvocationContract="#_etWbsEDmEeCyO49uPYUf-g"
+              invokedContract="#_BI0-8EDHEeCyO49uPYUf-g"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_3yWPkED5EeCrkYIiCYH_9g" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_Xc39EED5EeCrkYIiCYH_9g">
+        <invocationContractContainer xmi:id="_3yWPkUD5EeCrkYIiCYH_9g">
+          <invocationContracts xmi:id="_3yWPkkD5EeCrkYIiCYH_9g" factoryComponentContract="#_Feyg4DKVEeC3FtpPN6Y5Kw"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_psiLcED5EeCrkYIiCYH_9g"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_dj3IUEKMEeCptI_ayXHmng" name="Javadoc Generation from genmodel">
+    <contractContainer xmi:id="_g48NwEKMEeCptI_ayXHmng">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_g48NwUKMEeCptI_ayXHmng"
+          name="genModel" mandatory="true" invocationContracts="#_Sz2s8kKNEeCptI_ayXHmng">
+        <type xmi:type="domain:TypeDomain" xmi:id="_ji5SkEKMEeCptI_ayXHmng"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_g48Nx0KMEeCptI_ayXHmng"
+          name="pattern substitutions" invocationContracts="#_tt4f5UKMEeCptI_ayXHmng">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_g48NyEKMEeCptI_ayXHmng"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_kdJUUEKMEeCptI_ayXHmng">
+      <invocations xmi:id="_Sz2s8EKNEeCptI_ayXHmng" invokedActivity="#_m0L5oEKLEeCptI_ayXHmng">
+        <invocationContractContainer xmi:id="_Sz2s8UKNEeCptI_ayXHmng">
+          <invocationContracts xmi:id="_Sz2s8kKNEeCptI_ayXHmng" factoryComponentContract="#_g48NwUKMEeCptI_ayXHmng"
+              invokedContract="#_n1PuAEKLEeCptI_ayXHmng"/>
+          <invocationContracts xmi:id="_Sz2s80KNEeCptI_ayXHmng" targetInvocationContract="#_tt4f4kKMEeCptI_ayXHmng"
+              invokedContract="#_oI3NkEKLEeCptI_ayXHmng"/>
+          <invocationContracts xmi:id="_Sz2s9EKNEeCptI_ayXHmng" targetInvocationContract="#_tt4f40KMEeCptI_ayXHmng"
+              invokedContract="#_DAp58EKNEeCptI_ayXHmng"/>
+          <invocationContracts xmi:id="_Sz2s9UKNEeCptI_ayXHmng" targetInvocationContract="#_tt4f5EKMEeCptI_ayXHmng"
+              invokedContract="#_DU4dgEKNEeCptI_ayXHmng"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_tt4f4EKMEeCptI_ayXHmng" invokedActivity="#_84pKcDKUEeC3FtpPN6Y5Kw">
+        <invocationContractContainer xmi:id="_tt4f4UKMEeCptI_ayXHmng">
+          <invocationContracts xmi:id="_tt4f4kKMEeCptI_ayXHmng" sourceInvocationContract="#_Sz2s80KNEeCptI_ayXHmng"
+              invokedContract="#_8DPkYED2EeCyw4ARHGEa-Q"/>
+          <invocationContracts xmi:id="_tt4f40KMEeCptI_ayXHmng" sourceInvocationContract="#_Sz2s9EKNEeCptI_ayXHmng"
+              invokedContract="#_Feyg4DKVEeC3FtpPN6Y5Kw"/>
+          <invocationContracts xmi:id="_tt4f5EKMEeCptI_ayXHmng" sourceInvocationContract="#_Sz2s9UKNEeCptI_ayXHmng"
+              invokedContract="#_KPhsADKVEeC3FtpPN6Y5Kw"/>
+          <invocationContracts xmi:id="_tt4f5UKMEeCptI_ayXHmng" factoryComponentContract="#_g48Nx0KMEeCptI_ayXHmng"
+              invokedContract="#_knknUED6EeCSwvjW2nMIJw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="__-cF8S7fEeCwKqAL_nTBFg" name="JavadocAntTask" kind="ant" implementation="dynamic">
+    <contractContainer xmi:id="_AxbyoUDHEeCyO49uPYUf-g">
+      <contracts xmi:id="_BI0-8EDHEeCyO49uPYUf-g" name="xml" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_BkiqkEDHEeCyO49uPYUf-g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_K6BxQEDdEeCyO49uPYUf-g" name="JavaDocAntGenerationTask" kind="java"
+      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+    <contractContainer xmi:id="_WJGKYEDgEeCyO49uPYUf-g">
+      <contracts xmi:id="_0qyeMED4EeCrkYIiCYH_9g" name="inputFolderPaths" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_22aoQED4EeCrkYIiCYH_9g"/>
+      </contracts>
+      <contracts xmi:id="_btHcgED0EeCyw4ARHGEa-Q" name="outputProjectName" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_dEI50ED0EeCyw4ARHGEa-Q"/>
+      </contracts>
+      <contracts xmi:id="_cACYgED0EeCyw4ARHGEa-Q" name="outputFolderName" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_dYQIoED0EeCyw4ARHGEa-Q"/>
+      </contracts>
+      <contracts xmi:id="_We2X8EDgEeCyO49uPYUf-g" name="output" mandatory="true" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_Y9ZeAEDgEeCyO49uPYUf-g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_m0L5oEKLEeCptI_ayXHmng" name="GenModelToJavadoc" kind="java"
+      implementation="org.eclipse.egf.portfolio.ant.javadoc.GenModelToJavadoc">
+    <contractContainer xmi:id="_nUQg0EKLEeCptI_ayXHmng">
+      <contracts xmi:id="_n1PuAEKLEeCptI_ayXHmng" name="genModel" mandatory="true">
+        <type xmi:type="domain:TypeDomain" xmi:id="_qfr7AEKLEeCptI_ayXHmng"/>
+      </contracts>
+      <contracts xmi:id="_oI3NkEKLEeCptI_ayXHmng" name="inputFolderPaths" mandatory="true"
+          mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_rYnHEEKLEeCptI_ayXHmng"/>
+      </contracts>
+      <contracts xmi:id="_DAp58EKNEeCptI_ayXHmng" name="outputProjectName" mandatory="true"
+          mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_HgzrYEKNEeCptI_ayXHmng"/>
+      </contracts>
+      <contracts xmi:id="_DU4dgEKNEeCptI_ayXHmng" name="outputFolderName" mandatory="true"
+          mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_H838UEKNEeCptI_ayXHmng"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <fcore:FactoryComponent xmi:id="_P1eycDKWEeC3FtpPN6Y5Kw" name="Javadoc Generation Test">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Q25MIDKWEeC3FtpPN6Y5Kw">
+      <invocations xmi:id="_R7ljUDKWEeC3FtpPN6Y5Kw" invokedActivity="#_84pKcDKUEeC3FtpPN6Y5Kw">
+        <invocationContractContainer xmi:id="_R7ljUTKWEeC3FtpPN6Y5Kw">
+          <invocationContracts xmi:id="_CFokoED3EeCyw4ARHGEa-Q" invokedContract="#_8DPkYED2EeCyw4ARHGEa-Q">
+            <type xmi:type="types:TypeString" xmi:id="_DJbj8ED3EeCyw4ARHGEa-Q" value="/org.eclipse.egf.examples.library/src,/org.eclipse.egf.examples.library.edit/src"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_R7ljUjKWEeC3FtpPN6Y5Kw" invokedContract="#_Feyg4DKVEeC3FtpPN6Y5Kw">
+            <type xmi:type="types:TypeString" xmi:id="_StzqcDKWEeC3FtpPN6Y5Kw" value="projectName"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_R7ljUzKWEeC3FtpPN6Y5Kw" invokedContract="#_KPhsADKVEeC3FtpPN6Y5Kw">
+            <type xmi:type="types:TypeString" xmi:id="_TDQ9EDKWEeC3FtpPN6Y5Kw" value="folderName"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>

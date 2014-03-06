@@ -1,0 +1,1 @@
+        <cs:dependency name="<%=plugin.getId()%>" componentType="osgi.bundle"/>

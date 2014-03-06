@@ -1,0 +1,19 @@
+<project>
+	<target name="stats">
+		<property name="p2.site.path" value="C:/matt/temp" />
+	
+		<unzip src="${p2.site.path}/artifacts.jar" dest="${p2.site.path}" />
+		<delete file="${p2.site.path}/artifacts.jar" />
+		<move file="${p2.site.path}/artifacts.xml" tofile="${p2.site.path}/artifacts.xml.orig" />
+	
+		<xslt style="statsURI.xsl" 
+			in="${p2.site.path}/artifacts.xml.orig" 
+			out="${p2.site.path}/artifacts.xml">
+			<param name="releaseName" expression="indigo"/>
+		 </xslt>
+	 	
+		<zip destfile="${p2.site.path}/artifacts.jar" basedir="${p2.site.path}" includes="artifacts.xml" />
+		<delete file="${p2.site.path}/artifacts.xml" />
+		<delete file="${p2.site.path}/artifacts.xml.orig" />
+	</target>
+</project>

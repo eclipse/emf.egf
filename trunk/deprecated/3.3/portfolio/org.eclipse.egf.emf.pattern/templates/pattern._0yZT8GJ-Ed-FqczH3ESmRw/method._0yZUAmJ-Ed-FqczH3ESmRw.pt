@@ -1,0 +1,22 @@
+
+
+	/**
+	 * Sets the value of the '{@link <%=genClass.getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%> <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.javadoc.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em><%=genFeature.getFormattedName()%></em>' <%=genFeature.getFeatureKind()%>.
+    <%if (genFeature.isEnumType()) {%>
+	 * @see <%=genFeature.getTypeGenEnum().getQualifiedName()%>
+    <%}%>
+    <%if (genFeature.isUnsettable()) {%>
+      <%if (!genFeature.isSuppressedIsSetVisibility()) {%>
+	 * @see #isSet<%=genFeature.getAccessorName()%>()
+      <%}%>
+      <%if (!genFeature.isSuppressedUnsetVisibility()) {%>
+	 * @see #unset<%=genFeature.getAccessorName()%>()
+      <%}%>
+    <%}%>
+	 * @see #<%=genFeature.getGetAccessor()%>()
+	 * @generated
+	 */

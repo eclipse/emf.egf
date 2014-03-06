@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_WqNeYCLCEd-QbLE3s54hPw"
+    name="projectPoliciesExample">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_lHkf0CLCEd-QbLE3s54hPw">
+    <invocations xmi:id="_nPBUgCLCEd-QbLE3s54hPw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_w-GuwCJbEd-1iJf80lotFg">
+      <invocationContractContainer xmi:id="_nPBUgSLCEd-QbLE3s54hPw">
+        <invocationContracts xmi:id="_nPBUgiLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_T7Mm8CJgEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_rEvo4CLCEd-QbLE3s54hPw" value="test.project"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_nPBUgyLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_8_sT4CK0Ed-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_vZT1YCLCEd-QbLE3s54hPw" value="Eclipse Modeling Project"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_nPBUhCLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_GeBPgCK1Ed-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_xjcKoCLCEd-QbLE3s54hPw" value="EGF Test"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_nPBUhSLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_Ulh7wCLAEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_0AWR8CLCEd-QbLE3s54hPw" value="Copyright (c) 2009-2010 Thales Corporate Services S.A.S."/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_nPBUhiLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_Zn_JACLAEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_2PQZgCLCEd-QbLE3s54hPw" value="Thales Corporate Services S.A.S - initial API and implementation"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

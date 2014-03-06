@@ -1,0 +1,2 @@
+        <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>

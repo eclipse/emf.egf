@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="egf"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Main Features of EGF</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;Main Features of EGF
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+
+<a name="GeneralFeatures"><h3>General Features</h3></a>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">EGF can start from a simple project; EGF adds incrementally all the required <b>project properties</b> for running: project bundle, dependencies</li>
+    <li CLASS="Item">EGF is <b>platform-aware</b>: execution with resources in the workspace first else in the platform</li>
+    <li CLASS="Item">Set the EGF preferences: console, model settings, activity validation</li>
+    <li CLASS="Item">An activity (factory component, task) is stored in a <b>fcore</b> file; an fcore stores a set of activities</li>
+</ul>
+<br/>
+
+<a name="GeneralCommands"><h3>General Commands</h3></a>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Activity <b>creation</b> (Factory component, Task): [File][New][Other][EGF section][EGF Activity]</li>
+    <li CLASS="Item">An activity <b>execution</b>:
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">Dynamically: right-click on a factory component or task elements, and [Run EGF Activity...]</li>
+            <li CLASS="Item">Fcore execution: [Right-click][Run EGF Activity...]</li>
+        </ul>
+    </li>
+</ul>
+
+<br/>
+
+<a name="StructuralFeatures"><h3>Structural Features</h3></a>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">An <b>activity</b> is unit of execution.
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">An activity contains a set of contracts (i.e., the actity parameters)</li>
+            <li CLASS="Item">A contract has a type, a mode (input, output, intput/output), a default value (depends on the type)</li>
+        </ul>
+    </li>
+    <li CLASS="Item">A <b>factory component</b> (FC) is an activity.</li>
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">A FC contains a set of viewpoints. A viewpoint defines a type of generation data (e.g., domain, mapping, pattern).</li>
+            <li CLASS="Item">A FC contains an <b>orchestration</b>.
+                <ul CLASS="UnorderedList">
+                    <li CLASS="Item">An orchestration contains a context, with the same characteristics than a contract</li>
+                    <li CLASS="Item">An orchestration contains an ordered set of activity invocations (to factory component or task)</li>
+                    <li CLASS="Item">An activity invocation provides values to the invoked activity: from 1) local values to the invocation, 2) the orchestration context, 3) the factory component contracts</li>
+                    <li CLASS="Item">A factory component hierarchy requires at least a task call to execute productively something</li>                    
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li CLASS="Item">A <b>task</b> is an activity. It is linked to a Java class that implements the expected behavior.</li>
+    <li CLASS="Item">A <b>domain viewpoint</b> is a viewpoint.
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">A domain viewpoint declares a domain with a URI (platform:/plugin/...)</li>
+            <li CLASS="Item">The domain is used in activity invocations through a URI type that references the domain</li>
+        </ul>
+    </li>
+    <li CLASS="Item">A <b>pattern viewpoint</b> is a viewpoint.
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">A pattern viewpoint contains pattern libraries which contains pattern libraries and patterns</li>
+            <li CLASS="Item">A pattern has 1) a specification, where are declared the pattern parameters, 2) an implementation that contains methods</li>
+            <li CLASS="Item">Pattern methods are in written in a language, for instance Jet for model-to-text transformation</li>
+            <li CLASS="Item">Pattern can inherit from a super-pattern, can call patterns with a context injection or not</li>
+        </ul>
+    </li>
+</ul>
+
+
+<a name="Extensibility"><h3>Extensibility</h3></a>
+<p class="Para">EGF is extensible by nature</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Adding new type</li>
+    <li CLASS="Item">Adding new viewpoint</li>
+    <li CLASS="Item">Adding new orchestration type</li>
+    <li CLASS="Item">Adding new language and engine for pattern</li>
+</ul>
+
+
+</body>
+</html>

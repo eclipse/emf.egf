@@ -1,0 +1,26 @@
+<project name="javadoc" default="build-javadocs" basedir="..">
+	<target name="build-javadocs" description="Generates a javadoc from few classes">
+
+		<echo message="Building javadoc" />
+
+		<javadoc packagenames="org.eclipse.egf.example.task.ant.*" 
+			sourcepath="src" 
+			defaultexcludes="yes" 
+			destdir="build/docs/api" 
+			author="true" 
+			version="true" 
+			use="true" 
+			windowtitle="tellogic API">
+
+			<doctitle>
+				<![CDATA[>
+				<h1>tellogic</h1>]]></doctitle>
+
+			<bottom>
+				<![CDATA[>
+				<i>Copyright © 2006 tellogic. All Rights Reserved.</i>]]></bottom>
+
+		</javadoc>
+	</target>
+</project>
+

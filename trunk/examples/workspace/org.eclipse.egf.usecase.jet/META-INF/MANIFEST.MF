@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.usecase.jet;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.ui
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.egf.usecase.jet,
+ org.eclipse.egf.usecase.jet.task,
+ org.eclipse.egf.usecase.jet.template
+Bundle-Activator: org.eclipse.egf.usecase.jet.Activator
+Bundle-Localization: plugin
+Bundle-Vendor: %providerName

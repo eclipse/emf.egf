@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+
+<project name="Javadoc Generation" default="main">
+	<target name="main">

@@ -1,0 +1,7 @@
+        //workaroud : usage of reflection instead of this.createClass (to keep compatibility with emf 2.3)
+        try {
+            GenClass createClass = (GenClass) getParameters().get("createClass");
+            return EMFPatternHelper.isSameEClass(BuildstepPackage.eINSTANCE.getJavadocStep(), createClass.getEcoreClass());
+        } catch (Exception e) {
+            return false;
+        }

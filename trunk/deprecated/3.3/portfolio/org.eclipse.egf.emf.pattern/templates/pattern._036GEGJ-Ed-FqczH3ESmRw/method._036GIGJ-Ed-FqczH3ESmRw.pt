@@ -1,0 +1,16 @@
+
+
+          <%for (GenClass createClass : genClass.getChildrenClasses(delegatedFeature)) { %>
+
+		newChildDescriptors.add
+			(createChildParameter
+				(<%=createFeature.getQualifiedFeatureAccessor()%>,
+				 <%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMapUtil")%>.createEntry
+					(<%=delegatedFeature.getQualifiedFeatureAccessor()%>,
+            <%if (createClass.isMapEntry()) { %>
+					 <%=createClass.getGenPackage().getQualifiedEFactoryInstanceAccessor()%>.create(<%=createClass.getQualifiedClassifierAccessor()%>))));
+            <%} else {%>
+					 <%=createClass.getGenPackage().getQualifiedFactoryInstanceAccessor()%>.create<%=createClass.getName()%>())));
+            <%}%>
+          <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.insert" args="delegatedFeature:delegatedFeature,createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>

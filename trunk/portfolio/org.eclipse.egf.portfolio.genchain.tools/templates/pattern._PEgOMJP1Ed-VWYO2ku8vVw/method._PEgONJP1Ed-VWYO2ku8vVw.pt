@@ -1,0 +1,17 @@
+        Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+
+        FactoryComponent parentFC = fcs.get((GenerationElement) (parameter.eContainer()));
+
+        Collection<FactoryComponent> unused = (Collection<FactoryComponent>) ctx.getValue(FcoreBuilderConstants.UNUSED_FCORE);
+        FactoryComponent fc = FCMatcher.getFC(unused, parameter);
+        if (fc == null) {
+            fc = ActivityInvocationHelper.createDefaultFC(parameter.getName());
+            parentFC.eResource().getContents().add(fc);
+        } else {
+            ActivityInvocationHelper.clearOrchestration(fc);
+            unused.remove(fc);
+        }
+        fcs.put(parameter, fc);
+
+        ActivityInvocationHelper.addInvocation((ProductionPlan) parentFC.getOrchestration(), fc);
+

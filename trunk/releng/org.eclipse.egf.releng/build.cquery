@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+ <cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="build.rmap">
+    <cq:rootRequest name="org.eclipse.egf.releng" componentType="buckminster"/>
+
+    <cq:advisorNode namePattern="org\.eclipse\.egf.*\.source" skipComponent="true"/>
+
+    <cq:property key="target.arch" value="*"/>
+    <cq:property key="target.os" value="*"/>
+    <cq:property key="target.ws" value="*"/>
+
+    <cq:advisorNode namePattern=".*" useMaterialization="false" useTargetPlatform="false"/>
+</cq:componentQuery>

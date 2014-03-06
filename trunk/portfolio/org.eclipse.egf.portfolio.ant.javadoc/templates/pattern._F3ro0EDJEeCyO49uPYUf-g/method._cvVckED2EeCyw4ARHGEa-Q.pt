@@ -1,0 +1,9 @@
+		<javadoc
+			destdir="<%=outputFolderPath%>"
+			maxmemory="1024m"
+			source="1.5"
+			useexternalfile="true"
+			author="true"
+			version="true"
+			use="true"
+			windowtitle="Javadoc">

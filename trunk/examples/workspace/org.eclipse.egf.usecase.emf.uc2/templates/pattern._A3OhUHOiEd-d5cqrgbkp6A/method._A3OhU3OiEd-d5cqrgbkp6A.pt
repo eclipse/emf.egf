@@ -1,0 +1,4 @@
+if ("Library".equals(genFeature.getGenClass().getEcoreClass().getName()) && "books".equals(genFeature.getName())) {
+    return true;
+}
+return false;

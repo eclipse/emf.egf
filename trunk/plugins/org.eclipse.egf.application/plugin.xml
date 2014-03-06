@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+  
+    <!-- ================================================================================= -->
+    <!-- Ant ExtraClasspathEntries                                                         -->
+    <!-- ================================================================================= -->  
+  
+    <extension 
+        point="org.eclipse.ant.core.extraClasspathEntries"
+    >
+        <extraClasspathEntry 
+            library="ant_tasks/egf.ant.tasks.jar" 
+        />
+    </extension>
+  
+    <!-- ================================================================================= -->
+    <!-- Ant Task                                                                          -->
+    <!-- ================================================================================= -->  
+
+    <extension
+        id="egf.activities"
+        name="egf.activities" 
+        point="org.eclipse.ant.core.antTasks"
+    >
+        <antTask 
+            name="egf.activities"
+            class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask"
+            library="ant_tasks/egf.ant.tasks.jar"  
+            headless="true"  
+        />
+    </extension>
+    
+    <!-- ================================================================================= -->
+    <!-- Applications                                                                      -->
+    <!-- ================================================================================= -->
+
+    <extension
+        id="org.eclipse.egf.application.activity"
+        point="org.eclipse.core.runtime.applications"
+    >
+        <application>
+            <run
+                class="org.eclipse.egf.application.activity.ActivityApplication"
+            />
+        </application>
+    </extension>    
+
+    <!-- ================================================================================= -->
+    <!-- Product                                                                          -->
+    <!-- ================================================================================= -->
+      
+    <extension
+        id="org.eclipse.egf.application.product"
+        point="org.eclipse.core.runtime.products"
+    >
+        <product
+            name="%activityApplicationName"        
+            application="org.eclipse.egf.application.activity"
+        >
+            <property
+                name="appName"
+                value="org.eclipse.egf.application.activity"
+            />
+        </product>
+    </extension>
+  
+</plugin>

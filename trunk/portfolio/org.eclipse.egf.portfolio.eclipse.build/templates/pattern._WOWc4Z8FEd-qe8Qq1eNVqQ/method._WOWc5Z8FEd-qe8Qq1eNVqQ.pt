@@ -1,0 +1,3 @@
+    <hudson.triggers.TimerTrigger>
+      <spec><%=cronTrigger.getPlanning()%></spec>
+    </hudson.triggers.TimerTrigger>

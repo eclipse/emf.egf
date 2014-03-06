@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_RfJZMPehEd-kj4OiJFh1fg"
+    name="ant_task" kind="ant" implementation="platform:/plugin/org.eclipse.egf.example.task.ant/ant/HelloWord.xml">
+  <contractContainer xmi:id="_26L6YPktEd-1x_gNYKK9mg">
+    <contracts xmi:id="_yQdJcPuOEd-jD8DOaXN1VA" name="output_parameter_string" mode="Out">
+      <type xmi:type="types:TypeString" xmi:id="_0Yl6oPuOEd-jD8DOaXN1VA"/>
+    </contracts>
+    <contracts xmi:id="_7fTVAPxGEd-bYIFyMKv_XA" name="output_parameter_boolean" mode="Out">
+      <type xmi:type="types:TypeBoolean" xmi:id="_9zTX8PxGEd-bYIFyMKv_XA"/>
+    </contracts>
+    <contracts xmi:id="_-362oPxGEd-bYIFyMKv_XA" name="output_parameter_long" mode="Out">
+      <type xmi:type="types:TypeLong" xmi:id="_CNwKAPxHEd-bYIFyMKv_XA"/>
+    </contracts>
+    <contracts xmi:id="_D-KXsPxHEd-bYIFyMKv_XA" name="output_parameter_character"
+        mode="Out">
+      <type xmi:type="types:TypeCharacter" xmi:id="_GCiqQPxHEd-bYIFyMKv_XA"/>
+    </contracts>
+    <contracts xmi:id="_HaqTwPxHEd-bYIFyMKv_XA" name="output_parameter_jmerger" mode="Out">
+      <type xmi:type="types:TypeClass" xmi:id="_KHY_wPxHEd-bYIFyMKv_XA" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
+    </contracts>
+    <contracts xmi:id="_TOpMQPxUEd-tzJWd1Nxuog" name="output_parameter_integer" mode="Out">
+      <type xmi:type="types:TypeInteger" xmi:id="_Wo2CQPxUEd-tzJWd1Nxuog"/>
+    </contracts>
+    <contracts xmi:id="_OSipMPxVEd-tzJWd1Nxuog" name="output_parameter_double" mode="Out">
+      <type xmi:type="types:TypeDouble" xmi:id="_RxZVsPxVEd-tzJWd1Nxuog"/>
+    </contracts>
+    <contracts xmi:id="_dA2QsPxVEd-tzJWd1Nxuog" name="output_parameter_float" mode="Out">
+      <type xmi:type="types:TypeFloat" xmi:id="_fvQXsPxVEd-tzJWd1Nxuog"/>
+    </contracts>
+    <contracts xmi:id="_hEaz0PxVEd-tzJWd1Nxuog" name="output_parameter_short" mode="Out">
+      <type xmi:type="types:TypeShort" xmi:id="_kXcq0PxVEd-tzJWd1Nxuog"/>
+    </contracts>
+    <contracts xmi:id="_Gx668PxWEd-tzJWd1Nxuog" name="output_parameter_byte" mode="Out">
+      <type xmi:type="types:TypeByte" xmi:id="_I8D3QPxWEd-tzJWd1Nxuog"/>
+    </contracts>
+    <contracts xmi:id="_4kldEPxWEd-yFubmLPSIDQ" name="output_parameter_bigInteger"
+        mode="Out">
+      <type xmi:type="types:TypeBigInteger" xmi:id="_7sMuQPxWEd-yFubmLPSIDQ"/>
+    </contracts>
+    <contracts xmi:id="_AHAssPxXEd-yFubmLPSIDQ" name="output_parameter_bigDecimal"
+        mode="Out">
+      <type xmi:type="types:TypeBigDecimal" xmi:id="_EGcWsPxXEd-yFubmLPSIDQ"/>
+    </contracts>
+    <contracts xmi:id="_xfJZgPxYEd-cg74CwWyesw" name="output_parameter_date" mode="Out">
+      <type xmi:type="types:TypeDate" xmi:id="_4RFAUPxYEd-cg74CwWyesw"/>
+    </contracts>
+    <contracts xmi:id="_pcEMgPxbEd-kIJVSbcp9Dg" name="output_parameter_uri" mode="Out">
+      <type xmi:type="types:TypeURI" xmi:id="_sfaBsPxbEd-kIJVSbcp9Dg"/>
+    </contracts>
+    <contracts xmi:id="_O9-f8PxiEd-8tZVeM1BYkw" name="input_parameter_boolean">
+      <type xmi:type="types:TypeBoolean" xmi:id="_Q1OVcPxiEd-8tZVeM1BYkw" value="true"/>
+    </contracts>
+    <contracts xmi:id="_MD06YP0PEd-i8akskLEoSw" name="input_parameter_string">
+      <type xmi:type="types:TypeString" xmi:id="_NKXrsP0PEd-i8akskLEoSw" value="hello"/>
+    </contracts>
+    <contracts xmi:id="_YduPQP0PEd-i8akskLEoSw" name="input_parameter_long">
+      <type xmi:type="types:TypeLong" xmi:id="_Zs_ewP0PEd-i8akskLEoSw" value="999999999"/>
+    </contracts>
+    <contracts xmi:id="_b4JHsP0PEd-i8akskLEoSw" name="input_parameter_character">
+      <type xmi:type="types:TypeCharacter" xmi:id="_f3HesP0PEd-i8akskLEoSw" value="99"/>
+    </contracts>
+    <contracts xmi:id="_XC6MMP0REd-i8akskLEoSw" name="input_parameter_jmerger">
+      <type xmi:type="types:TypeClass" xmi:id="_ZiAr4P0REd-i8akskLEoSw" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
+    </contracts>
+    <contracts xmi:id="_d1odMP0REd-i8akskLEoSw" name="input_parameter_integer">
+      <type xmi:type="types:TypeInteger" xmi:id="_fNExQP0REd-i8akskLEoSw" value="100"/>
+    </contracts>
+    <contracts xmi:id="_iR7CUP0REd-i8akskLEoSw" name="input_parameter_double">
+      <type xmi:type="types:TypeDouble" xmi:id="_jvX3wP0REd-i8akskLEoSw" value="2.2"/>
+    </contracts>
+    <contracts xmi:id="_m2eyoP0REd-i8akskLEoSw" name="input_parameter_float">
+      <type xmi:type="types:TypeFloat" xmi:id="_pCL1MP0REd-i8akskLEoSw" value="1.0"/>
+    </contracts>
+    <contracts xmi:id="_rZx-sP0REd-i8akskLEoSw" name="input_parameter_short">
+      <type xmi:type="types:TypeShort" xmi:id="_tRgVUP0REd-i8akskLEoSw" value="5"/>
+    </contracts>
+    <contracts xmi:id="_1uaQMP0REd-i8akskLEoSw" name="input_parameter_byte">
+      <type xmi:type="types:TypeByte" xmi:id="_32cTsP0REd-i8akskLEoSw" value="100"/>
+    </contracts>
+    <contracts xmi:id="_6FygIP0REd-i8akskLEoSw" name="input_parameter_bigInteger">
+      <type xmi:type="types:TypeBigInteger" xmi:id="_8JxxIP0REd-i8akskLEoSw" value="9998888"/>
+    </contracts>
+    <contracts xmi:id="_DbymMP0SEd-i8akskLEoSw" name="input_parameter_bigDecimal">
+      <type xmi:type="types:TypeBigDecimal" xmi:id="_Fl4fMP0SEd-i8akskLEoSw" value="2.015"/>
+    </contracts>
+    <contracts xmi:id="_Iq8ysP0SEd-i8akskLEoSw" name="input_parameter_date">
+      <type xmi:type="types:TypeDate" xmi:id="_LJ9y0P0SEd-i8akskLEoSw" description=""
+          value="2011-12-30T00:00:00.000+0800"/>
+    </contracts>
+    <contracts xmi:id="_i7GFsP0SEd-i8akskLEoSw" name="input_parameter_uri">
+      <type xmi:type="types:TypeURI" xmi:id="_vh_UwP0SEd-i8akskLEoSw" value="platform:/resource/org.eclipse.egf.example.task.ant/.project"/>
+    </contracts>
+    <contracts xmi:id="_fza4MP0UEd-i8akskLEoSw" name="input_parameter_collection">
+      <type xmi:type="types:TypeCollection" xmi:id="_m2VhUP0UEd-i8akskLEoSw" value="java.util.ArrayList"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

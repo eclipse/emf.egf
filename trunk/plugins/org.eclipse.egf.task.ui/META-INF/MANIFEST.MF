@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.task.ui;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.task.ui.EGFTaskUIPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.core.filesystem,
+ org.eclipse.egf.core.ui;visibility:=reexport,
+ org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.model.editor;visibility:=reexport,
+ org.eclipse.egf.task
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.egf.task.ui,
+ org.eclipse.egf.task.ui.contributions

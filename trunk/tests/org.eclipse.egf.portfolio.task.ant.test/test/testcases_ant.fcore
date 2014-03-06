@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_qvsy8f3tEd-nfIdg4mG6dw" description="Test say hello word."
+      name="testcases_ant_1">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_D7MyEP3uEd-RSuU90huDVA">
+      <invocations xmi:id="_WwBjAP3uEd-RSuU90huDVA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.task.ant.test/egf/ant_task.fcore#_RfJZMPehEd-kj4OiJFh1fg"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_t-mtAP3vEd-RSuU90huDVA" name="testcases_ant_2">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_xazuIP3vEd-RSuU90huDVA">
+      <invocations xmi:id="_zlSBoP3vEd-RSuU90huDVA" invokedActivity="#_NS6oAP3xEd-RSuU90huDVA"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_-OKZ8P3xEd-RSuU90huDVA" name="testcases_ant_3">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_EVHKEP3yEd-RSuU90huDVA">
+      <invocations xmi:id="_E5axAP3yEd-RSuU90huDVA" invokedActivity="#_jwr1kP3xEd-RSuU90huDVA"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_P8EOkP6AEd-Gs9gzUnK_9w" name="testcases_ant_4">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_QahFIP6AEd-Gs9gzUnK_9w"
+        description="">
+      <invocations xmi:id="_TSFIIP6AEd-Gs9gzUnK_9w" name="" invokedActivity="#_Vq4ykP6AEd-Gs9gzUnK_9w"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_RJNHoP3yEd-RSuU90huDVA" name="testcases_ant_5">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_SUt4gP3yEd-RSuU90huDVA">
+      <invocations xmi:id="_S1lw8P3yEd-RSuU90huDVA" invokedActivity="#_srCXoP6EEd-ef4U48VrAUA"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_fnO3cP3yEd-RSuU90huDVA" name="testcases_ant_6">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_gFcdcP3yEd-RSuU90huDVA">
+      <invocations xmi:id="_gbu2gP3yEd-RSuU90huDVA" description="" name="" invokedActivity="#_fVYlIP6EEd-ef4U48VrAUA"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_NS6oAP3xEd-RSuU90huDVA" name="Test - ant task with using task from external ant lib."
+      kind="ant" implementation="platform:/plugin/org.eclipse.egf.portfolio.task.ant.test/test/ExecuteTaskFromExternalAntLib.xml"/>
+  <ftask:Task xmi:id="_jwr1kP3xEd-RSuU90huDVA" name="Test - ant task with generating a javadoc from frew classes."
+      kind="ant" implementation="platform:/plugin/org.eclipse.egf.portfolio.task.ant.test/test/GenerateJavaDoc.xml"/>
+  <ftask:Task xmi:id="_Vq4ykP6AEd-Gs9gzUnK_9w" name="Test - ant task with writing and reading contracts in task."
+      kind="ant" implementation="platform:/plugin/org.eclipse.egf.portfolio.task.ant.test/test/WriteAndReadContractByTask.xml">
+    <contractContainer xmi:id="_mbM4oP6BEd-Gs9gzUnK_9w">
+      <contracts xmi:id="_nPxJIP6BEd-Gs9gzUnK_9w" name="input_parameter">
+        <type xmi:type="types:TypeString" xmi:id="_ouAowP6BEd-Gs9gzUnK_9w" value="Hello"/>
+      </contracts>
+      <contracts xmi:id="_pMk0EP6BEd-Gs9gzUnK_9w" name="output_parameter" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_uJ_wUP6BEd-Gs9gzUnK_9w"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_fVYlIP6EEd-ef4U48VrAUA" name="Test - ant task with writing output contract in script directly"
+      kind="ant" implementation="platform:/plugin/org.eclipse.egf.portfolio.task.ant.test/test/WriteOutputContractDirectly.xml">
+    <contractContainer xmi:id="_gpeqQP6EEd-ef4U48VrAUA">
+      <contracts xmi:id="_g_IKIP6EEd-ef4U48VrAUA" name="input_parameter">
+        <type xmi:type="types:TypeString" xmi:id="_nO--oP6EEd-ef4U48VrAUA" value="Hello ant"/>
+      </contracts>
+      <contracts xmi:id="_oicKkP6EEd-ef4U48VrAUA" name="output_parameter" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_p_ZQwP6EEd-ef4U48VrAUA"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_srCXoP6EEd-ef4U48VrAUA" name="Test - ant task with reading input contract in script directly."
+      kind="ant" implementation="platform:/plugin/org.eclipse.egf.portfolio.task.ant.test/test/ReadInputContractDirectly.xml">
+    <contractContainer xmi:id="_1Fv6IP6EEd-ef4U48VrAUA">
+      <contracts xmi:id="_2IgXoP6EEd-ef4U48VrAUA" name="input_parameter">
+        <type xmi:type="types:TypeString" xmi:id="_3R-hIP6EEd-ef4U48VrAUA" value="Hello ant"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+</xmi:XMI>

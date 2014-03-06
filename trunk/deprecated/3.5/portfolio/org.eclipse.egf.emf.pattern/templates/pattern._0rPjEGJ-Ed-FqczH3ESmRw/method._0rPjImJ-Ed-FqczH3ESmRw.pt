@@ -1,0 +1,16 @@
+
+
+	/**
+	 * Unsets the value of the '{@link <%=genClass.getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%> <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.javadoc.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+  <%if (!genFeature.isSuppressedIsSetVisibility()) {%>
+	 * @see #isSet<%=genFeature.getAccessorName()%>()
+  <%}%>
+	 * @see #<%=genFeature.getGetAccessor()%>()
+  <%if (!genFeature.isListType() && !genFeature.isSuppressedSetVisibility()) {%>
+	 * @see #set<%=genFeature.getAccessorName()%>(<%=genFeature.getRawImportedBoundType()%>)
+  <%}%>
+	 * @generated
+	 */

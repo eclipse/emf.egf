@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.emf.pattern.codegen;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eclipse.egf.emf.pattern.codegen,
+ org.eclipse.egf.emf.pattern.codegen.jdt,
+ org.eclipse.egf.emf.pattern.codegen.jet,
+ org.eclipse.egf.emf.pattern.codegen.model
+Require-Bundle: 
+ org.eclipse.egf.emf.pattern.base,
+ org.eclipse.jdt.ui,
+ org.eclipse.egf.model.fprod,
+ org.eclipse.egf.pattern.jet,
+ org.eclipse.emf.query,
+ org.eclipse.egf.pattern.jet
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+    id="org.eclipse.egf.common"
+    label="%featureName"
+    version="1.1.0.qualifier"
+    provider-name="%providerName"
+    plugin="org.eclipse.egf.common"
+    image="eclipse_update_120.jpg"
+>
+
+    <description>
+        %description
+    </description>
+
+    <copyright>
+      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+    </copyright>
+
+    <license 
+        url="%licenseURL"
+    >
+        %license
+    </license>
+
+    <url>
+        <update 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+        <discovery 
+            label="%EMFUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emf/updates/"
+        />
+        <discovery 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+    </url>
+
+    <requires>
+        <import
+            feature="org.eclipse.platform" 
+        />
+        <import
+            feature="org.eclipse.jdt"
+        />
+        <import
+            feature="org.eclipse.pde"
+        />
+        <import
+            feature="org.eclipse.emf.codegen" 
+        />
+        <import
+            feature="org.eclipse.emf.edit" 
+        />
+    </requires>
+  
+    <includes
+        id="org.eclipse.egf.common.source"
+        version="0.0.0"
+    />     
+
+    <plugin
+        id="org.eclipse.egf.common"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />
+
+</feature>

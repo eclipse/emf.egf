@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmi:id="_0g_mgKYMEd-sC7q6oZksUA"
+    name="generationChain"/>

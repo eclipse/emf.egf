@@ -1,0 +1,13 @@
+
+
+
+        {
+            if (object.getInvokedContract() != null && object.getInvokedContract().getType() != null) {
+                <%=genModel.getImportedName("org.eclipse.egf.model.types.Type")%> invokedContractType = object.getInvokedContract().getType();
+                <%=genModel.getImportedName(createClass.getImportedInstanceClassName())%> type = <%=createClass.getGenPackage().getQualifiedFactoryInstanceAccessor()%>.create<%=createClass.getName()%>();
+                if (invokedContractType.isCompatible(type)) {
+                    newChildDescriptors.add(createChildParameter(<%=createFeature.getQualifiedFeatureAccessor()%>, type));
+                }
+            }
+        }
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>

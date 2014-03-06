@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+  <!-- ================================================================================= -->
+  <!-- Action Sets                                                                       -->
+  <!-- ================================================================================= -->
+
+  <extension
+    point="org.eclipse.ui.actionSets">
+    <actionSet
+      label="%Pattern_Action_Set"
+      visible="true"
+      id="test.actionSet">
+      <action
+        label="%Translate_All_Action"
+        icon="icons/sample.gif"
+        class="org.eclipse.egf.dev.pattern.actions.TranslateAllAction"
+        tooltip="%Translate_All_Patterns"
+        toolbarPath="sampleGroup"
+        id="org.eclipse.egf.dev.pattern.actions.TranslateAllAction"/>
+      <action
+        label="%Delete_Unused_Templates_Action_Label"
+        icon="icons/sample.gif"
+        class="org.eclipse.egf.dev.pattern.actions.DeleteUnusedTemplatesAction"
+        tooltip="%Delete_Unused_Templates_Action_Tooltip"
+        toolbarPath="sampleGroup"
+        id="org.eclipse.egf.dev.pattern.actions.DeleteUnusedTemplatesAction"/>
+    </actionSet>
+  </extension>
+   	<extension 
+    	point="org.eclipse.egf.core.ui.editor.menu.contributor">
+        <contribution
+               class="org.eclipse.egf.dev.pattern.contributions.PatternMenuContributor">
+        </contribution>
+   	</extension>
+
+</plugin>

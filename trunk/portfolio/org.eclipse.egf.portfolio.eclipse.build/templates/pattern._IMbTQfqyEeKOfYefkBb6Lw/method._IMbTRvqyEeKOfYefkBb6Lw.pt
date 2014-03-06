@@ -1,0 +1,12 @@
+<%
+if (job.getDeployment() instanceof HudsonDeployment) {
+HudsonDeployment deployment = (HudsonDeployment) job.getDeployment();
+if (deployment.getBuildId() != null && deployment.getBuildId().length() > 0) {%>
+    <hudson.plugins.zentimestamp.ZenTimestampJobProperty>
+      <changeBUILDID>true</changeBUILDID>
+      <pattern><%=deployment.getBuildId()%></pattern>
+    </hudson.plugins.zentimestamp.ZenTimestampJobProperty>
+<%
+}
+}
+%>

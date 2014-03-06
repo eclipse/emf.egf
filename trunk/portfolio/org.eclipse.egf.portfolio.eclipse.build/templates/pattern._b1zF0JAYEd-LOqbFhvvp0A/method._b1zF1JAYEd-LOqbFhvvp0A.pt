@@ -1,0 +1,23 @@
+    <hudson.tasks.Ant>
+      <targets>all</targets>
+<%
+String buildFile = "..";
+if (job.getDeployment() instanceof HudsonDeployment) {
+      HudsonDeployment deployment = (HudsonDeployment) job.getDeployment();
+      if (deployment.getAntName() != null) {
+%>
+      <antName><%=deployment.getAntName()%></antName>
+<%
+      }
+      if (deployment.getGenerationLocation() instanceof SVNGenerationLocation) {
+            SVNGenerationLocation svnGenerationLocation = (SVNGenerationLocation) deployment.getGenerationLocation();
+            buildFile = "svn/" + svnGenerationLocation.getSvnLocation().getLocalPath() + "/" + svnGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
+      }
+      if (deployment.getGenerationLocation() instanceof GITGenerationLocation) {
+            GITGenerationLocation gitGenerationLocation = (GITGenerationLocation) deployment.getGenerationLocation();
+            buildFile = "git/" + gitGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
+      }
+}
+%>
+      <buildFile><%=buildFile%>/releng/build.xml</buildFile>
+    </hudson.tasks.Ant>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.examples.libraryextension/src"
+    modelPluginID="org.eclipse.egf.examples.libraryextension" modelName="Extlibrary_extension"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="extlibrary.genmodel#//extlibrary">
+  <foreignModel>extlibrary_extension.ecore</foreignModel>
+  <genPackages prefix="LibraryExtension" basePackage="org.eclipse.egf.examples" resource="XML"
+      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="extlibrary_extension.ecore#/">
+    <genClasses ecoreClass="extlibrary_extension.ecore#//EquippedLibrary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//EquippedLibrary/borrowingSystem"/>
+    </genClasses>
+    <genClasses ecoreClass="extlibrary_extension.ecore#//BorrowingSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//BorrowingSystem/records"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//BorrowingSystem/activeReservations"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//BorrowingSystem/activeBorrows"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="extlibrary_extension.ecore#//RecordType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//RecordType/borrower"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//RecordType/item"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extlibrary_extension.ecore#//RecordType/Finished"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute extlibrary_extension.ecore#//RecordType/description"/>
+      <genOperations ecoreOperation="extlibrary_extension.ecore#//RecordType/getDescriptionFormat"/>
+    </genClasses>
+    <genClasses ecoreClass="extlibrary_extension.ecore#//Reservation">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//Reservation/waitedBorrowers"/>
+    </genClasses>
+    <genClasses ecoreClass="extlibrary_extension.ecore#//Borrow"/>
+    <genClasses ecoreClass="extlibrary_extension.ecore#//CrossLibraryReservation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//CrossLibraryReservation/involvedLibraries"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

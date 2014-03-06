@@ -1,0 +1,5 @@
+<%for (AbstractBuildLocation buildLocation : buildStep.getBuildLocations()) {%>
+	<%@ egf:patternInjectedCall toInject="buildLocation"
+		patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.rmap.location.add"
+	%>
+<%}%>

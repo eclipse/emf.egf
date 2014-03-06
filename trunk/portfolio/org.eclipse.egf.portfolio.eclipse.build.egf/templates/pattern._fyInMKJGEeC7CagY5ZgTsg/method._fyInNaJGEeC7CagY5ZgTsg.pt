@@ -1,0 +1,4 @@
+        PublishStep publishStep = (PublishStep)object;
+        if (publishStep.getComponent() != null)
+        	return getString("_UI_PublishStep_type") + " " + publishStep.getComponent().getId();
+        return super.getText(object);

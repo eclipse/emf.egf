@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_Hz4MACKxEd-QbLE3s54hPw"
+    description="String replace" name="string.replace" kind="java" implementation="org.eclipse.egf.portfolio.type.StringReplaceTask">
+  <contractContainer xmi:id="_WaU4ACKxEd-QbLE3s54hPw">
+    <contracts xmi:id="_WtGqECKxEd-QbLE3s54hPw" description="In value" name="inValue"
+        mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_bVCegCKxEd-QbLE3s54hPw"/>
+    </contracts>
+    <contracts xmi:id="_cbOqgCKxEd-QbLE3s54hPw" description="Regular expression" name="regex"
+        mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_cbOqgSKxEd-QbLE3s54hPw"/>
+    </contracts>
+    <contracts xmi:id="_qzqvsCKxEd-QbLE3s54hPw" description="Replacement value" name="replacement"
+        mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_qzqvsSKxEd-QbLE3s54hPw"/>
+    </contracts>
+    <contracts xmi:id="_RsC5ECKzEd-QbLE3s54hPw" description="Occurrence: first, to replace first occurrence, or all, to replace all occurrences. When empty, all occurrences are replaced"
+        name="occurrence">
+      <type xmi:type="types:TypeString" xmi:id="_f2CSkCKzEd-QbLE3s54hPw" value="all"/>
+    </contracts>
+    <contracts xmi:id="_l-eiYCKxEd-QbLE3s54hPw" description="Out value" name="outValue"
+        mandatory="true" mode="Out">
+      <type xmi:type="types:TypeString" xmi:id="_l-eiYSKxEd-QbLE3s54hPw"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

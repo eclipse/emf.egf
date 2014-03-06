@@ -1,0 +1,1 @@
+<%fileName = "build_" + chain.getName() + ".xml";%>

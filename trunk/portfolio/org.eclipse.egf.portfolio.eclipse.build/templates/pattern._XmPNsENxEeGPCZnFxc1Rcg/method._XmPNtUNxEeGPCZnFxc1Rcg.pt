@@ -1,0 +1,9 @@
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(deleteStep);%>
+	<target name="<%=stepName%>" depends="init">
+		<delete <%=new GenerationHelper().getAdditionalParametersString(deleteStep)%> >
+<%@ egf:patternCall 
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.util.build.xml.filesetProvider" 
+	args="deleteStep:filesetProvider"%>
+		</delete>
+	</target>
+

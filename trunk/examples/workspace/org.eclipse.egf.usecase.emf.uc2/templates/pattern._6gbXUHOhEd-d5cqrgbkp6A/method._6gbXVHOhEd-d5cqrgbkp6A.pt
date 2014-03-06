@@ -1,0 +1,18 @@
+//INJECTED-CODE-BEGIN : Writer.setName()
+    if (newName == null || newName.length() == 0) {
+        setFirstName(null);
+        setLastName(null);
+    } else {
+        int comma = newName.indexOf(',');
+        if (comma < 0) {
+            comma = newName.indexOf(' ');
+        }
+        if (comma >= 0) {
+            setFirstName(newName.substring(0, comma).trim());
+            setLastName(newName.substring(comma + 1).trim());
+        } else {
+            setFirstName(newName);
+            setLastName(null);
+        }
+    }
+//INJECTED-CODE-END : Writer.setName()

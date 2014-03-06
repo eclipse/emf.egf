@@ -1,0 +1,54 @@
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Book");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.BookOnTape");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.VideoCassette");
+%>
+//INJECTED-CODE-BEGIN : BorrowImpl#getDescription()
+/**
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated
+ */
+@Override
+public String getDescription() {
+	String result= "";
+
+	String descrFormat = getDescriptionFormat();
+	if (null!=descrFormat)
+		result= result + descrFormat;
+
+	String items = "";
+	EList<CirculatingItem> myItems = getItem();
+
+	for (CirculatingItem circulatingItem : myItems) {
+		if (items.length()>0){
+			items= items + (";");
+		}
+		if (circulatingItem instanceof Book)
+			items= items + (((Book)circulatingItem).getTitle());
+
+		if (circulatingItem instanceof BookOnTape)
+			items= items + ((BookOnTape)circulatingItem).getTitle();
+
+		if (circulatingItem instanceof VideoCassette)
+			items= items + (((VideoCassette)circulatingItem).getTitle());
+	}
+
+	String borrowerName = getBorrower().getFirstName() +" "+getBorrower().getLastName();
+
+	if (isFinished())
+		result = result + "[RETURNED] items [";
+	else
+		result = result + "[WAITING] items [";
+
+	result=result + items;
+	result=result + ("] from [");
+	result=result + (borrowerName);
+	result=result + ("]");
+
+	return result;
+}
+//INJECTED-CODE-END : BorrowImpl#getDescription()

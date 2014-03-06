@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
+  <fcore:FactoryComponent xmi:id="_ZPAkkaYjEd-c68Bv_MO43Q" name="sampleExtension">
+    <viewpointContainer xmi:id="_Z-ZaIKYjEd-c68Bv_MO43Q">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_aauw0KYjEd-c68Bv_MO43Q">
+        <libraries xmi:id="_axPzYKYjEd-c68Bv_MO43Q" name="sample.lib">
+          <elements xmi:type="pattern:Pattern" xmi:id="_fMAHcKYjEd-c68Bv_MO43Q" name="SampleElementPattern"
+              headerMethod="#_fMAHcaYjEd-c68Bv_MO43Q" footerMethod="#_fMAHdaYjEd-c68Bv_MO43Q"
+              initMethod="#_fMAHcqYjEd-c68Bv_MO43Q" conditionMethod="#_fMAHc6YjEd-c68Bv_MO43Q">
+            <methods xmi:id="_fMAHcaYjEd-c68Bv_MO43Q" name="header" patternFilePath="templates/pattern._fMAHcKYjEd-c68Bv_MO43Q/method._fMAHcaYjEd-c68Bv_MO43Q.pt"/>
+            <methods xmi:id="_fMAHcqYjEd-c68Bv_MO43Q" name="init" patternFilePath="templates/pattern._fMAHcKYjEd-c68Bv_MO43Q/method._fMAHcqYjEd-c68Bv_MO43Q.pt"/>
+            <methods xmi:id="_fMAHc6YjEd-c68Bv_MO43Q" name="preCondition" patternFilePath="templates/pattern._fMAHcKYjEd-c68Bv_MO43Q/method._fMAHc6YjEd-c68Bv_MO43Q.pt"/>
+            <methods xmi:id="_fMAHdKYjEd-c68Bv_MO43Q" name="body" patternFilePath="templates/pattern._fMAHcKYjEd-c68Bv_MO43Q/method._fMAHdKYjEd-c68Bv_MO43Q.pt"/>
+            <methods xmi:id="_fMAHdaYjEd-c68Bv_MO43Q" name="footer" patternFilePath="templates/pattern._fMAHcKYjEd-c68Bv_MO43Q/method._fMAHdaYjEd-c68Bv_MO43Q.pt"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_nwLvAKYjEd-c68Bv_MO43Q"
+                called="#_fMAHdKYjEd-c68Bv_MO43Q"/>
+            <parameters xmi:id="_iTSogKYjEd-c68Bv_MO43Q" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChainSampleExtension#//SampleElement"/>
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_fMAHd6YjEd-c68Bv_MO43Q"
+                name="Java"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_ff2J4akrEd-itaf8FOnocQ">
+      <invocations xmi:id="_FOKwYKksEd-itaf8FOnocQ" invokedActivity="#_-mQoQKkrEd-itaf8FOnocQ"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_-mQoQKkrEd-itaf8FOnocQ" name="My sample task" kind="java" implementation="org.eclipse.egf.portfolio.genchain.extension.MySampleTask"/>
+</xmi:XMI>

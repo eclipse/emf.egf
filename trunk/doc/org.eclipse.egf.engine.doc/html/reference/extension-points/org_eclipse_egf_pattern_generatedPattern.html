@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>EGF Generated Pattern</title>
+<style type="text/css">@import url("../../book.css");</style>
+<style type="text/css">@import url("../../schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">EGF Generated Pattern</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.egf.pattern.generatedPattern<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>EGF generated pattern extension point.
+
+Used to define generated patterns.
+A generated  pattern is defined by an id, a template code string and a template engine type value.<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.generatedPattern">generatedPattern</a>)+&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.generatedPattern">generatedPattern</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST generatedPattern</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">templateCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">templateEngineType&nbsp;(jet) "jet"</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The unique id of the pattern in its containing library.
+A comment on characters that are allowed is needed here.</li>
+<li><b>templateCode</b> - The pattern code resulting from pattern generation.</li>
+<li><b>templateEngineType</b> - An attribute to define the template engine used to generate this pattern.
+If omitted, then it is <samp>jet</samp> by default. 
+
+The attribute value will be one of the following:
+    <table border="0" width="80%">
+      <tr>
+ <td valign="jet" width="25"></td>
+        <td valign="jet" nowrap><b>jet</b></td>
+        <td valign="jet">- as JET template engine.</td>
+      </tr>
+    </table></li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6>[Enter extension point usage example here.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+</p>
+</BODY>
+</HTML>

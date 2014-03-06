@@ -1,0 +1,1 @@
+return "Reservation".equals(genClass.getName()) && "waitedBorrowers".equals(genFeature.getName());

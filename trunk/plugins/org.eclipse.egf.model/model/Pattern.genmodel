@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.model/generated"
+    editDirectory="/org.eclipse.egf.model.edit/generated" editorDirectory="/org.eclipse.egf.model.editor/generated"
+    modelPluginID="org.eclipse.egf.model" templateDirectory="/org.eclipse.egf.model/templates"
+    dynamicTemplates="true" modelName="Pattern" modelPluginClass="org.eclipse.egf.model.EGFModelPlugin"
+    editPluginClass="org.eclipse.egf.model.edit.EGFModelEditPlugin" editorPluginClass="org.eclipse.egf.model.editor.EGFModelEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container"
+    codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
+    booleanFlagsField="flags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
+    fontProviders="true" runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
+  <foreignModel>Pattern.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
+  <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
+      ecorePackage="Pattern.ecore#/">
+    <genDataTypes ecoreDataType="Pattern.ecore#//PatternContext"/>
+    <genDataTypes ecoreDataType="Pattern.ecore#//PatternException"/>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternNature"/>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternElement"/>
+    <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/patternViewpoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/filters"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//Pattern">
+      <genFeatures createChild="false" propertyCategory="Pattern" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/nature"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/container"/>
+      <genFeatures createChild="false" propertyCategory="Parent" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/superPattern"/>
+      <genFeatures createChild="false" propertyCategory="Method" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/headerMethod"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/conditionMethod"/>
+      <genFeatures createChild="false" propertyCategory="Method" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/initMethod"/>
+      <genFeatures createChild="false" propertyCategory="Method" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/footerMethod"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/methods"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/variables"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/orchestration"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getAllParameters"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getAllVariables"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getAllMethods"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getMethod">
+        <genParameters ecoreParameter="Pattern.ecore#//Pattern/getMethod/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getParameter">
+        <genParameters ecoreParameter="Pattern.ecore#//Pattern/getParameter/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternMethod">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternMethod/pattern"/>
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternMethod/patternFilePath"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternParameter">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternParameter/type"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//PatternParameter/query"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternViewpoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternViewpoint/libraries"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternCall">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//PatternCall/parameterMatching"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//SuperCall"/>
+    <genClasses ecoreClass="Pattern.ecore#//Paramerter2ParameterMap">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/value"/>
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/key"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//Call">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Call/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//MethodCall">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//MethodCall/called"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternVariable">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternVariable/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//AbstractPatternCall">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//AbstractPatternCall/called"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternInjectedCall">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//PatternInjectedCall/context"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//Query">
+      <genFeatures property="None" notify="false" createChild="false" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//Query/parameter"/>
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//Query/extensionId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Query/queryContext"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//BasicQuery"/>
+    <genClasses ecoreClass="Pattern.ecore#//StringQuery"/>
+    <genClasses ecoreClass="Pattern.ecore#//CustomQuery"/>
+    <genClasses ecoreClass="Pattern.ecore#//String2PatternList">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//String2PatternList/key"/>
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//String2PatternList/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//String2String">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//String2String/key"/>
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//String2String/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//BackCall"/>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//InjectedContext">
+      <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getType"/>
+      <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getName"/>
+      <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getPattern"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//Substitution">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/replacedElement"/>
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/replacement"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternExecutionReporter">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternExecutionReporter/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternExecutionReporter/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternCallBackHandler">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternCallBackHandler/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternCallBackHandler/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternDomainVisitor">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternDomainVisitor/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternDomainVisitor/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternList">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternList/elements"/>
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternList/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternList/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternSubstitution">
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternSubstitution/getType/T"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

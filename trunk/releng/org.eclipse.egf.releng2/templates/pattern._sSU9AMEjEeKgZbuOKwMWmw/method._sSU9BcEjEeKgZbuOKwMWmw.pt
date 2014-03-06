@@ -1,0 +1,13 @@
+                    <jvmarg value="-Xmx1024m"/>
+                    <jvmarg value="-XX:MaxPermSize=256m"/>
+                    
+                    <jvmarg value="-Dhttp.proxyHost=proxy.eclipse.org"/>
+                    <jvmarg value="-Dhttp.proxyPort=9898"/>
+                    <jvmarg value="-Dhttps.proxyHost=proxy.eclipse.org"/>
+                    <jvmarg value="-Dhttps.proxyPort=9898"/>
+                    <jvmarg value="-Dhttp.nonProxyHosts=*.eclipse.org"/>
+                    <jvmarg value="-Dhttps.nonProxyHosts=*.eclipse.org"/>
+                    <jvmarg value="-Dftp.proxyHost=proxy.eclipse.org"/>
+                    <jvmarg value="-Dftp.proxyPort=9898"/>
+                    <jvmarg value="-Dftp.nonProxyHosts=*.eclipse.org"/>
+

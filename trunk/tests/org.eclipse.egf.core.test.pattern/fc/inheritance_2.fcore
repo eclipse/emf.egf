@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_mTlnECH-Ed-CStHKuCL0dg"
+    description=" " name="inheritance_2">
+  <viewpointContainer xmi:id="_nfk5ECH-Ed-CStHKuCL0dg">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_nfk5ESH-Ed-CStHKuCL0dg">
+      <libraries xmi:id="_nfk5EiH-Ed-CStHKuCL0dg" name="inheritance_2">
+        <elements xmi:id="_nfk5EyH-Ed-CStHKuCL0dg" name="parent" headerMethod="#_nfk5FCH-Ed-CStHKuCL0dg"
+            initMethod="#_nfk5FSH-Ed-CStHKuCL0dg" footerMethod="#_nfk5FyH-Ed-CStHKuCL0dg">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_nfk5GSH-Ed-CStHKuCL0dg"
+              name="JET"/>
+          <methods xmi:id="_nfk5FCH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._nfk5FCH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5FSH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._nfk5FSH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5FiH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._nfk5FiH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5FyH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._nfk5FyH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_25qJACIgEd-puPzASIa3Rw" name="setVariables" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._25qJACIgEd-puPzASIa3Rw.pt"/>
+          <methods xmi:id="_Ky8yMCIiEd-puPzASIa3Rw" name="putVariablesInContesxt"
+              patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._Ky8yMCIiEd-puPzASIa3Rw.pt"/>
+          <variables xmi:id="_fC42QCIiEd-puPzASIa3Rw" name="targetFile" type="java.lang.String"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_PbLhkCIiEd-puPzASIa3Rw"
+              called="#_25qJACIgEd-puPzASIa3Rw"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5GCH-Ed-CStHKuCL0dg"
+              called="#_nfk5FiH-Ed-CStHKuCL0dg"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_PlYmcCIiEd-puPzASIa3Rw"
+              called="#_Ky8yMCIiEd-puPzASIa3Rw"/>
+        </elements>
+        <elements xmi:id="_nfk5GiH-Ed-CStHKuCL0dg" name="child" superPattern="#_nfk5EyH-Ed-CStHKuCL0dg"
+            headerMethod="#_nfk5GyH-Ed-CStHKuCL0dg" initMethod="#_nfk5HCH-Ed-CStHKuCL0dg"
+            footerMethod="#_nfk5HyH-Ed-CStHKuCL0dg">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_nfk5KCH-Ed-CStHKuCL0dg"
+              name="JET"/>
+          <methods xmi:id="_nfk5GyH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5GyH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5HCH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5HCH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5HiH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5HiH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5HyH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5HyH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5ICH-Ed-CStHKuCL0dg" name="setToInject" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5ICH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_an3ccCIiEd-puPzASIa3Rw" name="setVariables" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._an3ccCIiEd-puPzASIa3Rw.pt"/>
+          <parameters xmi:id="_nfk5JyH-Ed-CStHKuCL0dg" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+          <variables xmi:id="_nfk5KSH-Ed-CStHKuCL0dg" name="toInject" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_nfk5IyH-Ed-CStHKuCL0dg"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5JCH-Ed-CStHKuCL0dg"
+              called="#_nfk5ICH-Ed-CStHKuCL0dg"/>
+          <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_nfk5JSH-Ed-CStHKuCL0dg"
+              called="#_nfk5LCH-Ed-CStHKuCL0dg" context="#_nfk5KSH-Ed-CStHKuCL0dg"/>
+        </elements>
+      </libraries>
+      <libraries xmi:id="_nfk5KyH-Ed-CStHKuCL0dg" name="inheritance_2_called">
+        <elements xmi:id="_nfk5LCH-Ed-CStHKuCL0dg" name="calledByInjection" headerMethod="#_nfk5LSH-Ed-CStHKuCL0dg"
+            initMethod="#_nfk5LiH-Ed-CStHKuCL0dg" footerMethod="#_nfk5MCH-Ed-CStHKuCL0dg">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_nfk5NCH-Ed-CStHKuCL0dg"
+              name="JET"/>
+          <methods xmi:id="_nfk5LSH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._nfk5LSH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5LiH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._nfk5LiH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5LyH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._nfk5LyH-Ed-CStHKuCL0dg.pt"/>
+          <methods xmi:id="_nfk5MCH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._nfk5MCH-Ed-CStHKuCL0dg.pt"/>
+          <parameters xmi:id="_nfk5MiH-Ed-CStHKuCL0dg" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EAttribute">
+            <query xmi:type="pattern:BasicQuery" xmi:id="_nfk5MyH-Ed-CStHKuCL0dg"
+                extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+          </parameters>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5MSH-Ed-CStHKuCL0dg"
+              called="#_nfk5LyH-Ed-CStHKuCL0dg"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_nfk5NSH-Ed-CStHKuCL0dg">
+      <domains xmi:type="domain:EMFDomain" xmi:id="_nfk5NiH-Ed-CStHKuCL0dg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_nfk5NyH-Ed-CStHKuCL0dg">
+    <invocations xmi:id="_nfk5OCH-Ed-CStHKuCL0dg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      <invocationContractContainer xmi:id="_nfk5OSH-Ed-CStHKuCL0dg">
+        <invocationContracts xmi:id="_nfk5OiH-Ed-CStHKuCL0dg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_dlxSYSUfEd-pNvuiR8OoHQ"
+              elements="#_nfk5GiH-Ed-CStHKuCL0dg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_nfk5PCH-Ed-CStHKuCL0dg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
+          <type xmi:type="domain:TypeDomain" xmi:id="_nfk5PSH-Ed-CStHKuCL0dg" domain="#_nfk5NiH-Ed-CStHKuCL0dg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_nfk5PiH-Ed-CStHKuCL0dg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_nfk5PyH-Ed-CStHKuCL0dg"
+              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

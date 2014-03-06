@@ -1,0 +1,4 @@
+if ("Writer".equals(genFeature.getGenClass().getEcoreClass().getName()) && "name".equals(genFeature.getName())) {
+    return true;
+}
+return false;

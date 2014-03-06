@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.egf.category.wizards"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildcoreModelWizardID"
+            name="%_UI_BuildcoreModelWizard_label"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildcoreModelWizard"
+            category="org.eclipse.egf.category.wizards"
+            icon="icons/full/obj16/BuildcoreModelFile.gif">
+         <description>%_UI_BuildcoreModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildcoreEditorID"
+            name="%_UI_BuildcoreEditor_label"
+            icon="icons/full/obj16/BuildcoreModelFile.gif"
+            extensions="egfbuild"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildcoreEditor"
+            contributorClass="org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildcoreActionBarContributor">
+      </editor>
+   </extension>
+
+  <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/egf/1.0.1/buildcore"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/egf/1.0.2/buildstep"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.BuildstepItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.1/buildcore"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.BuildstepItemProviderAdapterFactory$BuildcoreChildCreationExtender"
+      />
+   </extension>   
+     
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/egf/1.0.0/buildscm"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   
+  <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.1/buildcore"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildcoreChildCreationExtender"/>
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.2/buildstep"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildstepChildCreationExtender"/>
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.0/builddeploy"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuilddeployChildCreationExtender"/>
+   </extension>   
+   
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/egf/1.0.0/builddeploy"
+            class="org.eclipse.egf.portfolio.eclipse.build.builddeploy.provider.BuilddeployItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.1/buildcore"
+            class="org.eclipse.egf.portfolio.eclipse.build.builddeploy.provider.BuilddeployItemProviderAdapterFactory$BuildcoreChildCreationExtender"
+      />
+   </extension>
+   
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/egf/1.0.0/buildfile"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildfile.provider.BuildfileItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.1/buildcore"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildfile.provider.BuildfileItemProviderAdapterFactory$BuildcoreChildCreationExtender"
+      />
+   </extension>
+   
+   <extension point="org.eclipse.ui.popupMenus">
+         <objectContribution
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.item.enablementActions"
+               objectClass="org.eclipse.egf.portfolio.eclipse.build.buildcore.Item">
+         <action
+               class="org.eclipse.egf.portfolio.eclipse.build.ui.item.EnableAction"
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.item.enable"
+               label="Enable">
+         </action>
+         <action
+               class="org.eclipse.egf.portfolio.eclipse.build.ui.item.DisableAction"
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.item.diable"
+               label="Disable">
+         </action>
+      </objectContribution>
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="config.xml"
+            id="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.deploymentActions">
+         <menu
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.deploymentMenu"
+               label="EGF Build Deployment">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.PushAction"
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.push"
+               label="Push to integration server"
+               menubarPath="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.deploymentMenu/group1">
+         </action>
+         <action
+               class="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.PullAction"
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.pull"
+               label="Pull from integration server"
+               menubarPath="org.eclipse.egf.portfolio.eclipse.build.ui.deploy.deploymentMenu/group1">
+         </action>
+      </objectContribution>
+   </extension>   
+</plugin>

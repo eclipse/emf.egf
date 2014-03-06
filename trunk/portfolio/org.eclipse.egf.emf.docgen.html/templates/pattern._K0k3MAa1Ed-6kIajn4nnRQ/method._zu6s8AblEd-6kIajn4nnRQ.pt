@@ -1,0 +1,8 @@
+<% EList<EClass> superTypes = ((EClass) _element).getESuperTypes();%>
+
+<% if (superTypes.size() > 0) { %>
+	<p>SuperClasses:
+	<% for (EClass _SuperEClass : superTypes) { %>
+		<a href="<%= EmfHtmlDocGen.getHtmlFileName(_SuperEClass)%>"><%= EmfHtmlDocGen.getName(_SuperEClass)%></a>
+	<%} // end for%>
+<% } // end if %>

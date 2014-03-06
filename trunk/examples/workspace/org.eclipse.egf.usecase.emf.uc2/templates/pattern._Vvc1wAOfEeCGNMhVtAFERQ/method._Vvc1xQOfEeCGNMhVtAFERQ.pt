@@ -1,0 +1,30 @@
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Borrower");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrow");
+genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrower");
+genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.BorrowingSystem");
+%>
+		//INJECTED-CODE-BEGIN : ReservationImpl#getWaitedBorrowers()
+		// Test
+		BasicEList<Borrower> waitedBorrowers = new BasicEList<Borrower>();
+		EList<CirculatingItem> wantedItems = getItem();
+		EList<Borrow> borrows = ((BorrowingSystem) eContainer)
+				.getActiveBorrows();
+
+		for (Borrow currentBorrow : borrows) {
+			for (CirculatingItem currentWantedItem : wantedItems) {
+				if (currentBorrow.getItem().contains(currentWantedItem)) {
+					Borrower incriminatedBorrower = currentBorrow.getBorrower();
+					if (!waitedBorrowers.contains(incriminatedBorrower))
+						waitedBorrowers.add(currentBorrow.getBorrower());
+				}
+
+			}
+		}
+		return waitedBorrowers;
+		//INJECTED-CODE-END : ReservationImpl#getWaitedBorrowers()
+

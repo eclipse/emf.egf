@@ -1,0 +1,18 @@
+<%
+String result = new String();
+
+for (EAnnotation annotation : _element.getEAnnotations()) {
+
+	if (annotation.getSource() == "http://www.eclipse.org/emf/2002/GenModel") {
+		for (EMap detail : _element.getDetails()) {
+			if (detail.getKey ("documentation") != "") {
+				result = result + detail.getValue();
+			}
+		}
+	}
+}
+%>
+
+<%	if (result.size() > 0) {
+	<p><%= result %></p>
+<% } // end if %>

@@ -1,0 +1,33 @@
+    <target name="install.egf">
+        <available file="${tools}/egf/eclipse.ini" property="egf.exists" />
+        <antcall target="do.install.egf" />
+	</target>
+
+	<target name="do.install.egf" unless="egf.exists" depends="install.director">
+        <echo message="Configuring EGF with needed features" />
+        <echo message="EGF site: ${egf.site}" />
+        <echo message="EGF eclipse site: ${egf.eclipse.site}" />
+        <eclipse.launch app="director">
+            <args>
+                <jvmarg value="-Declipse.p2.mirrors=false" />
+                <arg value="-r" />
+                <arg value="${egf.site}" />
+                <arg value="-r" />
+                <arg value="${egf.eclipse.site}" />
+                <arg value="-d" />
+                <arg value="${tools}/egf" />
+                <arg value="-p" />
+                <arg value="EGF" />
+                <arg value="-i" />
+                <arg value="org.eclipse.platform.ide" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.feature.group" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.portfolio.feature.group" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.portfolio.emf.feature.group" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.portfolio.genchain.feature.group" />
+            </args>
+        </eclipse.launch>
+    </target>

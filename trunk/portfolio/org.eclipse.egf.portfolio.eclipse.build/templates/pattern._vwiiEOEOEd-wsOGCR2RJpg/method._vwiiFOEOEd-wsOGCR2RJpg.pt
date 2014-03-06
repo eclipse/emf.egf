@@ -1,0 +1,2 @@
+//job may be deleted from model since because it's disabled in model
+return job.eResource() != null;

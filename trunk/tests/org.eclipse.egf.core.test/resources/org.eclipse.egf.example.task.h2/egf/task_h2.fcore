@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="9hT-gKbGEd69ANF1SOWYYg"
+    name="H2" kind="java" implementation="org.eclipse.egf.example.task.h2.H2">
+  <contractContainer xmi:id="_ptkzcRvkEd-WcvfvJ8d8ag">
+    <contracts xmi:id="_rEAa4BvkEd-WcvfvJ8d8ag" name="amount">
+      <type xmi:type="types:TypeFloat" xmi:id="_sZF-gBvkEd-WcvfvJ8d8ag"/>
+    </contracts>
+    <contracts xmi:id="_tEcooBvkEd-WcvfvJ8d8ag" name="price" mode="In_Out">
+      <type xmi:type="types:TypeFloat" xmi:id="_u0XHEBvkEd-WcvfvJ8d8ag"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

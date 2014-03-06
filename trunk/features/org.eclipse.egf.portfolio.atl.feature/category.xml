@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.egf.portfolio.atl_1.0.0.qualifier.jar" id="org.eclipse.egf.portfolio.atl" version="1.0.0.qualifier">
+      <category name="org.eclipse.egf.additional.portfolio.category"/>
+   </feature>
+   <category-def name="org.eclipse.egf.additional.portfolio.category" label="EMFT EGF Additional Portfolio"/>
+</site>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<fragment>
+
+    <extension 
+        point="org.eclipse.ui.newWizards"
+    >
+        <wizard 
+            id="org.eclipse.emf.importer.ui.EGFEMFModelWizard" 
+            name="%_UI_EMFModelWizard_name" 
+            class="org.eclipse.emf.importer.ui.TargetPlatformEMFModelWizard" 
+            category="org.eclipse.egf.category.wizards" 
+            icon="platform:/plugin/org.eclipse.emf.importer/icons/full/ctool16/NewGenModel.gif"
+        >
+            <description>%_UI_EMFModelWizard_description</description>
+            <selection 
+                class="org.eclipse.core.resources.IResource"
+            />
+        </wizard>
+    </extension>
+
+    <extension 
+        point="org.eclipse.ui.popupMenus"
+    >
+        <objectContribution 
+            id="org.eclipse.emf.importer.TargetPlatformGenModelObjectContribution" 
+            objectClass="org.eclipse.core.resources.IFile" 
+            nameFilter="*.genmodel"
+        >
+            <action 
+                id="org.eclipse.emf.importer.ui.TargetPlatformGenModelReloadActionDelegate.Popup" 
+                label="%_UI_Model_Reload_label" 
+                menubarPath="additions" 
+                class="org.eclipse.emf.importer.ui.TargetPlatformGenModelReloadActionDelegate" 
+                enablesFor="1" 
+            />
+        </objectContribution>
+    </extension>
+
+    <extension 
+        point="org.eclipse.ui.editorActions"
+    >
+        <editorContribution 
+            id="org.eclipse.emf.importer.TargetPlatformGenModelEditorContribution" 
+            targetID="org.eclipse.emf.codegen.ecore.genmodel.presentation.TargetPlatformGenModelEditorID"
+        >
+            <action 
+                id="org.eclipse.emf.importer.ui.TargetPlatformGenModelReloadActionDelegate.Editor" 
+                label="%_UI_Model_Reload_label" 
+                menubarPath="org.eclipse.emf.codegen.ecore.targetPlatformGenmodelMenuID/global-actions" 
+                class="org.eclipse.emf.importer.ui.TargetPlatformGenModelReloadActionDelegate" 
+            />
+        </editorContribution>
+    </extension>
+       
+</fragment>

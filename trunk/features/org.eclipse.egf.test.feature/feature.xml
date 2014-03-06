@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.egf.test"
+      label="%featureName"
+      version="1.1.0.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.egf.core.test"
+      image="eclipse_update_120.jpg">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
+      <discovery label="%EMFUpdateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
+      <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
+   </url>
+
+   <includes
+         id="org.eclipse.egf.test.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.portfolio.task.ant.test"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="org.junit"/>
+      <import feature="org.eclipse.egf"/>
+      <import feature="org.eclipse.egf.examples"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.egf.core.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core.test.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core.test.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core.test.model.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core.test.pattern"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

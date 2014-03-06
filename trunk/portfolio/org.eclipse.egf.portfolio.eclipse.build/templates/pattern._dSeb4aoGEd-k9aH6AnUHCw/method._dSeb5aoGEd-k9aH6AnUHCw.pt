@@ -1,0 +1,14 @@
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(cleanStep)%>" >
+<%if (cleanStep.getType() == CLEAN_TYPE.WORKSPACE) {%>
+		<antcall target="clean.workspace" />
+<%}%>
+<%if (cleanStep.getType() == CLEAN_TYPE.RESULT) {%>
+		<antcall target="clean.result" />
+<%}%>
+<%if (cleanStep.getType() == CLEAN_TYPE.TOOLS) {%>
+		<antcall target="clean.tools" />
+<%}%>
+<%if (cleanStep.getType() == CLEAN_TYPE.ALL) {%>
+		<antcall target="clean.all" />
+<%}%>
+	</target>

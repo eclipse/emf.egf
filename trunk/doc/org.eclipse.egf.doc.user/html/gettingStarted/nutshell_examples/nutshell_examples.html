@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="egf"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>EGF examples</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;EGF examples
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<h2 class="Head">Import of EGF Examples</h2>
+<p class="Para">EGF provides examples accessible in the <i>EGF Examples</i> section from the [File][New][Example...] commands.</p>
+<p class="Para">Start with the Basic EGF Examples.</p>
+<p class="Para">Each plugin contains a README file which explains how to play and learn with the different examples.</p>
+<p class="Para"></p>
+
+
+<a name="ExampleEMFWrapper"><h2 class="Head">EMF Wrapper</h2></a>
+
+<h3 class="Head">1. Purpose</h3>
+<p class="Para"><i>Tool</i>: EMF generation + model documentation generation</p>
+<p class="Para"><i>Learning</i>: understanding 1) how an EGF activity is structured, 2) how to enrich the EMF generation</p>
+
+<h3 class="Head">2. Scenario</h3>
+
+<p class="Para">Create and execute the EMF Wrapper:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Create a genmodel file from an ecore model file</li>
+    <li CLASS="Item">On the genmodel, [Right-click][Create EMF Wrapper]</li>
+    <li CLASS="Item">An fcore file is created</li>
+    <li CLASS="Item">Open the fcore file</li>
+    <li CLASS="Item">The production plan examplifies an ordered list of Java task calls with an IN parameter passing</li>
+    <li CLASS="Item">To execute the factory component, on the factory component or the fcore file, [Right-click][Run EGF Activity...]</li>
+    <li CLASS="Item">Model, edit, editor APIs are generated, and an html model document in the plug-in with the <i>doc</i> extension</li>
+</ul>
+<br/>
+
+<p align="left">
+  <img src="./images/EMFWrapper_1_1.png" alt="EMF Wrapper Example"/>
+</p>
+<br/>
+
+<p class="Para">More understanding:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Add a new generation step: on the production plan, [New Child][Production Plan Invocation], and invoke a factory component or task previously created</li>
+    <li CLASS="Item">Have a look on a Java task: on a <i>Production Plan Invocation</i> step, [Right-click][Open Activity]. This opens the fcore resource which contains the Java task. On the <i>Java Task</i> node, the <i>value</i> property indicates the Java class path.</li>
+    <li CLASS="Item">Deep customization: the Java Classes inherits from the <i>EgfEmfAbstractTask</i> which could be redefined in order to have a specific generation behavior.</li>
+    <li CLASS="Item">Pattern overview: [Right click][Open activity] on the <i>EmfDocGenHtml</i> step. This open the <i>EmfDocGenHtml</i> factory component. Then, visit the patterns which generate the htlm documentation.</li>
+</ul>
+
+
+
+<h2 class="Head">Other examples</h2>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Visit the <a href="http://wiki.eclipse.org/EGF">EGF Wiki</a>, section <a href="http://wiki.eclipse.org/EGF_Tutorial_and_Use_Cases">Tutorial and Use Cases</a></li>
+</ul>
+
+
+
+</body>
+</html>

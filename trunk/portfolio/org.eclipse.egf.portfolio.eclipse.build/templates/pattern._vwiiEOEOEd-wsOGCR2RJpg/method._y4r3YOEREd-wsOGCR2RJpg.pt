@@ -1,0 +1,4 @@
+if (job.equals(newJob))
+	return;
+	
+newJob.getSteps().addAll(job.getSteps());

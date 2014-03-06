@@ -1,0 +1,13 @@
+<%String id=new GenerationHelper().getNameOrGeneratedIdString(updateSiteBuildLocation);%>
+	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(updateSiteBuildLocation)%> failOnError="false" />
+	<searchPath name="<%=id%>">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}">
+				<bc:replace>
+					<bc:constant value="<%=updateSiteBuildLocation.getUrl()%>" />
+					<bc:match pattern="\\" replacement="/" /> 
+				</bc:replace>
+			</uri>
+		</provider>
+	</searchPath>
+

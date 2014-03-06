@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.portfolio.eclipse.util;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.util.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.egf.model.ftask
+Export-Package: 
+ org.eclipse.egf.util
+Bundle-ActivationPolicy: lazy

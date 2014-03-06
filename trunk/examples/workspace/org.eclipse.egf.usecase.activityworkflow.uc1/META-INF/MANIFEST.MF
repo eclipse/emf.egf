@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.usecase.activityworkflow.uc1;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Export-Package: org.eclipse.egf.usecase.activityworkflow.uc1.java,
+ org.eclipse.egf.usecase.activityworkflow.uc1.ruby
+Require-Bundle: org.eclipse.egf.model.ftask

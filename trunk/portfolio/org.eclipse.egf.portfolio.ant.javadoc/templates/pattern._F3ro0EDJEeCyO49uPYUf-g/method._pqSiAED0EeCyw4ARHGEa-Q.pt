@@ -1,0 +1,18 @@
+<%
+String inputFolderPaths = (String) ctx.getValue("inputFolderPaths");
+String outputProjectName = (String) ctx.getValue("outputProjectName");
+String outputFolderName = (String) ctx.getValue("outputFolderName");
+
+IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+
+IFolder outFolder = root.getProject(outputProjectName).getFolder(outputFolderName);
+outputFolderPath = outFolder.getLocation().toOSString();
+
+inputFolderPathsList = new ArrayList<String>();
+String[] split = inputFolderPaths.split(",");
+for (String inputFolderPath : split) {
+ IFolder inputFolder = root.getFolder(new Path(inputFolderPath.trim()));
+ if (inputFolder.exists() && inputFolder.getLocation() != null)
+    inputFolderPathsList.add(inputFolder.getLocation().toOSString());
+}
+%>

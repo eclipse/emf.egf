@@ -1,0 +1,46 @@
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>" depends="init,install.egf" >
+		<anteclipse target="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_dropins" />
+		<anteclipse target="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_sitep2" />
+	</target>	
+
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_dropins">
+<%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
+if (publishStep.isGenerateDropins()) {
+String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/dropins";
+String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getId();
+String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getId();%>
+		<pathconvert property="<%=propertyName%>">
+			<first count="1">
+				<dirset dir="<%=location%>" includes="**/eclipse/" />
+			</first>
+		</pathconvert>
+		<copy todir="${publish}/<%=aggregateStep.getId()%>/dropins/<%=aggregateStep.getId()%>/eclipse/" >
+			<fileset dir="${<%=propertyName%>}"/>
+		</copy>
+		<pathconvert property="<%=propertyName2%>">
+			<first count="1">
+				<fileset dir="<%=location%>" includes="**/*_version_*" />
+			</first>
+		</pathconvert>
+		<copy todir="${publish}/<%=aggregateStep.getId()%>/dropins/<%=aggregateStep.getId()%>/" >
+			<fileset file="${<%=propertyName2%>}"/>
+		</copy>
+<%}}%>
+	</target>	
+
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_sitep2">
+		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
+		<p2.mirror>
+			<repository location="file:/${publish}/<%=aggregateStep.getId()%>/site.p2" name="<%=new GenerationHelper().getJob(aggregateStep).getName()%>/<%=aggregateStep.getId()%>" />
+			<source>
+<%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
+if (publishStep.getComponent() instanceof Feature) {
+String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";%>
+				<repository location="<%=location%>" />
+<%}}%>
+<%for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {%>
+				<repository location="<%=updateSiteUrl%>" />
+<%}%>
+			</source>
+		</p2.mirror>
+	</target>

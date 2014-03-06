@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<toc label="Factory Component Portfolio" link_to="toc.xml#factoryComponents"> 
+	<topic label="Core">
+		<anchor id="core"/>
+	</topic>
+	<topic label="Utilities">
+		<anchor id="utilities"/>
+	</topic>
+	<topic label="Users">
+		<anchor id="users"/>
+	</topic>
+ <topic href="http://wiki.eclipse.org/EGF/Portfolio/EMF" label="Enhancement of the EMF Generation">
+    <topic href="http://blanglois.blogspot.com/2010/12/enhancement-of-emf-generation-part-one.html" label="Enhancement of the EMF Generation - Rationale - Part 1">
+    </topic>
+    <topic href="http://blanglois.blogspot.com/2010/12/enhancement-of-emf-generation-part-two.html" label="Enhancement of the EMF Generation - Rationale - Part 2">
+    </topic>
+    <topic href="http://wiki.eclipse.org/images/b/b7/EGF_Tutorial_-_EMF_Generation_Patterns_v0.1.0.pdf" label="Enhancement of the EMF Generation - Tutorial">
+    </topic>
+ </topic>
+ <topic href="http://wiki.eclipse.org/EGF/Portfolio/Build" label="Build EGF Portfolio">
+ </topic>
+</toc>

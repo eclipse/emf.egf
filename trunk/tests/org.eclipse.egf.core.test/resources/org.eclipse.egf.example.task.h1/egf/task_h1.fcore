@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
+    description="" name="H1" kind="java" implementation="org.eclipse.egf.example.task.h1.H1">
+  <contractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
+    <contracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity" mandatory="true">
+      <type xmi:type="types:TypeInteger" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="70"/>
+    </contracts>
+    <contracts xmi:id="_5TrVYMBtEd60u-W6Ywx4cQ" name="rebate">
+      <type xmi:type="types:TypeFloat" xmi:id="_7dzqoMBtEd60u-W6Ywx4cQ" value="5.0"/>
+    </contracts>
+    <contracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price" mode="In_Out">
+      <type xmi:type="types:TypeFloat" xmi:id="_y0EYsLpOEd6O-6ob3O13Lw" value="10.5"/>
+    </contracts>
+    <contracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
+      <type xmi:type="types:TypeFloat" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw"/>
+    </contracts>
+    <contracts xmi:id="_l2A5kdT3Ed6Pk6ruhJpBtQ" name="parameters">
+      <type xmi:type="types:TypeCollection" xmi:id="_D-EkIdW6Ed6dzvinGX1cMA" value="java.util.ArrayList"/>
+    </contracts>
+    <contracts xmi:id="_cu1e0d5cEd6JPoD-K_4SPg" name="collection">
+      <type xmi:type="types:TypeCollection" xmi:id="_dHku8N5cEd6JPoD-K_4SPg" value="org.eclipse.emf.common.util.BasicEList"/>
+    </contracts>
+    <contracts xmi:id="_f5cpETA_Ed-3jtwMRJbhpQ" name="jmerger" mode="In_Out">
+      <type xmi:type="types:TypeClass" xmi:id="_2bbacTD-Ed-3IO55iElm6g" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

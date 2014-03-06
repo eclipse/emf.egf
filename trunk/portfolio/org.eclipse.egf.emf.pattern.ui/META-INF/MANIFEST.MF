@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.emf.pattern.ui;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eclipse.egf.emf.pattern.ui
+Require-Bundle: 
+ org.eclipse.egf.emf.pattern,
+ org.eclipse.egf.model.editor,
+ org.eclipse.egf.core.ui
+Bundle-Activator: org.eclipse.egf.emf.pattern.ui.Activator
+Bundle-ActivationPolicy: lazy

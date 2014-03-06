@@ -1,0 +1,5 @@
+if (job.equals(newJob))
+	return;
+	
+Chain chain = (Chain) job.eContainer();
+chain.getJobs().remove(job);

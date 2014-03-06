@@ -1,0 +1,6 @@
+<%
+GenPackage genPackage = parameter;
+targetPath = genPackage.getGenModel().getTestsDirectory();
+packageName = genPackage.getTestsPackageName();
+className = genPackage.getExampleClassName();
+%>

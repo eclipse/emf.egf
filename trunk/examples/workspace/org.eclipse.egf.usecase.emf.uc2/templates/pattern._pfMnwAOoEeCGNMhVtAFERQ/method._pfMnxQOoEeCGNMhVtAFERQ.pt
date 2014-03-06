@@ -1,0 +1,45 @@
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrow");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Borrower");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.EquippedLibrary");
+%>
+	//INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getWaitedBorrowers()
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Borrower> getWaitedBorrowers() {
+
+		BasicEList<Borrower> waitedBorrowers = new BasicEList<Borrower>();
+		EList<CirculatingItem> wantedItems = getItem();
+
+		EList<EquippedLibrary> libraries = getInvolvedLibraries();
+		libraries.add((EquippedLibrary) (eContainer().eContainer()));
+
+		for (EquippedLibrary currentLibrary : libraries) {
+			// get the borrows of the current Library
+			EList<Borrow> currentLibraryBorrows = currentLibrary
+					.getBorrowingSystem().getActiveBorrows();
+
+			for (Borrow currentBorrow : currentLibraryBorrows) {
+				for (CirculatingItem currentWantedItem : wantedItems) {
+					if (currentBorrow.getItem().contains(currentWantedItem)) {
+						Borrower incriminatedBorrower = currentBorrow
+								.getBorrower();
+						if (!waitedBorrowers.contains(incriminatedBorrower))
+							waitedBorrowers.add(currentBorrow.getBorrower());
+					}
+
+				}
+			}
+		}
+
+		return waitedBorrowers;
+	}
+	//INJECTED-CODE-END : CrossLibraryReservationImpl#getWaitedBorrowers()

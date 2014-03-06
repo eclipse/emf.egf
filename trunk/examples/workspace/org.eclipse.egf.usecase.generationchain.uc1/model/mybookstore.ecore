@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mybookstore"
+    nsURI="http:///org/eclipse/egf/examples/library/mybookstore.ecore/1.0.0" nsPrefix="mybookstore">
+  <eClassifiers xsi:type="ecore:EClass" name="BookStore" eSuperTypes="library.ecore#//Library"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BookForSale" eSuperTypes="library.ecore#//Book">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="price" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,2 @@
+                    <jvmarg value="-Xmx1024m"/>
+                    <jvmarg value="-XX:MaxPermSize=256m"/>

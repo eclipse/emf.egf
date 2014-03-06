@@ -1,0 +1,15 @@
+    <property environment="env" />
+
+	<property name="relengDir" value="${basedir}"/>
+	<tstamp>
+		<format property="myTimestamp" pattern="yyyyMMdd-HHmm"/>
+	</tstamp>
+
+<%for(PropertyWrapper propertyWrapper : new PropertiesHelper().getRuntimeProperties(job)) {%>
+    <condition property="<%=propertyWrapper.getKey()%>" value="${<%=propertyWrapper.getEnvKey()%>}">
+        <isset property="<%=propertyWrapper.getEnvKey()%>" />
+    </condition>
+<%}%>
+
+    <property file="build.properties" />
+

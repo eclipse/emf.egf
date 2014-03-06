@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="domain"
+    nsURI="http://www.eclipse.org/egf/1.0.0/domain" nsPrefix="domain">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainViewpoint" eSuperTypes="Fcore.ecore#//Viewpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domains" upperBound="-1"
+        eType="#//Domain" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true" eSuperTypes="Fcore.ecore#//NamedModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+        transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="helperImplementation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeGenPackages" eSuperTypes="Types.ecore#//Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidGenPackages"/>
+    </eAnnotations>
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return (Class&lt;T>) org.eclipse.egf.model.domain.TypeGenPackages.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments eTypeParameter="#//TypeGenPackages/getType/T"/>
+      </eGenericType>
+      <eTypeParameters name="T">
+        <eBounds eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+      </eTypeParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EMFDomain" eSuperTypes="#//LoadableDomain">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidURI"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType Types.ecore#//URI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDomain" eSuperTypes="Types.ecore#//TypeObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//Domain"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Domain"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilesystemDomain" eSuperTypes="#//LoadableDomain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkspaceDomain" eSuperTypes="#//LoadableDomain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadableDomain" abstract="true" eSuperTypes="#//Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loaded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,5 @@
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(publishStep);%>
+	<target name="<%=stepName%>" depends="init,install.buckminster" >
+		<!-- TODO handle plugins component type -->
+	</target>
+

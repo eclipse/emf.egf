@@ -1,0 +1,15 @@
+<%if (!deployment.isEnabled()) {%>
+  <disabled>true</disabled>
+<%}%>
+<%if (deployment.getAssignedNode() != null && deployment.getAssignedNode().length() > 0) {%>
+  <assignedNode><%=deployment.getAssignedNode()%></assignedNode>
+<%}%>
+<%if (deployment.getJdkName() != null && deployment.getJdkName().length() > 0) {%>
+  <jdk><%=deployment.getJdkName()%></jdk>
+<%}%>
+<%if (deployment.getUserDeployServerUrl() != null && deployment.getUserDeployServerUrl().length() > 0) {%>
+  <!--userDeployServerUrl=<%=deployment.getUserDeployServerUrl()%>-->
+<%}%>
+<%if (deployment.getUserDeployJobName() != null && deployment.getUserDeployJobName().length() > 0) {%>
+  <!--userDeployJobName=<%=deployment.getUserDeployJobName()%>-->
+<%}%>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_6Vc3YNU-Ed-sZ5ty9tQGtA"
+    name="file.delete.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.DeleteFileTask">
+  <contractContainer xmi:id="_cS2fENVBEd-sZ5ty9tQGtA">
+    <contracts xmi:id="_crJDQNVBEd-sZ5ty9tQGtA" name="filePath" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_fRI1INVBEd-sZ5ty9tQGtA"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

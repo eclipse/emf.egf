@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.core.test.model/src"
+    modelPluginID="org.eclipse.egf.core.test.model" modelName="Test" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Types.genmodel#//types">
+  <foreignModel>Test.ecore</foreignModel>
+  <genPackages prefix="Test" disposableProviderFactory="true" ecorePackage="Test.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Test.ecore#//ValidationErrorSeverity">
+      <genEnumLiterals ecoreEnumLiteral="Test.ecore#//ValidationErrorSeverity/INFO"/>
+      <genEnumLiterals ecoreEnumLiteral="Test.ecore#//ValidationErrorSeverity/WARNING"/>
+      <genEnumLiterals ecoreEnumLiteral="Test.ecore#//ValidationErrorSeverity/ERROR"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="Test.ecore#//Test">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//Test/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//TestSuite">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test.ecore#//TestSuite/tests"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//TestCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test.ecore#//TestCase/result"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//TestResult"/>
+    <genClasses ecoreClass="Test.ecore#//ExceptionTestResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//ExceptionTestResult/exceptionClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//ExceptionTestResult/exceptionMessage"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//ValidationErrorTestResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//ValidationErrorTestResult/severity"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//ConsoleOutputTestResult"/>
+    <genClasses ecoreClass="Test.ecore#//EGFTestCase">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Test.ecore#//EGFTestCase/activity"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//FileOutputTestResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//FileOutputTestResult/iFilePath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Test.ecore#//OutputTestResult">
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute Test.ecore#//OutputTestResult/text"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

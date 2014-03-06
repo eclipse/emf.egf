@@ -1,0 +1,71 @@
+
+
+	/**
+	 * Returns the value of the '<em><b><%=genFeature.getFormattedName()%></b></em>' <%=genFeature.getFeatureKind()%>.
+    <%if (genFeature.isListType()) {%>
+      <%if (genFeature.isMapType()) { GenFeature keyFeature = genFeature.getMapEntryTypeGenClass().getMapEntryKeyFeature(); GenFeature valueFeature = genFeature.getMapEntryTypeGenClass().getMapEntryValueFeature(); %>
+	 * The key is of type <%if (keyFeature.isListType()) {%>list of {@link <%=keyFeature.getQualifiedListItemType(genClass)%>}<%} else {%>{@link <%=keyFeature.getType(genClass)%>}<%}%>,
+	 * and the value is of type <%if (valueFeature.isListType()) {%>list of {@link <%=valueFeature.getQualifiedListItemType(genClass)%>}<%} else {%>{@link <%=valueFeature.getType(genClass)%>}<%}%>,
+      <%} else if (!genFeature.isWrappedFeatureMapType() && !(genModel.isSuppressEMFMetaData() && "org.eclipse.emf.ecore.EObject".equals(genFeature.getQualifiedListItemType(genClass)))) {
+String typeName = genFeature.getQualifiedListItemType(genClass); String head = typeName; String tail = ""; int index = typeName.indexOf('<'); if (index == -1) { index = typeName.indexOf('['); } 
+if (index != -1) { head = typeName.substring(0, index); tail = typeName.substring(index).replaceAll("<", "&lt;"); }
+%>
+	 * The list contents are of type {@link <%=head%>}<%=tail%>.
+      <%}%>
+    <%} else if (genFeature.isSetDefaultValue()) {%>
+	 * The default value is <code><%=genFeature.getDefaultValue()%></code>.
+    <%}%>
+    <%if (genFeature.getTypeGenEnum() != null) {%>
+	 * The literals are from the enumeration {@link <%=genFeature.getTypeGenEnum().getQualifiedName()%>}.
+    <%}%>
+    <%if (genFeature.isBidirectional() && !genFeature.getReverse().getGenClass().isMapEntry()) { GenFeature reverseGenFeature = genFeature.getReverse(); %>
+      <%if (!reverseGenFeature.isSuppressedGetVisibility()) {%>
+	 * It is bidirectional and its opposite is '{@link <%=reverseGenFeature.getGenClass().getQualifiedInterfaceName()%>#<%=reverseGenFeature.getGetAccessor()%> <em><%=reverseGenFeature.getFormattedName()%></em>}'.
+      <%}%>
+    <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.javadoc.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+	 * <!-- begin-user-doc -->
+    <%if (!genFeature.hasDocumentation()) {%>
+	 * <p>
+	 * If the meaning of the '<em><%=genFeature.getFormattedName()%></em>' <%=genFeature.getFeatureKind()%> isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+    <%}%>
+	 * <!-- end-user-doc -->
+    <%if (genFeature.hasDocumentation()) {%>
+	 * <!-- begin-model-doc -->
+	 * <%=genFeature.getDocumentation(genModel.getIndentation(stringBuffer))%>
+	 * <!-- end-model-doc -->
+    <%}%>
+	 * @return the value of the '<em><%=genFeature.getFormattedName()%></em>' <%=genFeature.getFeatureKind()%>.
+    <%if (genFeature.getTypeGenEnum() != null) {%>
+	 * @see <%=genFeature.getTypeGenEnum().getQualifiedName()%>
+    <%}%>
+    <%if (genFeature.isUnsettable()) {%>
+      <%if (!genFeature.isSuppressedIsSetVisibility()) {%>
+	 * @see #isSet<%=genFeature.getAccessorName()%>()
+      <%}%>
+      <%if (genFeature.isChangeable() && !genFeature.isSuppressedUnsetVisibility()) {%>
+	 * @see #unset<%=genFeature.getAccessorName()%>()
+      <%}%>
+    <%}%>
+    <%if (genFeature.isChangeable() && !genFeature.isListType() && !genFeature.isSuppressedSetVisibility()) {%>
+	 * @see #set<%=genFeature.getAccessorName()%>(<%=genFeature.getRawImportedBoundType()%>)
+    <%}%>
+    <%if (!genModel.isSuppressEMFMetaData()) {%>
+	 * @see <%=genPackage.getQualifiedPackageInterfaceName()%>#get<%=genFeature.getFeatureAccessorName()%>()
+    <%}%>
+    <%if (genFeature.isBidirectional() && !genFeature.getReverse().getGenClass().isMapEntry()) { GenFeature reverseGenFeature = genFeature.getReverse(); %>
+      <%if (!reverseGenFeature.isSuppressedGetVisibility()) {%>
+	 * @see <%=reverseGenFeature.getGenClass().getQualifiedInterfaceName()%>#<%=reverseGenFeature.getGetAccessor()%>
+      <%}%>
+    <%}%>
+    <%if (!genModel.isSuppressEMFModelTags()) { boolean first = true; for (StringTokenizer stringTokenizer = new StringTokenizer(genFeature.getModelInfo(), "\n\r"); stringTokenizer.hasMoreTokens(); ) { String modelInfo = stringTokenizer.nextToken(); if (first) { first = false;%>
+	 * @model <%=modelInfo%>
+    <%} else {%>
+	 *        <%=modelInfo%>
+    <%}} if (first) {%>
+	 * @model
+    <%}}%>
+	 * @generated
+	 */

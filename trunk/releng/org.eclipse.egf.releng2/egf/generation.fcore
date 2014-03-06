@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_H7pbQCSnEeCIlumqagSWRg"
+    name="generation launcher">
+  <contractContainer xmi:id="_PJvZkAYHEeGKhYHYG0ajnw">
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Pbep0AYHEeGKhYHYG0ajnw"
+        invocationContracts="#_HOjFs_PIEd-1PJ4PFWU1aA #_UptpRAYHEeGKhYHYG0ajnw #_UwtpJAYHEeGKhYHYG0ajnw #_yX1GJLNCEeKeMI4pjPFoVA">
+      <type xmi:type="types:TypeString" xmi:id="_KX3nEPPIEd-1PJ4PFWU1aA" value="platform:/resource/org.eclipse.egf.releng2/jobs"/>
+    </contracts>
+  </contractContainer>
+  <viewpointContainer xmi:id="_Ptyh4CSnEeCIlumqagSWRg">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_QNO28CSnEeCIlumqagSWRg">
+      <domains xmi:type="domain:EMFDomain" xmi:id="_0oZC4PPHEd-1PJ4PFWU1aA" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-helios.egfbuild"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_qv79gCU_EeCO18e1qKVBFg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-indigo.egfbuild"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_zQvB4eXGEeCwyLb2KmUUfg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-juno.egfbuild"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_vzKxAbNCEeKeMI4pjPFoVA" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-kepler.egfbuild"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_C89Sgb8OEeKgZbuOKwMWmw">
+      <libraries xmi:id="_DqQdYL8OEeKgZbuOKwMWmw" name="org.eclipse.egf.releng2">
+        <elements xmi:id="_ISyuwL8OEeKgZbuOKwMWmw" name="director eclipse proxy" superPattern="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_WzN4sI6XEd-e7viTqNBNrA"
+            headerMethod="#_ISyuwr8OEeKgZbuOKwMWmw" conditionMethod="#_ISyuxL8OEeKgZbuOKwMWmw"
+            initMethod="#_ISyuw78OEeKgZbuOKwMWmw" footerMethod="#_ISyuxr8OEeKgZbuOKwMWmw">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_ISyuwb8OEeKgZbuOKwMWmw"
+              name="JET"/>
+          <methods xmi:id="_ISyuwr8OEeKgZbuOKwMWmw" name="header" patternFilePath="templates/pattern._ISyuwL8OEeKgZbuOKwMWmw/method._ISyuwr8OEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_ISyuw78OEeKgZbuOKwMWmw" name="init" patternFilePath="templates/pattern._ISyuwL8OEeKgZbuOKwMWmw/method._ISyuw78OEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_ISyuxL8OEeKgZbuOKwMWmw" name="preCondition" patternFilePath="templates/pattern._ISyuwL8OEeKgZbuOKwMWmw/method._ISyuxL8OEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_ISyuxb8OEeKgZbuOKwMWmw" name="install_director" patternFilePath="templates/pattern._ISyuwL8OEeKgZbuOKwMWmw/method._ISyuxb8OEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_ISyuxr8OEeKgZbuOKwMWmw" name="footer" patternFilePath="templates/pattern._ISyuwL8OEeKgZbuOKwMWmw/method._ISyuxr8OEeKgZbuOKwMWmw.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_ISyux78OEeKgZbuOKwMWmw"/>
+        </elements>
+        <elements xmi:id="_sSU9AMEjEeKgZbuOKwMWmw" name="jvm eclipse proxy" superPattern="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA"
+            headerMethod="#_sSU9AsEjEeKgZbuOKwMWmw" conditionMethod="#_sSU9BMEjEeKgZbuOKwMWmw"
+            initMethod="#_sSU9A8EjEeKgZbuOKwMWmw" footerMethod="#_sSU9BsEjEeKgZbuOKwMWmw">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_sSU9AcEjEeKgZbuOKwMWmw"
+              name="JET"/>
+          <methods xmi:id="_sSU9AsEjEeKgZbuOKwMWmw" name="header" patternFilePath="templates/pattern._sSU9AMEjEeKgZbuOKwMWmw/method._sSU9AsEjEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_sSU9A8EjEeKgZbuOKwMWmw" name="init" patternFilePath="templates/pattern._sSU9AMEjEeKgZbuOKwMWmw/method._sSU9A8EjEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_sSU9BMEjEeKgZbuOKwMWmw" name="preCondition" patternFilePath="templates/pattern._sSU9AMEjEeKgZbuOKwMWmw/method._sSU9BMEjEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_sSU9BcEjEeKgZbuOKwMWmw" name="body" patternFilePath="templates/pattern._sSU9AMEjEeKgZbuOKwMWmw/method._sSU9BcEjEeKgZbuOKwMWmw.pt"/>
+          <methods xmi:id="_sSU9BsEjEeKgZbuOKwMWmw" name="footer" patternFilePath="templates/pattern._sSU9AMEjEeKgZbuOKwMWmw/method._sSU9BsEjEeKgZbuOKwMWmw.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_sSU9B8EjEeKgZbuOKwMWmw"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_X7zFICSnEeCIlumqagSWRg">
+    <invocations xmi:id="_HOjFsPPIEd-1PJ4PFWU1aA" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N4pRwI6UEd-e7viTqNBNrA">
+      <invocationContractContainer xmi:id="_HOjFsfPIEd-1PJ4PFWU1aA">
+        <invocationContracts xmi:id="_HOjFsvPIEd-1PJ4PFWU1aA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ad5FkY6VEd-e7viTqNBNrA">
+          <type xmi:type="domain:TypeDomain" xmi:id="_Tz6psAYHEeGKhYHYG0ajnw" domain="#_0oZC4PPHEd-1PJ4PFWU1aA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_HOjFs_PIEd-1PJ4PFWU1aA" factoryComponentContract="#_Pbep0AYHEeGKhYHYG0ajnw"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg"/>
+        <invocationContracts xmi:id="_eq-cQL8PEeKgZbuOKwMWmw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_mb-o4I_tEd-ggNhbFv1Fiw">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_eq-cQb8PEeKgZbuOKwMWmw">
+            <substitutions xmi:id="_eq-cQr8PEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_WzN4sI6XEd-e7viTqNBNrA"
+                replacement="#_ISyuwL8OEeKgZbuOKwMWmw"/>
+            <substitutions xmi:id="_HhnY0MEkEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA"
+                replacement="#_sSU9AMEjEeKgZbuOKwMWmw"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_UptpQAYHEeGKhYHYG0ajnw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N4pRwI6UEd-e7viTqNBNrA">
+      <invocationContractContainer xmi:id="_UptpQQYHEeGKhYHYG0ajnw">
+        <invocationContracts xmi:id="_UptpQgYHEeGKhYHYG0ajnw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ad5FkY6VEd-e7viTqNBNrA">
+          <type xmi:type="domain:TypeDomain" xmi:id="_UptpQwYHEeGKhYHYG0ajnw" domain="#_qv79gCU_EeCO18e1qKVBFg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_UptpRAYHEeGKhYHYG0ajnw" factoryComponentContract="#_Pbep0AYHEeGKhYHYG0ajnw"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg"/>
+        <invocationContracts xmi:id="_eabe0L8PEeKgZbuOKwMWmw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_mb-o4I_tEd-ggNhbFv1Fiw">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_eabe0b8PEeKgZbuOKwMWmw">
+            <substitutions xmi:id="_eabe0r8PEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_WzN4sI6XEd-e7viTqNBNrA"
+                replacement="#_ISyuwL8OEeKgZbuOKwMWmw"/>
+            <substitutions xmi:id="_HJxgkMEkEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA"
+                replacement="#_sSU9AMEjEeKgZbuOKwMWmw"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_UwtpIAYHEeGKhYHYG0ajnw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N4pRwI6UEd-e7viTqNBNrA">
+      <invocationContractContainer xmi:id="_UwtpIQYHEeGKhYHYG0ajnw">
+        <invocationContracts xmi:id="_UwtpIgYHEeGKhYHYG0ajnw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ad5FkY6VEd-e7viTqNBNrA">
+          <type xmi:type="domain:TypeDomain" xmi:id="_UwtpIwYHEeGKhYHYG0ajnw" domain="#_zQvB4eXGEeCwyLb2KmUUfg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_UwtpJAYHEeGKhYHYG0ajnw" factoryComponentContract="#_Pbep0AYHEeGKhYHYG0ajnw"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg"/>
+        <invocationContracts xmi:id="_eB_wsL8PEeKgZbuOKwMWmw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_mb-o4I_tEd-ggNhbFv1Fiw">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_eB_wsb8PEeKgZbuOKwMWmw">
+            <substitutions xmi:id="_eB_wsr8PEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_WzN4sI6XEd-e7viTqNBNrA"
+                replacement="#_ISyuwL8OEeKgZbuOKwMWmw"/>
+            <substitutions xmi:id="_Gw5GgMEkEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA"
+                replacement="#_sSU9AMEjEeKgZbuOKwMWmw"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_yX1GILNCEeKeMI4pjPFoVA" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N4pRwI6UEd-e7viTqNBNrA">
+      <invocationContractContainer xmi:id="_yX1GIbNCEeKeMI4pjPFoVA">
+        <invocationContracts xmi:id="_yX1GIrNCEeKeMI4pjPFoVA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ad5FkY6VEd-e7viTqNBNrA">
+          <type xmi:type="domain:TypeDomain" xmi:id="_yX1GI7NCEeKeMI4pjPFoVA" domain="#_vzKxAbNCEeKeMI4pjPFoVA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_yX1GJLNCEeKeMI4pjPFoVA" factoryComponentContract="#_Pbep0AYHEeGKhYHYG0ajnw"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg"/>
+        <invocationContracts xmi:id="_aUK0EL8PEeKgZbuOKwMWmw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_mb-o4I_tEd-ggNhbFv1Fiw">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_cLYNUL8PEeKgZbuOKwMWmw">
+            <substitutions xmi:id="_dP7akL8PEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_WzN4sI6XEd-e7viTqNBNrA"
+                replacement="#_ISyuwL8OEeKgZbuOKwMWmw"/>
+            <substitutions xmi:id="_F8SZwMEkEeKgZbuOKwMWmw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA"
+                replacement="#_sSU9AMEjEeKgZbuOKwMWmw"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

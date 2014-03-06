@@ -1,0 +1,17 @@
+<% EList<EEnumLiteral> enumLiterals = ((EEnum) _element).getELiterals();%>
+
+<% if (enumLiterals.size() > 0) { %>
+	<h2>Enum Literals</h2>
+		<table border=1 cellspacing="0" width="100%">
+		<tr>
+			<th align=left>Name</th>
+			<th>Value</th>
+		</tr>
+	<% for (EEnumLiteral _EEnumLiteral : enumLiterals) { %>
+		<tr>
+   			<td align=left><b><%= EmfHtmlDocGen.getName(_EEnumLiteral) %></b></td>
+   			<td align=center><%= _EEnumLiteral.getValue() %></td>
+   		</tr>
+	<%} // end for%>
+	</table>
+<% } // end if %>

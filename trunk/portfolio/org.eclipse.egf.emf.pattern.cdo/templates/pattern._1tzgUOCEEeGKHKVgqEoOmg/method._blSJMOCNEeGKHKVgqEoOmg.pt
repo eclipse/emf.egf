@@ -1,0 +1,1 @@
+newGenModel = EcoreUtil.copy(genModel);

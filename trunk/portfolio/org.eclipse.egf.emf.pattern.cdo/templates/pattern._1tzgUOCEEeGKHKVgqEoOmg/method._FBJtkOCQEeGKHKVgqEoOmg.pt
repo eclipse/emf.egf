@@ -1,0 +1,2 @@
+Resource newGenModelResource = genModel.eResource().getResourceSet().createResource(newGenModelResourceURI);
+newGenModelResource.getContents().add(newGenModel);

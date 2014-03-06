@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_UZb-0dOsEd-Mf6WhAsl8cw" name="activityWorkflowUC1">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_YKdHcNOuEd-Mf6WhAsl8cw">
+      <orchestrationParameterContainer xmi:id="_Y0Bo4NOuEd-Mf6WhAsl8cw">
+        <orchestrationParameters xmi:id="_ZnlMwNOuEd-Mf6WhAsl8cw" name="message" invocationContracts="#_gDmN8tOuEd-Mf6WhAsl8cw">
+          <type xmi:type="types:TypeString" xmi:id="_bWmTUNOuEd-Mf6WhAsl8cw" value="Hello"/>
+        </orchestrationParameters>
+      </orchestrationParameterContainer>
+      <invocations xmi:id="_gDmN8NOuEd-Mf6WhAsl8cw" name="Change 1 value in Java"
+          invokedActivity="#_7nakwNOtEd-Mf6WhAsl8cw">
+        <invocationContractContainer xmi:id="_gDmN8dOuEd-Mf6WhAsl8cw">
+          <invocationContracts xmi:id="_gDmN8tOuEd-Mf6WhAsl8cw" orchestrationParameter="#_ZnlMwNOuEd-Mf6WhAsl8cw"
+              targetInvocationContract="#_oicpktOuEd-Mf6WhAsl8cw" invokedContract="#_AHKGgNOuEd-Mf6WhAsl8cw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_oicpkNOuEd-Mf6WhAsl8cw" name="Change 2 value in Ruby"
+          invokedActivity="#_KqoFQNOuEd-Mf6WhAsl8cw">
+        <invocationContractContainer xmi:id="_oicpkdOuEd-Mf6WhAsl8cw">
+          <invocationContracts xmi:id="_oicpktOuEd-Mf6WhAsl8cw" sourceInvocationContract="#_gDmN8tOuEd-Mf6WhAsl8cw"
+              targetInvocationContract="#_0JkdstOuEd-Mf6WhAsl8cw" invokedContract="#_Ow4wANOuEd-Mf6WhAsl8cw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_0JkdsNOuEd-Mf6WhAsl8cw" name="Change 3 value in Java"
+          invokedActivity="#_7nakwNOtEd-Mf6WhAsl8cw">
+        <invocationContractContainer xmi:id="_0JkdsdOuEd-Mf6WhAsl8cw">
+          <invocationContracts xmi:id="_0JkdstOuEd-Mf6WhAsl8cw" sourceInvocationContract="#_oicpktOuEd-Mf6WhAsl8cw"
+              invokedContract="#_AHKGgNOuEd-Mf6WhAsl8cw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_7nakwNOtEd-Mf6WhAsl8cw" name="activityWorkflowUC1.changevalue.java"
+      kind="java" implementation="org.eclipse.egf.usecase.activityworkflow.uc1.java.HelloJava">
+    <contractContainer xmi:id="__jQIMNOtEd-Mf6WhAsl8cw">
+      <contracts xmi:id="_AHKGgNOuEd-Mf6WhAsl8cw" name="message" mode="In_Out">
+        <type xmi:type="types:TypeString" xmi:id="_C8D3ENOuEd-Mf6WhAsl8cw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_KqoFQNOuEd-Mf6WhAsl8cw" name="activityWorkflowUC1.changevalue.ruby"
+      kind="ruby" implementation="platform:/plugin/org.eclipse.egf.usecase.activityworkflow.uc1/src/org/eclipse/egf/usecase/activityworkflow/uc1/ruby/HelloRuby.rb">
+    <contractContainer xmi:id="_OEe9ANOuEd-Mf6WhAsl8cw">
+      <contracts xmi:id="_Ow4wANOuEd-Mf6WhAsl8cw" name="message" mode="In_Out">
+        <type xmi:type="types:TypeString" xmi:id="_Ro6tENOuEd-Mf6WhAsl8cw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+</xmi:XMI>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_6qO2EYhGEd-Ii9WHGzCGHg"
+    name="Generation Chain Producer">
+  <contractContainer xmi:id="_e5UQQI2eEd-EUL5-4Nq41g">
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_fqpmkI2eEd-EUL5-4Nq41g"
+        name="genChain model" mandatory="true" invocationContracts="#__6CUE4hMEd-Ii9WHGzCGHg">
+      <type xmi:type="domain:TypeDomain" xmi:id="_ozah4I2eEd-EUL5-4Nq41g"/>
+    </contracts>
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tmoZQI2eEd-EUL5-4Nq41g"
+        name="generation plugin name" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_yE-z4I2eEd-EUL5-4Nq41g"/>
+    </contracts>
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FDGDsI2fEd-EUL5-4Nq41g"
+        name="pattern substitutions" invocationContracts="#_Kr6tYI2fEd-EUL5-4Nq41g">
+      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_IlqykI2fEd-EUL5-4Nq41g"/>
+    </contracts>
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_hE3f0I20Ed-EUL5-4Nq41g"
+        name="model name" mandatory="true" invocationContracts="#__6CUEohMEd-Ii9WHGzCGHg">
+      <type xmi:type="types:TypeString" xmi:id="_iA-iwI20Ed-EUL5-4Nq41g"/>
+    </contracts>
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ZsQ4gI6OEd-xWoHAb-RqYQ"
+        name="fcore output path" mandatory="true" invocationContracts="#_zAQYQIjbEd-Ii9WHGzCGHg">
+      <type xmi:type="types:TypeString" xmi:id="_cfoYAI6OEd-xWoHAb-RqYQ"/>
+    </contracts>
+  </contractContainer>
+  <viewpointContainer xmi:id="_CgCtAIhNEd-Ii9WHGzCGHg"/>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Aj5YIIhHEd-Ii9WHGzCGHg">
+    <invocations xmi:id="__6CUEIhMEd-Ii9WHGzCGHg" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_Xo7dMIhLEd-Ii9WHGzCGHg">
+      <invocationContractContainer xmi:id="__6CUEYhMEd-Ii9WHGzCGHg">
+        <invocationContracts xmi:id="__6CUEohMEd-Ii9WHGzCGHg" factoryComponentContract="#_hE3f0I20Ed-EUL5-4Nq41g"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_quyeUIhMEd-Ii9WHGzCGHg"/>
+        <invocationContracts xmi:id="__6CUE4hMEd-Ii9WHGzCGHg" factoryComponentContract="#_fqpmkI2eEd-EUL5-4Nq41g"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_vW-xcIhMEd-Ii9WHGzCGHg"/>
+        <invocationContracts xmi:id="_pL0aQIhNEd-Ii9WHGzCGHg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_txgzAIhNEd-Ii9WHGzCGHg">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_0YOoUIhNEd-Ii9WHGzCGHg"
+              value="org.eclipse.egf.portfolio.genchain.tools.BuildFcoreReporter"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_zAQYQIjbEd-Ii9WHGzCGHg" factoryComponentContract="#_ZsQ4gI6OEd-xWoHAb-RqYQ"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_eXu8cIjYEd-Ii9WHGzCGHg"/>
+        <invocationContracts xmi:id="_Kr6tYI2fEd-EUL5-4Nq41g" factoryComponentContract="#_FDGDsI2fEd-EUL5-4Nq41g"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_NHyS4I2fEd-EUL5-4Nq41g"/>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

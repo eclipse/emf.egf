@@ -1,0 +1,9 @@
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(moveStep);%>
+	<target name="<%=stepName%>" depends="init">
+		<move todir="<%=moveStep.getDestinationFolderPath()%>" <%=new GenerationHelper().getAdditionalParametersString(moveStep)%> >
+<%@ egf:patternCall 
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.util.build.xml.filesetProvider" 
+	args="moveStep:filesetProvider"%>
+		</move>
+	</target>
+

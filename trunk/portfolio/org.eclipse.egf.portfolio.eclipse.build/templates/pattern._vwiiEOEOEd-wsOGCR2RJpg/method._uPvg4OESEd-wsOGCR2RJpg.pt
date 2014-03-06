@@ -1,0 +1,8 @@
+if (job.equals(newJob))
+	return;
+	
+if (job.getDeployment() != null) {
+	if (newJob.getDeployment() != null)
+		throw new IllegalStateException("Cannot merge several deployments into one.");
+	newJob.setDeployment(job.getDeployment());
+}

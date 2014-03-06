@@ -1,0 +1,20 @@
+<%for (String filePath:filesetProvider.getFilePaths()) {%>
+			<fileset file="<%=filePath%>"/>
+<%}%>
+<%for (String dirPath:filesetProvider.getDirPaths()) {%>
+			<fileset dir="<%=dirPath%>"/>
+<%}%>
+<%for (InstallStep installStep:filesetProvider.getInstallSteps()) {
+String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep) + installStep.getId();%>
+			<fileset dir="<%=location%>"/>
+<%}%>
+<%for (ResultStep resultStep:filesetProvider.getResultSteps()) {
+	ArrayList<PublishStep> publishSteps = new ArrayList<PublishStep>();
+	if (resultStep instanceof PublishStep)
+		publishSteps.add((PublishStep) resultStep);
+	else if (resultStep instanceof AggregateStep) 
+		publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
+	for (PublishStep publishStep:publishSteps) {
+		String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId();%>
+			<fileset dir="<%=location%>"/>
+<%}}%>

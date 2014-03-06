@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<toc label="Reference" link_to="DEPRECATED_toc.xml#reference">
+   <topic label="API Reference">
+      <anchor id="api"/>
+   </topic>
+	<topic label="Menus and Actions" href="html/reference/menus/menus-and-actions.html">
+		<anchor id="menusAndActions" />
+	</topic>
+	<topic label="Preferences">
+		<anchor id="preferences" />
+	</topic>
+	<topic label="Views and Editors">
+		<anchor id="viewsAndEditors" />
+	</topic>
+	<topic label="Wizards and Dialogs">
+		<topic label="Create New Elements">
+			<anchor id="createNewElements" />
+		</topic>
+  <topic label="Edit Elements">
+     <anchor id="editElements"/>
+  </topic>
+		<anchor id="wizardsAndDialogs" />
+	</topic>
+	<topic label="Glossary" href="html/reference/glossary.html">
+		<anchor id="glossary" />
+	</topic>
+	<topic label="Icons">
+		<anchor id="icons" />
+	</topic>
+</toc>

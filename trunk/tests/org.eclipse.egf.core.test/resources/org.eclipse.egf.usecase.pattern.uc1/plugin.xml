@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+<plugin>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/Pattern_UC1_0_AllTogether.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_1_ClassPattern.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_2_Inheritance.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_3_InheritanceAndCall.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_4_Callback_StrategyBased.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_5_Callback_WithJavaClass.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_6_JetPatternCallsJavaPattern.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_7_Injection.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_8_WorkspaceDomain.fcore">
+      </fcore>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.query">
+      <query
+            class="org.eclipse.egf.usecase.pattern.uc1.query.ContentQuery"
+            id="org.eclipse.egf.usecase.pattern.uc1.query1"
+            name="UC1.8 Sample query">
+      </query>
+   </extension>
+</plugin>

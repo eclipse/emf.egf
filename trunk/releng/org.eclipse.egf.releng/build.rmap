@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
+	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
+
+	<locator searchPathRef="egf" pattern="^org\.eclipse\.egf.*" failOnError="false" />
+	<locator searchPathRef="egf.jet.editor" pattern="^org\.eclipse\.jet\.editor" failOnError="false" />
+	<locator searchPathRef="eclipse" />
+
+	<searchPath name="egf.jet.editor">
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/plugins/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="egf">
+		<provider componentTypes="buckminster" readerType="local" source="true">
+			<uri format="file:{0}/releng/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/deprecated/3.6/portfolio/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/doc/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/examples/workspace/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="eclipse.feature" readerType="local" source="true">
+			<uri format="file:{0}/features/{1}.feature">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/plugins/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/portfolio/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="file:{0}/tests/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="eclipse">
+		<provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/eclipse/updates/3.6">
+				<bc:propertyRef key="eclipse.download.prefix" />
+			</uri>
+		</provider>
+		<provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios">
+				<bc:propertyRef key="eclipse.download.prefix" />
+			</uri>
+		</provider>
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/modeling/emf/updates/releases">
+				<bc:propertyRef key="eclipse.download.prefix" />
+			</uri>
+		</provider>
+	</searchPath>
+</rmap>

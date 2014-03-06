@@ -1,0 +1,71 @@
+<%
+ArrayList<PublishStep> publishSteps = new ArrayList<PublishStep>();
+for (ResultStep resultStep : installStep.getResultSteps()) {
+	if (resultStep instanceof PublishStep)
+		publishSteps.add((PublishStep) resultStep);
+	else if (resultStep instanceof AggregateStep) 
+		publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
+}%>
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(installStep)%>" depends="init,install.director" >
+        <eclipse.launch app="director">
+            <args>
+                <jvmarg value="-Declipse.p2.mirrors=false" />
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
+%>
+
+            	<arg value="-roaming" />
+            	<arg value="-profileProperties" />
+                <arg value="org.eclipse.update.install.features=true " />
+
+                <arg value="-d" />
+                <arg value="${publish}/<%=installStep.getId()%>" />
+                
+                <arg value="-p" />
+                <arg value="<%=installStep.getProfile()%>" />
+
+<%for(String updateSiteUrl : installStep.getUpdateSiteUrls()) {%>
+                <arg value="-r" />
+                <arg value="<%=updateSiteUrl%>" />
+<%}%>
+
+<%for (PublishStep publishStep : publishSteps) {%>
+<%	String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";%>
+                <arg value="-r" />
+                <arg value="<%=location%>" />
+<%}%>
+
+<%for(String featureName : installStep.getFeatureNames()) {%>
+                <arg value="-i" />
+                <arg value="<%=featureName%>.feature.group" />
+<%}%>                
+
+<%for(String productName : installStep.getProductNames()) {%>
+                <arg value="-i" />
+                <arg value="<%=productName%>" />
+<%}%>
+
+<%for (PublishStep publishStep : publishSteps) {%>
+                <arg value="-i" />
+                <arg value="<%=publishStep.getComponent().getId()%>.feature.group" />
+<%if (installStep.isInstallResultStepsSourceFeatures() && publishStep.isGenerateSources()) {%>
+                <arg value="-i" />
+                <arg value="<%=new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getId())%>.feature.group" />
+<%}%>
+<%}%>
+
+<%if (installStep.getP2_os() != null && installStep.getP2_os().trim().length() > 0) {%>
+                <arg value="-p2.os" />
+                <arg value="<%=installStep.getP2_os()%>" />
+<%}%>
+<%if (installStep.getP2_ws() != null && installStep.getP2_ws().trim().length() > 0) {%>
+                <arg value="-p2.ws" />
+                <arg value="<%=installStep.getP2_ws()%>" />
+<%}%>
+<%if (installStep.getP2_arch() != null && installStep.getP2_arch().trim().length() > 0) {%>
+                <arg value="-p2.arch" />
+                <arg value="<%=installStep.getP2_arch()%>" />
+<%}%>
+            </args>
+        </eclipse.launch>
+	</target>	

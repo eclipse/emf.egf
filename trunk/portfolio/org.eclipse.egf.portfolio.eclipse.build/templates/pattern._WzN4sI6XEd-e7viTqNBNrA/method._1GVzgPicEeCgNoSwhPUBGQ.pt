@@ -1,0 +1,20 @@
+    <macrodef name="buckminster">
+        <attribute name="command" />
+        <element name="globargs" optional="true" />
+        <element name="cmdargs" optional="true" />
+        <sequential>
+            <eclipse.launch app="buckminster">
+                <args>
+                    <jvmarg value="-Dbugfix.288796=true"/>
+                    <arg value="--loglevel" />
+                    <arg value="${buckminster.loglevel}" />
+                    <arg value="--displaystacktrace" />
+                    <globargs />
+                    <arg value="@{command}" />
+                    <arg value="-P" />
+                    <arg value="${properties.tmp}" />
+                    <cmdargs />
+                </args>
+            </eclipse.launch>
+        </sequential>
+    </macrodef>

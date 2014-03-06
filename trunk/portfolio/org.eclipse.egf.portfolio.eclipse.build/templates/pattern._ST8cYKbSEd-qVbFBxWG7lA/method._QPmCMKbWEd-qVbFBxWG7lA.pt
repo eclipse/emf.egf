@@ -1,0 +1,1 @@
+<%buildStepName = new GenerationHelper().getNameOrGeneratedIdString(buildStep);%>

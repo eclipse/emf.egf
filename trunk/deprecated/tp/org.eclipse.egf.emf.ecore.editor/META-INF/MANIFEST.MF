@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.emf.ecore.editor; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: fragment
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Fragment-Host: org.eclipse.emf.ecore.editor;bundle-version="[2.2.0,3.0.0)"
+Require-Bundle: 
+ org.eclipse.egf.core,
+ org.eclipse.egf.core.ui

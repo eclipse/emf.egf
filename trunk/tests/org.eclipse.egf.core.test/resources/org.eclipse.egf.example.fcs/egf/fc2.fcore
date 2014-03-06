@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="6yt_IWV8Ed6WjOtbZOwqNA"
+    name="FC2">
+  <contractContainer xmi:id="_18x7QBvkEd-WcvfvJ8d8ag">
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_2Nw9kBvkEd-WcvfvJ8d8ag"
+        name="amount" invocationContracts="#_xOlt0BvkEd-WcvfvJ8d8ag">
+      <type xmi:type="types:TypeFloat" xmi:id="_4lwvsBvkEd-WcvfvJ8d8ag"/>
+    </contracts>
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_6H9iQBvkEd-WcvfvJ8d8ag"
+        name="price" mode="In_Out" invocationContracts="#_yVg5oBvkEd-WcvfvJ8d8ag">
+      <type xmi:type="types:TypeFloat" xmi:id="_7dyswBvkEd-WcvfvJ8d8ag"/>
+    </contracts>
+  </contractContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="zwp8wKbGEd69ANF1SOWYYg">
+    <invocations xmi:id="28WcsKbGEd69ANF1SOWYYg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h2/egf/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg">
+      <invocationContractContainer xmi:id="_xBK84BvkEd-WcvfvJ8d8ag">
+        <invocationContracts xmi:id="_xOlt0BvkEd-WcvfvJ8d8ag" factoryComponentContract="#_2Nw9kBvkEd-WcvfvJ8d8ag"
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h2/egf/task_h2.fcore#_rEAa4BvkEd-WcvfvJ8d8ag"/>
+        <invocationContracts xmi:id="_yVg5oBvkEd-WcvfvJ8d8ag" factoryComponentContract="#_6H9iQBvkEd-WcvfvJ8d8ag"
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h2/egf/task_h2.fcore#_tEcooBvkEd-WcvfvJ8d8ag"/>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

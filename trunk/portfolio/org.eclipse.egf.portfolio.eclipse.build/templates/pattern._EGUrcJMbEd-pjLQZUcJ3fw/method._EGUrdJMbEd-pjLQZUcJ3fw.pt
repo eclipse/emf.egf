@@ -1,0 +1,26 @@
+<%SVNLocation svnLocation = ((SVNLocation) svnBuildLocation.getSvnLocation());%>
+<%String id=new GenerationHelper().getNameOrGeneratedIdString(svnBuildLocation);%>
+	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(svnBuildLocation)%> failOnError="false" />
+	<searchPath name="<%=id%>">
+	    <!-- provider for windows if checkouted with Hudson -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
+			<uri format="file:/{0}/svn/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
+				<bc:propertyRef key="build.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	    <!-- provider for unix if checkouted with Hudson -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
+			<uri format="file://{0}/svn/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
+				<bc:propertyRef key="build.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	    <!-- standalone provider -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="svn" source="true">
+			<uri format="<%=svnLocation.getProtocol().getLiteral()%><%if (svnLocation.getUsername() != null) { %><%=svnLocation.getUsername()%>:<%=svnLocation.getPassword()%>@<%}%><%=svnLocation.getUrl()%>/<%=svnBuildLocation.getFolderName()%>/{0}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+

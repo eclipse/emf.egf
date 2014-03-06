@@ -1,0 +1,9 @@
+<%if (new GenerationHelper().hasBinaryBuildLocation(buildStep)) {%>
+		<echo message="import target platform" />
+        <buckminster command="importtargetdefinition">
+            <cmdargs>
+                <arg value="--active" />
+                <arg value="${relengDir}/buckminster_<%=stepName%>/build.target" />
+            </cmdargs>
+        </buckminster>
+<%}%>

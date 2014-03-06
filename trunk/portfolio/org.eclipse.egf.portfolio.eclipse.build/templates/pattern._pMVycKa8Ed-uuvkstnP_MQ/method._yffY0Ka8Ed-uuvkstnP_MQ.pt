@@ -1,0 +1,2 @@
+<%ctx.setValue("filePath", filePath);%>
+<%ctx.setValue("fileName", fileName);%>

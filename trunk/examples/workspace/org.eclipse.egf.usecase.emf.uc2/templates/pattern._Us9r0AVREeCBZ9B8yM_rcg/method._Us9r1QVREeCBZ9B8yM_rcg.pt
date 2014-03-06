@@ -1,0 +1,17 @@
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+%>
+		//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()
+		EList<RecordType> temp_records = getRecords();
+
+		// should be an unmodifiable list
+		BasicEList<Reservation> reservations = new BasicEList<Reservation>();
+		for (RecordType recordType : temp_records) {
+			if (recordType instanceof Reservation)
+				reservations.add((Reservation) recordType);
+		}
+
+		return reservations;
+		//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()

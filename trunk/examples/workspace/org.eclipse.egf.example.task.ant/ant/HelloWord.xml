@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<project name="SayHelloWorld" default="main" basedir=".">
+	<target name="main">
+		<echo>Ant task says Hello !</echo>
+	</target>
+</project>
+

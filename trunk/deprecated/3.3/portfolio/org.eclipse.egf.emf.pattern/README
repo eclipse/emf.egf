@@ -1,0 +1,2 @@
+In order to reverse org.eclipse.emf.codegen.ecore version 2.3.2.v200802051830
+the two patchs edit_ItemProvider.javajet.patch and model_Class.javajet.patch had to be applied

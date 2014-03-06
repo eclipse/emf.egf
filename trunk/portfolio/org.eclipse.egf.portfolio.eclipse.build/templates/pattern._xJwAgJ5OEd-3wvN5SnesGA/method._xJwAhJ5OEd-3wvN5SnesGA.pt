@@ -1,0 +1,8 @@
+String copyright = (String) ctx.getValue("copyright");
+BufferedReader reader = new BufferedReader(new StringReader(copyright));
+String line = "";
+while ((line = reader.readLine()) != null) {
+	out.append("#");
+	out.append(line);
+	out.append("\n");
+}

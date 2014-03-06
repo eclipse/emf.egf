@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_aVsbYQOPEeCGNMhVtAFERQ"
+    description="This factory component exemplifies how to insert methods and change item providers implementation during the EMF generation"
+    name="EMF_UC2_4_LibraryExtension_ClassInsert_ItemProvider">
+  <viewpointContainer xmi:id="_LVy4IAOQEeCGNMhVtAFERQ">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_L7fmMAOQEeCGNMhVtAFERQ">
+      <domains xmi:type="domain:EMFDomain" xmi:id="_Md6WwAOQEeCGNMhVtAFERQ" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.usecase.emf.uc1/model/extlibrary_extension.genmodel"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_P3LYoAOQEeCGNMhVtAFERQ">
+      <libraries xmi:id="_ckexsAOQEeCGNMhVtAFERQ" name="org.eclipse.egf.usecase.emf.libraryextension.model.Class.insert">
+        <elements xmi:id="_D3RXcAOYEeCGNMhVtAFERQ" description="[Override of derived attribute]&#xD;&#xA;This pattern insert the method of the operation &quot;getDescription&quot; of the class &quot;Borrow&quot; of the derived attribute &quot;description&quot;.&#xD;&#xA;This method implements the method so that it returns :&#xD;&#xA;   [WAITING][RETURNED] items [%item_name(s)%] from [%borrower_name%]&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.Insert&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;Borrow&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="Borrow.getDescription" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ug5gGJ-Ed-FqczH3ESmRw"
+            headerMethod="#_D3RXcgOYEeCGNMhVtAFERQ" conditionMethod="#_D3RXdAOYEeCGNMhVtAFERQ"
+            initMethod="#_D3RXcwOYEeCGNMhVtAFERQ" footerMethod="#_D3RXdgOYEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_D3RXcQOYEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_D3RXcgOYEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._D3RXcAOYEeCGNMhVtAFERQ/method._D3RXcgOYEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_D3RXcwOYEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._D3RXcAOYEeCGNMhVtAFERQ/method._D3RXcwOYEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_D3RXdAOYEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._D3RXcAOYEeCGNMhVtAFERQ/method._D3RXdAOYEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_D3RXdQOYEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._D3RXcAOYEeCGNMhVtAFERQ/method._D3RXdQOYEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_D3RXdgOYEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._D3RXcAOYEeCGNMhVtAFERQ/method._D3RXdgOYEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_D3RXdwOYEeCGNMhVtAFERQ"/>
+        </elements>
+        <elements xmi:id="_2P7vUAOoEeCGNMhVtAFERQ" description="[Override of derived attribute]&#xD;&#xA;This pattern insert the method of the operation &quot;getDescription&quot; of the class &quot;CrossLibraryReservation&quot; of the derived attribute &quot;description&quot;.&#xD;&#xA;This method implements the method so that it returns :&#xD;&#xA;   [TODO][DONE] items [%item_name(s)%] for [%borrower_name%] waiting these borrowers [%waitedBorrowers%] from these libraries [%involvedLibraries_names%]&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.Insert&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;CrossLibraryReservation&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="CrossLibraryReservation.getDescription" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ug5gGJ-Ed-FqczH3ESmRw"
+            headerMethod="#_2P7vUgOoEeCGNMhVtAFERQ" conditionMethod="#_2P7vVAOoEeCGNMhVtAFERQ"
+            initMethod="#_2P7vUwOoEeCGNMhVtAFERQ" footerMethod="#_2P7vVgOoEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_2P7vUQOoEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_2P7vUgOoEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._2P7vUAOoEeCGNMhVtAFERQ/method._2P7vUgOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2P7vUwOoEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._2P7vUAOoEeCGNMhVtAFERQ/method._2P7vUwOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2P7vVAOoEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._2P7vUAOoEeCGNMhVtAFERQ/method._2P7vVAOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2P7vVQOoEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._2P7vUAOoEeCGNMhVtAFERQ/method._2P7vVQOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2P7vVgOoEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._2P7vUAOoEeCGNMhVtAFERQ/method._2P7vVgOoEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_2P7vVwOoEeCGNMhVtAFERQ"/>
+        </elements>
+        <elements xmi:id="_pfMnwAOoEeCGNMhVtAFERQ" description="[Override of derived reference]&#xD;&#xA;This pattern insert the method of the operation &quot;getWaitedBorrowers&quot; of the class &quot;CrossLibraryReservation&quot; of the derived reference &quot;waitedBorrowers&quot;.&#xD;&#xA;This method Override the getWaitedBorrowers method so that it returns the list of Borrowers that the Library is waiting for (in itself and any involved Library) in order to satisfy this Reservation.&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.Insert&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;Borrow&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="CrossLibraryReservation.getWaitedBorrowers" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ug5gGJ-Ed-FqczH3ESmRw"
+            headerMethod="#_pfMnwgOoEeCGNMhVtAFERQ" conditionMethod="#_pfMnxAOoEeCGNMhVtAFERQ"
+            initMethod="#_pfMnwwOoEeCGNMhVtAFERQ" footerMethod="#_pfMnxgOoEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_pfMnwQOoEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_pfMnwgOoEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._pfMnwAOoEeCGNMhVtAFERQ/method._pfMnwgOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_pfMnwwOoEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._pfMnwAOoEeCGNMhVtAFERQ/method._pfMnwwOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_pfMnxAOoEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._pfMnwAOoEeCGNMhVtAFERQ/method._pfMnxAOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_pfMnxQOoEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._pfMnwAOoEeCGNMhVtAFERQ/method._pfMnxQOoEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_pfMnxgOoEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._pfMnwAOoEeCGNMhVtAFERQ/method._pfMnxgOoEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_pfMnxwOoEeCGNMhVtAFERQ"/>
+        </elements>
+        <elements xmi:id="_g0syQAOnEeCGNMhVtAFERQ" description="[Override of derived attribute]&#xD;&#xA;This pattern insert the method of the operation &quot;getDescription&quot; of the class &quot;Reservation&quot; of the derived attribute &quot;description&quot;.&#xD;&#xA;This method implements the method so that it returns :&#xD;&#xA;  [TODO][DONE] items [%item_name(s)%] for [%borrower_name%]&#xD;&#xA;Note : the switch between &quot;TODO&quot; / &quot;DONE&quot; is triggered by the Reservation status changes (finished = true or finished = false)&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.Insert&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;Reservation&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="Reservation.getDescription" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ug5gGJ-Ed-FqczH3ESmRw"
+            headerMethod="#_g0syQgOnEeCGNMhVtAFERQ" conditionMethod="#_g0syRAOnEeCGNMhVtAFERQ"
+            initMethod="#_g0syQwOnEeCGNMhVtAFERQ" footerMethod="#_g0syRgOnEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_g0syQQOnEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_g0syQgOnEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._g0syQAOnEeCGNMhVtAFERQ/method._g0syQgOnEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_g0syQwOnEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._g0syQAOnEeCGNMhVtAFERQ/method._g0syQwOnEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_g0syRAOnEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._g0syQAOnEeCGNMhVtAFERQ/method._g0syRAOnEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_g0syRQOnEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._g0syQAOnEeCGNMhVtAFERQ/method._g0syRQOnEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_g0syRgOnEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._g0syQAOnEeCGNMhVtAFERQ/method._g0syRgOnEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_g0syRwOnEeCGNMhVtAFERQ"/>
+        </elements>
+      </libraries>
+      <libraries xmi:id="_1SNBMAVoEeCBZ9B8yM_rcg" name="org.eclipse.egf.usecase.emf.libraryextension.model.Class.getsetgenfeature">
+        <elements xmi:id="_WTwf8AVQEeCBZ9B8yM_rcg" description="This pattern redefines the method body of the operation &quot;getActiveBorrows&quot; of the class &quot;BorrowingSystem&quot;.&#xD;&#xA;This method implements the getActiveBorrows method so that it returns the list of Borrows that are still not finished.&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.getGenFeature.TODO.override&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;BorrowingSystem&quot; and the operation name equals &quot;activeBorrows&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="BorrowingSystem.getActiveBorrows" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lbPAWJ-Ed-FqczH3ESmRw"
+            headerMethod="#_WTwf8gVQEeCBZ9B8yM_rcg" conditionMethod="#_WTwf9AVQEeCBZ9B8yM_rcg"
+            initMethod="#_WTwf8wVQEeCBZ9B8yM_rcg" footerMethod="#_WTwf9gVQEeCBZ9B8yM_rcg">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_WTwf8QVQEeCBZ9B8yM_rcg"
+              name="JET"/>
+          <methods xmi:id="_WTwf8gVQEeCBZ9B8yM_rcg" name="header" patternFilePath="templates/pattern._WTwf8AVQEeCBZ9B8yM_rcg/method._WTwf8gVQEeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_WTwf8wVQEeCBZ9B8yM_rcg" name="init" patternFilePath="templates/pattern._WTwf8AVQEeCBZ9B8yM_rcg/method._WTwf8wVQEeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_WTwf9AVQEeCBZ9B8yM_rcg" name="preCondition" patternFilePath="templates/pattern._WTwf8AVQEeCBZ9B8yM_rcg/method._WTwf9AVQEeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_WTwf9QVQEeCBZ9B8yM_rcg" name="doGenerate" patternFilePath="templates/pattern._WTwf8AVQEeCBZ9B8yM_rcg/method._WTwf9QVQEeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_WTwf9gVQEeCBZ9B8yM_rcg" name="footer" patternFilePath="templates/pattern._WTwf8AVQEeCBZ9B8yM_rcg/method._WTwf9gVQEeCBZ9B8yM_rcg.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_WTwf9wVQEeCBZ9B8yM_rcg"/>
+        </elements>
+        <elements xmi:id="_Us9r0AVREeCBZ9B8yM_rcg" description="This pattern redefines the method body of the operation &quot;getActiveReservations&quot; of the class &quot;BorrowingSystem&quot;.&#xD;&#xA;This method implements the getActiveReservations method so that it returns the list of Reservations that are still not finished.&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.getGenFeature.TODO.override&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;BorrowingSystem&quot; and the operation name equals &quot;activeReservations&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="BorrowingSystem.getActiveReservations" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lbPAWJ-Ed-FqczH3ESmRw"
+            headerMethod="#_Us9r0gVREeCBZ9B8yM_rcg" conditionMethod="#_Us9r1AVREeCBZ9B8yM_rcg"
+            initMethod="#_Us9r0wVREeCBZ9B8yM_rcg" footerMethod="#_Us9r1gVREeCBZ9B8yM_rcg">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_Us9r0QVREeCBZ9B8yM_rcg"
+              name="JET"/>
+          <methods xmi:id="_Us9r0gVREeCBZ9B8yM_rcg" name="header" patternFilePath="templates/pattern._Us9r0AVREeCBZ9B8yM_rcg/method._Us9r0gVREeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_Us9r0wVREeCBZ9B8yM_rcg" name="init" patternFilePath="templates/pattern._Us9r0AVREeCBZ9B8yM_rcg/method._Us9r0wVREeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_Us9r1AVREeCBZ9B8yM_rcg" name="preCondition" patternFilePath="templates/pattern._Us9r0AVREeCBZ9B8yM_rcg/method._Us9r1AVREeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_Us9r1QVREeCBZ9B8yM_rcg" name="doGenerate" patternFilePath="templates/pattern._Us9r0AVREeCBZ9B8yM_rcg/method._Us9r1QVREeCBZ9B8yM_rcg.pt"/>
+          <methods xmi:id="_Us9r1gVREeCBZ9B8yM_rcg" name="footer" patternFilePath="templates/pattern._Us9r0AVREeCBZ9B8yM_rcg/method._Us9r1gVREeCBZ9B8yM_rcg.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_Us9r1wVREeCBZ9B8yM_rcg"/>
+        </elements>
+        <elements xmi:id="_Vvc1wAOfEeCGNMhVtAFERQ" description="This pattern redefines the method body of the operation &quot;getWaitedBorrowers&quot; of the class &quot;Reservation&quot;.&#xD;&#xA;This method implements the getWaitedBorrowers method so that it returns the list of Borrowers that the Library is waiting for in order to satisfy this Reservation.&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;Class.getGenFeature.TODO.override&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;Reservation&quot; and the operation name equals &quot;waitedBorrowers&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="Reservation.getWaitedBorrowers" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lbPAWJ-Ed-FqczH3ESmRw"
+            headerMethod="#_Vvc1wgOfEeCGNMhVtAFERQ" conditionMethod="#_Vvc1xAOfEeCGNMhVtAFERQ"
+            initMethod="#_Vvc1wwOfEeCGNMhVtAFERQ" footerMethod="#_Vvc1xgOfEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_Vvc1wQOfEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_Vvc1wgOfEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._Vvc1wAOfEeCGNMhVtAFERQ/method._Vvc1wgOfEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_Vvc1wwOfEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._Vvc1wAOfEeCGNMhVtAFERQ/method._Vvc1wwOfEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_Vvc1xAOfEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._Vvc1wAOfEeCGNMhVtAFERQ/method._Vvc1xAOfEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_Vvc1xQOfEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._Vvc1wAOfEeCGNMhVtAFERQ/method._Vvc1xQOfEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_Vvc1xgOfEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._Vvc1wAOfEeCGNMhVtAFERQ/method._Vvc1xgOfEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_Vvc1xwOfEeCGNMhVtAFERQ"/>
+        </elements>
+      </libraries>
+      <libraries xmi:id="_du-18AOQEeCGNMhVtAFERQ" name="org.eclipse.egf.usecase.emf.libraryextension.edit.itemprovider">
+        <elements xmi:id="_N3asEAOrEeCGNMhVtAFERQ" description="This pattern redefines the method &quot;getImage&quot; by redefining the method &quot;overlayImage&quot;.&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;ItemProvider.Insert&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;Borrow&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="Borrow.getImage" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_051_wGJ-Ed-FqczH3ESmRw"
+            headerMethod="#_N3asEgOrEeCGNMhVtAFERQ" conditionMethod="#_N3asFAOrEeCGNMhVtAFERQ"
+            initMethod="#_N3asEwOrEeCGNMhVtAFERQ" footerMethod="#_N3asFgOrEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_N3asEQOrEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_N3asEgOrEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._N3asEAOrEeCGNMhVtAFERQ/method._N3asEgOrEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_N3asEwOrEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._N3asEAOrEeCGNMhVtAFERQ/method._N3asEwOrEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_N3asFAOrEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._N3asEAOrEeCGNMhVtAFERQ/method._N3asFAOrEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_N3asFQOrEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._N3asEAOrEeCGNMhVtAFERQ/method._N3asFQOrEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_N3asFgOrEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._N3asEAOrEeCGNMhVtAFERQ/method._N3asFgOrEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_N3asFwOrEeCGNMhVtAFERQ"/>
+        </elements>
+        <elements xmi:id="_2vgy0AOeEeCGNMhVtAFERQ" description="This pattern redefines the method &quot;getText&quot;.&#xD;&#xA;&#xD;&#xA;This pattern overloads the &quot;ItemProvider.getText.override&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the class name equals &quot;Borrow&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+            name="Borrow.getText" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_03wVEGJ-Ed-FqczH3ESmRw"
+            headerMethod="#_2vgy0gOeEeCGNMhVtAFERQ" conditionMethod="#_2vgy1AOeEeCGNMhVtAFERQ"
+            initMethod="#_2vgy0wOeEeCGNMhVtAFERQ" footerMethod="#_2vgy1gOeEeCGNMhVtAFERQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_2vgy0QOeEeCGNMhVtAFERQ"
+              name="JET"/>
+          <methods xmi:id="_2vgy0gOeEeCGNMhVtAFERQ" name="header" patternFilePath="templates/pattern._2vgy0AOeEeCGNMhVtAFERQ/method._2vgy0gOeEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2vgy0wOeEeCGNMhVtAFERQ" name="init" patternFilePath="templates/pattern._2vgy0AOeEeCGNMhVtAFERQ/method._2vgy0wOeEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2vgy1AOeEeCGNMhVtAFERQ" name="preCondition" patternFilePath="templates/pattern._2vgy0AOeEeCGNMhVtAFERQ/method._2vgy1AOeEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2vgy1QOeEeCGNMhVtAFERQ" name="doGenerate" patternFilePath="templates/pattern._2vgy0AOeEeCGNMhVtAFERQ/method._2vgy1QOeEeCGNMhVtAFERQ.pt"/>
+          <methods xmi:id="_2vgy1gOeEeCGNMhVtAFERQ" name="footer" patternFilePath="templates/pattern._2vgy0AOeEeCGNMhVtAFERQ/method._2vgy1gOeEeCGNMhVtAFERQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_2vgy1wOeEeCGNMhVtAFERQ"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_PcpYwAOQEeCGNMhVtAFERQ">
+    <invocations xmi:id="_UUiUwAOQEeCGNMhVtAFERQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="_UUiUwQOQEeCGNMhVtAFERQ">
+        <invocationContracts xmi:id="_UUiUwgOQEeCGNMhVtAFERQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomain" xmi:id="_XUT4kAOQEeCGNMhVtAFERQ" domain="#_Md6WwAOQEeCGNMhVtAFERQ"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_UUiUwwOQEeCGNMhVtAFERQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_OVsagFHVEd-dr9AWwNwIMQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aZKJoAOQEeCGNMhVtAFERQ">
+            <substitutions xmi:id="_PpQ-0AOYEeCGNMhVtAFERQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ug5gGJ-Ed-FqczH3ESmRw"
+                replacement="#_D3RXcAOYEeCGNMhVtAFERQ #_2P7vUAOoEeCGNMhVtAFERQ #_pfMnwAOoEeCGNMhVtAFERQ #_g0syQAOnEeCGNMhVtAFERQ"/>
+            <substitutions xmi:id="_HQszkAOnEeCGNMhVtAFERQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lbPAWJ-Ed-FqczH3ESmRw"
+                replacement="#_Vvc1wAOfEeCGNMhVtAFERQ #_Us9r0AVREeCBZ9B8yM_rcg #_WTwf8AVQEeCBZ9B8yM_rcg"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_VZrX4AOQEeCGNMhVtAFERQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="_VZrX4QOQEeCGNMhVtAFERQ">
+        <invocationContracts xmi:id="_VZrX4gOQEeCGNMhVtAFERQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomain" xmi:id="_ZYyRwAOQEeCGNMhVtAFERQ" domain="#_Md6WwAOQEeCGNMhVtAFERQ"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_VZrX5QOQEeCGNMhVtAFERQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_UCnhEFHVEd-dr9AWwNwIMQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ayVeoAOQEeCGNMhVtAFERQ">
+            <substitutions xmi:id="_HSigQAOfEeCGNMhVtAFERQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_03wVEGJ-Ed-FqczH3ESmRw"
+                replacement="#_2vgy0AOeEeCGNMhVtAFERQ"/>
+            <substitutions xmi:id="_38_KMAOsEeCGNMhVtAFERQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_051_wGJ-Ed-FqczH3ESmRw"
+                replacement="#_N3asEAOrEeCGNMhVtAFERQ"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

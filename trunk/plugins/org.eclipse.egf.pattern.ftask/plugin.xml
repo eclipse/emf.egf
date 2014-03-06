@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/Model_driven_pattern_strategy_task.fcore">
+      </fcore>
+      <fcore
+            id="egf/Filtered_pattern_strategy_task.fcore">
+      </fcore>
+      <fcore
+            id="egf/Default_pattern_strategy_task.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_task.fcore">
+      </fcore>
+      <fcore
+            id="egf/Substitution_composition.fcore">
+      </fcore>
+      <fcore
+            id="egf/Model_driven_validation_pattern_strategy_task.fcore">
+      </fcore>
+   </extension>
+
+</plugin>

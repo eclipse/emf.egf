@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_eBHc8I2eEd-EUL5-4Nq41g"
+    name="bootstrap">
+  <viewpointContainer xmi:id="_mRvcEI2uEd-EUL5-4Nq41g">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_m0TWkI2uEd-EUL5-4Nq41g">
+      <domains xmi:type="domain:EMFDomain" xmi:id="_oUPfUI2uEd-EUL5-4Nq41g" uri="platform:/plugin/test_genchain/model/My.generationchain"/>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_p8hrwI2uEd-EUL5-4Nq41g">
+    <invocations xmi:id="_sVqtYI2uEd-EUL5-4Nq41g" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_6qO2EYhGEd-Ii9WHGzCGHg">
+      <invocationContractContainer xmi:id="_sVqtYY2uEd-EUL5-4Nq41g">
+        <invocationContracts xmi:id="_sVqtYo2uEd-EUL5-4Nq41g" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_fqpmkI2eEd-EUL5-4Nq41g">
+          <type xmi:type="domain:TypeDomain" xmi:id="_uF1qgI2uEd-EUL5-4Nq41g" domain="#_oUPfUI2uEd-EUL5-4Nq41g"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_sVqtY42uEd-EUL5-4Nq41g" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_tmoZQI2eEd-EUL5-4Nq41g">
+          <type xmi:type="types:TypeString" xmi:id="_wLUJQI2uEd-EUL5-4Nq41g" value="My.plugin"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_82FSEI22Ed-EUL5-4Nq41g" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_hE3f0I20Ed-EUL5-4Nq41g">
+          <type xmi:type="types:TypeString" xmi:id="_9_ULAI22Ed-EUL5-4Nq41g" value="Melody"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_xwNqwKCXEd-Rx8MWYOARKQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_ZsQ4gI6OEd-xWoHAb-RqYQ">
+          <type xmi:type="types:TypeString" xmi:id="_zYtSkKCXEd-Rx8MWYOARKQ" value="/generated/model/melodyChain.fcore"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

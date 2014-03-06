@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=""
+    modelDirectory="/org.eclipse.egf.model/generated" editDirectory="/org.eclipse.egf.model.edit/generated"
+    editorDirectory="/org.eclipse.egf.model.editor/generated" modelPluginID="org.eclipse.egf.model"
+    templateDirectory="/org.eclipse.egf.model/templates" dynamicTemplates="true" modelName="Domain"
+    modelPluginClass="org.eclipse.egf.model.EGFModelPlugin" editPluginClass="org.eclipse.egf.model.edit.EGFModelEditPlugin"
+    editorPluginClass="org.eclipse.egf.model.editor.EGFModelEditorPlugin" nonNLSMarkers="true"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container" codeFormatting="true"
+    testsDirectory="/org.eclipse.egf.model.tests/generated" booleanFlagsField="flags"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
+    runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel Types.genmodel#//types">
+  <foreignModel>Domain.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
+  <genPackages prefix="Domain" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Domain.ecore#/">
+    <genClasses ecoreClass="Domain.ecore#//DomainViewpoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domain.ecore#//DomainViewpoint/domains"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Domain.ecore#//Domain">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Domain.ecore#//Domain/content"/>
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//Domain/helperImplementation"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//TypeGenPackages">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Domain.ecore#//TypeGenPackages/elements"/>
+      <genOperations ecoreOperation="Domain.ecore#//TypeGenPackages/getType">
+        <genTypeParameters ecoreTypeParameter="Domain.ecore#//TypeGenPackages/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//EMFDomain">
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//EMFDomain/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//TypeDomain">
+      <genFeatures createChild="false" propertyCategory="Info" propertyDescription=""
+          propertySortChoices="true" ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/domain"/>
+      <genFeatures property="None" createChild="false" propertyCategory="Info" propertyDescription=""
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//FilesystemDomain">
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//FilesystemDomain/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//WorkspaceDomain">
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//WorkspaceDomain/path"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Domain.ecore#//LoadableDomain">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Domain.ecore#//LoadableDomain/loaded"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

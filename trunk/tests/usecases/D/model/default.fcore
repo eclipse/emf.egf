@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_dYcw0akxEd-3n5BFIT1vqw"
+    name="default">
+  <viewpointContainer xmi:id="_d_2IAKkxEd-3n5BFIT1vqw">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_eVQXUKkxEd-3n5BFIT1vqw">
+      <libraries xmi:id="_eoljAKkxEd-3n5BFIT1vqw" name="lib">
+        <elements xmi:type="pattern:Pattern" xmi:id="_f7WLYKkxEd-3n5BFIT1vqw" name="DPattern"
+            headerMethod="#_f7WLYakxEd-3n5BFIT1vqw" footerMethod="#_f7WycqkxEd-3n5BFIT1vqw"
+            initMethod="#_f7WLYqkxEd-3n5BFIT1vqw" conditionMethod="#_f7WycKkxEd-3n5BFIT1vqw">
+          <methods xmi:id="_f7WLYakxEd-3n5BFIT1vqw" name="header" patternFilePath="templates/pattern._f7WLYKkxEd-3n5BFIT1vqw/method._f7WLYakxEd-3n5BFIT1vqw.pt"/>
+          <methods xmi:id="_f7WLYqkxEd-3n5BFIT1vqw" name="init" patternFilePath="templates/pattern._f7WLYKkxEd-3n5BFIT1vqw/method._f7WLYqkxEd-3n5BFIT1vqw.pt"/>
+          <methods xmi:id="_f7WycKkxEd-3n5BFIT1vqw" name="preCondition" patternFilePath="templates/pattern._f7WLYKkxEd-3n5BFIT1vqw/method._f7WycKkxEd-3n5BFIT1vqw.pt"/>
+          <methods xmi:id="_f7WycakxEd-3n5BFIT1vqw" name="body" patternFilePath="templates/pattern._f7WLYKkxEd-3n5BFIT1vqw/method._f7WycakxEd-3n5BFIT1vqw.pt"/>
+          <methods xmi:id="_f7WycqkxEd-3n5BFIT1vqw" name="footer" patternFilePath="templates/pattern._f7WLYKkxEd-3n5BFIT1vqw/method._f7WycqkxEd-3n5BFIT1vqw.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_f7Wyc6kxEd-3n5BFIT1vqw"/>
+          <parameters xmi:id="_dszv4ak0Ed-oaNLgkBidGg" name="parameter" type="platform:/resource/D/model/D.ecore#//D"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_f7WydKkxEd-3n5BFIT1vqw"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+</fcore:FactoryComponent>

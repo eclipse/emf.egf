@@ -1,0 +1,29 @@
+        String manifestMFPathString = genModel.getModelProjectDirectory() + "/" + ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR;
+        IPath manifestMFPath = new Path(manifestMFPathString);
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+
+        final IProject project = workspace.getRoot().getProject(manifestMFPath.segment(0));
+        IFile manifestMFFile = project.getFile(ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR);
+
+        if (!manifestMFFile.exists())
+            return;
+
+        PDEModelUtility.modifyModel(new ModelModification(manifestMFFile) {
+
+            @Override
+            protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
+                if (model instanceof IBundlePluginModelBase) {
+                    IBundlePluginModelBase bundlePluginModelBase = (IBundlePluginModelBase) model;
+                    
+                    for (IPluginImport pluginImport : bundlePluginModelBase.getPluginBase().getImports()) {
+                        if (pluginId.equals(pluginImport.getId())) {
+                            return;
+                        }
+                    } 
+                    
+                    PluginImportNode pluginImportNode = new PluginImportNode(pluginId);
+                    pluginImportNode.setReexported(true);
+                    bundlePluginModelBase.getPluginBase().add(pluginImportNode);
+                }
+            }
+        }, new NullProgressMonitor());

@@ -1,0 +1,8 @@
+		<echo message="install JRE ${env.JAVA_HOME}" />
+    	<buckminster command="installJRE">
+            <cmdargs>
+                <arg value="--location" />
+                <arg value="${env.JAVA_HOME}" />
+            </cmdargs>
+        </buckminster>
+

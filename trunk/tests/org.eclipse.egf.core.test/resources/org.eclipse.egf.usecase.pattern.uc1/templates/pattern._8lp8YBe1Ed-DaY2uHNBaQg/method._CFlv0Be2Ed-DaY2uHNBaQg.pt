@@ -1,0 +1,5 @@
+
+
+<% MyHelper.resetCounter (ctx); %>
+[Begin. <%= _separator %><%=parameter.getName()%><%= _separator %>]
+

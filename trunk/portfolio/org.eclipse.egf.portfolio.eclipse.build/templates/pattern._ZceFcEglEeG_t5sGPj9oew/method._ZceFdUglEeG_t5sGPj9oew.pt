@@ -1,0 +1,6 @@
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(createFolderStep);%>
+	<target name="<%=stepName%>" depends="init">
+		<mkdir dir="<%=createFolderStep.getFolderPath()%>">
+		</mkdir>
+	</target>
+

@@ -1,0 +1,1 @@
+return "PublishStep".equals(genClass.getEcoreClass().getName());

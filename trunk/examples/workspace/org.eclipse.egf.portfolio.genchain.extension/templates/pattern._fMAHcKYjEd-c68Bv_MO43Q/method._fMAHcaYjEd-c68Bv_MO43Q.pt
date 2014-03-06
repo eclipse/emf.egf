@@ -1,0 +1,24 @@
+package PACKAGE;
+
+import java.util.*;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fprod.ProductionPlan;
+import org.eclipse.egf.model.pattern.*;
+import org.eclipse.egf.pattern.execution.*;
+import org.eclipse.egf.pattern.query.*;
+import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
+import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
+import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
+
+
+public class CLASS {
+
+	public CLASS() {
+		//Here is the constructor
+	}
+
+

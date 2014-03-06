@@ -1,0 +1,14 @@
+		if (importer == null)
+			return;
+		GenModel genModel = importer.getGenModel();
+		String emfModelPath = parameter.getModelPath();
+		for (GenPackage genPackage : genModel.getGenPackages()) {
+			String ecoreFileName = genPackage.getEcorePackage().eResource().getURI().lastSegment();
+			if (emfModelPath.contains(ecoreFileName)) {
+				genPackage.setBasePackage(parameter.getBasePackage());
+			}
+		}
+
+		String emfPluginName = parameter.getPluginName();
+		genModel.setModelPluginID(emfPluginName);
+		genModel.setModelDirectory("/" + emfPluginName + "/src");

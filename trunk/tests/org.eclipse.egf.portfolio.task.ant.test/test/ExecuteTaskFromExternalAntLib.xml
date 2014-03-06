@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="GBK"?>    
+  
+<project name= "Test useing task from external ant lib" default= "mkdir1" basedir= "." >    
+	
+	<!-- Method 1: -->
+	<!-- Use tasks from external ant lib by pointing out the jar path -->	
+	<property name="jarDir" value="${basedir}/lib"/>
+	<taskdef name="taskINLib" description="Execute the task from external ant lib" classname="org.apache.tools.ant.taskdefs.Mkdir">
+			<classpath>
+				<pathelement location="${jarDir}/ant.jar" />
+			</classpath>
+	</taskdef>
+	<target name="mkdir1" depends="mkdir2">
+		<taskINLib dir="../New_Folder_by_call_lib"/>
+	</target>
+
+	<!-- Method 2: -->
+	<!-- Use tasks from external ant lib directly -->
+    <target name= "mkdir2" >    
+    	<mkdir dir="../New_Folder_directly"/>
+    </target>
+  
+</project>   
