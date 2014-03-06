@@ -330,7 +330,7 @@ public class CreateFeatureOperation extends WorkspaceModifyOperation {
 		if (_descriptionUrl != null && _descriptionUrl.length() > 0)
 			return _descriptionUrl;
 		else
-			return "http://www.polarsys.com/kitalpha/description";
+			return "http://www.example.com/description";
 	}
 	
 	public void setDescriptionUrl(String descriptionUrl) {
@@ -360,7 +360,7 @@ public class CreateFeatureOperation extends WorkspaceModifyOperation {
 		if (_copyrightUrl != null && _copyrightUrl.length() > 0)
 			return _copyrightUrl;
 		else
-			return "http://www.polarsys.com/kitalpha/copyright";
+			return "http://www.example.com/copyright";
 	}
 	
 	public void setCopyrightUrl(String copyrightUrl) {
@@ -390,7 +390,7 @@ public class CreateFeatureOperation extends WorkspaceModifyOperation {
 		if (_licenseUrl != null && _licenseUrl.length() > 0)
 			return _licenseUrl;
 		else
-			return "http://www.polarsys.com/kitalpha/license";
+			return "http://www.example.com/license";
 	}
 	
 	public void setLicenseUrl(String licenseUrl) {
