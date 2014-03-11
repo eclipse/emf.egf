@@ -82,7 +82,7 @@ public class ParameterTypeHelper {
             genModel = EGFCorePlugin.getRuntimePlatformGenModel(uri.trimFragment());
         }
         if (genModel != null) {
-            return genModel.getBasePackage() + '.' + getClassName(type, index);
+        	return genModel.getBasePackage() + '.' + getClassName(type, index).replace('/', '.');
         }
 
         throw new IllegalStateException("Cannot find model: " + uri);
