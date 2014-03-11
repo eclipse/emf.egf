@@ -14,4 +14,6 @@ Require-Bundle:
 Bundle-Activator: 
  org.eclipse.egf.eclipse.resources.mgt.Activator
 Export-Package: 
- org.eclipse.egf.eclipse.resources.mgt
+ org.eclipse.egf.eclipse.resources.mgt,
+ org.eclipse.egf.eclipse.resources.mgt.operation,
+ org.eclipse.egf.eclipse.resources.mgt.util
