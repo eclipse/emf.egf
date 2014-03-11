@@ -199,7 +199,7 @@ public class CreateFcoreHelper {
 
     }
 
-    private void runFcore(ResourceSet resourceSet, GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
+    protected void runFcore(ResourceSet resourceSet, GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
         URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
         EObject eObject = resourceSet.getResource(uri, true).getContents().get(0);
         try {
