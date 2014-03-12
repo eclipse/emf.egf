@@ -1,0 +1,6 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getTestsProjectDirectory() + "/META-INF/MANIFEST.MF";
+overwrite = genModel.isUpdateClasspath();
+encoding = "UTF-8";
+%>

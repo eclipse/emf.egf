@@ -1,0 +1,17 @@
+
+
+
+	/**
+	 * Tests the '{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%>()
+	 * @generated
+	 */
+      <%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/getGenFeature.annotations.insert.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+      <%}%>
+	public void test<%=genModel.capName(genFeature.getGetAccessor())%>()
+	{
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/getGenFeature.todo.override.javajetinc%>
+	}

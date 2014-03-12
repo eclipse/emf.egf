@@ -1,0 +1,186 @@
+
+<%
+/**
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ */
+%>
+<%GenClass genClass = (GenClass)argument; GenPackage genPackage = genClass.getGenPackage(); GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+package <%=genPackage.getTestsPackageName()%>;
+
+<%genModel.markImportLocation(stringBuffer);%>
+
+/**
+ * <!-- begin-user-doc -->
+ * A test case for the model object '<em><b><%=genClass.getFormattedName()%></b></em>'.
+ * <!-- end-user-doc -->
+<%if (!genClass.getImplementedGenFeatures().isEmpty()) { boolean first = true;%>
+  <%for (GenFeature genFeature : genClass.getImplementedGenFeatures()) {%>
+    <%if (genFeature.isTested() && !genFeature.isSuppressedGetVisibility()) {%>
+      <%if (first) { first = false;%>
+ * <p>
+ * The following features are tested:
+ * <ul>
+      <%}%>
+ *   <li>{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}</li>
+    <%}%>
+  <%}%>
+  <% if (!first) {%>
+ * </ul>
+ * </p>
+  <%}%>
+<%}%>
+<%if (!genClass.getImplementedGenOperations().isEmpty()) { boolean first = true;%>
+  <%for (GenOperation genOperation : genClass.getImplementedGenOperations()) {%>
+    <%if (first) { first = false;%>
+ * <p>
+ * The following operations are tested:
+ * <ul>
+    <%}%>
+ *   <li>{@link <%=genOperation.getGenClass().getQualifiedInterfaceName()%>#<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>) <em><%=genOperation.getFormattedName()%></em>}</li>
+  <%}%>
+  <% if (!first) {%>
+ * </ul>
+ * </p>
+  <%}%>
+<%}%>
+ * @generated
+ */
+public<%if (genClass.isAbstract()) {%> abstract<%}%> class <%=genClass.getTestCaseClassName()%> extends <%=genClass.isModelRoot() ? genModel.getImportedName("junit.framework.TestCase") : genClass.getClassExtendsGenClass().getImportedTestCaseClassName()%>
+{
+<%if (genModel.hasCopyrightField()) {%>
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final <%=genModel.getImportedName("java.lang.String")%> copyright = <%=genModel.getCopyrightFieldLiteral()%>;<%=genModel.getNonNLS()%>
+<%}%>
+<%if (genModel.getDriverNumber() != null) {%>
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final <%=genModel.getImportedName("java.lang.String")%> mofDriverNumber = "<%=genModel.getDriverNumber()%>";<%=genModel.getNonNLS()%>
+<%}%>
+<%if (genClass.isModelRoot()) {%>
+
+	/**
+	 * The fixture for this <%=genClass.getFormattedName()%> test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected <%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%> fixture = null;
+<%}%>
+<%if (!genClass.isAbstract()) {%>
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void main(String[] args)
+	{
+		<%=genModel.getImportedName("junit.textui.TestRunner")%>.run(<%=genClass.getTestCaseClassName()%>.class);
+	}
+<%}%>
+
+	/**
+	 * Constructs a new <%=genClass.getFormattedName()%> test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public <%=genClass.getTestCaseClassName()%>(String name)
+	{
+		super(name);
+	}
+<%if (genClass.isModelRoot()) {%>
+
+	/**
+	 * Sets the fixture for this <%=genClass.getFormattedName()%> test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setFixture(<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%> fixture)
+	{
+		this.fixture = fixture;
+	}
+<%}%>
+
+	/**
+	 * Returns the fixture for this <%=genClass.getFormattedName()%> test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%if (!genClass.isModelRoot() && genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	<%if (genModel.useGenerics()) {%>protected<%} else {%>private<%}%> <%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%> getFixture()
+	{
+<%if (genClass.isModelRoot()) {%>
+		return fixture;
+<%} else {%>
+		return (<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)fixture;
+<%}%>
+	}
+<%if (!genClass.isAbstract()) {%>
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+<%if (genModel.useGenerics() && genClass.isMapEntry()) {%>
+	@SuppressWarnings("unchecked")
+<%}%>
+	protected void setUp() throws Exception
+	{
+  <%if (genClass.isMapEntry()) {%>
+		setFixture((<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)<%=genPackage.getQualifiedEFactoryInternalInstanceAccessor()%>.create(<%=genClass.getQualifiedClassifierAccessor()%>));
+  <%} else {%>
+		setFixture(<%=genPackage.getQualifiedEFactoryInternalInstanceAccessor()%>.create<%=genClass.getName()%>());
+  <%}%>
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
+<%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+<%}%>
+	protected void tearDown() throws Exception
+	{
+		setFixture(null);
+	}
+<%}%>
+<%for (GenFeature genFeature : genClass.getImplementedGenFeatures()) {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenFeature.override.javajetinc%>
+<%}%>
+<%for (GenOperation genOperation : genClass.getImplementedGenOperations()) {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenOperation.override.javajetinc%>
+<%}%>
+
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+} //<%=genClass.getTestCaseClassName()%>
+<%genModel.emitSortedImports();%>
