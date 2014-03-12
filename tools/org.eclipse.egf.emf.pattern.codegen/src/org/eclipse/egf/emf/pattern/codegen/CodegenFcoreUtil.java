@@ -277,7 +277,7 @@ public class CodegenFcoreUtil {
     }
 
     public ContentProvider createContentProvider(PatternInfo patternInfo) {
-        return new ContentProvider(patternInfo);
+        return new ContentProvider(patternInfo, true);
     }
 
     public CodegenEngine getCodeEngine(PatternInfo patternInfo) {

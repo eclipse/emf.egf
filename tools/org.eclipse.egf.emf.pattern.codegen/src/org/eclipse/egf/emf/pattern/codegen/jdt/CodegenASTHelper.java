@@ -372,6 +372,11 @@ public class CodegenASTHelper {
 
             @Override
             public void acceptSearchMatch(SearchMatch match) throws CoreException {
+                if (match.isInsideDocComment()) {
+                	//avoid references in javadoc
+                	return;
+                }
+                
                 Object element = match.getElement();
                 if (element instanceof IMethod) {
                     IMethod callingMethod = (IMethod) element;

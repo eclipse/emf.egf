@@ -33,16 +33,25 @@ public class CodegenPatternInitializer {
     public static class ContentProvider {
 
         protected PatternInfo patternInfo;
+		private boolean replaceCRLF;
 
         public ContentProvider(PatternInfo patternInfo) {
+            this(patternInfo, false);
+        }
+        
+        public ContentProvider(PatternInfo patternInfo, boolean replaceCRLF) {
             super();
             this.patternInfo = patternInfo;
+            this.replaceCRLF = replaceCRLF;
         }
-
+        
         protected String getContent(PatternMethod method) {
             for (MethodInfo methodInfo : patternInfo.getMethods()) {
                 if (methodInfo.getName() != null && methodInfo.getName().equals(method.getName()))
-                    return methodInfo.getContent();
+                	if (replaceCRLF)
+                		return methodInfo.getContent().replaceAll("\\r\\n", "\n");
+                	else
+                		return methodInfo.getContent();
             }
             return null;
         }
