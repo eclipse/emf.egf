@@ -19,7 +19,7 @@
 	public void unset<%=genFeature.getAccessorName()%><%if (genClass.hasCollidingUnsetAccessorOperation(genFeature)) {%>_<%}%>()
 	{
     <%if (genModel.isDynamicDelegation()) {%>
-		eDynamicUnset(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
+		eDynamicUnset(<%=genClass.getQualifiedFeatureID(genFeature)%><%if (genClass.hasStaticFeatures()){%> - ESTATIC_FEATURE_COUNT<%}%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		eUnset(<%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genFeature.hasSettingDelegate()) {%>

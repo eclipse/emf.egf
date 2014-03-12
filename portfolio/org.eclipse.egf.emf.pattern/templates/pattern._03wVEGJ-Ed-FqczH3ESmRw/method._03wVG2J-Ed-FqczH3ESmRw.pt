@@ -1,5 +1,8 @@
 
 
+<%if (genModel.isStyleProviders()) {%>
+		return ((<%=genModel.getImportedName("org.eclipse.emf.edit.provider.StyledString")%>)getStyledText(object)).getString();
+<%} else {%>
 <%if (genClass.isMapEntry()) {%>
 		<%=genClass.getImportedInterfaceName()%><%if (genModel.useGenerics()) {%><?, ?><%}%> <%=genClass.getSafeUncapName()%> = (<%=genClass.getImportedInterfaceName()%><%if (genModel.useGenerics()) {%><?, ?><%}%>)object;
   <%if (!genClass.getMapEntryKeyFeature().isPropertyMultiLine() && !genClass.getMapEntryValueFeature().isPropertyMultiLine()) {%>
@@ -42,4 +45,5 @@
   <%}%>
 <%} else {%>
 		return getString("_UI_<%=genClass.getName()%>_type");<%=genModel.getNonNLS()%>
+<%}%>
 <%}%>

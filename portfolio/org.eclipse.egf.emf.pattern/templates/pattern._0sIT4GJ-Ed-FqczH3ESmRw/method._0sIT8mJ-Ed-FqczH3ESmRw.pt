@@ -19,7 +19,7 @@
 	public boolean isSet<%=genFeature.getAccessorName()%><%if (genClass.hasCollidingIsSetAccessorOperation(genFeature)) {%>_<%}%>()
 	{
     <%if (genModel.isDynamicDelegation()) {%>
-		return eDynamicIsSet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
+		return eDynamicIsSet(<%=genClass.getQualifiedFeatureID(genFeature)%><%if (genClass.hasStaticFeatures()){%> - ESTATIC_FEATURE_COUNT<%}%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		return eIsSet(<%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genFeature.hasSettingDelegate()) {%>
