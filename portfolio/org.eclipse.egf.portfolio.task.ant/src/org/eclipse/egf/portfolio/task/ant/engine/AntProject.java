@@ -14,9 +14,15 @@
  */
 package org.eclipse.egf.portfolio.task.ant.engine;
 
+import java.io.IOException;
+import java.net.URL;
+
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.Path;
+import org.eclipse.ant.core.AntCorePlugin;
+import org.eclipse.ant.core.AntCorePreferences;
+import org.eclipse.core.runtime.Platform;
 
 /**
  * @author xiaoru chen
@@ -25,7 +31,16 @@ import org.apache.tools.ant.types.Path;
 public class AntProject extends Project {
     @Override
     public AntClassLoader createClassLoader(Path path) {
-        AntClassLoader antClassLoader = new AntClassLoader(getClass().getClassLoader(), this, path);
-        return antClassLoader;
+		AntClassLoader antClassLoader = new AntClassLoader(getClass().getClassLoader(), this, path);
+		AntCorePreferences prefs = AntCorePlugin.getPlugin().getPreferences();
+		URL[] antClasspath = prefs.getURLs();
+		for (int i = 0; i < antClasspath.length; i++) {
+			try {
+				antClassLoader.addPathElement(Platform.asLocalURL(antClasspath[i]).getPath());
+			} catch (IOException e) {
+				continue;
+			}
+		}
+		return antClassLoader;
     }
 }
