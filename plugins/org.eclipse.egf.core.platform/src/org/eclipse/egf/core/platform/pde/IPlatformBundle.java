@@ -70,15 +70,6 @@ public interface IPlatformBundle {
     public boolean isFragment();
 
     /**
-     * Returns the bundle description of the plug-in.
-     * 
-     * @return bundle description
-     * 
-     * @since 3.0
-     */
-    public BundleDescription getBundleDescription();
-
-    /**
      * Whether or not this IPlatformBundle is a target IPlatformBundle.
      * 
      * @return true if this IPlatformBundle is a target bundle,

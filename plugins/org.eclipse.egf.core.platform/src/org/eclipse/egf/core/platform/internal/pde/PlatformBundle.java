@@ -28,14 +28,14 @@ import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.osgi.framework.internal.core.AbstractBundle;
-import org.eclipse.osgi.framework.internal.core.BundleFragment;
+import org.eclipse.osgi.internal.resolver.BundleDescriptionImpl;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
+import org.eclipse.pde.internal.core.bundle.BundleFragment;
 import org.osgi.framework.Bundle;
 
 class PlatformBundle implements IPlatformBundle {
@@ -57,7 +57,6 @@ class PlatformBundle implements IPlatformBundle {
 
     public PlatformBundle(Bundle bundle) {
         Assert.isNotNull(bundle);
-        Assert.isLegal(bundle instanceof AbstractBundle);
         Assert.isNotNull(bundle.getSymbolicName());
         _bundle = bundle;
         _previousBundleId = bundle.getSymbolicName();
@@ -170,13 +169,6 @@ class PlatformBundle implements IPlatformBundle {
             return bundle;
         }
         return null;
-    }
-
-    public BundleDescription getBundleDescription() {
-        if (isRuntime()) {
-            return ((AbstractBundle) getBundle()).getBundleDescription();
-        }
-        return getPluginModelBase().getBundleDescription();
     }
 
     public boolean isRuntime() {
@@ -353,16 +345,8 @@ class PlatformBundle implements IPlatformBundle {
     public String toString() {
         String id = getBundleId();
         String previousId = getPreviousBundleId();
-        String version = null;
-        if (getBundleDescription() != null) {
-            version = getBundleDescription().getVersion().toString();
-        }
         StringBuilder text = new StringBuilder();
-        if (version != null && version.length() > 0) {
-            text.append(id).append(" ").append(version); //$NON-NLS-1$
-        } else {
             text.append(id);
-        }
         if (id.equals(previousId) == false) {
             text.append(" PreviousId: ").append(previousId); //$NON-NLS-1$
         }

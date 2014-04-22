@@ -25,13 +25,11 @@ public abstract class AbstractPlatformExtensionPoint {
 
     public AbstractPlatformExtensionPoint(IPlatformBundle bundle) {
         Assert.isNotNull(bundle);
-        Assert.isNotNull(bundle.getBundleDescription());
         _platformBundle = bundle;
     }
 
     public AbstractPlatformExtensionPoint(IPlatformBundle bundle, String uniqueIdentifier, int handleId) {
         Assert.isNotNull(bundle);
-        Assert.isNotNull(bundle.getBundleDescription());
         _platformBundle = bundle;
         _uniqueIdentifier = uniqueIdentifier != null ? uniqueIdentifier.trim() : null;
         _handleId = handleId;
