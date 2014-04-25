@@ -225,6 +225,8 @@ public final class ProjectBundleSession {
 
 	private void internalInstallBundle(List<Bundle> bundles, List<IPluginModelBase> workspaceModels) throws CoreException {
 
+        // Uninstall runtime bundles if any
+        uninstallRuntimeBundle(workspaceModels);
 		// Install workspace bundles
 		installWorkspaceModels(bundles, workspaceModels);
 		// Refresh installed workspace bundles if any
@@ -404,6 +406,24 @@ public final class ProjectBundleSession {
 		return bundle;
 	}
 
+    private Bundle installBundle(String location) throws CoreException {
+        Bundle bundle = null;
+        try {
+            bundle = context.installBundle(location);
+        } catch (Throwable t) {
+            throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_InstallationFailure, location), t));
+        }
+        // Not sure if it's needed, anyway we are conservative on that one
+        if (bundle == null) {
+            throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_InstallationFailure, location), null));
+        }
+        int state = bundle.getState();
+        if (state != Bundle.INSTALLED) {
+            throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_IllegalBundleState, bundle, state), null));
+        }
+        return bundle;
+    }
+
 	/**
 	 * Returns the bundle corresponding to the IProject if any.
 	 * 
@@ -571,9 +591,9 @@ public final class ProjectBundleSession {
 
 			// Install runtime bundle
 			if (uninstalled.isEmpty() == false) {
-//				for (String location : uninstalled) {
-//					uninstalledBundles.add(installBundle(location));
-//				}
+                for (String location : uninstalled) {
+                    uninstalledBundles.add(installBundle(location));
+                }
 				// Refresh Packages
 				refreshPackages(uninstalledBundles.toArray(new Bundle[uninstalledBundles.size()]));
 				// Tracing
