@@ -33,9 +33,10 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.egf.portfolio.genchain" />
-      <import feature="org.eclipse.emf.ecoretools" />
-      <import feature="org.eclipse.gmf" />
+      <import feature="org.eclipse.emf.ecoretools.design"/>
+      <import feature="org.eclipse.sirius.runtime"/>
+      <import feature="org.eclipse.gmf"/>
+      <import feature="org.eclipse.egf.portfolio.genchain"/>
    </requires>
 
    <plugin
