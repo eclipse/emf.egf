@@ -32,7 +32,7 @@ public class EcoreToolsExtensionFactoryImpl extends EFactoryImpl implements
 	public static EcoreToolsExtensionFactory init() {
 		try {
 			EcoreToolsExtensionFactory theEcoreToolsExtensionFactory = (EcoreToolsExtensionFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/egf/1.0.0/generationChainEcoreToolsExtension"); //$NON-NLS-1$ 
+					.getEFactory(EcoreToolsExtensionPackage.eNS_URI);
 			if (theEcoreToolsExtensionFactory != null) {
 				return theEcoreToolsExtensionFactory;
 			}

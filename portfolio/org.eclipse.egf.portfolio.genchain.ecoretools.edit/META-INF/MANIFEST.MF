@@ -9,7 +9,11 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.provider
-Require-Bundle: org.eclipse.egf.portfolio.genchain.ecoretools;visibility:=reexport,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.egf.portfolio.genchain.ecoretools;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.egf.portfolio.genchain;visibility:=reexport,
  org.eclipse.egf.portfolio.genchain.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

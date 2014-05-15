@@ -30,6 +30,9 @@ import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.emf.common.util.URI;
 
 public class EcoreToolsExtension extends ExtensionHelper {
+	/** Sirius representation files extension **/
+	private final static String _AIRD_FILE_EXTENSION = "aird";
+	
     private static final URI PATTERN = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.ecoretools/egf/ecoreToolsExtension.fcore#_Mf1nEHyqEeC0R_Dv0EljeA", false);
 
     @Override
@@ -40,7 +43,7 @@ public class EcoreToolsExtension extends ExtensionHelper {
         if (properties.get("fileName") != null && properties.get("fileName").length() > 0) {
             fileName = properties.get("fileName");
         } else {
-            fileName = modelPath.concat("diag");
+            fileName = modelPath.concat(_AIRD_FILE_EXTENSION);
         }
         ecoreToolsGeneration.setModelPath(modelPath);
         ecoreToolsGeneration.setFileName(fileName);
@@ -68,7 +71,7 @@ public class EcoreToolsExtension extends ExtensionHelper {
     protected void computeDefaultProperties(Map<String, String> context) {
         final String modelPath = context.get(CONTEXT_MODEL_NAME);
         final String projectName = context.get(CONTEXT_PROJECT_NAME);
-        properties.put(EcoreToolsExtensionPackage.eINSTANCE.getEcoreToolsGeneration_FileName(), projectName + "/model/" + modelPath.concat(".ecorediag"));
+        properties.put(EcoreToolsExtensionPackage.eINSTANCE.getEcoreToolsGeneration_FileName(), projectName + "/model/" + modelPath.concat("."+_AIRD_FILE_EXTENSION));
     }
 
 }

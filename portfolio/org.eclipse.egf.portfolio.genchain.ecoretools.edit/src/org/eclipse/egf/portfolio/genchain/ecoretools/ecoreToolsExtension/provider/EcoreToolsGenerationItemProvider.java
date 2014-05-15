@@ -39,9 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EcoreToolsGenerationItemProvider extends EcoreElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EcoreToolsGenerationItemProvider extends EcoreElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -106,8 +104,9 @@ public class EcoreToolsGenerationItemProvider extends EcoreElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/EcoreToolsGeneration")); //$NON-NLS-1$
+		return overlayImage(object,
+				getResourceLocator()
+						.getImage("full/obj16/EcoreToolsGeneration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -136,8 +135,8 @@ public class EcoreToolsGenerationItemProvider extends EcoreElementItemProvider
 
 		switch (notification.getFeatureID(EcoreToolsGeneration.class)) {
 		case EcoreToolsExtensionPackage.ECORE_TOOLS_GENERATION__FILE_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);

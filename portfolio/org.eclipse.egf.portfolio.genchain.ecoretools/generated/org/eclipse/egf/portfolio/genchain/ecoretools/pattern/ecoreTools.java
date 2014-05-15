@@ -1,4 +1,4 @@
-//Generated on Wed May 14 17:46:24 CEST 2014 with EGF 1.1.0.v20140430-0644
+//Generated on Thu May 15 17:58:57 CEST 2014 with EGF 1.1.0.v20140514-0645
 package org.eclipse.egf.portfolio.genchain.ecoretools.pattern;
 
 import java.util.*;
