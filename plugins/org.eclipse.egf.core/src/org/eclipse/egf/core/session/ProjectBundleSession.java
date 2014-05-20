@@ -20,9 +20,11 @@ import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -333,7 +335,7 @@ public final class ProjectBundleSession {
 		return dependencies;
 	}
 
-	private void addContent(File folder, String path, String zipPath, List<String> outputFolders, ZipOutputStream out) throws IOException {
+	private void addContent(File folder, String path, String zipPath, List<String> outputFolders, ZipOutputStream out, Set<String> names) throws IOException {
 		int BUFFER = 1024;
 		byte data[] = new byte[BUFFER];
 		String subdirList[] = folder.list();
@@ -344,11 +346,12 @@ public final class ProjectBundleSession {
 			if (f.isDirectory()) {
 				if (outputFolders.contains(sd))
 					subzipPath = zipPath;
-				addContent(f, subPath, subzipPath, outputFolders, out);
-			} else 
+				addContent(f, subPath, subzipPath, outputFolders, out, names);
+			} else if (!names.contains(subzipPath))
 			{
 				BufferedInputStream origin = new BufferedInputStream(new FileInputStream(f));
 				ZipEntry entry = new ZipEntry(subzipPath);
+				names.add(subzipPath);
 				out.putNextEntry(entry);
 				int count;
 				while ((count = origin.read(data, 0, BUFFER)) != -1) {
@@ -383,7 +386,8 @@ public final class ProjectBundleSession {
 			{
 				IJavaProject jProject = JavaCore.create(project);
 				List<String> outputFolders = JavaHelper.getStringOutputFolders(jProject);
-				addContent(new File(project.getLocation().toPortableString()), "", "", outputFolders, out);
+				Set<String> names = new HashSet<String>();
+				addContent(new File(project.getLocation().toPortableString()), "", "", outputFolders, out, names);
 			out.close();
 			array.flush();
 			array.close();
