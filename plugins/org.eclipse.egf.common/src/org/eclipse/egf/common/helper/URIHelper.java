@@ -31,6 +31,32 @@ public class URIHelper {
     public static final URI PLATFORM_PLUGIN_URI = URI.createURI("platform:/plugin/"); //$NON-NLS-1$
 
     public static final URI PLATFORM_RESOURCE_URI = URI.createURI("platform:/resource/"); //$NON-NLS-1$  
+    
+    /* 
+     * Fix support for fragment in path
+     * 
+     */
+	public static URI createPlatformPluginURI(String path, boolean encode) {
+		return createURI("platform:/plugin/", path);
+	}
+
+    /* 
+     * Fix support for fragment in path
+     * 
+     */
+	public static URI createPlatformResourceURI(String path, boolean encode) {
+		return createURI("platform:/resource/", path);
+	}
+
+	private static URI createURI(String prefix, String path) {
+		String uri = prefix;
+		if (path.startsWith("/"))
+			uri += path.substring(1);
+		else
+			uri += path;
+		return URI.createURI(uri);
+	}
+
 
     public static String toString(URI uri) {
         if (uri == null) {

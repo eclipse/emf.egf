@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternFactory;
@@ -33,7 +34,7 @@ import org.eclipse.emf.common.util.URI;
  * 
  */
 public class MySampleExtension extends ExtensionHelper {
-    private static final URI PATTERN = URI.createPlatformPluginURI("org.eclipse.egf.portfolio.genchain.extension/egf/sampleExtension.fcore#_fMAHcKYjEd-c68Bv_MO43Q", false);
+    private static final URI PATTERN = URIHelper.createPlatformPluginURI("org.eclipse.egf.portfolio.genchain.extension/egf/sampleExtension.fcore#_fMAHcKYjEd-c68Bv_MO43Q", false);
 
     @Override
     public String getLabel() {
