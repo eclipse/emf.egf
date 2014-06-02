@@ -149,10 +149,6 @@ proxyData/HTTPS/host=proxy.eclipse.org
                 <jvmarg value="-Declipse.p2.mirrors=false" />
                 <arg value="-r" />
                 <arg value="${bm.headless.site}" />
-                <arg value="-r" />
-                <arg value="${bm.external.site}" />
-                <arg value="-r" />
-                <arg value="${polarion.site}" />
                 <arg value="-d" />
                 <arg value="${tools}/buckminster" />
                 <arg value="-p" />
@@ -164,16 +160,11 @@ proxyData/HTTPS/host=proxy.eclipse.org
                 <arg value="-i" />
                 <arg value="org.eclipse.buckminster.pde.headless.feature.feature.group" />
                 <arg value="-i" />
-                <arg value="org.eclipse.buckminster.cvs.headless.feature.feature.group" />
-                <arg value="-i" />
-                <arg value="org.eclipse.buckminster.subversive.headless.feature.feature.group" />
-                <arg value="-i" />
-                <arg value="org.eclipse.buckminster.git.headless.feature.feature.group" />
-                <arg value="-i" />
                 <arg value="org.eclipse.buckminster.emma.headless.feature.feature.group" />
             </args>
         </eclipse.launch>
     </target>
+    
     <target name="install.egf">
         <available file="${tools}/egf/eclipse.ini" property="egf.exists" />
         <antcall target="do.install.egf" />
