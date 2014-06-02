@@ -18,11 +18,6 @@ package <%=genPackage.getProviderPackageName()%>;
 
 <%genModel.addImport("org.eclipse.emf.common.notify.AdapterFactory");%>
 <%genModel.addImport("org.eclipse.emf.common.notify.Notification");%>
-<%genModel.addImport("org.eclipse.emf.edit.provider.IEditingDomainItemProvider");%>
-<%genModel.addImport("org.eclipse.emf.edit.provider.IItemLabelProvider");%>
-<%genModel.addImport("org.eclipse.emf.edit.provider.IItemPropertySource");%>
-<%genModel.addImport("org.eclipse.emf.edit.provider.IStructuredItemContentProvider");%>
-<%genModel.addImport("org.eclipse.emf.edit.provider.ITreeItemContentProvider");%>
 <%String _List = genModel.getImportedName(genModel.useGenerics() ? "java.util.List<org.eclipse.emf.edit.provider.IItemPropertyDescriptor>" : "java.util.List");%>
 <%genModel.markImportLocation(stringBuffer);%>
 
@@ -32,11 +27,13 @@ package <%=genPackage.getProviderPackageName()%>;
  * <!-- end-user-doc -->
  * @generated
  */
-public class <%=genClass.getProviderClassName()%>
+public class <%=genClass.getProviderClassName()%> <%if (genClass.getProviderImplementsClassNames().isEmpty()) {%>extends <%=genClass.getProviderBaseClassName() != null ? genClass.getProviderBaseClassName() : genModel.getImportedName("org.eclipse.emf.edit.provider.ItemProviderAdapter")%><%}%>
+<%if (!genClass.getProviderImplementsClassNames().isEmpty()) {%>
 	extends <%=genClass.getProviderBaseClassName() != null ? genClass.getProviderBaseClassName() : genModel.getImportedName("org.eclipse.emf.edit.provider.ItemProviderAdapter")%>
 	implements
-<%for (Iterator<String> i = genPackage.getProviderSupportedTypes().iterator(); i.hasNext(); ) {%>
+  <%for (Iterator<String> i = genClass.getProviderImplementsClassNames().iterator(); i.hasNext(); ) {%>
 		<%=genModel.getImportedName(i.next())%><%if (i.hasNext()){%>,<%}%>
+  <%}%>
 <%}%>
 {
 <%if (genModel.hasCopyrightField()) {%>

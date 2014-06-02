@@ -1,4 +1,4 @@
-//Generated on Wed Mar 12 18:39:15 CET 2014 with EGF 1.1.0.qualifier
+//Generated on Mon Jun 02 19:03:24 CEST 2014 with EGF 1.1.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -60,66 +60,73 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_28 = " descriptor";
 	protected final String TEXT_29 = ")" + NL + "\t\t{" + NL + "\t\t\tsuper(";
 	protected final String TEXT_30 = "descriptor";
-	protected final String TEXT_31 = ");" + NL + "" + NL + "\t\t\t// Remember the static instance." + NL + "\t\t\t//" + NL + "\t\t\tplugin = this;" + NL + "\t\t}" + NL + "\t}" + NL;
-	protected final String TEXT_32 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final ";
-	protected final String TEXT_33 = " PROPERTIES = ";
-	protected final String TEXT_34 = ".create(";
-	protected final String TEXT_35 = ".class);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic String getString(String key, boolean translate)" + NL
+	protected final String TEXT_31 = ");" + NL + "" + NL + "\t\t\t// Remember the static instance." + NL + "\t\t\t//" + NL + "\t\t\tplugin = this;" + NL + "\t\t}";
+	protected final String TEXT_32 = NL + "\t" + NL + "\t\t/**" + NL + "\t\t * The actual implementation of the purely OSGi-compatible <b>Bundle Activator</b>." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
+			+ "\t\t */" + NL + "\t\tpublic static final class Activator extends ";
+	protected final String TEXT_33 = ".OSGiDelegatingBundleActivator" + NL + "\t\t{";
+	protected final String TEXT_34 = NL + "\t\t\t@Override";
+	protected final String TEXT_35 = NL + "\t\t\tprotected ";
+	protected final String TEXT_36 = " createBundle()" + NL + "\t\t\t{" + NL + "\t\t\t\treturn new Implementation();" + NL + "\t\t\t}" + NL + "\t\t}";
+	protected final String TEXT_37 = NL + "\t}" + NL;
+	protected final String TEXT_38 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final ";
+	protected final String TEXT_39 = " PROPERTIES = ";
+	protected final String TEXT_40 = ".create(";
+	protected final String TEXT_41 = ".class);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic String getString(String key, boolean translate)" + NL
 			+ "\t{";
-	protected final String TEXT_36 = NL + "\t\t";
-	protected final String TEXT_37 = "else ";
-	protected final String TEXT_38 = "if (\"_UI_";
-	protected final String TEXT_39 = "_type\".equals(key)) return PROPERTIES.";
-	protected final String TEXT_40 = "Type();";
-	protected final String TEXT_41 = NL + "\t\t";
-	protected final String TEXT_42 = "else ";
-	protected final String TEXT_43 = " if (\"_UI_Unknown_type\".equals(key)) return PROPERTIES.unknownType();" + NL + "\t\telse if (\"_UI_Unknown_datatype\".equals(key)) return PROPERTIES.unknownDatatype();";
-	protected final String TEXT_44 = NL + "\t\telse if (\"_UI_";
-	protected final String TEXT_45 = "_";
-	protected final String TEXT_46 = "_feature\".equals(key)) return PROPERTIES.";
-	protected final String TEXT_47 = "_";
-	protected final String TEXT_48 = "Feature();";
-	protected final String TEXT_49 = NL + "\t\telse if (\"_UI_";
-	protected final String TEXT_50 = "_";
-	protected final String TEXT_51 = "_description\".equals(key)) return PROPERTIES.";
-	protected final String TEXT_52 = "_";
-	protected final String TEXT_53 = "Description();";
-	protected final String TEXT_54 = NL + "\t\telse if (\"_UI_Unknown_feature\".equals(key)) return PROPERTIES.unknownFeature();";
+	protected final String TEXT_42 = NL + "\t\t";
+	protected final String TEXT_43 = "else ";
+	protected final String TEXT_44 = "if (\"_UI_";
+	protected final String TEXT_45 = "_type\".equals(key)) return PROPERTIES.";
+	protected final String TEXT_46 = "Type();";
+	protected final String TEXT_47 = NL + "\t\t";
+	protected final String TEXT_48 = "else ";
+	protected final String TEXT_49 = " if (\"_UI_Unknown_type\".equals(key)) return PROPERTIES.unknownType();" + NL + "\t\telse if (\"_UI_Unknown_datatype\".equals(key)) return PROPERTIES.unknownDatatype();";
+	protected final String TEXT_50 = NL + "\t\telse if (\"_UI_";
+	protected final String TEXT_51 = "_";
+	protected final String TEXT_52 = "_feature\".equals(key)) return PROPERTIES.";
+	protected final String TEXT_53 = "_";
+	protected final String TEXT_54 = "Feature();";
 	protected final String TEXT_55 = NL + "\t\telse if (\"_UI_";
 	protected final String TEXT_56 = "_";
-	protected final String TEXT_57 = "_literal\".equals(key)) return PROPERTIES.";
+	protected final String TEXT_57 = "_description\".equals(key)) return PROPERTIES.";
 	protected final String TEXT_58 = "_";
-	protected final String TEXT_59 = "Literal();";
-	protected final String TEXT_60 = NL;
-	protected final String TEXT_61 = " = ";
-	protected final String TEXT_62 = NL + "\t\telse if (\"";
-	protected final String TEXT_63 = "\".equals(key)) return PROPERTIES.";
-	protected final String TEXT_64 = "();";
-	protected final String TEXT_65 = NL + "\t\telse return key;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL
+	protected final String TEXT_59 = "Description();";
+	protected final String TEXT_60 = NL + "\t\telse if (\"_UI_Unknown_feature\".equals(key)) return PROPERTIES.unknownFeature();";
+	protected final String TEXT_61 = NL + "\t\telse if (\"_UI_";
+	protected final String TEXT_62 = "_";
+	protected final String TEXT_63 = "_literal\".equals(key)) return PROPERTIES.";
+	protected final String TEXT_64 = "_";
+	protected final String TEXT_65 = "Literal();";
+	protected final String TEXT_66 = NL;
+	protected final String TEXT_67 = " = ";
+	protected final String TEXT_68 = NL + "\t\telse if (\"";
+	protected final String TEXT_69 = "\".equals(key)) return PROPERTIES.";
+	protected final String TEXT_70 = "();";
+	protected final String TEXT_71 = NL + "\t\telse return key;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL
 			+ "\tpublic String getString(String key, Object [] substitutions, boolean translate)" + NL + "\t{";
-	protected final String TEXT_66 = NL + "\t\tif (\"_UI_CreateChild_text\".equals(key)) return PROPERTIES.createChildText(substitutions[0]);" + NL + "\t\telse if (\"_UI_CreateChild_text2\".equals(key)) return PROPERTIES.createChildText2(substitutions[0], substitutions[1]);"
+	protected final String TEXT_72 = NL + "\t\tif (\"_UI_CreateChild_text\".equals(key)) return PROPERTIES.createChildText(substitutions[0]);" + NL + "\t\telse if (\"_UI_CreateChild_text2\".equals(key)) return PROPERTIES.createChildText2(substitutions[0], substitutions[1]);"
 			+ NL + "\t\telse if (\"_UI_CreateChild_text3\".equals(key)) return PROPERTIES.createChildText3(substitutions[1]);" + NL + "\t\telse if (\"_UI_CreateChild_tooltip\".equals(key)) return PROPERTIES.createChildTooltip(substitutions[0], substitutions[1]);" + NL
 			+ "\t\telse if (\"_UI_CreateChild_description\".equals(key)) return PROPERTIES.createChildDescripition(substitutions[0], substitutions[1], substitutions[2]);" + NL
 			+ "\t\telse if (\"_UI_CreateSibling_description\".equals(key)) return PROPERTIES.createSiblingDescription(substitutions[0], substitutions[1], substitutions[2]);";
-	protected final String TEXT_67 = NL + "\t\t";
-	protected final String TEXT_68 = "else ";
-	protected final String TEXT_69 = "if (\"_UI_PropertyDescriptor_description\".equals(key)) return PROPERTIES.propertyDescriptorDescription(substitutions[0], substitutions[1]);" + NL + "\t\telse return key;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final ";
-	protected final String TEXT_70 = " IMAGES = ";
-	protected final String TEXT_71 = ".create(";
-	protected final String TEXT_72 = ".class);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic Object getImage(String key)" + NL + "\t{";
 	protected final String TEXT_73 = NL + "\t\t";
 	protected final String TEXT_74 = "else ";
-	protected final String TEXT_75 = "if (\"";
-	protected final String TEXT_76 = "\".equals(key)) return IMAGES.";
-	protected final String TEXT_77 = "();";
-	protected final String TEXT_78 = NL + "\t\t";
-	protected final String TEXT_79 = "else ";
-	protected final String TEXT_80 = "return key;" + NL + "\t}" + NL;
-	protected final String TEXT_81 = NL + "}";
-	protected final String TEXT_82 = NL;
-	protected final String TEXT_83 = NL;
-	protected final String TEXT_84 = NL;
+	protected final String TEXT_75 = "if (\"_UI_PropertyDescriptor_description\".equals(key)) return PROPERTIES.propertyDescriptorDescription(substitutions[0], substitutions[1]);" + NL + "\t\telse return key;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final ";
+	protected final String TEXT_76 = " IMAGES = ";
+	protected final String TEXT_77 = ".create(";
+	protected final String TEXT_78 = ".class);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic Object getImage(String key)" + NL + "\t{";
+	protected final String TEXT_79 = NL + "\t\t";
+	protected final String TEXT_80 = "else ";
+	protected final String TEXT_81 = "if (\"";
+	protected final String TEXT_82 = "\".equals(key)) return IMAGES.";
+	protected final String TEXT_83 = "();";
+	protected final String TEXT_84 = NL + "\t\t";
+	protected final String TEXT_85 = "else ";
+	protected final String TEXT_86 = "return key;" + NL + "\t}" + NL;
+	protected final String TEXT_87 = NL + "}";
+	protected final String TEXT_88 = NL;
+	protected final String TEXT_89 = NL;
+	protected final String TEXT_90 = NL;
 
 	public Plugin() {
 		//Here is the constructor
@@ -155,8 +162,8 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_83);
-		stringBuffer.append(TEXT_84);
+		stringBuffer.append(TEXT_89);
+		stringBuffer.append(TEXT_90);
 		return stringBuffer.toString();
 	}
 
@@ -311,137 +318,149 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 				stringBuffer.append(TEXT_30);
 			}
 			stringBuffer.append(TEXT_31);
+			if (genModel.isOSGiCompatible()) {
+				stringBuffer.append(TEXT_32);
+				stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.EMFPlugin"));
+				stringBuffer.append(TEXT_33);
+				if (genModel.useClassOverrideAnnotation()) {
+					stringBuffer.append(TEXT_34);
+				}
+				stringBuffer.append(TEXT_35);
+				stringBuffer.append(genModel.getImportedName("org.osgi.framework.BundleActivator"));
+				stringBuffer.append(TEXT_36);
+			}
+			stringBuffer.append(TEXT_37);
 		} else {
-			stringBuffer.append(TEXT_32);
+			stringBuffer.append(TEXT_38);
 			stringBuffer.append(genModel.getImportedName(genModel.getQualifiedEditPluginClassName() + "Properties"));
-			stringBuffer.append(TEXT_33);
+			stringBuffer.append(TEXT_39);
 			stringBuffer.append(genModel.getImportedName("com.google.gwt.core.client.GWT"));
-			stringBuffer.append(TEXT_34);
+			stringBuffer.append(TEXT_40);
 			stringBuffer.append(genModel.getImportedName(genModel.getQualifiedEditPluginClassName() + "Properties"));
-			stringBuffer.append(TEXT_35);
+			stringBuffer.append(TEXT_41);
 			boolean first = true;
 			for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
 				if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
 					for (GenClass genClass : genPackage.getGenClasses()) {
-						stringBuffer.append(TEXT_36);
+						stringBuffer.append(TEXT_42);
 						if (first) {
 							first = false;
 						} else {
-							stringBuffer.append(TEXT_37);
+							stringBuffer.append(TEXT_43);
 						}
-						stringBuffer.append(TEXT_38);
+						stringBuffer.append(TEXT_44);
 						stringBuffer.append(genClass.getName());
-						stringBuffer.append(TEXT_39);
+						stringBuffer.append(TEXT_45);
 						stringBuffer.append(genClass.getUncapName());
-						stringBuffer.append(TEXT_40);
+						stringBuffer.append(TEXT_46);
 					}
 				}
 			}
-			stringBuffer.append(TEXT_41);
+			stringBuffer.append(TEXT_47);
 			if (first) {
 				first = false;
 			} else {
-				stringBuffer.append(TEXT_42);
+				stringBuffer.append(TEXT_48);
 			}
-			stringBuffer.append(TEXT_43);
+			stringBuffer.append(TEXT_49);
 			for (GenFeature genFeature : genModel.getFilteredAllGenFeatures()) {
 				String description = genFeature.getPropertyDescription();
-				stringBuffer.append(TEXT_44);
+				stringBuffer.append(TEXT_50);
 				stringBuffer.append(genFeature.getGenClass().getName());
-				stringBuffer.append(TEXT_45);
+				stringBuffer.append(TEXT_51);
 				stringBuffer.append(genFeature.getName());
-				stringBuffer.append(TEXT_46);
+				stringBuffer.append(TEXT_52);
 				stringBuffer.append(genFeature.getGenClass().getUncapName());
-				stringBuffer.append(TEXT_47);
+				stringBuffer.append(TEXT_53);
 				stringBuffer.append(genFeature.getCapName());
-				stringBuffer.append(TEXT_48);
+				stringBuffer.append(TEXT_54);
 				if (description != null && description.length() > 0) {
-					stringBuffer.append(TEXT_49);
+					stringBuffer.append(TEXT_55);
 					stringBuffer.append(genFeature.getGenClass().getName());
-					stringBuffer.append(TEXT_50);
+					stringBuffer.append(TEXT_56);
 					stringBuffer.append(genFeature.getName());
-					stringBuffer.append(TEXT_51);
+					stringBuffer.append(TEXT_57);
 					stringBuffer.append(genFeature.getGenClass().getUncapName());
-					stringBuffer.append(TEXT_52);
+					stringBuffer.append(TEXT_58);
 					stringBuffer.append(genFeature.getCapName());
-					stringBuffer.append(TEXT_53);
+					stringBuffer.append(TEXT_59);
 				}
 			}
-			stringBuffer.append(TEXT_54);
+			stringBuffer.append(TEXT_60);
 			for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
 				if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
 					for (GenEnum genEnum : genPackage.getGenEnums()) {
 						for (GenEnumLiteral genEnumLiteral : genEnum.getGenEnumLiterals()) {
-							stringBuffer.append(TEXT_55);
+							stringBuffer.append(TEXT_61);
 							stringBuffer.append(genEnum.getName());
-							stringBuffer.append(TEXT_56);
+							stringBuffer.append(TEXT_62);
 							stringBuffer.append(genEnumLiteral.getName());
-							stringBuffer.append(TEXT_57);
+							stringBuffer.append(TEXT_63);
 							stringBuffer.append(genEnum.getSafeUncapName());
-							stringBuffer.append(TEXT_58);
+							stringBuffer.append(TEXT_64);
 							stringBuffer.append(genEnumLiteral.getName());
-							stringBuffer.append(TEXT_59);
+							stringBuffer.append(TEXT_65);
 						}
 					}
 				}
 			}
 			for (String category : genModel.getPropertyCategories()) {
-				stringBuffer.append(TEXT_60);
-				stringBuffer.append(genModel.getPropertyCategoryKey(category));
-				stringBuffer.append(TEXT_61);
-				stringBuffer.append(category);
-				stringBuffer.append(TEXT_62);
-				stringBuffer.append(genModel.getPropertyCategoryKey(category));
-				stringBuffer.append(TEXT_63);
-				stringBuffer.append(genModel.getPropertyCategoryKey(category));
-				stringBuffer.append(TEXT_64);
-			}
-			stringBuffer.append(TEXT_65);
-			if (genModel.isCreationCommands()) {
 				stringBuffer.append(TEXT_66);
-			}
-			stringBuffer.append(TEXT_67);
-			if (!genModel.isCreationCommands()) {
+				stringBuffer.append(genModel.getPropertyCategoryKey(category));
+				stringBuffer.append(TEXT_67);
+				stringBuffer.append(category);
 				stringBuffer.append(TEXT_68);
+				stringBuffer.append(genModel.getPropertyCategoryKey(category));
+				stringBuffer.append(TEXT_69);
+				stringBuffer.append(genModel.getPropertyCategoryKey(category));
+				stringBuffer.append(TEXT_70);
 			}
-			stringBuffer.append(TEXT_69);
-			stringBuffer.append(genModel.getImportedName(genModel.getQualifiedEditPluginClassName() + "Images"));
-			stringBuffer.append(TEXT_70);
-			stringBuffer.append(genModel.getImportedName("com.google.gwt.core.client.GWT"));
 			stringBuffer.append(TEXT_71);
+			if (genModel.isCreationCommands()) {
+				stringBuffer.append(TEXT_72);
+			}
+			stringBuffer.append(TEXT_73);
+			if (!genModel.isCreationCommands()) {
+				stringBuffer.append(TEXT_74);
+			}
+			stringBuffer.append(TEXT_75);
 			stringBuffer.append(genModel.getImportedName(genModel.getQualifiedEditPluginClassName() + "Images"));
-			stringBuffer.append(TEXT_72);
+			stringBuffer.append(TEXT_76);
+			stringBuffer.append(genModel.getImportedName("com.google.gwt.core.client.GWT"));
+			stringBuffer.append(TEXT_77);
+			stringBuffer.append(genModel.getImportedName(genModel.getQualifiedEditPluginClassName() + "Images"));
+			stringBuffer.append(TEXT_78);
 			first = true;
 			for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
 				for (GenClass genClass : genPackage.getGenClasses()) {
 					if (genClass.isImage()) {
 						String image = genClass.getItemIconFileName();
 						image = image.substring(image.lastIndexOf("/icons/") + 7, image.length() - 4);
-						stringBuffer.append(TEXT_73);
+						stringBuffer.append(TEXT_79);
 						if (first) {
 							first = false;
 						} else {
-							stringBuffer.append(TEXT_74);
+							stringBuffer.append(TEXT_80);
 						}
-						stringBuffer.append(TEXT_75);
+						stringBuffer.append(TEXT_81);
 						stringBuffer.append(image);
-						stringBuffer.append(TEXT_76);
+						stringBuffer.append(TEXT_82);
 						stringBuffer.append(genClass.getItemIconAccessorName());
-						stringBuffer.append(TEXT_77);
+						stringBuffer.append(TEXT_83);
 					}
 				}
 			}
-			stringBuffer.append(TEXT_78);
+			stringBuffer.append(TEXT_84);
 			if (first) {
 				first = false;
 			} else {
-				stringBuffer.append(TEXT_79);
+				stringBuffer.append(TEXT_85);
 			}
-			stringBuffer.append(TEXT_80);
+			stringBuffer.append(TEXT_86);
 		}
-		stringBuffer.append(TEXT_81);
+		stringBuffer.append(TEXT_87);
 		genModel.emitSortedImports();
-		stringBuffer.append(TEXT_82);
+		stringBuffer.append(TEXT_88);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

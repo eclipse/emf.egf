@@ -1,4 +1,4 @@
-//Generated on Wed Mar 12 18:39:06 CET 2014 with EGF 1.1.0.qualifier
+//Generated on Mon Jun 02 19:03:15 CEST 2014 with EGF 1.1.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -57,11 +57,18 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_25 = " descriptor";
 	protected final String TEXT_26 = ")" + NL + "\t\t{" + NL + "\t\t\tsuper(";
 	protected final String TEXT_27 = "descriptor";
-	protected final String TEXT_28 = ");" + NL + "" + NL + "\t\t\t// Remember the static instance." + NL + "\t\t\t//" + NL + "\t\t\tplugin = this;" + NL + "\t\t}" + NL + "\t}" + NL;
-	protected final String TEXT_29 = NL + "}";
-	protected final String TEXT_30 = NL;
-	protected final String TEXT_31 = NL;
-	protected final String TEXT_32 = NL;
+	protected final String TEXT_28 = ");" + NL + "" + NL + "\t\t\t// Remember the static instance." + NL + "\t\t\t//" + NL + "\t\t\tplugin = this;" + NL + "\t\t}";
+	protected final String TEXT_29 = NL + "\t" + NL + "\t\t/**" + NL + "\t\t * The actual implementation of the purely OSGi-compatible <b>Bundle Activator</b>." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
+			+ "\t\t */" + NL + "\t\tpublic static final class Activator extends ";
+	protected final String TEXT_30 = ".OSGiDelegatingBundleActivator" + NL + "\t\t{";
+	protected final String TEXT_31 = NL + "\t\t\t@Override";
+	protected final String TEXT_32 = NL + "\t\t\tprotected ";
+	protected final String TEXT_33 = " createBundle()" + NL + "\t\t\t{" + NL + "\t\t\t\treturn new Implementation();" + NL + "\t\t\t}" + NL + "\t\t}";
+	protected final String TEXT_34 = NL + "\t}" + NL;
+	protected final String TEXT_35 = NL + "}";
+	protected final String TEXT_36 = NL;
+	protected final String TEXT_37 = NL;
+	protected final String TEXT_38 = NL;
 
 	public Plugin() {
 		//Here is the constructor
@@ -97,8 +104,8 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_31);
-		stringBuffer.append(TEXT_32);
+		stringBuffer.append(TEXT_37);
+		stringBuffer.append(TEXT_38);
 		return stringBuffer.toString();
 	}
 
@@ -246,10 +253,22 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 				stringBuffer.append(TEXT_27);
 			}
 			stringBuffer.append(TEXT_28);
+			if (genModel.isOSGiCompatible()) {
+				stringBuffer.append(TEXT_29);
+				stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.EMFPlugin"));
+				stringBuffer.append(TEXT_30);
+				if (genModel.useClassOverrideAnnotation()) {
+					stringBuffer.append(TEXT_31);
+				}
+				stringBuffer.append(TEXT_32);
+				stringBuffer.append(genModel.getImportedName("org.osgi.framework.BundleActivator"));
+				stringBuffer.append(TEXT_33);
+			}
+			stringBuffer.append(TEXT_34);
 		}
-		stringBuffer.append(TEXT_29);
+		stringBuffer.append(TEXT_35);
 		genModel.emitSortedImports();
-		stringBuffer.append(TEXT_30);
+		stringBuffer.append(TEXT_36);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

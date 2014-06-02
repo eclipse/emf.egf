@@ -1,4 +1,4 @@
-//Generated on Wed Mar 12 18:39:16 CET 2014 with EGF 1.1.0.qualifier
+//Generated on Mon Jun 02 19:03:24 CEST 2014 with EGF 1.1.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -246,7 +246,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 				stringBuffer.append(TEXT_21);
 				stringBuffer.append(genPackage.getEditorClassName());
 				stringBuffer.append(TEXT_22);
-				stringBuffer.append(genPackage.isMultipleFileExtensions() ? genPackage.getFileExtensions() : genPackage.getFileExtension());
+				stringBuffer.append(genPackage.getFileExtensions());
 				stringBuffer.append(TEXT_23);
 			}
 			stringBuffer.append(TEXT_24);

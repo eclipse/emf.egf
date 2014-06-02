@@ -1,4 +1,4 @@
-//Generated on Wed Mar 12 18:39:12 CET 2014 with EGF 1.1.0.qualifier
+//Generated on Mon Jun 02 19:03:21 CEST 2014 with EGF 1.1.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;

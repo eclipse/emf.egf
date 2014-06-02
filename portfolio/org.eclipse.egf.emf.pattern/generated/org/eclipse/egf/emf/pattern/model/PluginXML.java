@@ -1,4 +1,4 @@
-//Generated on Wed Mar 12 18:39:05 CET 2014 with EGF 1.1.0.qualifier
+//Generated on Mon Jun 02 19:03:14 CEST 2014 with EGF 1.1.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -78,10 +78,11 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	protected final String TEXT_50 = " -->";
 	protected final String TEXT_51 = NL + "      <parser" + NL + "            type=\"";
 	protected final String TEXT_52 = "\"" + NL + "            class=\"";
-	protected final String TEXT_53 = "\"/>" + NL + "   </extension>";
-	protected final String TEXT_54 = NL + NL + "</plugin>" + NL;
-	protected final String TEXT_55 = NL;
+	protected final String TEXT_53 = "\"/>";
+	protected final String TEXT_54 = NL + "   </extension>";
+	protected final String TEXT_55 = NL + NL + "</plugin>" + NL;
 	protected final String TEXT_56 = NL;
+	protected final String TEXT_57 = NL;
 
 	public PluginXML() {
 		//Here is the constructor
@@ -117,8 +118,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_55);
 		stringBuffer.append(TEXT_56);
+		stringBuffer.append(TEXT_57);
 		return stringBuffer.toString();
 	}
 
@@ -312,14 +313,17 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 					stringBuffer.append(key);
 					stringBuffer.append(TEXT_50);
 				}
-				stringBuffer.append(TEXT_51);
-				stringBuffer.append(genPackage.getFileExtension());
-				stringBuffer.append(TEXT_52);
-				stringBuffer.append(genPackage.getQualifiedResourceFactoryClassName());
-				stringBuffer.append(TEXT_53);
+				for (String fileExtension : genPackage.getFileExtensionList()) {
+					stringBuffer.append(TEXT_51);
+					stringBuffer.append(fileExtension);
+					stringBuffer.append(TEXT_52);
+					stringBuffer.append(genPackage.getQualifiedResourceFactoryClassName());
+					stringBuffer.append(TEXT_53);
+				}
+				stringBuffer.append(TEXT_54);
 			}
 		}
-		stringBuffer.append(TEXT_54);
+		stringBuffer.append(TEXT_55);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
