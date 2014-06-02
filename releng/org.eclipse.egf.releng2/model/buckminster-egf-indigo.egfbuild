@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.1/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.2/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-indigo">
+<buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.1/buildcore" xmlns:builddeploy="http://www.eclipse.org/egf/1.0.0/builddeploy" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.2/buildstep" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-indigo">
   <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="indigo"/>
-  <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="http://download.eclipse.org/releases/${releaseName}"/>
+  <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="${eclipse.download.prefix}/releases/${releaseName}"/>
   <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
   <properties xmi:id="_-VgtMVYwEeGPArgfLJHEWg" key="svn.version" value="trunk"/>
@@ -85,5 +85,10 @@
   <scms xsi:type="buildscm:SVN" xmi:id="_VP8DGCR_EeCpI_U_Er6QNA">
     <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" url="dev.eclipse.org/svnroot/modeling/org.eclipse.emf.egf/${svn.version}" localPath="svn_eclipse" username="" password=""/>
   </scms>
-  <triggers xsi:type="buildtrigger:SCMTrigger" xmi:id="_VP8DGyR_EeCpI_U_Er6QNA" planning="00 07 * * *"/>
+  <deployment xsi:type="builddeploy:HudsonDeployment" xmi:id="_cVWxoNqkEeOOJoyshCcAFA" userDeployServerUrl="https://hudson.eclipse.org/hudson">
+    <users xmi:id="_C_SdENqrEeOIAvxYf5-NWA" login="mhelleboid" permission="WRITE"/>
+    <users xmi:id="_6xAXkNqrEeOIAvxYf5-NWA" login="langlois" permission="WRITE"/>
+    <users xmi:id="_64dqcNqrEeOIAvxYf5-NWA" login="tguiu" permission="WRITE"/>
+    <generationLocation xsi:type="buildscm:SVNGenerationLocation" xmi:id="__kt-MNqrEeOIAvxYf5-NWA" folderName="releng/org.eclipse.egf.releng2/jobs" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA"/>
+  </deployment>
 </buildcore:Job>
