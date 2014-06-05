@@ -561,7 +561,7 @@ public class CreateEcoreTools2RepresentationOperation extends WorkspaceModifyOpe
 		AddSemanticResourceCommand addSemanticResourceCommand = new AddSemanticResourceCommand(session, ecoreModelURI, new SubProgressMonitor(monitor, 1));
 		// Command to select Viewpoint in the current session
 		ChangeViewpointSelectionCommand changeViewpointSelectionCommand = new ChangeViewpointSelectionCommand(session, new ViewpointSelectionCallback(), viewpoints, 
-				Collections.<Viewpoint> emptySet(), new SubProgressMonitor(monitor, 1));
+				Collections.<Viewpoint> emptySet(), false, new SubProgressMonitor(monitor, 1));
 		
 		// Execute the 2 created commands bellow
 		CompoundCommand compoundCommand = new CompoundCommand("Link resources to representation"); //$NON-NLS-1$ 
