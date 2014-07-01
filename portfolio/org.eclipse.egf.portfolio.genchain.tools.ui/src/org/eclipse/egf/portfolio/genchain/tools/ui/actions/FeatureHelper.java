@@ -1,7 +1,9 @@
 package org.eclipse.egf.portfolio.genchain.tools.ui.actions;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -19,6 +21,7 @@ import org.eclipse.pde.internal.core.bundle.WorkspaceBundlePluginModel;
 import org.eclipse.pde.internal.core.feature.FeaturePlugin;
 import org.eclipse.pde.internal.core.feature.WorkspaceFeatureModel;
 import org.eclipse.pde.internal.core.ifeature.IFeature;
+import org.eclipse.pde.internal.core.ifeature.IFeatureChild;
 import org.eclipse.pde.internal.core.ifeature.IFeaturePlugin;
 import org.eclipse.pde.internal.ui.wizards.feature.CreateFeatureProjectOperation;
 import org.eclipse.pde.internal.ui.wizards.feature.FeatureData;
@@ -32,12 +35,13 @@ public class FeatureHelper {
 	private static final IWorkspaceRoot ROOT = ResourcesPlugin.getWorkspace().getRoot();
 
 	@SuppressWarnings("restriction")
-	public static IProject createFeatureProject(Collection<String> pluginList, String id, String name, final IProgressMonitor monitor) throws CoreException {
+	public static IProject createFeatureProject(Collection<String> includedFeatureList, Collection<String> pluginList, String id, String name, final IProgressMonitor monitor) throws CoreException {
+
 		final IPluginBase[] pluginBase = getPluginBase(pluginList);
 		final FeatureData featureData = getFeatureData(id, name);
 		final IProject projectF = ROOT.getProject(featureData.id);
 
-		CreateFeatureProjectOperation operation = new MyCreateFeatureProjectOperation(projectF, ROOT.getLocation(), featureData, pluginBase);
+		CreateFeatureProjectOperation operation = new MyCreateFeatureProjectOperation(projectF, ROOT.getLocation(), featureData, pluginBase, new ArrayList<String>(includedFeatureList));
 		try {
 			operation.run(monitor);
 		} catch (Exception e) {
@@ -77,15 +81,18 @@ public class FeatureHelper {
 		featureData.id = id + ".feature";
 		featureData.name = name + " Feature";
 		featureData.version = VERSION;
-//		featureData.provider = "THALESGROUP";
+		// featureData.provider = "THALESGROUP";
 		return featureData;
 	}
 
 	@SuppressWarnings("restriction")
 	private static class MyCreateFeatureProjectOperation extends CreateFeatureProjectOperation {
 
-		public MyCreateFeatureProjectOperation(IProject project, IPath location, FeatureData featureData, IPluginBase[] plugins) {
+		private List<String> includedFeatureList;
+
+		public MyCreateFeatureProjectOperation(IProject project, IPath location, FeatureData featureData, IPluginBase[] plugins, List<String> includedFeatureList) {
 			super(project, location, featureData, plugins, null);
+			this.includedFeatureList = includedFeatureList;
 		}
 
 		@Override
@@ -100,6 +107,14 @@ public class FeatureHelper {
 				added[i] = fplugin;
 			}
 			feature.addPlugins(added);
+			IFeatureChild[] features = new IFeatureChild[includedFeatureList.size()];
+			for (int i = 0; i < includedFeatureList.size(); i++) {
+				IFeatureChild child = model.getFactory().createChild();
+				child.setId(includedFeatureList.get(i));
+				child.setVersion("0.0.0");
+				features[i] = child;
+			}
+			feature.addIncludedFeatures(features);
 		}
 
 		protected void openFeatureEditor(IFile manifestFile) {

@@ -42,6 +42,7 @@ import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.portfolio.genchain.extension.ExtensionHelper;
+import org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
 import org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider;
 import org.eclipse.egf.portfolio.genchain.generationChain.util.GenerationChainSwitch;
@@ -62,155 +63,156 @@ import org.eclipse.ui.internal.editors.text.WorkspaceOperationRunner;
  */
 public class CreateFcoreHelper {
 	private static final String ORG_ECLIPSE_PDE_PLUGIN_NATURE = "org.eclipse.pde.PluginNature";
-    public static final CreateFcoreHelper INSTANCE = new CreateFcoreHelper();
+	public static final CreateFcoreHelper INSTANCE = new CreateFcoreHelper();
 
-    private static final URI GENERATOR_URI = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_6qO2EYhGEd-Ii9WHGzCGHg");
+	private static final URI GENERATOR_URI = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_6qO2EYhGEd-Ii9WHGzCGHg");
 
-    public WorkspaceJob createJob(final GenerationChain generationChain, final boolean run) {
-        final String fcoreOutputPath = computeFcoreOutputPath(generationChain);
+	public WorkspaceJob createJob(final GenerationChain generationChain, final boolean run) {
+		final String fcoreOutputPath = computeFcoreOutputPath(generationChain);
 
-        final WorkspaceJob beforeJob = createBeforeJob();
-        final WorkspaceJob afterJob = createAfterJob();
+		final WorkspaceJob beforeJob = createBeforeJob();
+		final WorkspaceJob afterJob = createAfterJob();
 
-        final WorkspaceJob runJob = new WorkspaceJob(Messages.genchain_run_action_label) {
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                try {
-                	TargetPlatformResourceSet set = new TargetPlatformResourceSet();
-                    runFcore(set, generationChain, fcoreOutputPath, monitor);
-                    generateFeaturePlugin(set, generationChain, monitor);
-                    if (afterJob != null) {
-                        afterJob.schedule(1000);
-                        // afterJob.join();
-                    }
-                } catch (CoreException e) {
-                    throw e;
-                } catch (Exception e) {
-                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-                }
-                return Status.OK_STATUS;
-            }
-        };
+		final WorkspaceJob runJob = new WorkspaceJob(Messages.genchain_run_action_label) {
+			@Override
+			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				try {
+					TargetPlatformResourceSet set = new TargetPlatformResourceSet();
+					runFcore(set, generationChain, fcoreOutputPath, monitor);
+					generateFeaturePlugin(set, generationChain, monitor);
+					if (afterJob != null) {
+						afterJob.schedule(1000);
+						// afterJob.join();
+					}
+				} catch (CoreException e) {
+					throw e;
+				} catch (Exception e) {
+					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+				}
+				return Status.OK_STATUS;
+			}
+		};
 
-        final WorkspaceJob buildJob = new WorkspaceJob(Messages.genchain_generate_action_label) {
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                try {
-                    createFcore(generationChain, fcoreOutputPath, monitor);
-                    if (run) {
-                        runJob.schedule(1000);
-                        // runJob.join();
-                    }
-                } catch (CoreException e) {
-                    throw e;
-                } catch (Exception e) {
-                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-                }
-                return Status.OK_STATUS;
-            }
-        };
+		final WorkspaceJob buildJob = new WorkspaceJob(Messages.genchain_generate_action_label) {
+			@Override
+			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				try {
+					createFcore(generationChain, fcoreOutputPath, monitor);
+					if (run) {
+						runJob.schedule(1000);
+						// runJob.join();
+					}
+				} catch (CoreException e) {
+					throw e;
+				} catch (Exception e) {
+					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+				}
+				return Status.OK_STATUS;
+			}
+		};
 
-        final WorkspaceJob setupJob = new WorkspaceJob(Messages.genchain_generate_action_label) {
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                try {
-                    if (beforeJob != null) {
-                        beforeJob.schedule();
-                        beforeJob.join();
-                    }
-                    setupProject(generationChain.getFactoryComponentName(), computeFcoreRelativePath(generationChain));
-                    buildJob.schedule(1000);
-                } catch (CoreException e) {
-                    throw e;
-                } catch (Exception e) {
-                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-                }
-                return Status.OK_STATUS;
-            }
+		final WorkspaceJob setupJob = new WorkspaceJob(Messages.genchain_generate_action_label) {
+			@Override
+			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				try {
+					if (beforeJob != null) {
+						beforeJob.schedule();
+						beforeJob.join();
+					}
+					setupProject(generationChain.getFactoryComponentName(), computeFcoreRelativePath(generationChain));
+					buildJob.schedule(1000);
+				} catch (CoreException e) {
+					throw e;
+				} catch (Exception e) {
+					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+				}
+				return Status.OK_STATUS;
+			}
 
-        };
+		};
 
-        return setupJob;
-    }
+		return setupJob;
+	}
 
-    public WorkspaceJob createBeforeJob() {
-        return null;
-    }
+	public WorkspaceJob createBeforeJob() {
+		return null;
+	}
 
-    public WorkspaceJob createAfterJob() {
-        return null;
-    }
+	public WorkspaceJob createAfterJob() {
+		return null;
+	}
 
-    public WorkspaceJob createJob(URI fcoreURI, boolean run) {
-        final TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
-        final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
+	public WorkspaceJob createJob(URI fcoreURI, boolean run) {
+		final TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
+		final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
 
-        return createJob(generationChain, run);
-    }
+		return createJob(generationChain, run);
+	}
 
-    protected String computeFcoreOutputPath(GenerationChain generationChain) {
-        return generationChain.getFactoryComponentName() + computeFcoreRelativePath(generationChain);
-    }
+	protected String computeFcoreOutputPath(GenerationChain generationChain) {
+		return generationChain.getFactoryComponentName() + computeFcoreRelativePath(generationChain);
+	}
 
-    protected String computeFcoreRelativePath(GenerationChain generationChain) {
-        return "/model/" + generationChain.getName() + ".fcore";
-    }
+	protected String computeFcoreRelativePath(GenerationChain generationChain) {
+		return "/model/" + generationChain.getName() + ".fcore";
+	}
 
-    public void setupProject(String projectName, String fcorePath) throws CoreException {
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-        if (!project.exists())
-            project.create(null);
-        project.open(null);
-        WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
-        runner.setProgressMonitor(null);
-        try {
-            runner.run(true, false, new ConvertProjectOperation(project, false, false));
-        } catch (Exception e) {
-            throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-        }
-    }
+	public void setupProject(String projectName, String fcorePath) throws CoreException {
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+		if (!project.exists())
+			project.create(null);
+		project.open(null);
+		WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
+		runner.setProgressMonitor(null);
+		try {
+			runner.run(true, false, new ConvertProjectOperation(project, false, false));
+		} catch (Exception e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+		}
+	}
 
-    protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
-        FactoryComponent fc = (FactoryComponent) new TargetPlatformResourceSet().getEObject(getGeneratorURI(), true);
-        EMFDomain domain = DomainFactory.eINSTANCE.createEMFDomain();
-        final URI uri = generationChain.eResource().getURI();
-        domain.setUri(uri);
+	protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
+		FactoryComponent fc = (FactoryComponent) new TargetPlatformResourceSet().getEObject(getGeneratorURI(), true);
+		EMFDomain domain = DomainFactory.eINSTANCE.createEMFDomain();
+		final URI uri = generationChain.eResource().getURI();
+		domain.setUri(uri);
 
-        ((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
-        ((TypeDomain) (fc.getContract("genChain model").getType())).setDomain(domain);
-        ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
-        ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
-        ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
-        IDomainHelper helper = new EMFDomainHelper();
-        try {
-            try {
-                if (helper.loadDomain(domain))
-                    RunActivityHelper.run(fc, monitor);
-            } finally {
-                helper.unLoadDomain(domain);
-            }
-        } catch (Exception e) {
-            throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-        }
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(generationChain.getFactoryComponentName());
-        if (project != null && project.exists()) {
-            project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-        }
+		((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
+		((TypeDomain) (fc.getContract("genChain model").getType())).setDomain(domain);
+		((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
+		((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
+		((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
+		IDomainHelper helper = new EMFDomainHelper();
+		try {
+			try {
+				if (helper.loadDomain(domain))
+					RunActivityHelper.run(fc, monitor);
+			} finally {
+				helper.unLoadDomain(domain);
+			}
+		} catch (Exception e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+		}
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(generationChain.getFactoryComponentName());
+		if (project != null && project.exists()) {
+			project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
+		}
 
-    }
+	}
 
-    protected void runFcore(ResourceSet resourceSet, GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
-        URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
-        EObject eObject = resourceSet.getResource(uri, true).getContents().get(0);
-        try {
-            RunActivityHelper.run((Activity) eObject, monitor);
-        } catch (InvocationException e) {
-            throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-        }
-    }
+	protected void runFcore(ResourceSet resourceSet, GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
+		URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
+		EObject eObject = resourceSet.getResource(uri, true).getContents().get(0);
+		try {
+			RunActivityHelper.run((Activity) eObject, monitor);
+		} catch (InvocationException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+		}
+	}
 
-	private void generateFeaturePlugin(ResourceSet resourceSet, final GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
+	protected void generateFeaturePlugin(ResourceSet resourceSet, final GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
 		final Set<String> pluginList = new HashSet<String>();
+		final Set<String> includedFeatureList = new HashSet<String>();
 		String fcPath = computeFcoreOutputPath(generationChain);
 		// final Map<String, GenModel> genModels = collectGenModels(generationChain.eResource().getResourceSet(), fcPath);
 		final EList<EObject> collectDomains = collectDomains(resourceSet, fcPath);
@@ -254,6 +256,13 @@ public class CreateFcoreHelper {
 				return this;
 			}
 
+			public Object caseFeatureAddition(FeatureAddition addition) {
+				for (String projectName : addition.getAdditions()) {
+					includedFeatureList.add(projectName);
+				}
+				return this;
+			}
+
 		}.doSwitch(generationChain);
 
 		for (String pluginNameString : pluginList) {
@@ -270,13 +279,13 @@ public class CreateFcoreHelper {
 
 		}
 
-		IProject projectF = FeatureHelper.createFeatureProject(pluginList, pluginName, generationChain.getName(), monitor);
+		IProject projectF = FeatureHelper.createFeatureProject(includedFeatureList, pluginList, pluginName, generationChain.getName(), monitor);
 		if (projectF != null && projectF.exists()) {
 			projectF.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 		}
 
 	}
-	
+
 	private EList<EObject> collectDomains(final ResourceSet resourceSet, String fcPath) {
 		final EList<EObject> result = new BasicEList<EObject>();
 		DomainSwitch<Object> _switch = new DomainSwitch<Object>() {
@@ -300,13 +309,12 @@ public class CreateFcoreHelper {
 		return result;
 	}
 
+	protected List<Substitution> computeSubstitutions() {
+		return ExtensionHelper.getAllSubstitutions();
+	}
 
-    protected List<Substitution> computeSubstitutions() {
-        return ExtensionHelper.getAllSubstitutions();
-    }
-
-    protected URI getGeneratorURI() {
-        return GENERATOR_URI;
-    }
+	protected URI getGeneratorURI() {
+		return GENERATOR_URI;
+	}
 
 }

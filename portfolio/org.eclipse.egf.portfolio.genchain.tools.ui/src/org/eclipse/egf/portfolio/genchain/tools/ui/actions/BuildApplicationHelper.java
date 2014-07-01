@@ -19,31 +19,25 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.util.DomainSwitch;
 import org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
-import org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider;
 import org.eclipse.egf.portfolio.genchain.generationChain.util.GenerationChainSwitch;
 import org.eclipse.egf.portfolio.genchain.tools.ui.Activator;
 import org.eclipse.egf.portfolio.genchain.tools.utils.QualifierReplacer;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.pde.internal.core.FeatureModelManager;
@@ -51,7 +45,6 @@ import org.eclipse.pde.internal.core.PDECore;
 import org.eclipse.pde.internal.core.exports.FeatureExportInfo;
 import org.eclipse.pde.internal.core.exports.FeatureExportOperation;
 import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
-import org.eclipse.ui.internal.editors.text.WorkspaceOperationRunner;
 
 /**
  * @author Thomas Guiu
@@ -93,7 +86,7 @@ public class BuildApplicationHelper extends CreateFcoreHelper {
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 				try {
-					generateFeaturePlugin(generationChain, monitor);
+					generateFeaturePlugin(generationChain.eResource().getResourceSet(), generationChain, monitor);
 					buildJob.schedule(1000);
 				} catch (Exception e) {
 					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
@@ -212,73 +205,6 @@ public class BuildApplicationHelper extends CreateFcoreHelper {
 		f.toDirectory = true;
 		f.useJarFormat = false;
 		return f;
-	}
-
-	private void generateFeaturePlugin(final GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
-		final Set<String> pluginList = new HashSet<String>();
-		String fcPath = computeFcoreOutputPath(generationChain);
-		final EList<EObject> collectDomains = collectDomains(generationChain.eResource().getResourceSet(), fcPath);
-		String pluginName = generationChain.getFactoryComponentName();
-		// We don't include anymore the fcore file
-		// pluginList.add(pluginName);
-
-		// add plugin who contains the chain model
-		URI uri = generationChain.eResource().getURI();
-		pluginList.add(uri.segment(1));
-
-		new GenerationChainSwitch<Object>() {
-			// we want to walk throught all parents EClass
-			@Override
-			protected Object doSwitch(EClass theEClass, EObject theEObject) {
-				if (theEClass.eContainer() == modelPackage) {
-					return doSwitch(theEClass.getClassifierID(), theEObject);
-				} else {
-					List<EClass> eSuperTypes = theEClass.getESuperTypes();
-					if (eSuperTypes.isEmpty())
-						return defaultCase(theEObject);
-					for (EClass superType : eSuperTypes) {
-						Object doSwitch = doSwitch(superType, theEObject);
-						if (doSwitch != null)
-							return doSwitch;
-					}
-					return null;
-				}
-			}
-
-			@Override
-			public Object caseGenerationChain(GenerationChain object) {
-				for (EObject obj : object.getElements())
-					doSwitch(obj);
-				return this;
-			}
-
-			@Override
-			public Object casePluginProvider(PluginProvider object) {
-				pluginList.addAll(object.getPluginNames(collectDomains));
-				return this;
-			}
-
-		}.doSwitch(generationChain);
-
-		for (String pluginNameString : pluginList) {
-			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(pluginNameString);
-			if (project.exists() && !project.hasNature(ORG_ECLIPSE_PDE_PLUGIN_NATURE)) {
-				WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
-				runner.setProgressMonitor(null);
-				try {
-					runner.run(true, false, new ConvertProjectOperation(project, false, false));
-				} catch (Exception e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-				}
-			}
-
-		}
-
-		IProject projectF = FeatureHelper.createFeatureProject(pluginList, pluginName, generationChain.getName(), monitor);
-		if (projectF != null && projectF.exists()) {
-			projectF.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-		}
-
 	}
 
 	private EList<EObject> collectDomains(final ResourceSet resourceSet, String fcPath) {
