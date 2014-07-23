@@ -23,6 +23,7 @@
   <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" noBuildersInvocation="true">
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/3.8/portfolio"/>
+    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_JfKsABJNEeSH1KkCcdT1kw" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
