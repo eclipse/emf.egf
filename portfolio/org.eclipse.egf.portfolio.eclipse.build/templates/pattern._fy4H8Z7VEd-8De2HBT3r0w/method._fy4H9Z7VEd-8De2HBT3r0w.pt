@@ -30,7 +30,7 @@ SVNLocation svnLocation = (SVNLocation) svnBuildLocation.getSvnLocation();%>
 <%if (sourceLocation instanceof GITBuildLocation) {
 GITBuildLocation gitBuildLocation = (GITBuildLocation) sourceLocation;
 GITLocation gitLocation = (GITLocation) gitBuildLocation.getGitLocation();%>
-		<fileset dir="${build.root}/git/<%=gitBuildLocation.getFolderName()%>" defaultexcludes="true">
+		<fileset dir="${build.root}/git/<%=gitLocation.getLocalPath()%>/<%=gitBuildLocation.getFolderName()%>" defaultexcludes="true">
 <%}%>
 
 <%for (String includeString : javadocStep.getIncludes()) {%> 

@@ -46,143 +46,143 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SVNImpl extends SCMImpl implements SVN {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
 
 
     /**
-     * The cached value of the '{@link #getLocations() <em>Locations</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getLocations() <em>Locations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLocations()
-     * @generated
-     * @ordered
-     */
+	 * @see #getLocations()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<SVNLocation> locations;
 
 
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SVNImpl() {
 
-        super();
+		super();
 
-    }
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return BuildscmPackage.Literals.SVN;
-    }
+		return BuildscmPackage.Literals.SVN;
+	}
 
 
 
 
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
     public EList<SVNLocation> getLocations() {
 
-        if (locations == null) {
-            locations = new EObjectContainmentEList<SVNLocation>(SVNLocation.class, this, BuildscmPackage.SVN__LOCATIONS);
-        }
-        return locations;
-    }
+		if (locations == null) {
+			locations = new EObjectContainmentEList<SVNLocation>(SVNLocation.class, this, BuildscmPackage.SVN__LOCATIONS);
+		}
+		return locations;
+	}
 
 
 
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case BuildscmPackage.SVN__LOCATIONS:
-                return ((InternalEList<?>)getLocations()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case BuildscmPackage.SVN__LOCATIONS:
+				return ((InternalEList<?>)getLocations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case BuildscmPackage.SVN__LOCATIONS:
-                return getLocations();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case BuildscmPackage.SVN__LOCATIONS:
+				return getLocations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case BuildscmPackage.SVN__LOCATIONS:
-                getLocations().clear();
-                getLocations().addAll((Collection<? extends SVNLocation>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case BuildscmPackage.SVN__LOCATIONS:
+				getLocations().clear();
+				getLocations().addAll((Collection<? extends SVNLocation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case BuildscmPackage.SVN__LOCATIONS:
-                getLocations().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case BuildscmPackage.SVN__LOCATIONS:
+				getLocations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case BuildscmPackage.SVN__LOCATIONS:
-                return locations != null && !locations.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case BuildscmPackage.SVN__LOCATIONS:
+				return locations != null && !locations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 
 

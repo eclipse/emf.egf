@@ -33,10 +33,10 @@ import org.eclipse.egf.portfolio.eclipse.build.builddeploy.GenerationLocation;
  */
 public interface GITGenerationLocation extends GenerationLocation {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
 
 
@@ -45,20 +45,20 @@ public interface GITGenerationLocation extends GenerationLocation {
 
 
     /**
-     * Returns the value of the '<em><b>Git Location</b></em>' reference.
+	 * Returns the value of the '<em><b>Git Location</b></em>' reference.
 
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Git Location</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Git Location</em>' reference.
-     * @see #setGitLocation(GITLocation)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage#getGITGenerationLocation_GitLocation()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Git Location</em>' reference.
+	 * @see #setGitLocation(GITLocation)
+	 * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage#getGITGenerationLocation_GitLocation()
+	 * @model required="true"
+	 * @generated
+	 */
 
     GITLocation getGitLocation();
 
@@ -66,14 +66,14 @@ public interface GITGenerationLocation extends GenerationLocation {
 
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation#getGitLocation <em>Git Location</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation#getGitLocation <em>Git Location</em>}' reference.
 
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Git Location</em>' reference.
-     * @see #getGitLocation()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Git Location</em>' reference.
+	 * @see #getGitLocation()
+	 * @generated
+	 */
 
     void setGitLocation(GITLocation value);
 

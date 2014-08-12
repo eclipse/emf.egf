@@ -1,4 +1,4 @@
-//Generated on Tue Aug 06 15:15:16 CEST 2013 with EGF 1.0.0.qualifier
+//Generated with EGF 1.2.0.v20140805-0858
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -11,112 +11,112 @@ import org.eclipse.egf.portfolio.eclipse.build.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 
 public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildxmladd {
-    protected static String nl;
+	protected static String nl;
 
-    public static synchronized buildxmlcleanStep create(String lineSeparator) {
-        nl = lineSeparator;
-        buildxmlcleanStep result = new buildxmlcleanStep();
-        nl = null;
-        return result;
-    }
+	public static synchronized buildxmlcleanStep create(String lineSeparator) {
+		nl = lineSeparator;
+		buildxmlcleanStep result = new buildxmlcleanStep();
+		nl = null;
+		return result;
+	}
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t<target name=\"";
-    protected final String TEXT_2 = "\" >";
-    protected final String TEXT_3 = NL + "\t\t<antcall target=\"clean.workspace\" />";
-    protected final String TEXT_4 = NL + "\t\t<antcall target=\"clean.result\" />";
-    protected final String TEXT_5 = NL + "\t\t<antcall target=\"clean.tools\" />";
-    protected final String TEXT_6 = NL + "\t\t<antcall target=\"clean.all\" />";
-    protected final String TEXT_7 = NL + "\t</target>" + NL;
-    protected final String TEXT_8 = NL;
-    protected final String TEXT_9 = NL;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "\t<target name=\"";
+	protected final String TEXT_2 = "\" >";
+	protected final String TEXT_3 = NL + "\t\t<antcall target=\"clean.workspace\" />";
+	protected final String TEXT_4 = NL + "\t\t<antcall target=\"clean.result\" />";
+	protected final String TEXT_5 = NL + "\t\t<antcall target=\"clean.tools\" />";
+	protected final String TEXT_6 = NL + "\t\t<antcall target=\"clean.all\" />";
+	protected final String TEXT_7 = NL + "\t</target>" + NL;
+	protected final String TEXT_8 = NL;
+	protected final String TEXT_9 = NL;
 
-    public buildxmlcleanStep() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+	public buildxmlcleanStep() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    }
+	}
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
-        Node.Container currentNode = ctx.getNode();
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("cleanStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//CleanStep");
-        queryCtx = new HashMap<String, String>();
-        List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		paramDesc = new IQuery.ParameterDescription("cleanStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//CleanStep");
+		queryCtx = new HashMap<String, String>();
+		List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object cleanStepParameter : cleanStepList) {
+		for (Object cleanStepParameter : cleanStepList) {
 
-            this.cleanStep = (org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep) cleanStepParameter;
+			this.cleanStep = (org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep) cleanStepParameter;
 
-            if (preCondition(ctx)) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration(ctx);
-            }
+			if (preCondition(ctx)) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
-        }
-        ctx.setNode(currentNode);
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-        }
+		}
+		ctx.setNode(currentNode);
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+		}
 
-        stringBuffer.append(TEXT_8);
-        stringBuffer.append(TEXT_9);
-        return stringBuffer.toString();
-    }
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_9);
+		return stringBuffer.toString();
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-        if (ictx.useReporter()) {
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("cleanStep", this.cleanStep);
-            String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-            String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-        }
-        return null;
-    }
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("cleanStep", this.cleanStep);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+		}
+		return null;
+	}
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep cleanStep = null;
+	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep cleanStep = null;
 
-    public void set_cleanStep(org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep object) {
-        this.cleanStep = object;
-    }
+	public void set_cleanStep(org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep object) {
+		this.cleanStep = object;
+	}
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("cleanStep", this.cleanStep);
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("cleanStep", this.cleanStep);
+		return parameters;
+	}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(cleanStep));
-        stringBuffer.append(TEXT_2);
-        if (cleanStep.getType() == CLEAN_TYPE.WORKSPACE) {
-            stringBuffer.append(TEXT_3);
-        }
-        if (cleanStep.getType() == CLEAN_TYPE.RESULT) {
-            stringBuffer.append(TEXT_4);
-        }
-        if (cleanStep.getType() == CLEAN_TYPE.TOOLS) {
-            stringBuffer.append(TEXT_5);
-        }
-        if (cleanStep.getType() == CLEAN_TYPE.ALL) {
-            stringBuffer.append(TEXT_6);
-        }
-        stringBuffer.append(TEXT_7);
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
-    }
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(cleanStep));
+		stringBuffer.append(TEXT_2);
+		if (cleanStep.getType() == CLEAN_TYPE.WORKSPACE) {
+			stringBuffer.append(TEXT_3);
+		}
+		if (cleanStep.getType() == CLEAN_TYPE.RESULT) {
+			stringBuffer.append(TEXT_4);
+		}
+		if (cleanStep.getType() == CLEAN_TYPE.TOOLS) {
+			stringBuffer.append(TEXT_5);
+		}
+		if (cleanStep.getType() == CLEAN_TYPE.ALL) {
+			stringBuffer.append(TEXT_6);
+		}
+		stringBuffer.append(TEXT_7);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+	}
 }

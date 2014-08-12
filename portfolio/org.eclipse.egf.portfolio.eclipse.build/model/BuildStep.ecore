@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildstep"
-    nsURI="http://www.eclipse.org/egf/1.0.2/buildstep" nsPrefix="buildstep">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildstep" nsURI="http://www.eclipse.org/egf/1.0.2/buildstep"
+    nsPrefix="buildstep">
   <eClassifiers xsi:type="ecore:EClass" name="ResultStep" abstract="true" eSuperTypes="BuildCore.ecore#//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="CleanStep" eSuperTypes="BuildCore.ecore#//Step">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//CLEAN_TYPE"

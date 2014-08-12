@@ -15,7 +15,7 @@ if (job.getDeployment() instanceof HudsonDeployment) {
       }
       if (deployment.getGenerationLocation() instanceof GITGenerationLocation) {
             GITGenerationLocation gitGenerationLocation = (GITGenerationLocation) deployment.getGenerationLocation();
-            buildFile = "git/" + gitGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
+            buildFile = "git/" + gitGenerationLocation.getGitLocation().getLocalPath() + "/" + gitGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
       }
 }
 %>

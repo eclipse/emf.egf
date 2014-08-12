@@ -1,4 +1,4 @@
-//Generated on Tue May 13 16:16:28 CEST 2014 with EGF 1.1.0.qualifier
+//Generated with EGF 1.2.0.v20140805-0858
 package org.eclipse.egf.releng2;
 
 import org.eclipse.egf.common.helper.*;
@@ -19,9 +19,11 @@ public class jvmeclipseproxy extends org.eclipse.egf.portfolio.eclipse.build.buc
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "                    <jvmarg value=\"-Xmx1024m\"/>" + NL + "                    <jvmarg value=\"-XX:MaxPermSize=256m\"/>" + NL + "                    " + NL + "                    <jvmarg value=\"-Dhttp.proxyHost=proxy.eclipse.org\"/>" + NL
-			+ "                    <jvmarg value=\"-Dhttp.proxyPort=9898\"/>" + NL + "                    <jvmarg value=\"-Dhttps.proxyHost=proxy.eclipse.org\"/>" + NL + "                    <jvmarg value=\"-Dhttps.proxyPort=9898\"/>" + NL
-			+ "                    <jvmarg value=\"-Dhttp.nonProxyHosts=*.eclipse.org\"/>" + NL + "                    <jvmarg value=\"-Dhttps.nonProxyHosts=*.eclipse.org\"/>" + NL + "                    <jvmarg value=\"-Dftp.proxyHost=proxy.eclipse.org\"/>" + NL
+	protected final String TEXT_1 = "                    <jvmarg value=\"-Xmx1024m\"/>" + NL + "                    <jvmarg value=\"-XX:MaxPermSize=256m\"/>" + NL
+			+ "                    " + NL + "                    <jvmarg value=\"-Dhttp.proxyHost=proxy.eclipse.org\"/>" + NL
+			+ "                    <jvmarg value=\"-Dhttp.proxyPort=9898\"/>" + NL + "                    <jvmarg value=\"-Dhttps.proxyHost=proxy.eclipse.org\"/>" + NL
+			+ "                    <jvmarg value=\"-Dhttps.proxyPort=9898\"/>" + NL + "                    <jvmarg value=\"-Dhttp.nonProxyHosts=*.eclipse.org\"/>" + NL
+			+ "                    <jvmarg value=\"-Dhttps.nonProxyHosts=*.eclipse.org\"/>" + NL + "                    <jvmarg value=\"-Dftp.proxyHost=proxy.eclipse.org\"/>" + NL
 			+ "                    <jvmarg value=\"-Dftp.proxyPort=9898\"/>" + NL + "                    <jvmarg value=\"-Dftp.nonProxyHosts=*.eclipse.org\"/>" + NL + NL;
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;

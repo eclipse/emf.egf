@@ -4,14 +4,14 @@
 	<searchPath name="<%=id%>">
 	    <!-- provider for windows if checkouted with Hudson -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
-			<uri format="file:/{0}/git/<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
+			<uri format="file:/{0}/git/<%=gitLocation.getLocalPath()%>/<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
 				<bc:propertyRef key="build.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 	    <!-- provider for unix if checkouted with Hudson -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/git/<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
+			<uri format="file://{0}/git/<%=gitLocation.getLocalPath()%>/<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
 				<bc:propertyRef key="build.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>

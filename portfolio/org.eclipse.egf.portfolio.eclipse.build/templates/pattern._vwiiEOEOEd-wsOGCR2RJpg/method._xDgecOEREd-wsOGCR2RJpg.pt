@@ -19,5 +19,5 @@ if (job.getScms() != null && job.getScms().eClass().equals(BuildscmPackage.eINST
 	
 	GIT newScm = (GIT) newJob.getScms();
 	GIT scm = (GIT) job.getScms();
-	newScm.getLocations().addAll(scm.getLocations());
+	newScm.setLocations(scm.getLocations());
 }

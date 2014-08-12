@@ -4,11 +4,11 @@
   <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="${eclipse.download.prefix}/releases/${releaseName}"/>
   <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
-  <properties xmi:id="_-VgtMVYwEeGPArgfLJHEWg" key="svn.version" value="trunk"/>
+  <properties xmi:id="_-VgtMVYwEeGPArgfLJHEWg" key="git.branch" value="master"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_N69VIvjIEeCQBPQJHiANYA" type="All"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_2fryoQF8EeGO5KzPHjNKFQ">
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2frypgF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix=".feature" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_2frypgF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix=".feature" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_2fryqgF8EeGO5KzPHjNKFQ" url="${updateSiteURL}"/>
     <components xsi:type="buildstep:Feature" xmi:id="_2fryrgF8EeGO5KzPHjNKFQ" id="org.eclipse.egf"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_QDSgsAVXEeGaseR7kNQ8hw" id="org.eclipse.emf.importer"/>
@@ -22,16 +22,16 @@
   <steps xsi:type="buildstep:AntStep" xmi:id="_bfnpIAF9EeGO5KzPHjNKFQ" targetName="copy_egf_to_tools" xml="&lt;target name=&quot;copy_egf_to_tools&quot;>&#xD;&#xA;&#x9;&lt;delete dir=&quot;${tools}/egf&quot;/>&#xD;&#xA;&#x9;&lt;copy todir=&quot;${tools}/egf&quot;>&#xD;&#xA;&#x9;&#x9;&lt;fileset dir=&quot;${publish}/egf&quot;/>&#xD;&#xA;&#x9;&lt;/copy>&#xD;&#xA;&lt;/target>"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" noBuildersInvocation="true">
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/4.3/portfolio"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_JfKsABJNEeSH1KkCcdT1kw" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools/features"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_KoGYEBJPEeSH1KkCcdT1kw" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools/plugins"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DBiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix=".feature" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
-    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/4.3/portfolio"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_JfKsABJNEeSH1KkCcdT1kw" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools/features"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_KoGYEBJPEeSH1KkCcdT1kw" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools/plugins"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix=".feature" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="${updateSiteURL}"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" id="org.eclipse.egf.releng2"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" id="org.eclipse.egf.test"/>
@@ -84,13 +84,13 @@
     <links>http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/</links>
     <links>http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/</links>
   </steps>
-  <scms xsi:type="buildscm:SVN" xmi:id="_VP8DGCR_EeCpI_U_Er6QNA">
-    <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" url="dev.eclipse.org/svnroot/modeling/org.eclipse.emf.egf/${svn.version}" localPath="svn_eclipse" username="" password=""/>
+  <scms xsi:type="buildscm:GIT" xmi:id="_VP8DGCR_EeCpI_U_Er6QNA">
+    <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" protocol="https://" url="git.eclipse.org/r/egf/org.eclipse.emf.egf" localPath="git_eclipse" branch="${git.branch}"  username="" password=""/>
   </scms>
   <deployment xsi:type="builddeploy:HudsonDeployment" xmi:id="_cVWxoNqkEeOOJoyshCcAFA" userDeployServerUrl="https://hudson.eclipse.org/hudson">
     <users xmi:id="_C_SdENqrEeOIAvxYf5-NWA" login="mhelleboid" permission="WRITE"/>
     <users xmi:id="_6xAXkNqrEeOIAvxYf5-NWA" login="langlois" permission="WRITE"/>
     <users xmi:id="_64dqcNqrEeOIAvxYf5-NWA" login="tguiu" permission="WRITE"/>
-    <generationLocation xsi:type="buildscm:SVNGenerationLocation" xmi:id="__kt-MNqrEeOIAvxYf5-NWA" folderName="releng/org.eclipse.egf.releng2/jobs" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA"/>
+    <generationLocation xsi:type="buildscm:GITGenerationLocation" xmi:id="__kt-MNqrEeOIAvxYf5-NWA" folderName="releng/org.eclipse.egf.releng2/jobs" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA"/>
   </deployment>
 </buildcore:Job>

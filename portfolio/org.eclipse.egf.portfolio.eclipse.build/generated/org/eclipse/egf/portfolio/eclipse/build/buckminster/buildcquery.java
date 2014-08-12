@@ -1,4 +1,4 @@
-//Generated on Thu Jul 24 13:56:35 CEST 2014 with EGF 1.1.0.qualifier
+//Generated with EGF 1.2.0.v20140805-0858
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -20,11 +20,13 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "<cq:componentQuery xmlns:cq=\"http://www.eclipse.org/buckminster/CQuery-1.0\" resourceMap=\"build.rmap\">" + NL + "    <cq:rootRequest name=\"";
+	protected final String TEXT_1 = "<cq:componentQuery xmlns:cq=\"http://www.eclipse.org/buckminster/CQuery-1.0\" resourceMap=\"build.rmap\">" + NL
+			+ "    <cq:rootRequest name=\"";
 	protected final String TEXT_2 = "\" componentType=\"buckminster\"/>" + NL;
 	protected final String TEXT_3 = NL + "    <!-- we ignore source plugin and feature by default -->" + NL + "    <cq:advisorNode namePattern=\"";
 	protected final String TEXT_4 = "\" skipComponent=\"true\"/>";
-	protected final String TEXT_5 = NL + NL + "    <cq:advisorNode namePattern=\".*\" useMaterialization=\"false\" useTargetPlatform=\"false\"/>" + NL + "</cq:componentQuery>" + NL;
+	protected final String TEXT_5 = NL + NL + "    <cq:advisorNode namePattern=\".*\" useMaterialization=\"false\" useTargetPlatform=\"false\"/>" + NL + "</cq:componentQuery>"
+			+ NL;
 	protected final String TEXT_6 = NL;
 	protected final String TEXT_7 = NL;
 
@@ -109,7 +111,8 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA", new ExecutionContext(
+					(InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

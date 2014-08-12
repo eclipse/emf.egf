@@ -1,19 +1,17 @@
+<%GITLocation gitLocation = git.getLocations();%>
   <scm class="hudson.plugins.git.GitSCM">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
-      <%Iterator<GITLocation> iterator = git.getLocations().iterator();%>
-      <%while(iterator.hasNext()) {%>
-      <%GITLocation gitLocation = iterator.next();%>
-        <hudson.plugins.git.UserRemoteConfig>
-          <name></name>
-          <refspec></refspec>
-          <url><%=gitLocation.getProtocol().getLiteral()%><%=gitLocation.getUrl()%></url>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name></name>
+        <refspec></refspec>
+        <url><%=gitLocation.getProtocol().getLiteral()%><%=gitLocation.getUrl()%></url>
+        <relativeTargetDir>git/<%=new GenerationHelper().getStringIfNotNull(gitLocation.getLocalPath())%></relativeTargetDir>
         </hudson.plugins.git.UserRemoteConfig>
-      <%}%>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>**</name>
+        <name><%=gitLocation.getBranch()%></name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <disableSubmodules>false</disableSubmodules>

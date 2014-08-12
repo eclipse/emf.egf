@@ -61,675 +61,669 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  */
 public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
 
     /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ComposedAdapterFactory parentAdapterFactory;
 
     /**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
     /**
-     * This helps manage the child creation extenders.
-     * <!-- begin-user-doc -->
+	 * This helps manage the child creation extenders.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(BuildSCMEditPlugin.INSTANCE, BuildscmPackage.eNS_URI);
 
     /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
     /**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BuildscmItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-    }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVN} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVN} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SVNItemProvider svnItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVN}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVN}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createSVNAdapter() {
-        if (svnItemProvider == null) {
-            svnItemProvider = new SVNItemProvider(this);
-        }
+		if (svnItemProvider == null) {
+			svnItemProvider = new SVNItemProvider(this);
+		}
 
-        return svnItemProvider;
-    }
+		return svnItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SVNLocationItemProvider svnLocationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createSVNLocationAdapter() {
-        if (svnLocationItemProvider == null) {
-            svnLocationItemProvider = new SVNLocationItemProvider(this);
-        }
+		if (svnLocationItemProvider == null) {
+			svnLocationItemProvider = new SVNLocationItemProvider(this);
+		}
 
-        return svnLocationItemProvider;
-    }
+		return svnLocationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SVNBuildLocationItemProvider svnBuildLocationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createSVNBuildLocationAdapter() {
-        if (svnBuildLocationItemProvider == null) {
-            svnBuildLocationItemProvider = new SVNBuildLocationItemProvider(this);
-        }
+		if (svnBuildLocationItemProvider == null) {
+			svnBuildLocationItemProvider = new SVNBuildLocationItemProvider(this);
+		}
 
-        return svnBuildLocationItemProvider;
-    }
+		return svnBuildLocationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SVNGenerationLocationItemProvider svnGenerationLocationItemProvider;
 
 				/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Adapter createSVNGenerationLocationAdapter() {
-        if (svnGenerationLocationItemProvider == null) {
-            svnGenerationLocationItemProvider = new SVNGenerationLocationItemProvider(this);
-        }
+		if (svnGenerationLocationItemProvider == null) {
+			svnGenerationLocationItemProvider = new SVNGenerationLocationItemProvider(this);
+		}
 
-        return svnGenerationLocationItemProvider;
-    }
+		return svnGenerationLocationItemProvider;
+	}
 
 				/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected GITItemProvider gitItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createGITAdapter() {
-        if (gitItemProvider == null) {
-            gitItemProvider = new GITItemProvider(this);
-        }
+		if (gitItemProvider == null) {
+			gitItemProvider = new GITItemProvider(this);
+		}
 
-        return gitItemProvider;
-    }
+		return gitItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected GITLocationItemProvider gitLocationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createGITLocationAdapter() {
-        if (gitLocationItemProvider == null) {
-            gitLocationItemProvider = new GITLocationItemProvider(this);
-        }
+		if (gitLocationItemProvider == null) {
+			gitLocationItemProvider = new GITLocationItemProvider(this);
+		}
 
-        return gitLocationItemProvider;
-    }
+		return gitLocationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected GITBuildLocationItemProvider gitBuildLocationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createGITBuildLocationAdapter() {
-        if (gitBuildLocationItemProvider == null) {
-            gitBuildLocationItemProvider = new GITBuildLocationItemProvider(this);
-        }
+		if (gitBuildLocationItemProvider == null) {
+			gitBuildLocationItemProvider = new GITBuildLocationItemProvider(this);
+		}
 
-        return gitBuildLocationItemProvider;
-    }
+		return gitBuildLocationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected GITGenerationLocationItemProvider gitGenerationLocationItemProvider;
 
 				/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createGITGenerationLocationAdapter() {
-        if (gitGenerationLocationItemProvider == null) {
-            gitGenerationLocationItemProvider = new GITGenerationLocationItemProvider(this);
-        }
+		if (gitGenerationLocationItemProvider == null) {
+			gitGenerationLocationItemProvider = new GITGenerationLocationItemProvider(this);
+		}
 
-        return gitGenerationLocationItemProvider;
-    }
+		return gitGenerationLocationItemProvider;
+	}
 
                 /**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
     /**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
     /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
+		return super.adapt(notifier, this);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public List<IChildCreationExtender> getChildCreationExtenders() {
-        return childCreationExtenderManager.getChildCreationExtenders();
-    }
+		return childCreationExtenderManager.getChildCreationExtenders();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-        return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
-    }
+		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ResourceLocator getResourceLocator() {
-        return childCreationExtenderManager;
-    }
+		return childCreationExtenderManager;
+	}
 
     /**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
     /**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
     /**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
     /**
-     * This disposes all of the item providers created by this factory. 
-     * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void dispose() {
-        if (svnItemProvider != null) svnItemProvider.dispose();
-        if (svnLocationItemProvider != null) svnLocationItemProvider.dispose();
-        if (svnBuildLocationItemProvider != null) svnBuildLocationItemProvider.dispose();
-        if (svnGenerationLocationItemProvider != null) svnGenerationLocationItemProvider.dispose();
-        if (gitItemProvider != null) gitItemProvider.dispose();
-        if (gitLocationItemProvider != null) gitLocationItemProvider.dispose();
-        if (gitBuildLocationItemProvider != null) gitBuildLocationItemProvider.dispose();
-        if (gitGenerationLocationItemProvider != null) gitGenerationLocationItemProvider.dispose();
-    }
+		if (svnItemProvider != null) svnItemProvider.dispose();
+		if (svnLocationItemProvider != null) svnLocationItemProvider.dispose();
+		if (svnBuildLocationItemProvider != null) svnBuildLocationItemProvider.dispose();
+		if (svnGenerationLocationItemProvider != null) svnGenerationLocationItemProvider.dispose();
+		if (gitItemProvider != null) gitItemProvider.dispose();
+		if (gitLocationItemProvider != null) gitLocationItemProvider.dispose();
+		if (gitBuildLocationItemProvider != null) gitBuildLocationItemProvider.dispose();
+		if (gitGenerationLocationItemProvider != null) gitGenerationLocationItemProvider.dispose();
+	}
 
     /**
-     * A child creation extender for the {@link BuildcorePackage}.
-     * <!-- begin-user-doc -->
+	 * A child creation extender for the {@link BuildcorePackage}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static class BuildcoreChildCreationExtender implements IChildCreationExtender {
         /**
-         * The switch for creating child descriptors specific to each extended class.
-         * <!-- begin-user-doc -->
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         protected static class CreationSwitch extends BuildcoreSwitch<Object> {
             /**
-             * The child descriptors being populated.
-             * <!-- begin-user-doc -->
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected List<Object> newChildDescriptors;
 
             /**
-             * The domain in which to create the children.
-             * <!-- begin-user-doc -->
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected EditingDomain editingDomain;
 
             /**
-             * Creates the a switch for populating child descriptors in the given domain.
-             * <!-- begin-user-doc -->
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-                this.newChildDescriptors = newChildDescriptors;
-                this.editingDomain = editingDomain;
-            }
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
             /**
-             * <!-- begin-user-doc -->
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             @Override
             public Object caseJob(Job object) {
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.JOB__SCMS,
-                 BuildscmFactory.eINSTANCE.createSVN()));
-
+				newChildDescriptors.add
+					(createChildParameter
+						(BuildcorePackage.Literals.JOB__SCMS,
+						 BuildscmFactory.eINSTANCE.createSVN()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.JOB__SCMS,
-                 BuildscmFactory.eINSTANCE.createGIT()));
+				newChildDescriptors.add
+					(createChildParameter
+						(BuildcorePackage.Literals.JOB__SCMS,
+						 BuildscmFactory.eINSTANCE.createGIT()));
 
 
 
-                return null;
-            }
+				return null;
+			}
  
             /**
-             * <!-- begin-user-doc -->
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected CommandParameter createChildParameter(Object feature, Object child) {
-                return new CommandParameter(null, feature, child);
-            }
+				return new CommandParameter(null, feature, child);
+			}
 
         }
 
         /**
-         * <!-- begin-user-doc -->
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-            ArrayList<Object> result = new ArrayList<Object>();
-           new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-           return result;
-        }
+			ArrayList<Object> result = new ArrayList<Object>();
+		   new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+		   return result;
+		}
 
         /**
-         * <!-- begin-user-doc -->
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public ResourceLocator getResourceLocator() {
-            return BuildSCMEditPlugin.INSTANCE;
-        }
+			return BuildSCMEditPlugin.INSTANCE;
+		}
     }
 
     /**
-     * A child creation extender for the {@link BuilddeployPackage}.
-     * <!-- begin-user-doc -->
+	 * A child creation extender for the {@link BuilddeployPackage}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static class BuilddeployChildCreationExtender implements IChildCreationExtender {
         /**
-         * The switch for creating child descriptors specific to each extended class.
-         * <!-- begin-user-doc -->
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         protected static class CreationSwitch extends BuilddeploySwitch<Object> {
             /**
-             * The child descriptors being populated.
-             * <!-- begin-user-doc -->
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected List<Object> newChildDescriptors;
 
             /**
-             * The domain in which to create the children.
-             * <!-- begin-user-doc -->
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected EditingDomain editingDomain;
 
             /**
-             * Creates the a switch for populating child descriptors in the given domain.
-             * <!-- begin-user-doc -->
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-                this.newChildDescriptors = newChildDescriptors;
-                this.editingDomain = editingDomain;
-            }
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
             /**
-             * <!-- begin-user-doc -->
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             @Override
             public Object caseHudsonDeployment(HudsonDeployment object) {
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuilddeployPackage.Literals.HUDSON_DEPLOYMENT__GENERATION_LOCATION,
-                 BuildscmFactory.eINSTANCE.createSVNGenerationLocation()));
-
+				newChildDescriptors.add
+					(createChildParameter
+						(BuilddeployPackage.Literals.HUDSON_DEPLOYMENT__GENERATION_LOCATION,
+						 BuildscmFactory.eINSTANCE.createSVNGenerationLocation()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuilddeployPackage.Literals.HUDSON_DEPLOYMENT__GENERATION_LOCATION,
-                 BuildscmFactory.eINSTANCE.createGITGenerationLocation()));
+				newChildDescriptors.add
+					(createChildParameter
+						(BuilddeployPackage.Literals.HUDSON_DEPLOYMENT__GENERATION_LOCATION,
+						 BuildscmFactory.eINSTANCE.createGITGenerationLocation()));
 
 
 
-                return null;
-            }
+				return null;
+			}
  
             /**
-             * <!-- begin-user-doc -->
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected CommandParameter createChildParameter(Object feature, Object child) {
-                return new CommandParameter(null, feature, child);
-            }
+				return new CommandParameter(null, feature, child);
+			}
 
         }
 
         /**
-         * <!-- begin-user-doc -->
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-            ArrayList<Object> result = new ArrayList<Object>();
-           new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-           return result;
-        }
+			ArrayList<Object> result = new ArrayList<Object>();
+		   new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+		   return result;
+		}
 
         /**
-         * <!-- begin-user-doc -->
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public ResourceLocator getResourceLocator() {
-            return BuildSCMEditPlugin.INSTANCE;
-        }
+			return BuildSCMEditPlugin.INSTANCE;
+		}
     }
 
     /**
-     * A child creation extender for the {@link BuildstepPackage}.
-     * <!-- begin-user-doc -->
+	 * A child creation extender for the {@link BuildstepPackage}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static class BuildstepChildCreationExtender implements IChildCreationExtender {
         /**
-         * The switch for creating child descriptors specific to each extended class.
-         * <!-- begin-user-doc -->
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         protected static class CreationSwitch extends BuildstepSwitch<Object> {
             /**
-             * The child descriptors being populated.
-             * <!-- begin-user-doc -->
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected List<Object> newChildDescriptors;
 
             /**
-             * The domain in which to create the children.
-             * <!-- begin-user-doc -->
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected EditingDomain editingDomain;
 
             /**
-             * Creates the a switch for populating child descriptors in the given domain.
-             * <!-- begin-user-doc -->
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-                this.newChildDescriptors = newChildDescriptors;
-                this.editingDomain = editingDomain;
-            }
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
             /**
-             * <!-- begin-user-doc -->
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             @Override
             public Object caseAbstractBuildLocationContainer(AbstractBuildLocationContainer object) {
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS,
-                 BuildscmFactory.eINSTANCE.createSVNBuildLocation()));
-
+				newChildDescriptors.add
+					(createChildParameter
+						(BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS,
+						 BuildscmFactory.eINSTANCE.createSVNBuildLocation()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS,
-                 BuildscmFactory.eINSTANCE.createGITBuildLocation()));
+				newChildDescriptors.add
+					(createChildParameter
+						(BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS,
+						 BuildscmFactory.eINSTANCE.createGITBuildLocation()));
 
 
 
-                return null;
-            }
+				return null;
+			}
             /**
-             * <!-- begin-user-doc -->
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected CommandParameter createChildParameter(Object feature, Object child) {
-                return new CommandParameter(null, feature, child);
-            }
+				return new CommandParameter(null, feature, child);
+			}
 
         }
 
         /**
-         * <!-- begin-user-doc -->
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-            ArrayList<Object> result = new ArrayList<Object>();
-           new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
-           return result;
-        }
+			ArrayList<Object> result = new ArrayList<Object>();
+		   new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+		   return result;
+		}
 
         /**
-         * <!-- begin-user-doc -->
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public ResourceLocator getResourceLocator() {
-            return BuildSCMEditPlugin.INSTANCE;
-        }
+			return BuildSCMEditPlugin.INSTANCE;
+		}
     }
 
 }
