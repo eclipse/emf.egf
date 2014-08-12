@@ -787,7 +787,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	<delete file="${p2.site.path}/artifacts.jar" />
 	<move file="${p2.site.path}/artifacts.xml" tofile="${p2.site.path}/artifacts.xml.orig" />
 
-	<xslt style="${build.root}/svn/svn_eclipse/releng/org.eclipse.egf.releng2/ant/statsURI.xsl" 
+	<xslt style="${build.root}/git/git_eclipse/releng/org.eclipse.egf.releng2/ant/statsURI.xsl" 
 		in="${p2.site.path}/artifacts.xml.orig" 
 		out="${p2.site.path}/artifacts.xml">
 		<param name="releaseName" expression="${releaseName}"/>
