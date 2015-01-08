@@ -17,6 +17,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -907,6 +908,136 @@ public interface BuildfilePackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.TarStepImpl <em>Tar Step</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.TarStepImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getTarStep()
+     * @generated
+     */
+	int TAR_STEP = 11;
+
+				/**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__NAME = FILE_STEP__NAME;
+
+				/**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
+
+				/**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__ENABLED = FILE_STEP__ENABLED;
+
+				/**
+     * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__ADDITIONAL_PARAMETERS = FILE_STEP__ADDITIONAL_PARAMETERS;
+
+				/**
+     * The feature id for the '<em><b>File Paths</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__FILE_PATHS = FILE_STEP_FEATURE_COUNT + 0;
+
+				/**
+     * The feature id for the '<em><b>Dir Paths</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__DIR_PATHS = FILE_STEP_FEATURE_COUNT + 1;
+
+				/**
+     * The feature id for the '<em><b>Result Steps</b></em>' reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__RESULT_STEPS = FILE_STEP_FEATURE_COUNT + 2;
+
+				/**
+     * The feature id for the '<em><b>Install Steps</b></em>' reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__INSTALL_STEPS = FILE_STEP_FEATURE_COUNT + 3;
+
+				/**
+     * The feature id for the '<em><b>Destfile</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__DESTFILE = FILE_STEP_FEATURE_COUNT + 4;
+
+				/**
+     * The feature id for the '<em><b>Base Dir</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__BASE_DIR = FILE_STEP_FEATURE_COUNT + 5;
+
+				/**
+     * The feature id for the '<em><b>Compression</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP__COMPRESSION = FILE_STEP_FEATURE_COUNT + 6;
+
+				/**
+     * The number of structural features of the '<em>Tar Step</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TAR_STEP_FEATURE_COUNT = FILE_STEP_FEATURE_COUNT + 7;
+
+
+				/**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod <em>Compression Method</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getCompressionMethod()
+     * @generated
+     */
+    int COMPRESSION_METHOD = 12;
+
+
+                /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter <em>Ant Parameter</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1193,6 +1324,59 @@ public interface BuildfilePackage extends EPackage {
     EAttribute getCreateFolderStep_FolderPath();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep <em>Tar Step</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Tar Step</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep
+     * @generated
+     */
+	EClass getTarStep();
+
+				/**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep#getDestfile <em>Destfile</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Destfile</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep#getDestfile()
+     * @see #getTarStep()
+     * @generated
+     */
+	EAttribute getTarStep_Destfile();
+
+				/**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep#getBaseDir <em>Base Dir</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Base Dir</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep#getBaseDir()
+     * @see #getTarStep()
+     * @generated
+     */
+	EAttribute getTarStep_BaseDir();
+
+				/**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep#getCompression <em>Compression</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Compression</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep#getCompression()
+     * @see #getTarStep()
+     * @generated
+     */
+	EAttribute getTarStep_Compression();
+
+				/**
+     * Returns the meta object for enum '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod <em>Compression Method</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Compression Method</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod
+     * @generated
+     */
+    EEnum getCompressionMethod();
+
+                /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1451,6 +1635,50 @@ public interface BuildfilePackage extends EPackage {
          * @generated
          */
         EAttribute CREATE_FOLDER_STEP__FOLDER_PATH = eINSTANCE.getCreateFolderStep_FolderPath();
+
+								/**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.TarStepImpl <em>Tar Step</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.TarStepImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getTarStep()
+         * @generated
+         */
+		EClass TAR_STEP = eINSTANCE.getTarStep();
+
+								/**
+         * The meta object literal for the '<em><b>Destfile</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute TAR_STEP__DESTFILE = eINSTANCE.getTarStep_Destfile();
+
+								/**
+         * The meta object literal for the '<em><b>Base Dir</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute TAR_STEP__BASE_DIR = eINSTANCE.getTarStep_BaseDir();
+
+								/**
+         * The meta object literal for the '<em><b>Compression</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute TAR_STEP__COMPRESSION = eINSTANCE.getTarStep_Compression();
+
+                                /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod <em>Compression Method</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getCompressionMethod()
+         * @generated
+         */
+        EEnum COMPRESSION_METHOD = eINSTANCE.getCompressionMethod();
 
     }
 

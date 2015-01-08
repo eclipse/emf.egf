@@ -121,6 +121,15 @@ public interface BuildfileFactory extends EFactory {
     CreateFolderStep createCreateFolderStep();
 
     /**
+     * Returns a new object of class '<em>Tar Step</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>Tar Step</em>'.
+     * @generated
+     */
+	TarStep createTarStep();
+
+				/**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

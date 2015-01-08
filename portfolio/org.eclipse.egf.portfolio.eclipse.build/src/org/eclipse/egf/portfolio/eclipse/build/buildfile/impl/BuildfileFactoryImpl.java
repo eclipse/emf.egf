@@ -16,6 +16,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildfile.impl;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -83,8 +84,39 @@ public class BuildfileFactoryImpl extends EFactoryImpl implements BuildfileFacto
             case BuildfilePackage.COPY_STEP: return createCopyStep();
             case BuildfilePackage.DOWNLOAD_STEP: return createDownloadStep();
             case BuildfilePackage.CREATE_FOLDER_STEP: return createCreateFolderStep();
+            case BuildfilePackage.TAR_STEP: return createTarStep();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
+        switch (eDataType.getClassifierID()) {
+            case BuildfilePackage.COMPRESSION_METHOD:
+                return createCompressionMethodFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
+        switch (eDataType.getClassifierID()) {
+            case BuildfilePackage.COMPRESSION_METHOD:
+                return convertCompressionMethodToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
     }
 
@@ -179,6 +211,36 @@ public class BuildfileFactoryImpl extends EFactoryImpl implements BuildfileFacto
     }
 
     /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public TarStep createTarStep() {
+        TarStepImpl tarStep = new TarStepImpl();
+        return tarStep;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CompressionMethod createCompressionMethodFromString(EDataType eDataType, String initialValue) {
+        CompressionMethod result = CompressionMethod.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertCompressionMethodToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+                /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

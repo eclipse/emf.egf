@@ -18,6 +18,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfileFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfilePackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.CompressionMethod;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.CopyStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.CreateFolderStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.DeleteStep;
@@ -26,6 +27,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.FilesetProvider;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.MoveStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.RenameStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.UnzipStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.ZipStep;
 
@@ -33,6 +35,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -130,6 +133,20 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
     private EClass createFolderStepEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass tarStepEClass = null;
+
+				/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum compressionMethodEEnum = null;
+
+                /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -438,6 +455,51 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
 
     /**
      * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getTarStep() {
+        return tarStepEClass;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getTarStep_Destfile() {
+        return (EAttribute)tarStepEClass.getEStructuralFeatures().get(0);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getTarStep_BaseDir() {
+        return (EAttribute)tarStepEClass.getEStructuralFeatures().get(1);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getTarStep_Compression() {
+        return (EAttribute)tarStepEClass.getEStructuralFeatures().get(2);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getCompressionMethod() {
+        return compressionMethodEEnum;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
@@ -501,6 +563,14 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
 
         createFolderStepEClass = createEClass(CREATE_FOLDER_STEP);
         createEAttribute(createFolderStepEClass, CREATE_FOLDER_STEP__FOLDER_PATH);
+
+        tarStepEClass = createEClass(TAR_STEP);
+        createEAttribute(tarStepEClass, TAR_STEP__DESTFILE);
+        createEAttribute(tarStepEClass, TAR_STEP__BASE_DIR);
+        createEAttribute(tarStepEClass, TAR_STEP__COMPRESSION);
+
+        // Create enums
+        compressionMethodEEnum = createEEnum(COMPRESSION_METHOD);
     }
 
     /**
@@ -549,6 +619,8 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
         copyStepEClass.getESuperTypes().add(this.getFilesetProvider());
         downloadStepEClass.getESuperTypes().add(this.getFileStep());
         createFolderStepEClass.getESuperTypes().add(this.getFileStep());
+        tarStepEClass.getESuperTypes().add(this.getFileStep());
+        tarStepEClass.getESuperTypes().add(this.getFilesetProvider());
 
         // Initialize classes and features; add operations and parameters
         initEClass(antParameterEClass, AntParameter.class, "AntParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -588,6 +660,17 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
 
         initEClass(createFolderStepEClass, CreateFolderStep.class, "CreateFolderStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCreateFolderStep_FolderPath(), ecorePackage.getEString(), "folderPath", null, 1, 1, CreateFolderStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(tarStepEClass, TarStep.class, "TarStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getTarStep_Destfile(), ecorePackage.getEString(), "destfile", null, 1, 1, TarStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTarStep_BaseDir(), ecorePackage.getEString(), "baseDir", null, 1, 1, TarStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTarStep_Compression(), this.getCompressionMethod(), "compression", "", 1, 1, TarStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        // Initialize enums and add enum literals
+        initEEnum(compressionMethodEEnum, CompressionMethod.class, "CompressionMethod");
+        addEEnumLiteral(compressionMethodEEnum, CompressionMethod.NONE);
+        addEEnumLiteral(compressionMethodEEnum, CompressionMethod.GZIP);
+        addEEnumLiteral(compressionMethodEEnum, CompressionMethod.BZIP2);
 
         // Create resource
         createResource(eNS_URI);

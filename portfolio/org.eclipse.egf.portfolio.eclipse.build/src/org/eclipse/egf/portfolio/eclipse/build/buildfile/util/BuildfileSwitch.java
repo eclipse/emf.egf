@@ -23,6 +23,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildfile.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -202,6 +204,16 @@ public class BuildfileSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildfilePackage.TAR_STEP: {
+                TarStep tarStep = (TarStep)theEObject;
+                T result = caseTarStep(tarStep);
+                if (result == null) result = caseFileStep(tarStep);
+                if (result == null) result = caseFilesetProvider(tarStep);
+                if (result == null) result = caseStep(tarStep);
+                if (result == null) result = caseItem(tarStep);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -372,6 +384,21 @@ public class BuildfileSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Tar Step</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Tar Step</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseTarStep(TarStep object) {
+        return null;
+    }
+
+				/**
      * Returns the result of interpreting the object as an instance of '<em>Key Value</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -427,7 +454,7 @@ public class BuildfileSwitch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-    public T defaultCase(EObject object) {
+   public T defaultCase(EObject object) {
         return null;
     }
 

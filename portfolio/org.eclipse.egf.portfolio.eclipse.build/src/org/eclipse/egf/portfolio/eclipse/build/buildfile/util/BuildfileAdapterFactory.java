@@ -134,6 +134,10 @@ public class BuildfileAdapterFactory extends AdapterFactoryImpl {
                 return createCreateFolderStepAdapter();
             }
             @Override
+            public Adapter caseTarStep(TarStep object) {
+                return createTarStepAdapter();
+            }
+            @Override
             public Adapter caseKeyValue(KeyValue object) {
                 return createKeyValueAdapter();
             }
@@ -320,6 +324,20 @@ public class BuildfileAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep <em>Tar Step</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep
+     * @generated
+     */
+	public Adapter createTarStepAdapter() {
+        return null;
+    }
+
+				/**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue <em>Key Value</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

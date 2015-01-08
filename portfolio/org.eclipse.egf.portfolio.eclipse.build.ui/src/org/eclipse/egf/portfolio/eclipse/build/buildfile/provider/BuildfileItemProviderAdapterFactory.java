@@ -324,6 +324,29 @@ public class BuildfileItemProviderAdapterFactory extends BuildfileAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected TarStepItemProvider tarStepItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildfile.TarStep}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createTarStepAdapter() {
+        if (tarStepItemProvider == null) {
+            tarStepItemProvider = new TarStepItemProvider(this);
+        }
+
+        return tarStepItemProvider;
+    }
+
+				/**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -458,6 +481,7 @@ public class BuildfileItemProviderAdapterFactory extends BuildfileAdapterFactory
         if (copyStepItemProvider != null) copyStepItemProvider.dispose();
         if (downloadStepItemProvider != null) downloadStepItemProvider.dispose();
         if (createFolderStepItemProvider != null) createFolderStepItemProvider.dispose();
+        if (tarStepItemProvider != null) tarStepItemProvider.dispose();
     }
 
     /**
@@ -508,74 +532,74 @@ public class BuildfileItemProviderAdapterFactory extends BuildfileAdapterFactory
             @Override
             public Object caseAbstractStepContainer(AbstractStepContainer object) {
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createZipStep()));
-
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createZipStep()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createUnzipStep()));
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createUnzipStep()));
 
 
 
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createMoveStep()));
-
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createMoveStep()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createRenameStep()));
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createRenameStep()));
 
 
 
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createDeleteStep()));
-
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createDeleteStep()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createCopyStep()));
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createCopyStep()));
 
 
 
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createDownloadStep()));
-
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createDownloadStep()));
 
 
 
 
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildfileFactory.eINSTANCE.createCreateFolderStep()));
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createCreateFolderStep()));
+
+
+
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                         BuildfileFactory.eINSTANCE.createTarStep()));
 
 
 

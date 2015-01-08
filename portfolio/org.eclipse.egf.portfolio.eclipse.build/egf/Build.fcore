@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
     xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
@@ -1378,6 +1377,22 @@
             </parameters>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_3V6SCENREeGPCZnFxc1Rcg"/>
           </elements>
+          <elements xmi:id="_N5HS4JaTEeSD685w18qp-w" name="build.xml.tarStep" superPattern="#_C_qLIJTYEd-fvPvNnKEvJg"
+              headerMethod="#_N5HS4paTEeSD685w18qp-w" conditionMethod="#_N5HS5JaTEeSD685w18qp-w"
+              initMethod="#_N5HS45aTEeSD685w18qp-w" footerMethod="#_N5HS5paTEeSD685w18qp-w">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_N5HS4ZaTEeSD685w18qp-w"
+                name="JET"/>
+            <methods xmi:id="_N5HS4paTEeSD685w18qp-w" name="header" patternFilePath="templates/pattern._N5HS4JaTEeSD685w18qp-w/method._N5HS4paTEeSD685w18qp-w.pt"/>
+            <methods xmi:id="_N5HS45aTEeSD685w18qp-w" name="init" patternFilePath="templates/pattern._N5HS4JaTEeSD685w18qp-w/method._N5HS45aTEeSD685w18qp-w.pt"/>
+            <methods xmi:id="_N5HS5JaTEeSD685w18qp-w" name="preCondition" patternFilePath="templates/pattern._N5HS4JaTEeSD685w18qp-w/method._N5HS5JaTEeSD685w18qp-w.pt"/>
+            <methods xmi:id="_N5HS5ZaTEeSD685w18qp-w" name="body" patternFilePath="templates/pattern._N5HS4JaTEeSD685w18qp-w/method._N5HS5ZaTEeSD685w18qp-w.pt"/>
+            <methods xmi:id="_N5HS5paTEeSD685w18qp-w" name="footer" patternFilePath="templates/pattern._N5HS4JaTEeSD685w18qp-w/method._N5HS5paTEeSD685w18qp-w.pt"/>
+            <parameters xmi:id="_VI4FMJaTEeSD685w18qp-w" name="tarStep" type="http://www.eclipse.org/egf/1.0.0/buildfile#//TarStep">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_g_jYQJaTEeSD685w18qp-w"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_N5HS55aTEeSD685w18qp-w"/>
+          </elements>
           <elements xmi:id="_W4y44ENxEeGPCZnFxc1Rcg" name="build.xml.unzipStep" superPattern="#_C_qLIJTYEd-fvPvNnKEvJg"
               headerMethod="#_W4y44kNxEeGPCZnFxc1Rcg" conditionMethod="#_W4y45ENxEeGPCZnFxc1Rcg"
               initMethod="#_W4y440NxEeGPCZnFxc1Rcg" footerMethod="#_W4y45kNxEeGPCZnFxc1Rcg">
@@ -1837,7 +1852,7 @@
               <substitutions xmi:id="_avGLIJNHEd-BJKD_XS9R2A" replacedElement="#_4NTLAJNGEd-BJKD_XS9R2A"
                   replacement="#_x4T9kZmWEd-Ee7jt2lxlVA #_D3WLsWEpEeC2MPWqHbfkpg #_4NTLAJNGEd-BJKD_XS9R2A"/>
               <substitutions xmi:id="_SGBtUJTYEd-fvPvNnKEvJg" replacedElement="#_C_qLIJTYEd-fvPvNnKEvJg"
-                  replacement="#_cl798TuGEeGR3t2caYer_w #_NSuLMTuJEeGSmpHYBb6SQQ #_dSeb4aoGEd-k9aH6AnUHCw #_sTvtQJVuEd-fvPvNnKEvJg #_mDDq8ZVxEd-4gcrM0WMTSg #_Q9g78JVuEd-fvPvNnKEvJg #_gvxW8ZVyEd--Q_dCgK5jqw #_fy4H8Z7VEd-8De2HBT3r0w #_VOw2gaYIEd-BVLrtOlWqIw #_1dui4K-AEd-6WbA1gqJ3Sw #_bT4RAaI3EeC7CagY5ZgTsg #_X7P0YENxEeGPCZnFxc1Rcg #_XmPNsENxEeGPCZnFxc1Rcg #_m7CNcENxEeGPCZnFxc1Rcg #_XQx7EENxEeGPCZnFxc1Rcg #_1J-2EEOKEeGXe-lwbr39Ag #_W4y44ENxEeGPCZnFxc1Rcg #_3V6SAUNREeGPCZnFxc1Rcg #_ZceFcEglEeG_t5sGPj9oew #_C_qLIJTYEd-fvPvNnKEvJg"/>
+                  replacement="#_cl798TuGEeGR3t2caYer_w #_NSuLMTuJEeGSmpHYBb6SQQ #_dSeb4aoGEd-k9aH6AnUHCw #_sTvtQJVuEd-fvPvNnKEvJg #_mDDq8ZVxEd-4gcrM0WMTSg #_Q9g78JVuEd-fvPvNnKEvJg #_gvxW8ZVyEd--Q_dCgK5jqw #_fy4H8Z7VEd-8De2HBT3r0w #_VOw2gaYIEd-BVLrtOlWqIw #_1dui4K-AEd-6WbA1gqJ3Sw #_bT4RAaI3EeC7CagY5ZgTsg #_X7P0YENxEeGPCZnFxc1Rcg #_XmPNsENxEeGPCZnFxc1Rcg #_m7CNcENxEeGPCZnFxc1Rcg #_XQx7EENxEeGPCZnFxc1Rcg #_1J-2EEOKEeGXe-lwbr39Ag #_W4y44ENxEeGPCZnFxc1Rcg #_3V6SAUNREeGPCZnFxc1Rcg #_N5HS4JaTEeSD685w18qp-w #_ZceFcEglEeG_t5sGPj9oew #_C_qLIJTYEd-fvPvNnKEvJg"/>
               <substitutions xmi:id="_4KK70J45Ed-3wvN5SnesGA" replacedElement="#_geJq4J4XEd-3wvN5SnesGA"
                   replacement="#_zgvmsJ5GEd-3wvN5SnesGA #_C6JiAJ45Ed-3wvN5SnesGA #_QzNV0LaeEd-YN_PdUdJuug #_YLrGcKh4EeCyIabjY3cKRg #_d2vKQfilEeCb194d2cwXCw #_geJq4J4XEd-3wvN5SnesGA"/>
             </type>

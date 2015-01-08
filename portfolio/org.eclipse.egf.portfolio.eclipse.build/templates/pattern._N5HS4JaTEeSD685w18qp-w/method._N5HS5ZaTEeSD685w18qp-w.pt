@@ -1,0 +1,9 @@
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(tarStep);%>
+	<target name="<%=stepName%>" depends="init">
+		<tar destfile="<%=tarStep.getDestfile()%>" basedir="<%=tarStep.getBaseDir()%>" compression="<%=tarStep.getCompression().getName()%>" <%=new GenerationHelper().getAdditionalParametersString(tarStep)%> >
+<%@ egf:patternCall 
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.util.build.xml.filesetProvider" 
+	args="tarStep:filesetProvider"%>
+		</tar>
+	</target>
+

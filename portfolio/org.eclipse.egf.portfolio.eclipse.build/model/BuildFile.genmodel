@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.&#xD;&#xA;   All rights reserved. This program and the accompanying materials&#xD;&#xA;   are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;   which accompanies this distribution, and is available at&#xD;&#xA;   http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;  &#xD;&#xA;   Contributors:&#xD;&#xA;       Thales Corporate Services S.A.S - initial API and implementation"
     modelDirectory="/org.eclipse.egf.portfolio.eclipse.build/src" editDirectory="/org.eclipse.egf.portfolio.eclipse.build.ui/src"
     modelPluginID="org.eclipse.egf.portfolio.eclipse.build" modelName="BuildFile"
@@ -10,6 +9,11 @@
   <genPackages prefix="Buildfile" basePackage="org.eclipse.egf.portfolio.eclipse.build"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="BuildFile.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BuildFile.ecore#//CompressionMethod">
+      <genEnumLiterals ecoreEnumLiteral="BuildFile.ecore#//CompressionMethod/none"/>
+      <genEnumLiterals ecoreEnumLiteral="BuildFile.ecore#//CompressionMethod/gzip"/>
+      <genEnumLiterals ecoreEnumLiteral="BuildFile.ecore#//CompressionMethod/bzip2"/>
+    </genEnums>
     <genClasses ecoreClass="BuildFile.ecore#//AntParameter"/>
     <genClasses image="false" ecoreClass="BuildFile.ecore#//FileStep">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildFile.ecore#//FileStep/additionalParameters"/>
@@ -45,6 +49,11 @@
     </genClasses>
     <genClasses ecoreClass="BuildFile.ecore#//CreateFolderStep">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//CreateFolderStep/folderPath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//TarStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//TarStep/destfile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//TarStep/baseDir"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//TarStep/compression"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
