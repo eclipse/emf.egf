@@ -9,6 +9,7 @@
  * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
+ * Anass Radouani (anass.radouani@atos.net) - Allow using workspace projects as output folders
  * 
  * </copyright>
  */
@@ -30,7 +31,6 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -58,9 +58,8 @@ public class Acceleo3ScriptEngine {
 		// retrieve output folder path
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
-		IPath targetFolderIPath = root.getFolder(new Path(targetUri))
-				.getLocation();
-
+		IPath targetFolderIPath = root.getLocation().append(targetUri);
+		
 		final Class<?> generatedClass;
 		try {
 			final Object instance;
