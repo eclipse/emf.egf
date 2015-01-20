@@ -67,7 +67,7 @@
   >
     <consoleFactory
       label="%EGF"
-      icon="$nl$/icons/eview16/console_view.gif"
+      icon="$nl$/icons/full/eview16/console_view.gif"
       class="org.eclipse.egf.console.internal.ConsoleFactory"
     />
   </extension>
