@@ -1,4 +1,4 @@
-//Generated on Mon Jun 02 19:03:24 CEST 2014 with EGF 1.1.0.qualifier
+//Generated with EGF 1.2.0.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -18,7 +18,8 @@ import org.eclipse.egf.pattern.query.*;
 public class ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride {
 	protected static String nl;
 
-	public static synchronized ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride create(String lineSeparator) {
+	public static synchronized ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride create(
+			String lineSeparator) {
 		nl = lineSeparator;
 		ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride result = new ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride();
 		nl = null;
@@ -26,7 +27,8 @@ public class ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter" + NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_1 = NL + "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter"
+			+ NL + "\t\t\t\t\t\t(";
 	protected final String TEXT_2 = "," + NL + "\t\t\t\t\t\t ";
 	protected final String TEXT_3 = ".createEntry" + NL + "\t\t\t\t\t\t\t(";
 	protected final String TEXT_4 = ",";
@@ -237,7 +239,9 @@ public class ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride {
 			callParameters.put("genClass", genClass);
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04NBAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04NBAGJ-Ed-FqczH3ESmRw",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

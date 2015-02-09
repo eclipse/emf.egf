@@ -1,4 +1,4 @@
-//Generated on Mon Jun 02 19:03:23 CEST 2014 with EGF 1.1.0.qualifier
+//Generated with EGF 1.2.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -26,17 +26,19 @@ public class Interfaceinterfacejavadocoverride {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A representation of the model object '<em><b>";
+	protected final String TEXT_1 = NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL
+			+ " * A representation of the model object '<em><b>";
 	protected final String TEXT_2 = "</b></em>'." + NL + " * <!-- end-user-doc -->";
 	protected final String TEXT_3 = NL + " *" + NL + " * <!-- begin-model-doc -->" + NL + " * ";
 	protected final String TEXT_4 = NL + " * <!-- end-model-doc -->";
 	protected final String TEXT_5 = NL + " *";
-	protected final String TEXT_6 = NL + " * <p>" + NL + " * The following features are supported:" + NL + " * <ul>";
+	protected final String TEXT_6 = NL + " * <p>" + NL + " * The following features are supported:" + NL + " * </p>"
+			+ NL + " * <ul>";
 	protected final String TEXT_7 = NL + " *   <li>{@link ";
 	protected final String TEXT_8 = "#";
 	protected final String TEXT_9 = " <em>";
 	protected final String TEXT_10 = "</em>}</li>";
-	protected final String TEXT_11 = NL + " * </ul>" + NL + " * </p>";
+	protected final String TEXT_11 = NL + " * </ul>";
 	protected final String TEXT_12 = NL + " *";
 	protected final String TEXT_13 = NL + " * @see ";
 	protected final String TEXT_14 = "#get";
@@ -307,7 +309,8 @@ public class Interfaceinterfacejavadocoverride {
 		}
 		if (!genModel.isSuppressEMFModelTags()) {
 			boolean first = true;
-			for (StringTokenizer stringTokenizer = new StringTokenizer(genClass.getModelInfo(), "\n\r"); stringTokenizer.hasMoreTokens();) {
+			for (StringTokenizer stringTokenizer = new StringTokenizer(genClass.getModelInfo(), "\n\r"); stringTokenizer
+					.hasMoreTokens();) {
 				String modelInfo = stringTokenizer.nextToken();
 				if (first) {
 					first = false;
