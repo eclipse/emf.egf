@@ -307,7 +307,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
         </echoproperties>
     </target>
 	
-	<target name="all" depends="CleanStep_1,BuildStep_2,PublishStep_3,InstallStep_4,AntStep_5,CleanStep_6,BuildStep_7,AntStep_8,BuildStep_9,TestStep_10,TestStep_11,EgfStep_12,PublishStep_13,EgfStep_14,PublishStep_15,EgfStep_16,PublishStep_17,PublishStep_18,AggregateStep_19,AntStep_20,JavadocStep_21" />
+	<target name="all" depends="CleanStep_1,BuildStep_2,PublishStep_3,InstallStep_4,AntStep_5,CleanStep_6,BuildStep_7,BuildStep_8,TestStep_9,TestStep_10,EgfStep_11,PublishStep_12,EgfStep_13,PublishStep_14,EgfStep_15,PublishStep_16,PublishStep_17,AggregateStep_18,AntStep_19,JavadocStep_20" />
 	<target name="CleanStep_1" >
 		<antcall target="clean.all" />
 	</target>
@@ -382,7 +382,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
         <echo message="No builders invocation specified" />
     </target>
 
-    <target name="BuildStep_9" depends="init,install.buckminster">
+    <target name="BuildStep_8" depends="init,install.buckminster">
         <echo message="Importing projects into workspace ${workspace} and binaries into target platform" />
 
 		<echo message="install JRE ${env.JAVA_HOME}" />
@@ -398,14 +398,14 @@ proxyData/HTTPS/host=proxy.eclipse.org
         <buckminster command="importtargetdefinition">
             <cmdargs>
                 <arg value="--active" />
-                <arg value="${relengDir}/buckminster_BuildStep_9/build.target" />
+                <arg value="${relengDir}/buckminster_BuildStep_8/build.target" />
             </cmdargs>
         </buckminster>
 		<echo message="provision : import projects in workspace" />
         <buckminster command="import">
             <!-- Uncomment to debug <globargs><jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/></globargs> -->
             <cmdargs>
-                <arg value="${relengDir}/buckminster_BuildStep_9/build.mspec" />
+                <arg value="${relengDir}/buckminster_BuildStep_8/build.mspec" />
             </cmdargs>
         </buckminster>
 
@@ -448,7 +448,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 	</target>
 
-	<target name="PublishStep_13" depends="init,install.buckminster" >
+	<target name="PublishStep_12" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -500,12 +500,12 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</cmdargs>
 		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_13">
+		<pathconvert property="featurefilePublishStep_12">
 			<first count="1">
 				<fileset dir="${result}/output" includes="org.eclipse.egf.sdk*eclipse.feature/temp/feature.xml" />
 			</first>
 		</pathconvert>
-		<loadfile property="featureversionPublishStep_13" srcFile="${featurefilePublishStep_13}">
+		<loadfile property="featureversionPublishStep_12" srcFile="${featurefilePublishStep_12}">
 			<filterchain>
 				<striplinebreaks/>
 				<replaceregex
@@ -514,10 +514,10 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</filterchain>
 		</loadfile>
 
-		<touch file="${publish}/org.eclipse.egf.sdk/dropins/org.eclipse.egf.sdk/org.eclipse.egf.sdk_version_${featureversionPublishStep_13}" />		
+		<touch file="${publish}/org.eclipse.egf.sdk/dropins/org.eclipse.egf.sdk/org.eclipse.egf.sdk_version_${featureversionPublishStep_12}" />		
 	</target>
 
-	<target name="PublishStep_15" depends="init,install.buckminster" >
+	<target name="PublishStep_14" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -569,12 +569,12 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</cmdargs>
 		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_15">
+		<pathconvert property="featurefilePublishStep_14">
 			<first count="1">
 				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.acceleo3*eclipse.feature/temp/feature.xml" />
 			</first>
 		</pathconvert>
-		<loadfile property="featureversionPublishStep_15" srcFile="${featurefilePublishStep_15}">
+		<loadfile property="featureversionPublishStep_14" srcFile="${featurefilePublishStep_14}">
 			<filterchain>
 				<striplinebreaks/>
 				<replaceregex
@@ -583,10 +583,10 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</filterchain>
 		</loadfile>
 
-		<touch file="${publish}/org.eclipse.egf.portfolio.acceleo3/dropins/org.eclipse.egf.portfolio.acceleo3/org.eclipse.egf.portfolio.acceleo3_version_${featureversionPublishStep_15}" />		
+		<touch file="${publish}/org.eclipse.egf.portfolio.acceleo3/dropins/org.eclipse.egf.portfolio.acceleo3/org.eclipse.egf.portfolio.acceleo3_version_${featureversionPublishStep_14}" />		
 	</target>
 
-	<target name="PublishStep_17" depends="init,install.buckminster" >
+	<target name="PublishStep_16" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -638,12 +638,12 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</cmdargs>
 		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_17">
+		<pathconvert property="featurefilePublishStep_16">
 			<first count="1">
 				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.atl*eclipse.feature/temp/feature.xml" />
 			</first>
 		</pathconvert>
-		<loadfile property="featureversionPublishStep_17" srcFile="${featurefilePublishStep_17}">
+		<loadfile property="featureversionPublishStep_16" srcFile="${featurefilePublishStep_16}">
 			<filterchain>
 				<striplinebreaks/>
 				<replaceregex
@@ -652,10 +652,10 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</filterchain>
 		</loadfile>
 
-		<touch file="${publish}/org.eclipse.egf.portfolio.atl/dropins/org.eclipse.egf.portfolio.atl/org.eclipse.egf.portfolio.atl_version_${featureversionPublishStep_17}" />		
+		<touch file="${publish}/org.eclipse.egf.portfolio.atl/dropins/org.eclipse.egf.portfolio.atl/org.eclipse.egf.portfolio.atl_version_${featureversionPublishStep_16}" />		
 	</target>
 
-	<target name="PublishStep_18" depends="init,install.buckminster" >
+	<target name="PublishStep_17" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -707,12 +707,12 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</cmdargs>
 		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_18">
+		<pathconvert property="featurefilePublishStep_17">
 			<first count="1">
 				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.genchain.ecoretools*eclipse.feature/temp/feature.xml" />
 			</first>
 		</pathconvert>
-		<loadfile property="featureversionPublishStep_18" srcFile="${featurefilePublishStep_18}">
+		<loadfile property="featureversionPublishStep_17" srcFile="${featurefilePublishStep_17}">
 			<filterchain>
 				<striplinebreaks/>
 				<replaceregex
@@ -721,7 +721,21 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</filterchain>
 		</loadfile>
 
-		<touch file="${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins/org.eclipse.egf.portfolio.genchain.ecoretools/org.eclipse.egf.portfolio.genchain.ecoretools_version_${featureversionPublishStep_18}" />		
+		<touch file="${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins/org.eclipse.egf.portfolio.genchain.ecoretools/org.eclipse.egf.portfolio.genchain.ecoretools_version_${featureversionPublishStep_17}" />		
+	</target>
+
+	<target name="TestStep_9" depends="init,install.buckminster">
+	  <echo message="Running Junit tests " />
+      <buckminster command="junit">
+        <cmdargs>
+          <arg value="-l" />
+          <arg value="org.eclipse.egf.core.test/EGF_Core_Tests.launch" />
+          <arg value="-o" />
+          <arg value="${result}/testReportTestStep_9.xml" />
+          <arg value="--terseXML" />
+          <arg value="--flatXML"/>
+        </cmdargs>
+      </buckminster>
 	</target>
 
 	<target name="TestStep_10" depends="init,install.buckminster">
@@ -729,23 +743,9 @@ proxyData/HTTPS/host=proxy.eclipse.org
       <buckminster command="junit">
         <cmdargs>
           <arg value="-l" />
-          <arg value="org.eclipse.egf.core.test/EGF_Core_Tests.launch" />
-          <arg value="-o" />
-          <arg value="${result}/testReportTestStep_10.xml" />
-          <arg value="--terseXML" />
-          <arg value="--flatXML"/>
-        </cmdargs>
-      </buckminster>
-	</target>
-
-	<target name="TestStep_11" depends="init,install.buckminster">
-	  <echo message="Running Junit tests " />
-      <buckminster command="junit">
-        <cmdargs>
-          <arg value="-l" />
           <arg value="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch" />
           <arg value="-o" />
-          <arg value="${result}/testReportTestStep_11.xml" />
+          <arg value="${result}/testReportTestStep_10.xml" />
           <arg value="--terseXML" />
           <arg value="--flatXML"/>
         </cmdargs>
@@ -764,19 +764,8 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</copy>
 </target>
 
-	<target name="AntStep_8" depends="init,install.egf" >
-		<anteclipse target="recompile_egf_patterns" />
-	</target>	
 
-<target name="recompile_egf_patterns">
-            <eclipse.incrementalBuild kind="incremental" builder="org.eclipse.pde.SchemaBuilder" />
-            <eclipse.incrementalBuild kind="incremental" builder="org.eclipse.pde.ManifestBuilder" />
-            <eclipse.incrementalBuild kind="incremental" builder="org.eclipse.jdt.core.javabuilder" />
-            <eclipse.incrementalBuild kind="incremental" builder="org.eclipse.egf.pattern.ui.PatternBuilder" />
-</target>
-
-
-	<target name="AntStep_20">
+	<target name="AntStep_19">
 		<antcall target="stats"/>
 	</target>
 
@@ -798,7 +787,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	<delete file="${p2.site.path}/artifacts.xml.orig" />
 </target>
 
-	<target name="JavadocStep_21">
+	<target name="JavadocStep_20">
 		<delete dir="${build.root}/../javadoc" />
 		<javadoc
 			destdir="${build.root}/../javadoc"
@@ -829,7 +818,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</javadoc>
 </target>
 
-	<target name="EgfStep_12" depends="init,install.egf">
+	<target name="EgfStep_11" depends="init,install.egf">
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
@@ -842,7 +831,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</activities>
 		</egf>
 	</target>
-	<target name="EgfStep_14" depends="init,install.egf">
+	<target name="EgfStep_13" depends="init,install.egf">
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
@@ -855,7 +844,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</activities>
 		</egf>
 	</target>
-	<target name="EgfStep_16" depends="init,install.egf">
+	<target name="EgfStep_15" depends="init,install.egf">
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
@@ -868,12 +857,12 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</activities>
 		</egf>
 	</target>
-	<target name="AggregateStep_19" depends="init,install.egf" >
-		<anteclipse target="AggregateStep_19_dropins" />
-		<anteclipse target="AggregateStep_19_sitep2" />
+	<target name="AggregateStep_18" depends="init,install.egf" >
+		<anteclipse target="AggregateStep_18_dropins" />
+		<anteclipse target="AggregateStep_18_sitep2" />
 	</target>	
 
-	<target name="AggregateStep_19_dropins">
+	<target name="AggregateStep_18_dropins">
 		<pathconvert property="aggregateDropinsFrom_org.eclipse.egf.sdk">
 			<first count="1">
 				<dirset dir="${publish}/org.eclipse.egf.sdk/dropins" includes="**/eclipse/" />
@@ -940,7 +929,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		</copy>
 	</target>	
 
-	<target name="AggregateStep_19_sitep2">
+	<target name="AggregateStep_18_sitep2">
 		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
 		<p2.mirror>
 			<repository location="file:/${publish}/org.eclipse.egf.site/site.p2" name="buckminster-egf-mars/org.eclipse.egf.site" />
