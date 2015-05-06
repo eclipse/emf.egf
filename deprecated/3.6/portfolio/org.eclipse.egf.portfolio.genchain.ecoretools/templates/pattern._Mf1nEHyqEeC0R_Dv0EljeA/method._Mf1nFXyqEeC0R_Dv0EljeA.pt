@@ -1,0 +1,20 @@
+Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
+		ResourceSet resourceSet = fc.eResource().getResourceSet();
+		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
+		URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.ecoretools/egf/ecoreToolsExtension.fcore#_wQgLIHS0EeC3aZAQAbtFJA", false);
+		Activity activity = (Activity) resourceSet.getEObject(uri, true);
+		
+		Map<String, Type> contract2type = new HashMap<String, Type>();
+		
+		TypeURI typeURI = TypesFactory.eINSTANCE.createTypeURI();
+		typeURI.setValue(URI.createPlatformResourceURI(parameter
+				.getModelPath(), true));
+		
+		TypeString typeString = TypesFactory.eINSTANCE.createTypeString();
+		typeString.setValue(parameter.getFileName());
+		
+		contract2type.put("model", typeURI);
+		contract2type.put("fileName", typeString);
+
+		ActivityInvocationHelper.addInvocation(pp, activity, contract2type);

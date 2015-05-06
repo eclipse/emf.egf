@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?eclipse version="3.0"?>
+<!--
+#
+# 	Copyright (c) THALES, 2007-2010. All rights reserved.
+#
+--><plugin>
+
+   
+<!--@generated-->
+  <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser class="org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.util.EcoreToolsExtensionResourceFactoryImpl" type="ecoretoolsextension"/>
+   </extension>
+
+<extension point="org.eclipse.egf.core.fcore">
+      <fcore id="egf/ecoreToolsExtension.fcore">
+      </fcore>
+      </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package class="org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.EcoreToolsExtensionPackage" genModel="model/ecoreToolsExtension.genmodel" uri="http://www.eclipse.org/egf/1.0.0/generationChainEcoreToolsExtension"/>
+   </extension>
+   <extension point="org.eclipse.egf.portfolio.genchain.elements">
+    	<helper class="org.eclipse.egf.portfolio.genchain.ecoretools.EcoreToolsExtension" id="ecoretools.extension"/>
+    </extension></plugin>

@@ -23,8 +23,7 @@
   <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" noBuildersInvocation="true">
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/4.3/portfolio"/>
-    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_JfKsABJNEeSH1KkCcdT1kw" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools/features"/>
-    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_KoGYEBJPEeSH1KkCcdT1kw" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/portfolio/EcoreTools/plugins"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_JfKsABJNEeSH1KkCcdT1kw" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/4.3/features"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
@@ -85,7 +84,7 @@
     <links>http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/</links>
   </steps>
   <scms xsi:type="buildscm:GIT" xmi:id="_VP8DGCR_EeCpI_U_Er6QNA">
-    <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" protocol="https://" url="git.eclipse.org/r/egf/org.eclipse.emf.egf" localPath="git_eclipse" branch="${git.branch}"  username="" password=""/>
+    <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" protocol="https://" url="git.eclipse.org/r/egf/org.eclipse.emf.egf" localPath="git_eclipse" branch="${git.branch}" username="" password=""/>
   </scms>
   <deployment xsi:type="builddeploy:HudsonDeployment" xmi:id="_cVWxoNqkEeOOJoyshCcAFA" userDeployServerUrl="https://hudson.eclipse.org/hudson">
     <users xmi:id="_C_SdENqrEeOIAvxYf5-NWA" login="mhelleboid" permission="WRITE"/>
