@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.releng2;
 
 import org.eclipse.egf.common.helper.*;
@@ -19,36 +19,17 @@ public class directoreclipseproxy extends org.eclipse.egf.portfolio.eclipse.buil
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "    <target name=\"install.director\">"
-			+ NL
-			+ "        <available file=\"${tools}/director/director\" property=\"director.exists\" />"
-			+ NL
-			+ "        <antcall target=\"do.install.director\" />"
-			+ NL
-			+ "    </target>"
-			+ NL
-			+ "    "
-			+ NL
-			+ "    <target name=\"do.install.director\" unless=\"director.exists\">"
-			+ NL
-			+ "        <echo message=\"Fetching headless director application\" />"
-			+ NL
+	protected final String TEXT_1 = "    <target name=\"install.director\">" + NL
+			+ "        <available file=\"${tools}/director/director\" property=\"director.exists\" />" + NL
+			+ "        <antcall target=\"do.install.director\" />" + NL + "    </target>" + NL + "    " + NL
+			+ "    <target name=\"do.install.director\" unless=\"director.exists\">" + NL
+			+ "        <echo message=\"Fetching headless director application\" />" + NL
 			+ "        <tempfile destdir=\"${java.io.tmpdir}\" prefix=\"director-\" suffix=\".zip\" property=\"director.zip\" deleteonexit=\"true\" />"
-			+ NL
-			+ "        <get src=\"${director.url}\" dest=\"${director.zip}\" />"
-			+ NL
-			+ "        <mkdir dir=\"${tools}\" />"
-			+ NL
-			+ "        <unzip src=\"${director.zip}\" dest=\"${tools}\" />"
-			+ NL
-			+ "        <delete file=\"${director.zip}\" />"
-			+ NL
-			+ ""
-			+ NL
-			+ "        <echo message=\"install eclipse proxy\"/>"
-			+ NL
-			+ "        <mkdir dir=\"${tools}/director/configuration/.settings/\"/>"
-			+ NL
+			+ NL + "        <get src=\"${director.url}\" dest=\"${director.zip}\" />" + NL
+			+ "        <mkdir dir=\"${tools}\" />" + NL + "        <unzip src=\"${director.zip}\" dest=\"${tools}\" />"
+			+ NL + "        <delete file=\"${director.zip}\" />" + NL + "" + NL
+			+ "        <echo message=\"install eclipse proxy\"/>" + NL
+			+ "        <mkdir dir=\"${tools}/director/configuration/.settings/\"/>" + NL
 			+ "<echo file=\"${tools}/director/configuration/.settings/org.eclipse.core.net.prefs\">#Fri May 17 19:15:07 CEST 2013"
 			+ NL + "systemProxiesEnabled=false" + NL + "org.eclipse.core.net.hasMigrated=true" + NL
 			+ "proxyData/HTTPS/port=9898" + NL + "proxyData/HTTP/host=proxy.eclipse.org" + NL
@@ -64,17 +45,15 @@ public class directoreclipseproxy extends org.eclipse.egf.portfolio.eclipse.buil
 			+ "        <echo message=\"External site: ${bm.external.site}\" />" + NL
 			+ "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL
 			+ "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />" + NL
-			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${bm.headless.site}\" />"
-			+ NL + "                <arg value=\"-d\" />" + NL
-			+ "                <arg value=\"${tools}/buckminster\" />" + NL + "                <arg value=\"-p\" />"
-			+ NL + "                <arg value=\"Buckminster\" />" + NL + "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${bm.headless.site}\" />" + NL
+			+ "                <arg value=\"-d\" />" + NL + "                <arg value=\"${tools}/buckminster\" />"
+			+ NL + "                <arg value=\"-p\" />" + NL + "                <arg value=\"Buckminster\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
 			+ "                <arg value=\"org.eclipse.buckminster.cmdline.product\" />" + NL
 			+ "                <arg value=\"-i\" />" + NL
 			+ "                <arg value=\"org.eclipse.buckminster.core.headless.feature.feature.group\" />" + NL
 			+ "                <arg value=\"-i\" />" + NL
 			+ "                <arg value=\"org.eclipse.buckminster.pde.headless.feature.feature.group\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL
-			+ "                <arg value=\"org.eclipse.buckminster.emma.headless.feature.feature.group\" />" + NL
 			+ "            </args>" + NL + "        </eclipse.launch>" + NL + "    </target>" + NL + "    " + NL;
 	protected final String TEXT_3 = NL;
 	protected final String TEXT_4 = NL;

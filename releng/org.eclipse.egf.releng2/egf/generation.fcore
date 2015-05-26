@@ -51,6 +51,18 @@
           <methods xmi:id="_sSU9BsEjEeKgZbuOKwMWmw" name="footer" patternFilePath="templates/pattern._sSU9AMEjEeKgZbuOKwMWmw/method._sSU9BsEjEeKgZbuOKwMWmw.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_sSU9B8EjEeKgZbuOKwMWmw"/>
         </elements>
+        <elements xmi:id="_gyqpUAOgEeW6tZpvT-l0Iw" name="fix build.properties" superPattern="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_IfGS0I6XEd-e7viTqNBNrA"
+            headerMethod="#_gyqpUgOgEeW6tZpvT-l0Iw" conditionMethod="#_gyqpVAOgEeW6tZpvT-l0Iw"
+            initMethod="#_gyqpUwOgEeW6tZpvT-l0Iw" footerMethod="#_gyqpVgOgEeW6tZpvT-l0Iw">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_gyqpUQOgEeW6tZpvT-l0Iw"
+              name="JET"/>
+          <methods xmi:id="_gyqpUgOgEeW6tZpvT-l0Iw" name="header" patternFilePath="templates/pattern._gyqpUAOgEeW6tZpvT-l0Iw/method._gyqpUgOgEeW6tZpvT-l0Iw.pt"/>
+          <methods xmi:id="_gyqpUwOgEeW6tZpvT-l0Iw" name="init" patternFilePath="templates/pattern._gyqpUAOgEeW6tZpvT-l0Iw/method._gyqpUwOgEeW6tZpvT-l0Iw.pt"/>
+          <methods xmi:id="_gyqpVAOgEeW6tZpvT-l0Iw" name="preCondition" patternFilePath="templates/pattern._gyqpUAOgEeW6tZpvT-l0Iw/method._gyqpVAOgEeW6tZpvT-l0Iw.pt"/>
+          <methods xmi:id="_gyqpVQOgEeW6tZpvT-l0Iw" name="body" patternFilePath="templates/pattern._gyqpUAOgEeW6tZpvT-l0Iw/method._gyqpVQOgEeW6tZpvT-l0Iw.pt"/>
+          <methods xmi:id="_gyqpVgOgEeW6tZpvT-l0Iw" name="footer" patternFilePath="templates/pattern._gyqpUAOgEeW6tZpvT-l0Iw/method._gyqpVgOgEeW6tZpvT-l0Iw.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_gyqpVwOgEeW6tZpvT-l0Iw"/>
+        </elements>
       </libraries>
     </viewpoints>
   </viewpointContainer>
@@ -153,6 +165,8 @@
                 replacement="#_ISyuwL8OEeKgZbuOKwMWmw"/>
             <substitutions xmi:id="_0KfDKLBdEeSqLfQ0kalDug" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA"
                 replacement="#_sSU9AMEjEeKgZbuOKwMWmw"/>
+            <substitutions xmi:id="_6p0NgAOgEeW6tZpvT-l0Iw" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_IfGS0I6XEd-e7viTqNBNrA"
+                replacement="#_gyqpUAOgEeW6tZpvT-l0Iw"/>
           </type>
         </invocationContracts>
       </invocationContractContainer>

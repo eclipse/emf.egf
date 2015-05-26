@@ -153,7 +153,7 @@ public class CreateNodeCommand extends RecordingCommand {
 	 * @param parent a {@link DragAndDropTarget} element wherein the node will be created
 	 */
 	private AbstractDNode createOneNode(EObject target, AbstractNodeMapping mapping, DragAndDropTarget parent){
-		final AbstractDNodeCandidate abstractDNodeCandidate = new AbstractDNodeCandidate(mapping, target, parent); 
+		final AbstractDNodeCandidate abstractDNodeCandidate = new AbstractDNodeCandidate(mapping, target, parent, null); 
 		return diagramSynchronizer.getElementSynchronizer().createNewNode(diagramMappingsManager, abstractDNodeCandidate, false);
 	}
 

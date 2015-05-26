@@ -3,7 +3,7 @@
   <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="mars"/>
   <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="${eclipse.download.prefix}/releases/${releaseName}"/>
   <properties xmi:id="_MGxhAOdwEeSQjKFw76jQug" key="ecoretoolsSiteURL" value="${eclipse.download.prefix}/ecoretools/updates/nightly/3.0.x/luna"/>
-  <properties xmi:id="_8pX3gOdyEeSQjKFw76jQug" key="siriusSiteURL" value="http://download.eclipse.org/sirius/updates/milestones/3.0.0M6/mars"/>
+  <properties xmi:id="_8pX3gOdyEeSQjKFw76jQug" key="siriusSiteURL" value="http://download.eclipse.org/sirius/updates/milestones/3.0.0rc2/mars"/>
   <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
   <properties xmi:id="_-VgtMVYwEeGPArgfLJHEWg" key="git.branch" value="master"/>
@@ -59,7 +59,7 @@
     <properties xmi:id="_s1jtcc85EeCzhPch9tJ3Og" key="importerName" value="org.eclipse.egf.examples.installer"/>
     <egfActivities xmi:id="_N69VIfjIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ"/>
   </steps>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_91ptYCR_EeCpI_U_Er6QNA" component="_VP8DDiR_EeCpI_U_Er6QNA" signing="true" generateDropins="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_91ptYCR_EeCpI_U_Er6QNA" component="_VP8DDiR_EeCpI_U_Er6QNA" signing="true"/>
   <steps xsi:type="buildstep:EgfStep" xmi:id="_jR6TcEAfEeCi4-1Y9vbHyQ">
     <properties xmi:id="_jR6TcUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
     <properties xmi:id="_jR6TckAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.acceleo3.examples-feature"/>
@@ -67,7 +67,7 @@
     <properties xmi:id="_wqXR0dIYEeCajoLOvUaMlg" key="importerName" value="org.eclipse.egf.portfolio.acceleo3.examples.installer"/>
     <egfActivities xmi:id="_N69VIPjIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ"/>
   </steps>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_ANqPQDkIEeCbr7W3e6bJPQ" component="_rivfYTkHEeCbr7W3e6bJPQ" signing="true" generateDropins="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_ANqPQDkIEeCbr7W3e6bJPQ" component="_rivfYTkHEeCbr7W3e6bJPQ" signing="true"/>
   <steps xsi:type="buildstep:EgfStep" xmi:id="_jr12YEAfEeCi4-1Y9vbHyQ">
     <properties xmi:id="_jr12YUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
     <properties xmi:id="_jr12YkAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.atl.examples-feature"/>
@@ -75,8 +75,8 @@
     <properties xmi:id="_w5aacNIYEeCajoLOvUaMlg" key="importerName" value="org.eclipse.egf.portfolio.atl.examples.installer"/>
     <egfActivities xmi:id="_N69VI_jIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ"/>
   </steps>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_Ae8zkDkIEeCbr7W3e6bJPQ" component="_vivKEDkHEeCbr7W3e6bJPQ" signing="true" generateDropins="true"/>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_3mAXob53EeCiHNhYwuZwog" component="_6VPlEL53EeCiHNhYwuZwog" signing="true" generateDropins="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_Ae8zkDkIEeCbr7W3e6bJPQ" component="_vivKEDkHEeCbr7W3e6bJPQ" signing="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_3mAXob53EeCiHNhYwuZwog" component="_6VPlEL53EeCiHNhYwuZwog" signing="true"/>
   <steps xsi:type="buildstep:AggregateStep" xmi:id="_G99gMEAgEeCi4-1Y9vbHyQ" id="org.eclipse.egf.site" publishSteps="_91ptYCR_EeCpI_U_Er6QNA _ANqPQDkIEeCbr7W3e6bJPQ _Ae8zkDkIEeCbr7W3e6bJPQ _3mAXob53EeCiHNhYwuZwog"/>
   <steps xsi:type="buildstep:AntStep" xmi:id="_WfRXUEAzEeCsoY6xB0CJEA" targetName="stats" xml="&lt;target name=&quot;stats&quot;>&#xD;&#xA;&#x9;&lt;property name=&quot;p2.site.path&quot; value=&quot;${publish}/org.eclipse.egf.site/site.p2&quot; />&#xD;&#xA;&#xD;&#xA;&#x9;&lt;unzip src=&quot;${p2.site.path}/artifacts.jar&quot; dest=&quot;${p2.site.path}&quot; />&#xD;&#xA;&#x9;&lt;delete file=&quot;${p2.site.path}/artifacts.jar&quot; />&#xD;&#xA;&#x9;&lt;move file=&quot;${p2.site.path}/artifacts.xml&quot; tofile=&quot;${p2.site.path}/artifacts.xml.orig&quot; />&#xD;&#xA;&#xD;&#xA;&#x9;&lt;xslt style=&quot;${build.root}/git/git_eclipse/releng/org.eclipse.egf.releng2/ant/statsURI.xsl&quot; &#xD;&#xA;&#x9;&#x9;in=&quot;${p2.site.path}/artifacts.xml.orig&quot; &#xD;&#xA;&#x9;&#x9;out=&quot;${p2.site.path}/artifacts.xml&quot;>&#xD;&#xA;&#x9;&#x9;&lt;param name=&quot;releaseName&quot; expression=&quot;${releaseName}&quot;/>&#xD;&#xA;&#x9; &lt;/xslt>&#xD;&#xA;&#xD;&#xA;&#x9;&lt;zip destfile=&quot;${p2.site.path}/artifacts.jar&quot; basedir=&quot;${p2.site.path}&quot; includes=&quot;artifacts.xml&quot; />&#xD;&#xA;&#x9;&lt;delete file=&quot;${p2.site.path}/artifacts.xml&quot; />&#xD;&#xA;&#x9;&lt;delete file=&quot;${p2.site.path}/artifacts.xml.orig&quot; />&#xD;&#xA;&lt;/target>"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DAiR_EeCpI_U_Er6QNA">

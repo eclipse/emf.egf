@@ -127,7 +127,7 @@ public class CreateEdgeCommand extends RecordingCommand {
 					boolean precondition = edgeMappingQuery.evaluatePrecondition((DSemanticDiagram)_diagram, _diagram, _session.getInterpreter(), _target, (DSemanticDecorator)sourceEdgeTarget, (DSemanticDecorator)targetEdgeTarget);
 					if (precondition)
 					{
-						DEdgeCandidate candidate = new DEdgeCandidate(_mapping,_target, sourceEdgeTarget, targetEdgeTarget);
+						DEdgeCandidate candidate = new DEdgeCandidate(_mapping,_target, sourceEdgeTarget, targetEdgeTarget, null);
 						elementSynchronizer.createNewEdge(diagramMappingsManager, candidate, mappingsToEdgeTargets, edgeToMappingBasedDecoration, edgeToSemanticBasedDecoration);
 					}
 				}

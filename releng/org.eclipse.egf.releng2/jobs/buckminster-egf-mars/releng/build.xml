@@ -167,8 +167,6 @@ proxyData/HTTPS/host=proxy.eclipse.org
                 <arg value="org.eclipse.buckminster.core.headless.feature.feature.group" />
                 <arg value="-i" />
                 <arg value="org.eclipse.buckminster.pde.headless.feature.feature.group" />
-                <arg value="-i" />
-                <arg value="org.eclipse.buckminster.emma.headless.feature.feature.group" />
             </args>
         </eclipse.launch>
     </target>
@@ -487,47 +485,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 				<replaceregex pattern=".*site\.p2" replace="" />
 			</filtermapper>
 		</copy>
-
-		<echo message="Publish dropins"/>
-		<condition property="site.src" value="site.signed" else="site">
-			<istrue value="${site.signing}" />
-		</condition>
-
-		<copy todir="${publish}/org.eclipse.egf.sdk/dropins/org.eclipse.egf.sdk/eclipse/">
-			<fileset dir="${result}/output">
-				<include name="org.eclipse.egf.sdk*/${site.src}/plugins/*.jar"/>
-				<include name="org.eclipse.egf.sdk*/${site.src}/features/*.jar"/>
-			</fileset>
-			<filtermapper>
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.plugins" replace="plugins" />
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.features" replace="features" />
-			</filtermapper>
-		</copy>
-
-		<buckminster command="perform">
-			<globargs>
-				<arg value="-DsiteDir=${publish}/org.eclipse.egf.sdk/dropins/org.eclipse.egf.sdk/eclipse/" />
-			</globargs>
-			<cmdargs>			
-				<arg value="BuildStep_8:buckminster#convertSiteToRuntime" />
-			</cmdargs>
-		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_14">
-			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.sdk*eclipse.feature/temp/feature.xml" />
-			</first>
-		</pathconvert>
-		<loadfile property="featureversionPublishStep_14" srcFile="${featurefilePublishStep_14}">
-			<filterchain>
-				<striplinebreaks/>
-				<replaceregex
-					pattern="^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$"
-					replace="\1"/>
-			</filterchain>
-		</loadfile>
-
-		<touch file="${publish}/org.eclipse.egf.sdk/dropins/org.eclipse.egf.sdk/org.eclipse.egf.sdk_version_${featureversionPublishStep_14}" />		
 	</target>
 
 	<target name="PublishStep_16" depends="init,install.buckminster" >
@@ -556,47 +514,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 				<replaceregex pattern=".*site\.p2" replace="" />
 			</filtermapper>
 		</copy>
-
-		<echo message="Publish dropins"/>
-		<condition property="site.src" value="site.signed" else="site">
-			<istrue value="${site.signing}" />
-		</condition>
-
-		<copy todir="${publish}/org.eclipse.egf.portfolio.acceleo3/dropins/org.eclipse.egf.portfolio.acceleo3/eclipse/">
-			<fileset dir="${result}/output">
-				<include name="org.eclipse.egf.portfolio.acceleo3*/${site.src}/plugins/*.jar"/>
-				<include name="org.eclipse.egf.portfolio.acceleo3*/${site.src}/features/*.jar"/>
-			</fileset>
-			<filtermapper>
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.plugins" replace="plugins" />
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.features" replace="features" />
-			</filtermapper>
-		</copy>
-
-		<buckminster command="perform">
-			<globargs>
-				<arg value="-DsiteDir=${publish}/org.eclipse.egf.portfolio.acceleo3/dropins/org.eclipse.egf.portfolio.acceleo3/eclipse/" />
-			</globargs>
-			<cmdargs>			
-				<arg value="BuildStep_8:buckminster#convertSiteToRuntime" />
-			</cmdargs>
-		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_16">
-			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.acceleo3*eclipse.feature/temp/feature.xml" />
-			</first>
-		</pathconvert>
-		<loadfile property="featureversionPublishStep_16" srcFile="${featurefilePublishStep_16}">
-			<filterchain>
-				<striplinebreaks/>
-				<replaceregex
-					pattern="^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$"
-					replace="\1"/>
-			</filterchain>
-		</loadfile>
-
-		<touch file="${publish}/org.eclipse.egf.portfolio.acceleo3/dropins/org.eclipse.egf.portfolio.acceleo3/org.eclipse.egf.portfolio.acceleo3_version_${featureversionPublishStep_16}" />		
 	</target>
 
 	<target name="PublishStep_18" depends="init,install.buckminster" >
@@ -625,47 +543,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 				<replaceregex pattern=".*site\.p2" replace="" />
 			</filtermapper>
 		</copy>
-
-		<echo message="Publish dropins"/>
-		<condition property="site.src" value="site.signed" else="site">
-			<istrue value="${site.signing}" />
-		</condition>
-
-		<copy todir="${publish}/org.eclipse.egf.portfolio.atl/dropins/org.eclipse.egf.portfolio.atl/eclipse/">
-			<fileset dir="${result}/output">
-				<include name="org.eclipse.egf.portfolio.atl*/${site.src}/plugins/*.jar"/>
-				<include name="org.eclipse.egf.portfolio.atl*/${site.src}/features/*.jar"/>
-			</fileset>
-			<filtermapper>
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.plugins" replace="plugins" />
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.features" replace="features" />
-			</filtermapper>
-		</copy>
-
-		<buckminster command="perform">
-			<globargs>
-				<arg value="-DsiteDir=${publish}/org.eclipse.egf.portfolio.atl/dropins/org.eclipse.egf.portfolio.atl/eclipse/" />
-			</globargs>
-			<cmdargs>			
-				<arg value="BuildStep_8:buckminster#convertSiteToRuntime" />
-			</cmdargs>
-		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_18">
-			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.atl*eclipse.feature/temp/feature.xml" />
-			</first>
-		</pathconvert>
-		<loadfile property="featureversionPublishStep_18" srcFile="${featurefilePublishStep_18}">
-			<filterchain>
-				<striplinebreaks/>
-				<replaceregex
-					pattern="^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$"
-					replace="\1"/>
-			</filterchain>
-		</loadfile>
-
-		<touch file="${publish}/org.eclipse.egf.portfolio.atl/dropins/org.eclipse.egf.portfolio.atl/org.eclipse.egf.portfolio.atl_version_${featureversionPublishStep_18}" />		
 	</target>
 
 	<target name="PublishStep_19" depends="init,install.buckminster" >
@@ -694,47 +572,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 				<replaceregex pattern=".*site\.p2" replace="" />
 			</filtermapper>
 		</copy>
-
-		<echo message="Publish dropins"/>
-		<condition property="site.src" value="site.signed" else="site">
-			<istrue value="${site.signing}" />
-		</condition>
-
-		<copy todir="${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins/org.eclipse.egf.portfolio.genchain.ecoretools/eclipse/">
-			<fileset dir="${result}/output">
-				<include name="org.eclipse.egf.portfolio.genchain.ecoretools*/${site.src}/plugins/*.jar"/>
-				<include name="org.eclipse.egf.portfolio.genchain.ecoretools*/${site.src}/features/*.jar"/>
-			</fileset>
-			<filtermapper>
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.plugins" replace="plugins" />
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.features" replace="features" />
-			</filtermapper>
-		</copy>
-
-		<buckminster command="perform">
-			<globargs>
-				<arg value="-DsiteDir=${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins/org.eclipse.egf.portfolio.genchain.ecoretools/eclipse/" />
-			</globargs>
-			<cmdargs>			
-				<arg value="BuildStep_8:buckminster#convertSiteToRuntime" />
-			</cmdargs>
-		</buckminster>
 		
-		<pathconvert property="featurefilePublishStep_19">
-			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.genchain.ecoretools*eclipse.feature/temp/feature.xml" />
-			</first>
-		</pathconvert>
-		<loadfile property="featureversionPublishStep_19" srcFile="${featurefilePublishStep_19}">
-			<filterchain>
-				<striplinebreaks/>
-				<replaceregex
-					pattern="^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$"
-					replace="\1"/>
-			</filterchain>
-		</loadfile>
-
-		<touch file="${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins/org.eclipse.egf.portfolio.genchain.ecoretools/org.eclipse.egf.portfolio.genchain.ecoretools_version_${featureversionPublishStep_19}" />		
 	</target>
 
 	<target name="TestStep_11" depends="init,install.buckminster">
@@ -887,70 +725,6 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</target>	
 
 	<target name="AggregateStep_20_dropins">
-		<pathconvert property="aggregateDropinsFrom_org.eclipse.egf.sdk">
-			<first count="1">
-				<dirset dir="${publish}/org.eclipse.egf.sdk/dropins" includes="**/eclipse/" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/eclipse/" >
-			<fileset dir="${aggregateDropinsFrom_org.eclipse.egf.sdk}"/>
-		</copy>
-		<pathconvert property="aggregateVersionFrom_org.eclipse.egf.sdk">
-			<first count="1">
-				<fileset dir="${publish}/org.eclipse.egf.sdk/dropins" includes="**/*_version_*" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/" >
-			<fileset file="${aggregateVersionFrom_org.eclipse.egf.sdk}"/>
-		</copy>
-		<pathconvert property="aggregateDropinsFrom_org.eclipse.egf.portfolio.acceleo3">
-			<first count="1">
-				<dirset dir="${publish}/org.eclipse.egf.portfolio.acceleo3/dropins" includes="**/eclipse/" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/eclipse/" >
-			<fileset dir="${aggregateDropinsFrom_org.eclipse.egf.portfolio.acceleo3}"/>
-		</copy>
-		<pathconvert property="aggregateVersionFrom_org.eclipse.egf.portfolio.acceleo3">
-			<first count="1">
-				<fileset dir="${publish}/org.eclipse.egf.portfolio.acceleo3/dropins" includes="**/*_version_*" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/" >
-			<fileset file="${aggregateVersionFrom_org.eclipse.egf.portfolio.acceleo3}"/>
-		</copy>
-		<pathconvert property="aggregateDropinsFrom_org.eclipse.egf.portfolio.atl">
-			<first count="1">
-				<dirset dir="${publish}/org.eclipse.egf.portfolio.atl/dropins" includes="**/eclipse/" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/eclipse/" >
-			<fileset dir="${aggregateDropinsFrom_org.eclipse.egf.portfolio.atl}"/>
-		</copy>
-		<pathconvert property="aggregateVersionFrom_org.eclipse.egf.portfolio.atl">
-			<first count="1">
-				<fileset dir="${publish}/org.eclipse.egf.portfolio.atl/dropins" includes="**/*_version_*" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/" >
-			<fileset file="${aggregateVersionFrom_org.eclipse.egf.portfolio.atl}"/>
-		</copy>
-		<pathconvert property="aggregateDropinsFrom_org.eclipse.egf.portfolio.genchain.ecoretools">
-			<first count="1">
-				<dirset dir="${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins" includes="**/eclipse/" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/eclipse/" >
-			<fileset dir="${aggregateDropinsFrom_org.eclipse.egf.portfolio.genchain.ecoretools}"/>
-		</copy>
-		<pathconvert property="aggregateVersionFrom_org.eclipse.egf.portfolio.genchain.ecoretools">
-			<first count="1">
-				<fileset dir="${publish}/org.eclipse.egf.portfolio.genchain.ecoretools/dropins" includes="**/*_version_*" />
-			</first>
-		</pathconvert>
-		<copy todir="${publish}/org.eclipse.egf.site/dropins/org.eclipse.egf.site/" >
-			<fileset file="${aggregateVersionFrom_org.eclipse.egf.portfolio.genchain.ecoretools}"/>
-		</copy>
 	</target>	
 
 	<target name="AggregateStep_20_sitep2">
