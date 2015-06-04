@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -40,78 +40,20 @@ public class Properties extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\t@Key(\"_UI_CreateChild_text2\")" + NL + "\t@DefaultMessage(\"{1} ";
 	protected final String TEXT_8 = "| ";
-	protected final String TEXT_9 = "{0}\")"
-			+ NL
-			+ "\tString createChildText2(Object type, Object feature);"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @generated"
-			+ NL
-			+ "\t */"
-			+ NL
-			+ "\t@Key(\"_UI_CreateChild_text3\")"
-			+ NL
-			+ "\t@DefaultMessage(\"{0}\")"
-			+ NL
-			+ "\tString createChildText3(Object feature);"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @generated"
-			+ NL
-			+ "\t */"
-			+ NL
-			+ "\t@Key(\"_UI_CreateChild_tooltip\")"
-			+ NL
-			+ "\t@DefaultMessage(\"Create New {0} Under {1} Feature\")"
-			+ NL
-			+ "\tString createChildTooltip(Object type, Object feature);"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @generated"
-			+ NL
-			+ "\t */"
-			+ NL
-			+ "\t@Key(\"_UI_CreateChild_description\")"
-			+ NL
-			+ "\t@DefaultMessage(\"Create a new child of type {0} for the {1} feature of the selected {2}.\")"
-			+ NL
-			+ "\tString createChildDescripition(Object type, Object feature, Object selection);"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @generated"
-			+ NL
-			+ "\t */"
-			+ NL
-			+ "\t@Key(\"_UI_CreateSibling_description\")"
-			+ NL
+	protected final String TEXT_9 = "{0}\")" + NL + "\tString createChildText2(Object type, Object feature);" + NL + ""
+			+ NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+			+ "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text3\")" + NL
+			+ "\t@DefaultMessage(\"{0}\")" + NL + "\tString createChildText3(Object feature);" + NL + "" + NL + "\t/**"
+			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
+			+ "\t */" + NL + "\t@Key(\"_UI_CreateChild_tooltip\")" + NL
+			+ "\t@DefaultMessage(\"Create New {0} Under {1} Feature\")" + NL
+			+ "\tString createChildTooltip(Object type, Object feature);" + NL + "" + NL + "\t/**" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t@Key(\"_UI_CreateChild_description\")" + NL
+			+ "\t@DefaultMessage(\"Create a new child of type {0} for the {1} feature of the selected {2}.\")" + NL
+			+ "\tString createChildDescripition(Object type, Object feature, Object selection);" + NL + "" + NL
+			+ "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated"
+			+ NL + "\t */" + NL + "\t@Key(\"_UI_CreateSibling_description\")" + NL
 			+ "\t@DefaultMessage(\"Create a new sibling of type {0} for the selected {2}, under the {1} feature of their parent.\")"
 			+ NL + "\tString createSiblingDescription(Object type, Object feature, Object selection);" + NL;
 	protected final String TEXT_10 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
@@ -124,11 +66,11 @@ public class Properties extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_13 = "\")" + NL + "\tString ";
 	protected final String TEXT_14 = "Type();" + NL;
 	protected final String TEXT_15 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
-			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
-			+ "\t@Key(\"_UI_Unknown_type\")" + NL + "\t@DefaultMessage(\"Object\")" + NL + "\tString unknownType();"
-			+ NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_datatype\")" + NL
-			+ "\t@DefaultMessage(\"Value\")" + NL + "\tString unknownDatatype();" + NL;
+			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_type\")"
+			+ NL + "\t@DefaultMessage(\"Object\")" + NL + "\tString unknownType();" + NL + "" + NL + "\t/**" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t@Key(\"_UI_Unknown_datatype\")" + NL + "\t@DefaultMessage(\"Value\")" + NL
+			+ "\tString unknownDatatype();" + NL;
 	protected final String TEXT_16 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_";
 	protected final String TEXT_17 = "_";
@@ -281,8 +223,8 @@ public class Properties extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		 *   Ed Merks - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -293,10 +235,9 @@ public class Properties extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

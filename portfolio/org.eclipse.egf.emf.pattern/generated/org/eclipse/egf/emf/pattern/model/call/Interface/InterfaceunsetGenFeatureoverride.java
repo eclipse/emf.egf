@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -486,10 +486,9 @@ public class InterfaceunsetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_00VNoGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_00VNoGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -576,8 +575,8 @@ public class InterfaceunsetGenFeatureoverride {
 					} else {
 						GenFeature reverseFeature = genFeature.getReverse();
 						GenClass targetClass = reverseFeature.getGenClass();
-						String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + "
-								+ genClass.getOffsetCorrectionField(genFeature) : "";
+						String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
+								? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
 						stringBuffer.append(TEXT_40);
 						stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject"));
 						stringBuffer.append(TEXT_41);
@@ -726,8 +725,8 @@ public class InterfaceunsetGenFeatureoverride {
 						}
 						if (!genModel.isSuppressNotification()) {
 							stringBuffer.append(TEXT_103);
-							stringBuffer.append(genModel
-									.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
+							stringBuffer
+									.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
 							stringBuffer.append(TEXT_104);
 							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.Notification"));
 							stringBuffer.append(TEXT_105);
@@ -799,8 +798,8 @@ public class InterfaceunsetGenFeatureoverride {
 						}
 						if (!genModel.isSuppressNotification()) {
 							stringBuffer.append(TEXT_134);
-							stringBuffer.append(genModel
-									.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
+							stringBuffer
+									.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
 							stringBuffer.append(TEXT_135);
 							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.Notification"));
 							stringBuffer.append(TEXT_136);
@@ -853,8 +852,8 @@ public class InterfaceunsetGenFeatureoverride {
 				}
 			} else if (genClass.getUnsetAccessorOperation(genFeature) != null) {
 				stringBuffer.append(TEXT_156);
-				stringBuffer.append(genClass.getUnsetAccessorOperation(genFeature).getBody(
-						genModel.getIndentation(stringBuffer)));
+				stringBuffer.append(
+						genClass.getUnsetAccessorOperation(genFeature).getBody(genModel.getIndentation(stringBuffer)));
 			} else {
 				stringBuffer.append(TEXT_157);
 				{
@@ -879,10 +878,9 @@ public class InterfaceunsetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_00eXkGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_00eXkGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 

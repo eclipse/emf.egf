@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -571,10 +571,9 @@ public class ClasssetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0nqqoGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0nqqoGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -596,8 +595,8 @@ public class ClasssetGenFeatureoverride {
 			stringBuffer.append(TEXT_10);
 			stringBuffer.append(genFeature.getImportedType(genClass));
 			stringBuffer.append(TEXT_11);
-			stringBuffer.append(setAccessorOperation == null ? "new" + genFeature.getCapName() : setAccessorOperation
-					.getGenParameters().get(0).getName());
+			stringBuffer.append(setAccessorOperation == null ? "new" + genFeature.getCapName()
+					: setAccessorOperation.getGenParameters().get(0).getName());
 			stringBuffer.append(TEXT_12);
 			stringBuffer.append(TEXT_13);
 			{
@@ -683,8 +682,8 @@ public class ClasssetGenFeatureoverride {
 				if (genFeature.isContainer()) {
 					GenFeature reverseFeature = genFeature.getReverse();
 					GenClass targetClass = reverseFeature.getGenClass();
-					String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + "
-							+ genClass.getOffsetCorrectionField(genFeature) : "";
+					String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
+							? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
 					stringBuffer.append(TEXT_37);
 					stringBuffer.append(genFeature.getCapName());
 					stringBuffer.append(TEXT_38);
@@ -779,8 +778,8 @@ public class ClasssetGenFeatureoverride {
 					} else {
 						GenFeature reverseFeature = genFeature.getReverse();
 						GenClass targetClass = reverseFeature.getGenClass();
-						String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + "
-								+ genClass.getOffsetCorrectionField(genFeature) : "";
+						String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
+								? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
 						stringBuffer.append(TEXT_79);
 						stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject"));
 						stringBuffer.append(TEXT_80);
@@ -848,8 +847,8 @@ public class ClasssetGenFeatureoverride {
 						}
 						if (!genModel.isSuppressNotification()) {
 							stringBuffer.append(TEXT_109);
-							stringBuffer.append(genModel
-									.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
+							stringBuffer
+									.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
 							stringBuffer.append(TEXT_110);
 							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.Notification"));
 							stringBuffer.append(TEXT_111);
@@ -867,8 +866,8 @@ public class ClasssetGenFeatureoverride {
 					} else {
 						if (!genModel.isSuppressNotification()) {
 							stringBuffer.append(TEXT_117);
-							stringBuffer.append(genModel
-									.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
+							stringBuffer
+									.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
 							stringBuffer.append(TEXT_118);
 							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.Notification"));
 							stringBuffer.append(TEXT_119);
@@ -1052,8 +1051,8 @@ public class ClasssetGenFeatureoverride {
 						}
 						if (!genModel.isSuppressNotification()) {
 							stringBuffer.append(TEXT_196);
-							stringBuffer.append(genModel
-									.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
+							stringBuffer
+									.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
 							stringBuffer.append(TEXT_197);
 							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.Notification"));
 							stringBuffer.append(TEXT_198);
@@ -1089,8 +1088,8 @@ public class ClasssetGenFeatureoverride {
 					} else {
 						if (!genModel.isSuppressNotification()) {
 							stringBuffer.append(TEXT_210);
-							stringBuffer.append(genModel
-									.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
+							stringBuffer
+									.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl"));
 							stringBuffer.append(TEXT_211);
 							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.Notification"));
 							stringBuffer.append(TEXT_212);
@@ -1143,10 +1142,9 @@ public class ClasssetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qMaMGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qMaMGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -1221,10 +1219,9 @@ public class ClasssetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qMaRWJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qMaRWJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 

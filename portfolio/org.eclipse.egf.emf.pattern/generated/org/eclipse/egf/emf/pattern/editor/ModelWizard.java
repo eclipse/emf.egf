@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -74,20 +74,20 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_20 = ";";
 	protected final String TEXT_21 = NL;
 	protected final String TEXT_22 = NL + "\t/**" + NL + "\t * The supported extensions for created files." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic static final ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static final ";
 	protected final String TEXT_23 = " FILE_EXTENSIONS =" + NL + "\t\tCollections.unmodifiableList(Arrays.asList(";
 	protected final String TEXT_24 = ".INSTANCE.getString(\"_UI_";
 	protected final String TEXT_25 = "FilenameExtensions\").split(\"\\\\s*,\\\\s*\")));";
 	protected final String TEXT_26 = NL + NL + "\t/**" + NL
 			+ "\t * A formatted list of supported file extensions, suitable for display." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic static final String FORMATTED_FILE_EXTENSIONS =" + NL + "\t\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static final String FORMATTED_FILE_EXTENSIONS =" + NL + "\t\t";
 	protected final String TEXT_27 = ".INSTANCE.getString(\"_UI_";
 	protected final String TEXT_28 = "FilenameExtensions\").replaceAll(\"\\\\s*,\\\\s*\", \", \");";
 	protected final String TEXT_29 = NL + NL + "\t/**" + NL + "\t * This caches an instance of the model package." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_30 = " ";
 	protected final String TEXT_31 = " = ";
 	protected final String TEXT_32 = ".eINSTANCE;" + NL + "" + NL + "\t/**" + NL
@@ -98,16 +98,16 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_35 = ".get";
 	protected final String TEXT_36 = "();" + NL;
 	protected final String TEXT_37 = NL + "\t/**" + NL + "\t * This is the file creation page." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_38 = "NewFileCreationPage newFileCreationPage;" + NL;
 	protected final String TEXT_39 = NL + "\t/**" + NL + "\t * This is the initial object creation page." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_40 = "InitialObjectCreationPage initialObjectCreationPage;" + NL + "" + NL + "\t/**"
 			+ NL + "\t * Remember the selection during initialization for populating the default container." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected IStructuredSelection selection;" + NL + "" + NL + "\t/**" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected IStructuredSelection selection;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Remember the workbench during initialization." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tprotected IWorkbench workbench;" + NL + "" + NL + "\t/**";
@@ -175,8 +175,7 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_82 = ".create(eClass);";
 	protected final String TEXT_83 = NL + "\t\tEClass eClass = ";
 	protected final String TEXT_84 = ".INSTANCE.getDocumentRoot(";
-	protected final String TEXT_85 = ");"
-			+ NL
+	protected final String TEXT_85 = ");" + NL
 			+ "\t\tEStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(initialObjectCreationPage.getInitialObjectName());"
 			+ NL + "\t\tEObject rootObject = ";
 	protected final String TEXT_86 = ".create(eClass);" + NL + "\t\trootObject.eSet(eStructuralFeature, ";
@@ -214,8 +213,8 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			+ NL
 			+ "\t\t\t\t\t\t\tURI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);"
 			+ NL;
-	protected final String TEXT_104 = NL + "\t\t\t\t\t\t\t// Create a resource for this file." + NL
-			+ "\t\t\t\t\t\t\t//" + NL + "\t\t\t\t\t\t\tResource resource = resourceSet.createResource(fileURI";
+	protected final String TEXT_104 = NL + "\t\t\t\t\t\t\t// Create a resource for this file." + NL + "\t\t\t\t\t\t\t//"
+			+ NL + "\t\t\t\t\t\t\tResource resource = resourceSet.createResource(fileURI";
 	protected final String TEXT_105 = ", ";
 	protected final String TEXT_106 = ".eCONTENT_TYPE";
 	protected final String TEXT_107 = ");" + NL + "" + NL
@@ -265,8 +264,8 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_128 = ".INSTANCE.log(exception);" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL
 			+ "\t}" + NL;
 	protected final String TEXT_129 = NL + "\t/**" + NL + "\t * This is the one page of the wizard." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic class ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic class ";
 	protected final String TEXT_130 = "NewFileCreationPage extends WizardNewFileCreationPage" + NL + "\t{" + NL
 			+ "\t\t/**" + NL + "\t\t * Pass in the selection." + NL + "\t\t * <!-- begin-user-doc -->" + NL
 			+ "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
@@ -277,50 +276,21 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_132 = NL + "\t\t@Override";
 	protected final String TEXT_133 = NL + "\t\tprotected boolean validatePage()" + NL + "\t\t{" + NL
 			+ "\t\t\tif (super.validatePage())" + NL + "\t\t\t{" + NL + "\t\t\t\tString extension = new ";
-	protected final String TEXT_134 = "(getFileName()).getFileExtension();"
-			+ NL
-			+ "\t\t\t\tif (extension == null || !FILE_EXTENSIONS.contains(extension))"
-			+ NL
-			+ "\t\t\t\t{"
-			+ NL
+	protected final String TEXT_134 = "(getFileName()).getFileExtension();" + NL
+			+ "\t\t\t\tif (extension == null || !FILE_EXTENSIONS.contains(extension))" + NL + "\t\t\t\t{" + NL
 			+ "\t\t\t\t\tString key = FILE_EXTENSIONS.size() > 1 ? \"_WARN_FilenameExtensions\" : \"_WARN_FilenameExtension\";";
 	protected final String TEXT_135 = NL + "\t\t\t\t\tsetErrorMessage(";
-	protected final String TEXT_136 = ".INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));"
-			+ NL
-			+ "\t\t\t\t\treturn false;"
-			+ NL
-			+ "\t\t\t\t}"
-			+ NL
-			+ "\t\t\t\treturn true;"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t\treturn false;"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t\t/**"
-			+ NL
-			+ "\t\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t\t * @generated"
-			+ NL
-			+ "\t\t */"
-			+ NL
-			+ "\t\tpublic IFile getModelFile()"
-			+ NL
-			+ "\t\t{"
-			+ NL
+	protected final String TEXT_136 = ".INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));" + NL
+			+ "\t\t\t\t\treturn false;" + NL + "\t\t\t\t}" + NL + "\t\t\t\treturn true;" + NL + "\t\t\t}" + NL
+			+ "\t\t\treturn false;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->"
+			+ NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL
+			+ "\t\tpublic IFile getModelFile()" + NL + "\t\t{" + NL
 			+ "\t\t\treturn ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));"
 			+ NL + "\t\t}" + NL + "\t}" + NL;
 	protected final String TEXT_137 = NL + "\t/**" + NL
 			+ "\t * This is the page where the type of object to create is selected." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic class ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic class ";
 	protected final String TEXT_138 = "InitialObjectCreationPage extends WizardPage" + NL + "\t{";
 	protected final String TEXT_139 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL
 			+ "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
@@ -349,12 +319,11 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			+ NL + "\t\t\t{" + NL + "\t\t\t\tresourceURILabel.setText(";
 	protected final String TEXT_145 = ".INSTANCE.getString(\"_UI_File_label\"));";
 	protected final String TEXT_146 = NL + NL + "\t\t\t\tGridData data = new GridData();" + NL
-			+ "\t\t\t\tdata.horizontalAlignment = GridData.FILL;" + NL
-			+ "\t\t\t\tresourceURILabel.setLayoutData(data);" + NL + "\t\t\t}" + NL + "" + NL
-			+ "\t\t\tComposite fileComposite = new Composite(composite, SWT.NONE);" + NL + "\t\t\t{" + NL
-			+ "\t\t\t\tGridData data = new GridData();" + NL + "\t\t\t\tdata.horizontalAlignment = GridData.END;" + NL
-			+ "\t\t\t\tfileComposite.setLayoutData(data);" + NL + "" + NL
-			+ "\t\t\t\tGridLayout layout = new GridLayout();" + NL
+			+ "\t\t\t\tdata.horizontalAlignment = GridData.FILL;" + NL + "\t\t\t\tresourceURILabel.setLayoutData(data);"
+			+ NL + "\t\t\t}" + NL + "" + NL + "\t\t\tComposite fileComposite = new Composite(composite, SWT.NONE);" + NL
+			+ "\t\t\t{" + NL + "\t\t\t\tGridData data = new GridData();" + NL
+			+ "\t\t\t\tdata.horizontalAlignment = GridData.END;" + NL + "\t\t\t\tfileComposite.setLayoutData(data);"
+			+ NL + "" + NL + "\t\t\t\tGridLayout layout = new GridLayout();" + NL
 			+ "\t\t\t\tdata.horizontalAlignment = GridData.FILL;" + NL + "\t\t\t\tlayout.marginHeight = 0;" + NL
 			+ "\t\t\t\tlayout.marginWidth = 0;" + NL + "\t\t\t\tlayout.numColumns = 2;" + NL
 			+ "\t\t\t\tfileComposite.setLayout(layout);" + NL + "\t\t\t}" + NL + "" + NL + "\t\t\tfileField = new ";
@@ -420,27 +389,11 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			+ "\t\t\t\t{" + NL + "\t\t\t\t\tsetPageComplete(validatePage());" + NL + "\t\t\t\t}" + NL + "\t\t\t};" + NL
 			+ "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL
 			+ "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected boolean validatePage()" + NL + "\t\t{";
-	protected final String TEXT_173 = NL
-			+ "\t\t\tURI fileURI = getFileURI();"
-			+ NL
-			+ "\t\t\tif (fileURI == null || fileURI.isEmpty())"
-			+ NL
-			+ "\t\t\t{"
-			+ NL
-			+ "\t\t\t\tsetErrorMessage(null);"
-			+ NL
-			+ "\t\t\t\treturn false;"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t\t\tString extension = fileURI.fileExtension();"
-			+ NL
-			+ "\t\t\tif (extension == null || !FILE_EXTENSIONS.contains(extension))"
-			+ NL
-			+ "\t\t\t{"
-			+ NL
+	protected final String TEXT_173 = NL + "\t\t\tURI fileURI = getFileURI();" + NL
+			+ "\t\t\tif (fileURI == null || fileURI.isEmpty())" + NL + "\t\t\t{" + NL + "\t\t\t\tsetErrorMessage(null);"
+			+ NL + "\t\t\t\treturn false;" + NL + "\t\t\t}" + NL + "" + NL
+			+ "\t\t\tString extension = fileURI.fileExtension();" + NL
+			+ "\t\t\tif (extension == null || !FILE_EXTENSIONS.contains(extension))" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tString key = FILE_EXTENSIONS.size() > 1 ? \"_WARN_FilenameExtensions\" : \"_WARN_FilenameExtension\";";
 	protected final String TEXT_174 = NL + "\t\t\t\tsetErrorMessage(";
 	protected final String TEXT_175 = ".INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));" + NL
@@ -452,8 +405,8 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_177 = NL + "\t\t@Override";
 	protected final String TEXT_178 = NL + "\t\tpublic void setVisible(boolean visible)" + NL + "\t\t{" + NL
 			+ "\t\t\tsuper.setVisible(visible);" + NL + "\t\t\tif (visible)" + NL + "\t\t\t{";
-	protected final String TEXT_179 = NL + "\t\t\t\tif (initialObjectField.getItemCount() == 1)" + NL + "\t\t\t\t{"
-			+ NL + "\t\t\t\t\tinitialObjectField.clearSelection();" + NL + "\t\t\t\t\tencodingField.setFocus();" + NL
+	protected final String TEXT_179 = NL + "\t\t\t\tif (initialObjectField.getItemCount() == 1)" + NL + "\t\t\t\t{" + NL
+			+ "\t\t\t\t\tinitialObjectField.clearSelection();" + NL + "\t\t\t\t\tencodingField.setFocus();" + NL
 			+ "\t\t\t\t}" + NL + "\t\t\t\telse" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\tencodingField.clearSelection();"
 			+ NL + "\t\t\t\t\tinitialObjectField.setFocus();" + NL + "\t\t\t\t}";
 	protected final String TEXT_180 = NL + "\t\t\t\tinitialObjectField.clearSelection();" + NL
@@ -491,8 +444,8 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_192 = "\" + ";
 	protected final String TEXT_193 = "Name + \"_";
 	protected final String TEXT_194 = "\");";
-	protected final String TEXT_195 = NL + "\t\t\t}" + NL + "\t\t\tcatch(MissingResourceException mre)" + NL
-			+ "\t\t\t{" + NL + "\t\t\t\t";
+	protected final String TEXT_195 = NL + "\t\t\t}" + NL + "\t\t\tcatch(MissingResourceException mre)" + NL + "\t\t\t{"
+			+ NL + "\t\t\t\t";
 	protected final String TEXT_196 = ".INSTANCE.log(mre);" + NL + "\t\t\t}" + NL + "\t\t\treturn ";
 	protected final String TEXT_197 = "Name;" + NL + "\t\t}";
 	protected final String TEXT_198 = NL + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL
@@ -561,13 +514,13 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_232 = ".INSTANCE.getString(\"_UI_Wizard_initial_object_description\"));";
 	protected final String TEXT_233 = NL + "\t\taddPage(initialObjectCreationPage);" + NL + "\t}" + NL;
 	protected final String TEXT_234 = NL + "\t/**" + NL + "\t * Get the URI from the page." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic URI getModelURI()" + NL + "\t{" + NL
-			+ "\t\treturn initialObjectCreationPage.getFileURI();" + NL + "\t}" + NL;
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic URI getModelURI()" + NL + "\t{" + NL + "\t\treturn initialObjectCreationPage.getFileURI();"
+			+ NL + "\t}" + NL;
 	protected final String TEXT_235 = NL + "\t/**" + NL + "\t * Get the file from the page." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic IFile getModelFile()" + NL + "\t{" + NL
-			+ "\t\treturn newFileCreationPage.getModelFile();" + NL + "\t}" + NL;
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic IFile getModelFile()" + NL + "\t{" + NL + "\t\treturn newFileCreationPage.getModelFile();"
+			+ NL + "\t}" + NL;
 	protected final String TEXT_236 = NL + "}";
 	protected final String TEXT_237 = NL;
 	protected final String TEXT_238 = NL;
@@ -700,10 +653,9 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -778,15 +730,15 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		stringBuffer.append(genModel.getNonNLS(2));
 		stringBuffer.append(genModel.getNonNLS(3));
 		stringBuffer.append(TEXT_29);
-		stringBuffer.append(genModel.isSuppressEMFMetaData() ? genModel
-				.getImportedName("org.eclipse.emf.ecore.EPackage") : genPackage.getPackageInterfaceName());
+		stringBuffer.append(genModel.isSuppressEMFMetaData()
+				? genModel.getImportedName("org.eclipse.emf.ecore.EPackage") : genPackage.getPackageInterfaceName());
 		stringBuffer.append(TEXT_30);
 		stringBuffer.append(genPackage.getUncapPackageName());
 		stringBuffer.append(TEXT_31);
 		stringBuffer.append(genPackage.getPackageInterfaceName());
 		stringBuffer.append(TEXT_32);
-		stringBuffer.append(genModel.isSuppressEMFMetaData() ? genModel
-				.getImportedName("org.eclipse.emf.ecore.EFactory") : genPackage.getFactoryInterfaceName());
+		stringBuffer.append(genModel.isSuppressEMFMetaData()
+				? genModel.getImportedName("org.eclipse.emf.ecore.EFactory") : genPackage.getFactoryInterfaceName());
 		stringBuffer.append(TEXT_33);
 		stringBuffer.append(genPackage.getUncapFactoryName());
 		stringBuffer.append(TEXT_34);
@@ -1216,9 +1168,8 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
 				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-		canGenerate = canGenerate
-				&& (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard() && genPackage.getGenModel()
-						.getRuntimePlatform() != GenRuntimePlatform.GWT);
+		canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard()
+				&& genPackage.getGenModel().getRuntimePlatform() != GenRuntimePlatform.GWT);
 		return canGenerate;
 	}
 }

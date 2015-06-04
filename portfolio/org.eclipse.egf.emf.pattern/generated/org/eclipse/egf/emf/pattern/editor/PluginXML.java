@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -32,8 +32,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	protected final String TEXT_3 = NL;
 	protected final String TEXT_4 = NL + "<plugin>";
 	protected final String TEXT_5 = NL + "<plugin" + NL + "      name=\"%pluginName\"" + NL + "      id=\"";
-	protected final String TEXT_6 = "\"" + NL + "      version=\"1.0.0\"" + NL
-			+ "      provider-name=\"%providerName\"" + NL + "      class=\"";
+	protected final String TEXT_6 = "\"" + NL + "      version=\"1.0.0\"" + NL + "      provider-name=\"%providerName\""
+			+ NL + "      class=\"";
 	protected final String TEXT_7 = "$Implementation\">" + NL + "" + NL + "   <requires>";
 	protected final String TEXT_8 = NL + "      <import plugin=\"";
 	protected final String TEXT_9 = "\"";
@@ -107,12 +107,12 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	protected final String TEXT_71 = NL + "      <!-- @generated ";
 	protected final String TEXT_72 = " -->";
 	protected final String TEXT_73 = NL + "      <application>" + NL + "         <run class=\"";
-	protected final String TEXT_74 = "$Application\"/>" + NL + "      </application>" + NL + "   </extension>" + NL
-			+ "" + NL + "   <extension point=\"org.eclipse.ui.perspectives\">";
+	protected final String TEXT_74 = "$Application\"/>" + NL + "      </application>" + NL + "   </extension>" + NL + ""
+			+ NL + "   <extension point=\"org.eclipse.ui.perspectives\">";
 	protected final String TEXT_75 = NL + "      <!-- @generated ";
 	protected final String TEXT_76 = " -->";
-	protected final String TEXT_77 = NL + "      <perspective" + NL + "            name=\"%_UI_Perspective_label\""
-			+ NL + "            class=\"";
+	protected final String TEXT_77 = NL + "      <perspective" + NL + "            name=\"%_UI_Perspective_label\"" + NL
+			+ "            class=\"";
 	protected final String TEXT_78 = "$Perspective\"" + NL + "            id=\"";
 	protected final String TEXT_79 = "Perspective\">" + NL + "      </perspective>" + NL + "   </extension>" + NL + ""
 			+ NL + "   <extension point=\"org.eclipse.ui.commands\">";
@@ -332,10 +332,9 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -408,8 +407,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 						stringBuffer.append(TEXT_35);
 					}
 					stringBuffer.append(TEXT_36);
-					stringBuffer.append(genPackage.isXMIResource() ? "org.eclipse.emf.ecore.xmi"
-							: "org.eclipse.core.runtime.xml");
+					stringBuffer.append(
+							genPackage.isXMIResource() ? "org.eclipse.emf.ecore.xmi" : "org.eclipse.core.runtime.xml");
 					stringBuffer.append(TEXT_37);
 					stringBuffer.append(genPackage.getFileExtensions());
 					stringBuffer.append(TEXT_38);

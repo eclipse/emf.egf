@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -159,10 +159,9 @@ public class TestCaseimplementedGenFeatureoverride {
 					callParameters.put("genClass", genClass);
 					callParameters.put("genPackage", genPackage);
 					callParameters.put("genModel", genModel);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_093kIGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_093kIGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -182,10 +181,9 @@ public class TestCaseimplementedGenFeatureoverride {
 					callParameters.put("genClass", genClass);
 					callParameters.put("genPackage", genPackage);
 					callParameters.put("genModel", genModel);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-daAGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-daAGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -205,10 +203,9 @@ public class TestCaseimplementedGenFeatureoverride {
 					callParameters.put("genClass", genClass);
 					callParameters.put("genPackage", genPackage);
 					callParameters.put("genModel", genModel);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0_NA4GJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0_NA4GJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -228,10 +225,9 @@ public class TestCaseimplementedGenFeatureoverride {
 					callParameters.put("genClass", genClass);
 					callParameters.put("genPackage", genPackage);
 					callParameters.put("genModel", genModel);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1BvXgGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1BvXgGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 

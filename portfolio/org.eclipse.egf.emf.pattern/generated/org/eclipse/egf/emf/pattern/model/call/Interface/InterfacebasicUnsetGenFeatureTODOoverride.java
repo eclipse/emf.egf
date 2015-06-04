@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -29,10 +29,8 @@ public class InterfacebasicUnsetGenFeatureTODOoverride {
 	protected final String TEXT_1 = NL + "\t\t// TODO: implement this method to unset the contained '";
 	protected final String TEXT_2 = "' ";
 	protected final String TEXT_3 = NL
-			+ "\t\t// -> this method is automatically invoked to keep the containment relationship in synch"
-			+ NL
-			+ "\t\t// -> do not modify other features"
-			+ NL
+			+ "\t\t// -> this method is automatically invoked to keep the containment relationship in synch" + NL
+			+ "\t\t// -> do not modify other features" + NL
 			+ "\t\t// -> return msgs, after adding any generated Notification to it (if it is null, a NotificationChain object must be created first)"
 			+ NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL
 			+ "\t\tthrow new UnsupportedOperationException();" + NL;

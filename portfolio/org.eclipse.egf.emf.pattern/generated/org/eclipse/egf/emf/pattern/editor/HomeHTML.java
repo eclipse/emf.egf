@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -173,8 +173,8 @@ public class HomeHTML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		 *   Ed Merks - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(genModel.getModelName());
 		stringBuffer.append(TEXT_2);

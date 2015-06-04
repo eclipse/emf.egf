@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -351,9 +351,8 @@ public class InterfacegetGenFeaturejavadocoverride {
 					stringBuffer.append(TEXT_13);
 				}
 				stringBuffer.append(TEXT_14);
-			} else if (!genFeature.isWrappedFeatureMapType()
-					&& !(genModel.isSuppressEMFMetaData() && "org.eclipse.emf.ecore.EObject".equals(genFeature
-							.getQualifiedListItemType(genClass)))) {
+			} else if (!genFeature.isWrappedFeatureMapType() && !(genModel.isSuppressEMFMetaData()
+					&& "org.eclipse.emf.ecore.EObject".equals(genFeature.getQualifiedListItemType(genClass)))) {
 				String typeName = genFeature.getQualifiedListItemType(genClass);
 				String head = typeName;
 				String tail = "";
@@ -483,8 +482,8 @@ public class InterfacegetGenFeaturejavadocoverride {
 		}
 		if (!genModel.isSuppressEMFModelTags()) {
 			boolean first = true;
-			for (StringTokenizer stringTokenizer = new StringTokenizer(genFeature.getModelInfo(), "\n\r"); stringTokenizer
-					.hasMoreTokens();) {
+			for (StringTokenizer stringTokenizer = new StringTokenizer(genFeature.getModelInfo(),
+					"\n\r"); stringTokenizer.hasMoreTokens();) {
 				String modelInfo = stringTokenizer.nextToken();
 				if (first) {
 					first = false;

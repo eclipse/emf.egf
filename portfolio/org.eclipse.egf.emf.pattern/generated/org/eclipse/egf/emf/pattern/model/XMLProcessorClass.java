@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,8 +41,8 @@ public class XMLProcessorClass extends org.eclipse.egf.emf.pattern.base.GenPacka
 	protected final String TEXT_9 = ";";
 	protected final String TEXT_10 = NL;
 	protected final String TEXT_11 = NL + NL + "\t/**" + NL + "\t * Public constructor to instantiate the helper." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic ";
 	protected final String TEXT_12 = "()" + NL + "\t{";
 	protected final String TEXT_13 = NL + "\t\tsuper(new ";
 	protected final String TEXT_14 = "(";
@@ -196,10 +196,9 @@ public class XMLProcessorClass extends org.eclipse.egf.emf.pattern.base.GenPacka
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

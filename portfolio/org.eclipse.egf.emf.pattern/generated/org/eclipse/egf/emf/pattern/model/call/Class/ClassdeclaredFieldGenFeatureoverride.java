@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -74,9 +74,7 @@ public class ClassdeclaredFieldGenFeatureoverride {
 	protected final String TEXT_42 = " = ";
 	protected final String TEXT_43 = ";";
 	protected final String TEXT_44 = NL;
-	protected final String TEXT_45 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_45 = NL + "\t/**" + NL
 			+ "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t * @ordered" + NL + "\t */";
@@ -104,8 +102,8 @@ public class ClassdeclaredFieldGenFeatureoverride {
 	protected final String TEXT_63 = "_EFLAG_OFFSET;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * The array of enumeration values for '{@link ";
 	protected final String TEXT_64 = " ";
-	protected final String TEXT_65 = "}'" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
-			+ NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprivate static final ";
+	protected final String TEXT_65 = "}'" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+			+ "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprivate static final ";
 	protected final String TEXT_66 = "[] ";
 	protected final String TEXT_67 = "_EFLAG_VALUES = ";
 	protected final String TEXT_68 = ".values()";
@@ -138,9 +136,7 @@ public class ClassdeclaredFieldGenFeatureoverride {
 	protected final String TEXT_92 = " ";
 	protected final String TEXT_93 = " = ";
 	protected final String TEXT_94 = ";" + NL;
-	protected final String TEXT_95 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_95 = NL + "\t/**" + NL
 			+ "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t * @ordered" + NL + "\t */";
@@ -481,9 +477,8 @@ public class ClassdeclaredFieldGenFeatureoverride {
 				stringBuffer.append(TEXT_31);
 			}
 		} else {
-			if (genFeature.hasEDefault()
-					&& (!genFeature.isVolatile() || !genModel.isReflectiveDelegation()
-							&& (!genFeature.hasDelegateFeature() || !genFeature.isUnsettable()))) {
+			if (genFeature.hasEDefault() && (!genFeature.isVolatile() || !genModel.isReflectiveDelegation()
+					&& (!genFeature.hasDelegateFeature() || !genFeature.isUnsettable()))) {
 				String staticDefaultValue = genFeature.getStaticDefaultValue();
 				stringBuffer.append(TEXT_32);
 				stringBuffer.append(genFeature.getGetAccessor());

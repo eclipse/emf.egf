@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -66,10 +66,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 	protected final String TEXT_25 = NL
 			+ "_UI_Wizard_initial_object_description = Specify a file name and select a model object to create";
 	protected final String TEXT_26 = NL + "_UI_Wizard_initial_object_description = Select a model object to create";
-	protected final String TEXT_27 = NL
-			+ NL
-			+ "_UI_FileConflict_label = File Conflict"
-			+ NL
+	protected final String TEXT_27 = NL + NL + "_UI_FileConflict_label = File Conflict" + NL
 			+ "_WARN_FileConflict = There are unsaved changes that conflict with changes made outside the editor.  Do you wish to discard this editor's changes?"
 			+ NL;
 	protected final String TEXT_28 = NL + "_UI_";
@@ -210,8 +207,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 		 *   IBM - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
@@ -222,10 +219,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

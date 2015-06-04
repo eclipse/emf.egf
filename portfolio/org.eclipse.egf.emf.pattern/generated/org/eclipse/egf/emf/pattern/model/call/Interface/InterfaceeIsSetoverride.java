@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -188,7 +188,8 @@ public class InterfaceeIsSetoverride {
 															this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
 															if (preCondition(ctx)) {
-																ctx.setNode(new Node.Container(currentNode, getClass()));
+																ctx.setNode(
+																		new Node.Container(currentNode, getClass()));
 																orchestration(ctx);
 															}
 
@@ -398,7 +399,8 @@ public class InterfaceeIsSetoverride {
 						stringBuffer.append(safeNameAccessor);
 						stringBuffer.append(TEXT_20);
 					} else {
-						if (genFeature.isField() && genClass.getImplementingGenModel(genFeature).isVirtualDelegation()) {
+						if (genFeature.isField()
+								&& genClass.getImplementingGenModel(genFeature).isVirtualDelegation()) {
 							stringBuffer.append(TEXT_21);
 							stringBuffer.append(genFeature.getImportedType(genClass));
 							stringBuffer.append(TEXT_22);

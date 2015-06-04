@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -26,8 +26,7 @@ public class WebXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-			+ NL
+	protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + NL
 			+ "<!DOCTYPE web-app PUBLIC \"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN\" \"http://java.sun.com/dtd/web-app_2_3.dtd\">";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL + "<web-app>" + NL + "  <servlet>" + NL
@@ -156,8 +155,8 @@ public class WebXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		 *   Ed Merks - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(TEXT_2);
 		{
@@ -169,10 +168,9 @@ public class WebXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

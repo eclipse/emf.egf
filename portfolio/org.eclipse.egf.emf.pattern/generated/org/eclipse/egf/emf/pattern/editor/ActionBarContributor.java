@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,9 +41,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_10 = ";";
 	protected final String TEXT_11 = NL;
 	protected final String TEXT_12 = NL + "\t/**" + NL + "\t * Action to create objects from the ";
-	protected final String TEXT_13 = " model." + NL + "\t * <!-- begin-user-doc -->" + NL
-			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
-			+ "\tpublic static class NewAction extends ";
+	protected final String TEXT_13 = " model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
+			+ NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static class NewAction extends ";
 	protected final String TEXT_14 = NL + "\t{" + NL + "\t\t/**" + NL
 			+ "\t\t * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)" + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
@@ -56,8 +55,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_20 = "(getWindow().getShell(), wizard);" + NL + "\t\t\twizardDialog.open();" + NL
 			+ "\t\t}" + NL + "\t}" + NL;
 	protected final String TEXT_21 = NL + "\t/**" + NL + "\t * This keeps track of the active editor." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_22 = " activeEditorPart;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * This keeps track of the current selection provider." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
@@ -76,8 +75,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_32 = ".INSTANCE.log(exception);" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t};"
 			+ NL + "" + NL + "\t/**" + NL + "\t * This action refreshes the viewer of the current editor if the editor"
 			+ NL + "\t * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_33 = " refreshViewerAction =" + NL + "\t\tnew ";
 	protected final String TEXT_34 = "(";
 	protected final String TEXT_35 = ".INSTANCE.getString(\"_UI_RefreshViewer_menu_item\"))";
@@ -94,55 +93,40 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_44 = ")activeEditorPart).getViewer();" + NL + "\t\t\t\t\tif (viewer != null)" + NL
 			+ "\t\t\t\t\t{" + NL + "\t\t\t\t\t\tviewer.refresh();" + NL + "\t\t\t\t\t}" + NL + "\t\t\t\t}" + NL
 			+ "\t\t\t}" + NL + "\t\t};" + NL;
-	protected final String TEXT_45 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_45 = NL + "\t/**" + NL
 			+ "\t * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor"
 			+ NL + "\t * generated for the current selection by the item provider." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_46 = " createChildActions;" + NL;
-	protected final String TEXT_47 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_47 = NL + "\t/**" + NL
 			+ "\t * This will contain a map of {@link org.eclipse.emf.edit.ui.action.CreateChildAction}s, keyed by sub-menu text."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */" + NL + "\tprotected ";
 	protected final String TEXT_48 = " createChildSubmenuActions;" + NL;
-	protected final String TEXT_49 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_49 = NL + "\t/**" + NL
 			+ "\t * This is the menu manager into which menu contribution items should be added for CreateChild actions."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */" + NL + "\tprotected ";
-	protected final String TEXT_50 = " createChildMenuManager;"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_50 = " createChildMenuManager;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor"
 			+ NL + "\t * generated for the current selection by the item provider." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_51 = " createSiblingActions;" + NL;
-	protected final String TEXT_52 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_52 = NL + "\t/**" + NL
 			+ "\t * This will contain a map of {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction}s, keyed by submenu text."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */" + NL + "\tprotected ";
 	protected final String TEXT_53 = " createSiblingSubmenuActions;" + NL;
-	protected final String TEXT_54 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_54 = NL + "\t/**" + NL
 			+ "\t * This is the menu manager into which menu contribution items should be added for CreateSibling actions."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */" + NL + "\tprotected ";
 	protected final String TEXT_55 = " createSiblingMenuManager;" + NL;
 	protected final String TEXT_56 = NL + "\t/**" + NL + "\t * This creates an instance of the contributor." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic ";
 	protected final String TEXT_57 = "()" + NL + "\t{" + NL + "\t\tsuper(ADDITIONS_LAST_STYLE);" + NL
 			+ "\t\tloadResourceAction = new ";
 	protected final String TEXT_58 = "();" + NL + "\t\tvalidateAction = new ";
@@ -168,8 +152,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
 	protected final String TEXT_74 = NL + "\t@Override";
 	protected final String TEXT_75 = NL + "\tpublic void contributeToMenu(";
-	protected final String TEXT_76 = " menuManager)" + NL + "\t{" + NL + "\t\tsuper.contributeToMenu(menuManager);"
-			+ NL + "" + NL + "\t\t";
+	protected final String TEXT_76 = " menuManager)" + NL + "\t{" + NL + "\t\tsuper.contributeToMenu(menuManager);" + NL
+			+ "" + NL + "\t\t";
 	protected final String TEXT_77 = " submenuManager = new ";
 	protected final String TEXT_78 = "(";
 	protected final String TEXT_79 = ".INSTANCE.getString(\"_UI_";
@@ -202,14 +186,7 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			+ "\t\t\t\t\t menuManager.updateAll(true);" + NL + "\t\t\t\t }" + NL + "\t\t\t });" + NL;
 	protected final String TEXT_103 = NL + "\t\t// Add your contributions." + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL;
-	protected final String TEXT_104 = NL
-			+ "\t\taddGlobalActions(submenuManager);"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
+	protected final String TEXT_104 = NL + "\t\taddGlobalActions(submenuManager);" + NL + "\t}" + NL + "" + NL + "\t/**"
 			+ NL
 			+ "\t * When the active editor changes, this remembers the change and registers with it as a selection provider."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
@@ -226,24 +203,13 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			+ "\t\t\t// Fake a selection changed event to update the menus." + NL + "\t\t\t//" + NL
 			+ "\t\t\tif (selectionProvider.getSelection() != null)" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tselectionChanged(new ";
-	protected final String TEXT_108 = "(selectionProvider, selectionProvider.getSelection()));"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener},"
-			+ NL
+	protected final String TEXT_108 = "(selectionProvider, selectionProvider.getSelection()));" + NL + "\t\t\t}" + NL
+			+ "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
+			+ "\t * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener}," + NL
 			+ "\t * handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings"
 			+ NL + "\t * that can be added to the selected object and updating the menus accordingly." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic void selectionChanged(";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic void selectionChanged(";
 	protected final String TEXT_109 = " event)" + NL + "\t{";
 	protected final String TEXT_110 = NL + "\t\t// Remove any menu items for old selection." + NL + "\t\t//" + NL
 			+ "\t\tif (createChildMenuManager != null)" + NL + "\t\t{";
@@ -266,8 +232,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_120 = " domain = ((";
 	protected final String TEXT_121 = ")activeEditorPart).getEditingDomain();" + NL + "" + NL
 			+ "\t\t\tnewChildDescriptors = domain.getNewChildDescriptors(object, null);" + NL
-			+ "\t\t\tnewSiblingDescriptors = domain.getNewChildDescriptors(null, object);" + NL + "\t\t}" + NL + ""
-			+ NL + "\t\t// Generate actions for selection; populate and redraw the menus." + NL + "\t\t//" + NL
+			+ "\t\t\tnewSiblingDescriptors = domain.getNewChildDescriptors(null, object);" + NL + "\t\t}" + NL + "" + NL
+			+ "\t\t// Generate actions for selection; populate and redraw the menus." + NL + "\t\t//" + NL
 			+ "\t\tcreateChildActions = generateCreateChildActions(newChildDescriptors, selection);";
 	protected final String TEXT_122 = NL + "\t\tcreateChildSubmenuActions = extractSubmenuActions(createChildActions);";
 	protected final String TEXT_123 = NL
@@ -288,9 +254,7 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_130 = NL + "\t\t// Add your contributions." + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT";
 	protected final String TEXT_131 = NL + "\t}" + NL;
-	protected final String TEXT_132 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_132 = NL + "\t/**" + NL
 			+ "\t * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in <code>descriptors</code>,"
 			+ NL + "\t * and returns the collection of these actions." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
@@ -307,20 +271,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_143 = "(activeEditorPart, selection, ";
 	protected final String TEXT_144 = "descriptor";
 	protected final String TEXT_145 = "i.next()";
-	protected final String TEXT_146 = "));"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t\treturn actions;"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_146 = "));" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn actions;" + NL + "\t}"
+			+ NL + "" + NL + "\t/**" + NL
 			+ "\t * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in <code>descriptors</code>,"
 			+ NL + "\t * and returns the collection of these actions." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
@@ -337,27 +289,15 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_157 = "(activeEditorPart, selection, ";
 	protected final String TEXT_158 = "descriptor";
 	protected final String TEXT_159 = "i.next()";
-	protected final String TEXT_160 = "));"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t\treturn actions;"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_160 = "));" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn actions;" + NL + "\t}"
+			+ NL + "" + NL + "\t/**" + NL
 			+ "\t * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s"
 			+ NL
 			+ "\t * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection,"
 			+ NL + "\t * by inserting them before the specified contribution item <code>contributionID</code>." + NL
 			+ "\t * If <code>contributionID</code> is <code>null</code>, they are simply added." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected void populateManager(";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected void populateManager(";
 	protected final String TEXT_161 = " manager, ";
 	protected final String TEXT_162 = " actions, String contributionID)" + NL + "\t{" + NL + "\t\tif (actions != null)"
 			+ NL + "\t\t{";
@@ -368,33 +308,10 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_167 = NL + "\t\t\t{";
 	protected final String TEXT_168 = NL + "\t\t\t\t";
 	protected final String TEXT_169 = " action = (IAction)i.next();";
-	protected final String TEXT_170 = NL
-			+ "\t\t\t\tif (contributionID != null)"
-			+ NL
-			+ "\t\t\t\t{"
-			+ NL
-			+ "\t\t\t\t\tmanager.insertBefore(contributionID, action);"
-			+ NL
-			+ "\t\t\t\t}"
-			+ NL
-			+ "\t\t\t\telse"
-			+ NL
-			+ "\t\t\t\t{"
-			+ NL
-			+ "\t\t\t\t\tmanager.add(action);"
-			+ NL
-			+ "\t\t\t\t}"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ "\t\t"
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_170 = NL + "\t\t\t\tif (contributionID != null)" + NL + "\t\t\t\t{" + NL
+			+ "\t\t\t\t\tmanager.insertBefore(contributionID, action);" + NL + "\t\t\t\t}" + NL + "\t\t\t\telse" + NL
+			+ "\t\t\t\t{" + NL + "\t\t\t\t\tmanager.add(action);" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}"
+			+ NL + "\t}" + NL + "\t\t" + NL + "\t/**" + NL
 			+ "\t * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s"
 			+ NL
 			+ "\t * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection."
@@ -414,13 +331,10 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			+ "\t\t\t\tif (contributionItem instanceof ";
 	protected final String TEXT_177 = ")" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\t";
 	protected final String TEXT_178 = " action = ((";
-	protected final String TEXT_179 = ")contributionItem).getAction();" + NL
-			+ "\t\t\t\t\tif (actions.contains(action))" + NL + "\t\t\t\t\t{" + NL
-			+ "\t\t\t\t\t\tmanager.remove(contributionItem);" + NL + "\t\t\t\t\t}" + NL + "\t\t\t\t}" + NL + "\t\t\t}"
-			+ NL + "\t\t}" + NL + "\t}" + NL;
-	protected final String TEXT_180 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_179 = ")contributionItem).getAction();" + NL + "\t\t\t\t\tif (actions.contains(action))"
+			+ NL + "\t\t\t\t\t{" + NL + "\t\t\t\t\t\tmanager.remove(contributionItem);" + NL + "\t\t\t\t\t}" + NL
+			+ "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t}" + NL;
+	protected final String TEXT_180 = NL + "\t/**" + NL
 			+ "\t * This extracts those actions in the <code>submenuActions</code> collection whose text is qualified and returns"
 			+ NL + "\t * a map of these actions, keyed by submenu text." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
@@ -443,30 +357,10 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_195 = ")";
 	protected final String TEXT_196 = "createSubmenuActions.get(text);" + NL + "\t\t\t\t\tif (submenuActions == null)"
 			+ NL + "\t\t\t\t\t{" + NL + "\t\t\t\t\t\tcreateSubmenuActions.put(text, submenuActions = new ";
-	protected final String TEXT_197 = "());"
-			+ NL
-			+ "\t\t\t\t\t}"
-			+ NL
-			+ "\t\t\t\t\taction.setText(st.nextToken().trim());"
-			+ NL
-			+ "\t\t\t\t\tsubmenuActions.add(action);"
-			+ NL
-			+ "\t\t\t\t\tactions.remove();"
-			+ NL
-			+ "\t\t\t\t}"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t\treturn createSubmenuActions;"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_197 = "());" + NL + "\t\t\t\t\t}" + NL
+			+ "\t\t\t\t\taction.setText(st.nextToken().trim());" + NL + "\t\t\t\t\tsubmenuActions.add(action);" + NL
+			+ "\t\t\t\t\tactions.remove();" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}" + NL
+			+ "\t\treturn createSubmenuActions;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.MenuManager}s containing"
 			+ NL
 			+ "\t * {@link org.eclipse.jface.action.ActionContributionItem}s based on the {@link org.eclipse.jface.action.IAction}s"
@@ -474,8 +368,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			+ "\t * contained in the <code>submenuActions</code> collection, by inserting them before the specified contribution"
 			+ NL + "\t * item <code>contributionID</code>." + NL
 			+ "\t * If <code>contributionID</code> is <code>null</code>, they are simply added." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected void populateManager(";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected void populateManager(";
 	protected final String TEXT_198 = " manager, ";
 	protected final String TEXT_199 = " submenuActions, String contributionID)" + NL + "\t{" + NL
 			+ "\t\tif (submenuActions != null)" + NL + "\t\t{";
@@ -490,24 +384,14 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_207 = " submenuManager = new ";
 	protected final String TEXT_208 = "(";
 	protected final String TEXT_209 = "(String)";
-	protected final String TEXT_210 = "entry.getKey());" + NL + "\t\t\t\tif (contributionID != null)" + NL
-			+ "\t\t\t\t{" + NL + "\t\t\t\t\tmanager.insertBefore(contributionID, submenuManager);" + NL + "\t\t\t\t}"
-			+ NL + "\t\t\t\telse" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\tmanager.add(submenuManager);" + NL + "\t\t\t\t}"
-			+ NL + "\t\t\t\tpopulateManager(submenuManager, ";
+	protected final String TEXT_210 = "entry.getKey());" + NL + "\t\t\t\tif (contributionID != null)" + NL + "\t\t\t\t{"
+			+ NL + "\t\t\t\t\tmanager.insertBefore(contributionID, submenuManager);" + NL + "\t\t\t\t}" + NL
+			+ "\t\t\t\telse" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\tmanager.add(submenuManager);" + NL + "\t\t\t\t}" + NL
+			+ "\t\t\t\tpopulateManager(submenuManager, ";
 	protected final String TEXT_211 = "(";
 	protected final String TEXT_212 = ")";
-	protected final String TEXT_213 = "entry.getValue(), null);"
-			+ NL
-			+ "\t\t\t}"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_213 = "entry.getValue(), null);" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t}" + NL + ""
+			+ NL + "\t/**" + NL
 			+ "\t * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.MenuManager}s and their"
 			+ NL
 			+ "\t * {@link org.eclipse.jface.action.ActionContributionItem}s based on the {@link org.eclipse.jface.action.IAction}s"
@@ -701,19 +585,15 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 		String _LinkedHashMapOfStringToCollectionOfIAction = null;
 		if (genModel.isCreationCommands()) {
 			_CollectionOfAnything = genModel.getImportedName("Collection" + (genModel.useGenerics() ? "<?>" : ""));
-			_CollectionOfIAction = genModel
-					.getImportedName(genModel.useGenerics() ? "java.util.Collection<org.eclipse.jface.action.IAction>"
-							: "java.util.Collection");
-			_ArrayListOfIAction = genModel
-					.getImportedName(genModel.useGenerics() ? "java.util.ArrayList<org.eclipse.jface.action.IAction>"
-							: "java.util.ArrayList");
-			_CollectionOfExtendsIAction = genModel
-					.getImportedName(genModel.useGenerics() ? "java.util.Collection<? extends org.eclipse.jface.action.IAction>"
-							: "java.util.Collection");
+			_CollectionOfIAction = genModel.getImportedName(genModel.useGenerics()
+					? "java.util.Collection<org.eclipse.jface.action.IAction>" : "java.util.Collection");
+			_ArrayListOfIAction = genModel.getImportedName(genModel.useGenerics()
+					? "java.util.ArrayList<org.eclipse.jface.action.IAction>" : "java.util.ArrayList");
+			_CollectionOfExtendsIAction = genModel.getImportedName(genModel.useGenerics()
+					? "java.util.Collection<? extends org.eclipse.jface.action.IAction>" : "java.util.Collection");
 			if (genModel.isCreationSubmenus()) {
-				_IteratorOfIAction = genModel
-						.getImportedName(genModel.useGenerics() ? "java.util.Iterator<org.eclipse.jface.action.IAction>"
-								: "java.util.Iterator");
+				_IteratorOfIAction = genModel.getImportedName(genModel.useGenerics()
+						? "java.util.Iterator<org.eclipse.jface.action.IAction>" : "java.util.Iterator");
 				_MapOfStringToCollectionOfIAction = genModel.getImportedName("java.util.Map")
 						+ (genModel.useGenerics() ? ("<String, " + _CollectionOfIAction + ">") : "");
 				_MapEntryOfStringToCollectionOfIAction = genModel.getImportedName("java.util.Map") + ".Entry"
@@ -733,10 +613,9 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -749,8 +628,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 		stringBuffer.append(TEXT_5);
 		stringBuffer.append(genPackage.getActionBarContributorClassName());
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(genModel
-				.getImportedName("org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor"));
+		stringBuffer
+				.append(genModel.getImportedName("org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor"));
 		stringBuffer.append(TEXT_7);
 		stringBuffer.append(genModel.getImportedName("org.eclipse.jface.viewers.ISelectionChangedListener"));
 		stringBuffer.append(TEXT_8);
@@ -765,8 +644,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			stringBuffer.append(TEXT_12);
 			stringBuffer.append(genPackage.getPrefix());
 			stringBuffer.append(TEXT_13);
-			stringBuffer.append(genModel
-					.getImportedName("org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate"));
+			stringBuffer
+					.append(genModel.getImportedName("org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate"));
 			stringBuffer.append(TEXT_14);
 			stringBuffer.append(genModel.getImportedName("org.eclipse.jface.action.IAction"));
 			stringBuffer.append(TEXT_15);
@@ -1253,8 +1132,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
 				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-		canGenerate = canGenerate
-				&& (genPackage.hasConcreteClasses() && genPackage.getGenModel().getRuntimePlatform() != GenRuntimePlatform.GWT);
+		canGenerate = canGenerate && (genPackage.hasConcreteClasses()
+				&& genPackage.getGenModel().getRuntimePlatform() != GenRuntimePlatform.GWT);
 		return canGenerate;
 	}
 }

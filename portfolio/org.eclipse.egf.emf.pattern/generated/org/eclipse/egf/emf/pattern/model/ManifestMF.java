@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -255,10 +255,8 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
 				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate
-				&& (genModel.isBundleManifest())
-				&& (genModel.hasPluginSupport() && !genModel.sameModelEditProject() && !genModel
-						.sameModelEditorProject());
+		canGenerate = canGenerate && (genModel.isBundleManifest()) && (genModel.hasPluginSupport()
+				&& !genModel.sameModelEditProject() && !genModel.sameModelEditorProject());
 		return canGenerate;
 	}
 }

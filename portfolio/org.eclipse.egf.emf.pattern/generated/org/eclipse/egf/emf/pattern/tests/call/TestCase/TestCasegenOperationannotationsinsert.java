@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;

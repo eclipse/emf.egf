@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -373,10 +373,9 @@ public class ClassisSetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0sk_0GJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0sk_0GJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -474,8 +473,8 @@ public class ClassisSetGenFeatureoverride {
 				}
 			} else if (genClass.getIsSetAccessorOperation(genFeature) != null) {
 				stringBuffer.append(TEXT_44);
-				stringBuffer.append(genClass.getIsSetAccessorOperation(genFeature).getBody(
-						genModel.getIndentation(stringBuffer)));
+				stringBuffer.append(
+						genClass.getIsSetAccessorOperation(genFeature).getBody(genModel.getIndentation(stringBuffer)));
 			} else {
 				stringBuffer.append(TEXT_45);
 				{
@@ -500,10 +499,9 @@ public class ClassisSetGenFeatureoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0suw0GJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0suw0GJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -26,14 +26,14 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter"
-			+ NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_1 = NL + NL + "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL
+			+ "\t\t\t\t(";
 	protected final String TEXT_2 = ",";
-	protected final String TEXT_3 = NL + "\t\t\t\t\t\t ";
+	protected final String TEXT_3 = NL + "\t\t\t\t ";
 	protected final String TEXT_4 = "));";
-	protected final String TEXT_5 = NL + "\t\t\t\t\t\t ";
+	protected final String TEXT_5 = NL + "\t\t\t\t ";
 	protected final String TEXT_6 = "));";
-	protected final String TEXT_7 = NL + "\t\t\t\t\t\t ";
+	protected final String TEXT_7 = NL + "\t\t\t\t ";
 	protected final String TEXT_8 = ".createFromString(";
 	protected final String TEXT_9 = ", ";
 	protected final String TEXT_10 = ")));";
@@ -207,8 +207,8 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
 		stringBuffer.append(TEXT_2);
 		if (createFeature.isEnumBasedType()) {
 			stringBuffer.append(TEXT_3);
-			stringBuffer.append(createFeature.getTypeGenEnum().getStaticValue(
-					createFeature.getEcoreFeature().getDefaultValueLiteral()));
+			stringBuffer.append(createFeature.getTypeGenEnum()
+					.getStaticValue(createFeature.getEcoreFeature().getDefaultValueLiteral()));
 			stringBuffer.append(TEXT_4);
 		} else if (createFeature.isStringBasedType()) {
 			stringBuffer.append(TEXT_5);

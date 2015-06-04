@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -101,7 +101,8 @@ public class Interfaceinsert {
 															this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
 															if (preCondition(ctx)) {
-																ctx.setNode(new Node.Container(currentNode, getClass()));
+																ctx.setNode(
+																		new Node.Container(currentNode, getClass()));
 																orchestration(ctx);
 															}
 

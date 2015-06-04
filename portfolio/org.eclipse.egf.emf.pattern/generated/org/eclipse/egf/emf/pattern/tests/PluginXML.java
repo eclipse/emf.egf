@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -163,8 +163,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		 *   IBM - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(TEXT_2);
 		{
@@ -176,10 +176,9 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

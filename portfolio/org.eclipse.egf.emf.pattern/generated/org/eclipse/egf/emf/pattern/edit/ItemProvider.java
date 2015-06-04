@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -65,9 +65,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 	protected final String TEXT_27 = "PropertyDescriptor(Object object)" + NL + "\t{";
 	protected final String TEXT_28 = NL;
 	protected final String TEXT_29 = NL + "\t}" + NL;
-	protected final String TEXT_30 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_30 = NL + "\t/**" + NL
 			+ "\t * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an"
 			+ NL
 			+ "\t * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or"
@@ -124,8 +122,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 	protected final String TEXT_63 = NL + "\t}\t";
 	protected final String TEXT_64 = NL + NL + "\t/**" + NL
 			+ "\t * This handles model notifications by calling {@link #updateChildren} to update any cached" + NL
-			+ "\t * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}."
-			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
+			+ "\t * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}." + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */";
 	protected final String TEXT_65 = NL + "\t@Override";
 	protected final String TEXT_66 = NL + "\tpublic void notifyChanged(Notification notification)" + NL + "\t{" + NL
@@ -331,10 +329,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -343,9 +340,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		stringBuffer.append(TEXT_3);
 		genModel.addImport("org.eclipse.emf.common.notify.AdapterFactory");
 		genModel.addImport("org.eclipse.emf.common.notify.Notification");
-		String _List = genModel
-				.getImportedName(genModel.useGenerics() ? "java.util.List<org.eclipse.emf.edit.provider.IItemPropertyDescriptor>"
-						: "java.util.List");
+		String _List = genModel.getImportedName(genModel.useGenerics()
+				? "java.util.List<org.eclipse.emf.edit.provider.IItemPropertyDescriptor>" : "java.util.List");
 		genModel.markImportLocation(stringBuffer);
 		stringBuffer.append(TEXT_4);
 		stringBuffer.append(genClass.getQualifiedInterfaceName());
@@ -430,8 +426,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 				stringBuffer.append(TEXT_31);
 			}
 			stringBuffer.append(TEXT_32);
-			stringBuffer
-					.append(genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<? extends org.eclipse.emf.ecore.EStructuralFeature>"
+			stringBuffer.append(genModel.getImportedName(
+					genModel.useGenerics() ? "java.util.Collection<? extends org.eclipse.emf.ecore.EStructuralFeature>"
 							: "java.util.Collection"));
 			stringBuffer.append(TEXT_33);
 			for (GenFeature genFeature : genClass.getChildrenFeatures()) {
@@ -582,9 +578,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 				stringBuffer.append(TEXT_84);
 			}
 			stringBuffer.append(TEXT_85);
-			stringBuffer
-					.append(genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<java.lang.Object>"
-							: "java.util.Collection"));
+			stringBuffer.append(genModel.getImportedName(
+					genModel.useGenerics() ? "java.util.Collection<java.lang.Object>" : "java.util.Collection"));
 			stringBuffer.append(TEXT_86);
 			for (GenClass.ChildCreationData childCreationData : genClass.getChildCreationData()) {
 				GenFeature createFeature = childCreationData.createFeature;
@@ -610,10 +605,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 							callParameters.put("genClass", genClass);
 							callParameters.put("genPackage", genPackage);
 							callParameters.put("genModel", genModel);
-							CallHelper
-									.executeWithParameterInjection(
-											"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_036GEGJ-Ed-FqczH3ESmRw",
-											new ExecutionContext((InternalPatternContext) ctx), callParameters);
+							CallHelper.executeWithParameterInjection(
+									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_036GEGJ-Ed-FqczH3ESmRw",
+									new ExecutionContext((InternalPatternContext) ctx), callParameters);
 							stringBuffer.setLength(0);
 						}
 
@@ -637,10 +631,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 							callParameters.put("genClass", genClass);
 							callParameters.put("genPackage", genPackage);
 							callParameters.put("genModel", genModel);
-							CallHelper
-									.executeWithParameterInjection(
-											"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04WyAGJ-Ed-FqczH3ESmRw",
-											new ExecutionContext((InternalPatternContext) ctx), callParameters);
+							CallHelper.executeWithParameterInjection(
+									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04WyAGJ-Ed-FqczH3ESmRw",
+									new ExecutionContext((InternalPatternContext) ctx), callParameters);
 							stringBuffer.setLength(0);
 						}
 
@@ -665,10 +658,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 						callParameters.put("genClass", genClass);
 						callParameters.put("genPackage", genPackage);
 						callParameters.put("genModel", genModel);
-						CallHelper
-								.executeWithParameterInjection(
-										"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw",
-										new ExecutionContext((InternalPatternContext) ctx), callParameters);
+						CallHelper.executeWithParameterInjection(
+								"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw",
+								new ExecutionContext((InternalPatternContext) ctx), callParameters);
 						stringBuffer.setLength(0);
 					}
 
@@ -692,10 +684,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 						callParameters.put("genClass", genClass);
 						callParameters.put("genPackage", genPackage);
 						callParameters.put("genModel", genModel);
-						CallHelper
-								.executeWithParameterInjection(
-										"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_048n4GJ-Ed-FqczH3ESmRw",
-										new ExecutionContext((InternalPatternContext) ctx), callParameters);
+						CallHelper.executeWithParameterInjection(
+								"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_048n4GJ-Ed-FqczH3ESmRw",
+								new ExecutionContext((InternalPatternContext) ctx), callParameters);
 						stringBuffer.setLength(0);
 					}
 
@@ -709,8 +700,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 					stringBuffer.append(TEXT_93);
 				}
 				stringBuffer.append(TEXT_94);
-				stringBuffer.append(genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<?>"
-						: "java.util.Collection"));
+				stringBuffer.append(genModel
+						.getImportedName(genModel.useGenerics() ? "java.util.Collection<?>" : "java.util.Collection"));
 				stringBuffer.append(TEXT_95);
 				if (genClass.hasFeatureMapCreateChildFeatures()) {
 					stringBuffer.append(TEXT_96);
@@ -733,8 +724,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 				stringBuffer.append(TEXT_103);
 			}
 		}
-		if (genClass.getProviderExtendsGenClass() == null
-				|| genClass.getProviderExtendsGenClass().getGenPackage() != genPackage
+		if (genClass.getProviderExtendsGenClass() == null || genClass.getProviderExtendsGenClass()
+				.getGenPackage() != genPackage
 				&& (!genPackage.isExtensibleProviderFactory() || genClass.getProviderExtendsGenClass().getGenPackage()
 						.isExtensibleProviderFactory() != genPackage.isExtensibleProviderFactory())) {
 			stringBuffer.append(TEXT_104);

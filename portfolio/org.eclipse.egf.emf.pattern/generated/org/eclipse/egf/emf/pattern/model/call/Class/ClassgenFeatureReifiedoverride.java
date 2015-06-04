@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -80,8 +80,8 @@ public class ClassgenFeatureReifiedoverride {
 	protected final String TEXT_46 = ";" + NL + "\t}" + NL;
 	protected final String TEXT_47 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL
-			+ "\t * This is specialized for the more specific type known in this context." + NL + "\t * @generated"
-			+ NL + "\t */";
+			+ "\t * This is specialized for the more specific type known in this context." + NL + "\t * @generated" + NL
+			+ "\t */";
 	protected final String TEXT_48 = NL;
 	protected final String TEXT_49 = NL + "\t@Override";
 	protected final String TEXT_50 = NL + "\tpublic ";
@@ -94,8 +94,8 @@ public class ClassgenFeatureReifiedoverride {
 	protected final String TEXT_57 = ", msgs);" + NL + "\t}" + NL;
 	protected final String TEXT_58 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL
-			+ "\t * This is specialized for the more specific type known in this context." + NL + "\t * @generated"
-			+ NL + "\t */";
+			+ "\t * This is specialized for the more specific type known in this context." + NL + "\t * @generated" + NL
+			+ "\t */";
 	protected final String TEXT_59 = NL;
 	protected final String TEXT_60 = NL + "\t@Override";
 	protected final String TEXT_61 = NL + "\tpublic void set";
@@ -449,10 +449,9 @@ public class ClassgenFeatureReifiedoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lIUFGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lIUFGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -562,10 +561,9 @@ public class ClassgenFeatureReifiedoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0mnhwGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0mnhwGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -615,10 +613,9 @@ public class ClassgenFeatureReifiedoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0nqqoGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0nqqoGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -32,12 +32,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 	protected final String TEXT_4 = NL;
 	protected final String TEXT_5 = NL + "_UI_CreateChild_text = {0}" + NL + "_UI_CreateChild_text2 = {1} ";
 	protected final String TEXT_6 = "| ";
-	protected final String TEXT_7 = "{0}"
-			+ NL
-			+ "_UI_CreateChild_text3 = {1}"
-			+ NL
-			+ "_UI_CreateChild_tooltip = Create New {0} Under {1} Feature"
-			+ NL
+	protected final String TEXT_7 = "{0}" + NL + "_UI_CreateChild_text3 = {1}" + NL
+			+ "_UI_CreateChild_tooltip = Create New {0} Under {1} Feature" + NL
 			+ "_UI_CreateChild_description = Create a new child of type {0} for the {1} feature of the selected {2}."
 			+ NL
 			+ "_UI_CreateSibling_description = Create a new sibling of type {0} for the selected {2}, under the {1} feature of their parent."
@@ -176,8 +172,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 		 *   IBM - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
@@ -188,10 +184,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

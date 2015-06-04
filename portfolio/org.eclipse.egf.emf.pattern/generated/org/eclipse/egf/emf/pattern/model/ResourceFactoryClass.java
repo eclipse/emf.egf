@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -48,8 +48,8 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_15 = " xmlMap = new ";
 	protected final String TEXT_16 = "();" + NL;
 	protected final String TEXT_17 = NL + "\t/**" + NL + "\t * Creates an instance of the resource factory." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic ";
 	protected final String TEXT_18 = "()" + NL + "\t{" + NL + "\t\tsuper();";
 	protected final String TEXT_19 = NL + "\t\textendedMetaData = new ";
 	protected final String TEXT_20 = "(new ";
@@ -196,10 +196,9 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

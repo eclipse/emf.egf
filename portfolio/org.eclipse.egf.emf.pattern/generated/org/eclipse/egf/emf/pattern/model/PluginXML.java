@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -206,8 +206,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
 		GenModel genModel = (GenModel) argument;
 		String key = genModel.getPluginKey();
-		boolean hasKey = key != null && !key.equals(""); /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		boolean hasKey = key != null && !key.equals("");
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(TEXT_2);
 		{
@@ -219,10 +219,9 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -300,8 +299,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 					stringBuffer.append(TEXT_38);
 				}
 				stringBuffer.append(TEXT_39);
-				stringBuffer.append(genPackage.isXMIResource() ? "org.eclipse.emf.ecore.xmi"
-						: "org.eclipse.core.runtime.xml");
+				stringBuffer.append(
+						genPackage.isXMIResource() ? "org.eclipse.emf.ecore.xmi" : "org.eclipse.core.runtime.xml");
 				stringBuffer.append(TEXT_40);
 				stringBuffer.append(genPackage.getFileExtensions());
 				stringBuffer.append(TEXT_41);
@@ -345,10 +344,9 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
 				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate
-				&& (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT)
-				&& (genModel.hasPluginSupport() && !genModel.sameModelEditProject() && !genModel
-						.sameModelEditorProject());
+		canGenerate = canGenerate && (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT)
+				&& (genModel.hasPluginSupport() && !genModel.sameModelEditProject()
+						&& !genModel.sameModelEditorProject());
 		return canGenerate;
 	}
 }

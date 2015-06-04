@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -45,8 +45,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_10 = ";";
 	protected final String TEXT_11 = NL;
 	protected final String TEXT_12 = NL + "\t/**" + NL + "\t * The cached model package" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected static ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected static ";
 	protected final String TEXT_13 = " modelPackage;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Creates an instance of the switch." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
@@ -59,29 +59,17 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			+ "\t * @return whether this is a switch for the given package." + NL + "\t * @generated" + NL + "\t */"
 			+ NL + "\t@Override" + NL + "\tprotected boolean isSwitchFor(EPackage ePackage)" + NL + "\t{" + NL
 			+ "\t\treturn ePackage == modelPackage;" + NL + "\t}";
-	protected final String TEXT_17 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_17 = NL + "\t/**" + NL
 			+ "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL
-			+ "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-	protected final String TEXT_18 = " doSwitch(EObject theEObject)"
-			+ NL
-			+ "\t{"
-			+ NL
-			+ "\t\treturn doSwitch(theEObject.eClass(), theEObject);"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+			+ "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated"
+			+ NL + "\t */" + NL + "\tpublic ";
+	protected final String TEXT_18 = " doSwitch(EObject theEObject)" + NL + "\t{" + NL
+			+ "\t\treturn doSwitch(theEObject.eClass(), theEObject);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL
-			+ "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+			+ "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated"
+			+ NL + "\t */" + NL + "\tprotected ";
 	protected final String TEXT_19 = " doSwitch(EClass theEClass, EObject theEObject)" + NL + "\t{" + NL
 			+ "\t\tif (theEClass.eContainer() == modelPackage)" + NL + "\t\t{" + NL
 			+ "\t\t\treturn doSwitch(theEClass.getClassifierID(), theEObject);" + NL + "\t\t}";
@@ -98,14 +86,11 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 	protected final String TEXT_30 = "eSuperTypes.get(0), theEObject);";
 	protected final String TEXT_31 = NL + "\t\t}";
 	protected final String TEXT_32 = NL + "\t}";
-	protected final String TEXT_33 = NL
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_33 = NL + NL + "\t/**" + NL
 			+ "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL
-			+ "\t * @generated" + NL + "\t */";
+			+ "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated"
+			+ NL + "\t */";
 	protected final String TEXT_34 = NL + "\t@Override";
 	protected final String TEXT_35 = NL + "\tprotected ";
 	protected final String TEXT_36 = " doSwitch(int classifierID, EObject theEObject)" + NL + "\t{" + NL
@@ -292,10 +277,9 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -335,8 +319,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		}
 
 		String templateParameters = genModel.useGenerics() ? "<" + templateParameterName + ">" : "";
-		String returnType = genModel.useGenerics() ? templateParameterName : genModel
-				.getImportedName("java.lang.Object");
+		String returnType = genModel.useGenerics() ? templateParameterName
+				: genModel.getImportedName("java.lang.Object");
 		genModel.markImportLocation(stringBuffer);
 		stringBuffer.append(TEXT_4);
 		stringBuffer.append(genPackage.getQualifiedPackageInterfaceName());
@@ -418,8 +402,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 				stringBuffer.append(TEXT_38);
 				stringBuffer.append(genPackage.getClassifierID(genClass));
 				stringBuffer.append(TEXT_39);
-				if (genClass.isUncheckedCast() || genClass.isMapEntry()
-						&& genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {
+				if (genClass.isUncheckedCast()
+						|| genClass.isMapEntry() && genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {
 					stringBuffer.append(TEXT_40);
 				}
 				stringBuffer.append(genClass.getImportedInterfaceName());
@@ -505,9 +489,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
 				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate
-				&& (genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses()
-						.isEmpty());
+		canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.isAdapterFactory()
+				&& !genPackage.getGenClasses().isEmpty());
 		return canGenerate;
 	}
 }

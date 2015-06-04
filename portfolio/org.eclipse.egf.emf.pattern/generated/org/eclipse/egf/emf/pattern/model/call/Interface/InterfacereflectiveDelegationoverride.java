@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -112,7 +112,8 @@ public class InterfacereflectiveDelegationoverride {
 															this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
 															if (preCondition(ctx)) {
-																ctx.setNode(new Node.Container(currentNode, getClass()));
+																ctx.setNode(
+																		new Node.Container(currentNode, getClass()));
 																orchestration(ctx);
 															}
 
@@ -266,15 +267,15 @@ public class InterfacereflectiveDelegationoverride {
 
 		stringBuffer.append(TEXT_1);
 		if (isImplementation
-				&& (genModel.getFeatureDelegation() == GenDelegationKind.REFLECTIVE_LITERAL || genModel
-						.isDynamicDelegation())
+				&& (genModel.getFeatureDelegation() == GenDelegationKind.REFLECTIVE_LITERAL
+						|| genModel.isDynamicDelegation())
 				&& (genClass.getClassExtendsGenClass() == null || (genClass.getClassExtendsGenClass().getGenModel()
-						.getFeatureDelegation() != GenDelegationKind.REFLECTIVE_LITERAL && !genClass
-						.getClassExtendsGenClass().getGenModel().isDynamicDelegation()))) {
+						.getFeatureDelegation() != GenDelegationKind.REFLECTIVE_LITERAL
+						&& !genClass.getClassExtendsGenClass().getGenModel().isDynamicDelegation()))) {
 			if (genClass.hasStaticFeatures()) {
 				stringBuffer.append(TEXT_2);
-				stringBuffer.append(genClass.getClassExtendsGenClass() == null ? 0 : genClass.getClassExtendsGenClass()
-						.getAllGenFeatures().size());
+				stringBuffer.append(genClass.getClassExtendsGenClass() == null ? 0
+						: genClass.getClassExtendsGenClass().getAllGenFeatures().size());
 				stringBuffer.append(TEXT_3);
 			}
 			stringBuffer.append(TEXT_4);
@@ -283,8 +284,8 @@ public class InterfacereflectiveDelegationoverride {
 			}
 			stringBuffer.append(TEXT_6);
 			stringBuffer.append(genClass.getClassExtendsGenClass() == null ? "0"
-					: genClass.hasStaticFeatures() ? "ESTATIC_FEATURE_COUNT" : Integer.toString(genClass
-							.getClassExtendsGenClass().getAllGenFeatures().size()));
+					: genClass.hasStaticFeatures() ? "ESTATIC_FEATURE_COUNT"
+							: Integer.toString(genClass.getClassExtendsGenClass().getAllGenFeatures().size()));
 			stringBuffer.append(TEXT_7);
 		}
 		stringBuffer.append(TEXT_8);

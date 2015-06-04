@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -46,14 +46,11 @@ public class PackageExample extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 			+ "\t\t// Create a resource set to hold the resources." + NL + "\t\t//" + NL + "\t\t";
 	protected final String TEXT_12 = " resourceSet = new ";
 	protected final String TEXT_13 = "();" + NL + "\t\t";
-	protected final String TEXT_14 = NL
-			+ "\t\t// Register the appropriate resource factory to handle the content type." + NL + "\t\t//" + NL
-			+ "\t\tresourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put" + NL + "\t\t\t(";
+	protected final String TEXT_14 = NL + "\t\t// Register the appropriate resource factory to handle the content type."
+			+ NL + "\t\t//" + NL + "\t\tresourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put" + NL
+			+ "\t\t\t(";
 	protected final String TEXT_15 = ".eCONTENT_TYPE," + NL + "\t\t\t new ";
-	protected final String TEXT_16 = "());"
-			+ NL
-			+ "\t\t"
-			+ NL
+	protected final String TEXT_16 = "());" + NL + "\t\t" + NL
 			+ "\t\t// Register the appropriate content handler for all file extensions and any element from the package's namespace."
 			+ NL + "\t\t//" + NL + "\t\tresourceSet.getURIConverter().getContentHandlers().add" + NL + "\t\t\t(new ";
 	protected final String TEXT_17 = "(";
@@ -307,10 +304,9 @@ public class PackageExample extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

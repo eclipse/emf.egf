@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -470,10 +470,9 @@ public class ClassgenOperationoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0txSoGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0txSoGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 
@@ -528,8 +527,8 @@ public class ClassgenOperationoverride {
 					stringBuffer.append(TEXT_43);
 					stringBuffer.append(genOperation.getQualifiedOperationAccessor());
 					stringBuffer.append(TEXT_44);
-					stringBuffer.append(CodeGenUtil.upperName(genClass.getUniqueName(genOperation),
-							genModel.getLocale()));
+					stringBuffer
+							.append(CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale()));
 					stringBuffer.append(TEXT_45);
 					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 					stringBuffer.append(TEXT_46);
@@ -572,8 +571,8 @@ public class ClassgenOperationoverride {
 				stringBuffer.append(TEXT_63);
 				if (genOperation.isVoid()) {
 					stringBuffer.append(TEXT_64);
-					stringBuffer.append(CodeGenUtil.upperName(genClass.getUniqueName(genOperation),
-							genModel.getLocale()));
+					stringBuffer
+							.append(CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale()));
 					stringBuffer.append(TEXT_65);
 					if (size > 0) {
 						stringBuffer.append(TEXT_66);
@@ -595,8 +594,8 @@ public class ClassgenOperationoverride {
 					stringBuffer.append(TEXT_74);
 					stringBuffer.append(genOperation.getObjectType(genClass));
 					stringBuffer.append(TEXT_75);
-					stringBuffer.append(CodeGenUtil.upperName(genClass.getUniqueName(genOperation),
-							genModel.getLocale()));
+					stringBuffer
+							.append(CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale()));
 					stringBuffer.append(TEXT_76);
 					if (size > 0) {
 						stringBuffer.append(TEXT_77);
@@ -618,8 +617,8 @@ public class ClassgenOperationoverride {
 					stringBuffer.append(TEXT_85);
 				}
 				stringBuffer.append(TEXT_86);
-				stringBuffer.append(genModel
-						.getImportedName(isGWT ? "org.eclipse.emf.common.util.InvocationTargetException"
+				stringBuffer
+						.append(genModel.getImportedName(isGWT ? "org.eclipse.emf.common.util.InvocationTargetException"
 								: "java.lang.reflect.InvocationTargetException"));
 				stringBuffer.append(TEXT_87);
 				stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.WrappedException"));
@@ -648,10 +647,9 @@ public class ClassgenOperationoverride {
 					callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
-					CallHelper
-							.executeWithParameterInjection(
-									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0t7DoGJ-Ed-FqczH3ESmRw",
-									new ExecutionContext((InternalPatternContext) ctx), callParameters);
+					CallHelper.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0t7DoGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx), callParameters);
 					stringBuffer.setLength(0);
 				}
 

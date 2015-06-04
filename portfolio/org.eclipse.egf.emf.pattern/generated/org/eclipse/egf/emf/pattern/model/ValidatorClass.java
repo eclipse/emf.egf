@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -40,15 +40,10 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 	protected final String TEXT_10 = ";";
 	protected final String TEXT_11 = NL;
 	protected final String TEXT_12 = NL + "\t/**" + NL + "\t * The cached model package" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic static final ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static final ";
 	protected final String TEXT_13 = " INSTANCE = new ";
-	protected final String TEXT_14 = "();"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_14 = "();" + NL + "" + NL + "\t/**" + NL
 			+ "\t * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
 			+ "\t * @see org.eclipse.emf.common.util.Diagnostic#getSource()" + NL
@@ -59,29 +54,22 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 	protected final String TEXT_17 = NL + "\t/**" + NL
 			+ "\t * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint '";
 	protected final String TEXT_18 = "' of '";
-	protected final String TEXT_19 = "'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
-			+ NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final int ";
+	protected final String TEXT_19 = "'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+			+ "\t * @generated" + NL + "\t */" + NL + "\tpublic static final int ";
 	protected final String TEXT_20 = " = ";
 	protected final String TEXT_21 = ";" + NL;
-	protected final String TEXT_22 = NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_22 = NL + "\t/**" + NL
 			+ "\t * A constant with a fixed name that can be used as the base value for additional hand written constants."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */" + NL + "\tprivate static final int GENERATED_DIAGNOSTIC_CODE_COUNT = ";
-	protected final String TEXT_23 = ";"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_23 = ";" + NL + "" + NL + "\t/**" + NL
 			+ "\t * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */" + NL + "\tprotected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;"
 			+ NL;
 	protected final String TEXT_24 = NL + "\t/**" + NL + "\t * The cached base package validator." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_25 = " ";
 	protected final String TEXT_26 = "Validator;" + NL;
 	protected final String TEXT_27 = NL + "\t/**" + NL
@@ -98,8 +86,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 	protected final String TEXT_35 = ".validate(eClass, eObject, diagnostics, context, validationDelegate, invariant, expression, severity, source, code);"
 			+ NL + "\t}" + NL;
 	protected final String TEXT_36 = NL + "\t/**" + NL + "\t * Creates an instance of the switch." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic ";
 	protected final String TEXT_37 = "()" + NL + "\t{" + NL + "\t\tsuper();";
 	protected final String TEXT_38 = NL + "\t\t";
 	protected final String TEXT_39 = "Validator = ";
@@ -854,10 +842,9 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -1060,16 +1047,18 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 				for (String constraint : genClassifier.getAllGenConstraints()) {
 					GenClassifier constraintImplementor = genClassifier.getConstraintImplementor(constraint);
 					String delegate = constraintImplementor == null
-							|| constraintImplementor.getGenPackage() == genPackage ? "" : genPackage
-							.getValidatorPackageUniqueSafeName(constraintImplementor.getGenPackage()) + "Validator.";
+							|| constraintImplementor.getGenPackage() == genPackage ? ""
+									: genPackage.getValidatorPackageUniqueSafeName(
+											constraintImplementor.getGenPackage()) + "Validator.";
 					String cast = constraintImplementor == null && genClassifier instanceof GenClass
-							&& !((GenClass) genClassifier).isEObjectExtension() ? "("
-							+ genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
+							&& !((GenClass) genClassifier).isEObjectExtension()
+									? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
 					String accessor = constraintImplementor != null && genClassifier instanceof GenDataType
 							&& !((GenDataType) genClassifier).isPrimitiveType()
 							&& ((GenDataType) constraintImplementor).isPrimitiveType()
-							&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "."
-							+ ((GenDataType) constraintImplementor).getPrimitiveValueFunction() + "()" : "";
+							&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50
+									? "." + ((GenDataType) constraintImplementor).getPrimitiveValueFunction() + "()"
+									: "";
 					if ("NoCircularContainment".equals(constraint)) {
 						stringBuffer.append(TEXT_82);
 						if (!((GenClass) genClassifier).isEObjectExtension()) {
@@ -1133,21 +1122,20 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 			stringBuffer.append(TEXT_108);
 			for (String constraint : genClassifier.getGenConstraints()) {
 				GenClassifier constraintDelegate = genClassifier.getConstraintDelegate(constraint);
-				String constant = genClassifier.getClassifierID()
-						+ "__"
-						+ CodeGenUtil.format(constraint, '_', null, false, false).toUpperCase(
-								genClassifier.getGenModel().getLocale());
+				String constant = genClassifier.getClassifierID() + "__"
+						+ CodeGenUtil.format(constraint, '_', null, false, false)
+								.toUpperCase(genClassifier.getGenModel().getLocale());
 				String delegate = constraintDelegate == null || constraintDelegate.getGenPackage() == genPackage ? ""
 						: genPackage.getValidatorPackageUniqueSafeName(constraintDelegate.getGenPackage())
 								+ "Validator.";
 				String cast = constraintDelegate == null && genClassifier instanceof GenClass
-						&& !((GenClass) genClassifier).isEObjectExtension() ? "("
-						+ genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
+						&& !((GenClass) genClassifier).isEObjectExtension()
+								? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
 				String accessor = constraintDelegate != null && genClassifier instanceof GenDataType
 						&& !((GenDataType) genClassifier).isPrimitiveType()
 						&& ((GenDataType) constraintDelegate).isPrimitiveType()
-						&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "."
-						+ ((GenDataType) constraintDelegate).getPrimitiveValueFunction() + "()" : "";
+						&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50
+								? "." + ((GenDataType) constraintDelegate).getPrimitiveValueFunction() + "()" : "";
 				if (genClassifier instanceof GenDataType) {
 					GenDataType genDataType = (GenDataType) genClassifier;
 					if (constraint.equals("Min") && genDataType.getMinLiteral() != null) {
@@ -1214,8 +1202,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 							for (Iterator<String> p = patternList.iterator(); p.hasNext();) {
 								String pattern = p.next();
 								stringBuffer.append(TEXT_137);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
 								stringBuffer.append(TEXT_138);
 								stringBuffer.append(pattern);
 								stringBuffer.append(TEXT_139);
@@ -1299,8 +1287,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 					GenDataType genDataType = (GenDataType) genClassifier;
 					if (constraint.equals("ItemType") && genDataType.getItemType() != null) {
 						GenDataType itemType = genDataType.getItemType();
-						String itemDelegate = itemType.getGenPackage() == genPackage ? "" : genPackage
-								.getValidatorPackageUniqueSafeName(itemType.getGenPackage()) + "Validator.";
+						String itemDelegate = itemType.getGenPackage() == genPackage ? ""
+								: genPackage.getValidatorPackageUniqueSafeName(itemType.getGenPackage()) + "Validator.";
 						stringBuffer.append(TEXT_172);
 						stringBuffer.append(result);
 						stringBuffer.append(TEXT_173);
@@ -1356,8 +1344,9 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 						stringBuffer.append(TEXT_195);
 						for (ListIterator<GenDataType> k = genDataType.getMemberTypes().listIterator(); k.hasNext();) {
 							GenDataType memberType = k.next();
-							String memberDelegate = memberType.getGenPackage() == genPackage ? "" : genPackage
-									.getValidatorPackageUniqueSafeName(memberType.getGenPackage()) + "Validator.";
+							String memberDelegate = memberType.getGenPackage() == genPackage ? ""
+									: genPackage.getValidatorPackageUniqueSafeName(memberType.getGenPackage())
+											+ "Validator.";
 							if (genDataType.isPrimitiveType()) {
 								stringBuffer.append(TEXT_196);
 								stringBuffer.append(memberDelegate);
@@ -1384,9 +1373,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 											&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
 										stringBuffer.append(TEXT_207);
 									}
-									if (!memberType.isObjectType()
-											&& !memberType.getQualifiedInstanceClassName().equals(
-													genDataType.getQualifiedInstanceClassName())) {
+									if (!memberType.isObjectType() && !memberType.getQualifiedInstanceClassName()
+											.equals(genDataType.getQualifiedInstanceClassName())) {
 										stringBuffer.append(TEXT_208);
 										stringBuffer.append(memberType.getImportedWildcardObjectInstanceClassName());
 										stringBuffer.append(TEXT_209);
@@ -1419,8 +1407,9 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 						stringBuffer.append(TEXT_220);
 						for (ListIterator<GenDataType> k = genDataType.getMemberTypes().listIterator(); k.hasNext();) {
 							GenDataType memberType = k.next();
-							String memberDelegate = memberType.getGenPackage() == genPackage ? "" : genPackage
-									.getValidatorPackageUniqueSafeName(memberType.getGenPackage()) + "Validator.";
+							String memberDelegate = memberType.getGenPackage() == genPackage ? ""
+									: genPackage.getValidatorPackageUniqueSafeName(memberType.getGenPackage())
+											+ "Validator.";
 							if (genDataType.isPrimitiveType()) {
 								stringBuffer.append(TEXT_221);
 								stringBuffer.append(memberDelegate);
@@ -1447,9 +1436,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 											&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
 										stringBuffer.append(TEXT_232);
 									}
-									if (!memberType.isObjectType()
-											&& !memberType.getQualifiedInstanceClassName().equals(
-													genDataType.getQualifiedInstanceClassName())) {
+									if (!memberType.isObjectType() && !memberType.getQualifiedInstanceClassName()
+											.equals(genDataType.getQualifiedInstanceClassName())) {
 										stringBuffer.append(TEXT_233);
 										stringBuffer.append(memberType.getImportedWildcardObjectInstanceClassName());
 										stringBuffer.append(TEXT_234);
@@ -1587,8 +1575,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								stringBuffer.append(TEXT_292);
 								stringBuffer.append(comparison);
 								stringBuffer.append(TEXT_293);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
 								stringBuffer.append(TEXT_294);
 								stringBuffer.append(genDataType.getSafeUncapName());
 								stringBuffer.append(TEXT_295);
@@ -1606,8 +1594,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								stringBuffer.append(TEXT_300);
 								stringBuffer.append(comparison);
 								stringBuffer.append(TEXT_301);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
 								stringBuffer.append(TEXT_302);
 								stringBuffer.append(genDataType.getSafeUncapName());
 								stringBuffer.append(TEXT_303);
@@ -1710,8 +1698,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								stringBuffer.append(TEXT_348);
 								stringBuffer.append(comparison);
 								stringBuffer.append(TEXT_349);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
 								stringBuffer.append(TEXT_350);
 								stringBuffer.append(genDataType.getSafeUncapName());
 								stringBuffer.append(TEXT_351);
@@ -1729,8 +1717,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								stringBuffer.append(TEXT_356);
 								stringBuffer.append(comparison);
 								stringBuffer.append(TEXT_357);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil"));
 								stringBuffer.append(TEXT_358);
 								stringBuffer.append(genDataType.getSafeUncapName());
 								stringBuffer.append(TEXT_359);
@@ -2060,13 +2048,13 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								stringBuffer.append(TEXT_516);
 							} else {
 								stringBuffer.append(TEXT_517);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
 								stringBuffer.append(TEXT_518);
 								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 								stringBuffer.append(TEXT_519);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
+								stringBuffer
+										.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
 								stringBuffer.append(TEXT_520);
 								stringBuffer.append(constraint);
 								stringBuffer.append(TEXT_521);
@@ -2203,13 +2191,13 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								stringBuffer.append(TEXT_582);
 							} else {
 								stringBuffer.append(TEXT_583);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
+								stringBuffer.append(
+										genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
 								stringBuffer.append(TEXT_584);
 								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 								stringBuffer.append(TEXT_585);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
+								stringBuffer
+										.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
 								stringBuffer.append(TEXT_586);
 								stringBuffer.append(constraint);
 								stringBuffer.append(TEXT_587);

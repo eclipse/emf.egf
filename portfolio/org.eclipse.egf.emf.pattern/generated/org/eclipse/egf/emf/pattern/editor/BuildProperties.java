@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -119,8 +119,8 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		GenModel genModel = parameter;
 		targetPathName = genModel.getEditorProjectDirectory() + "/build.properties";
 		overwrite = genModel.isUpdateClasspath()
-				&& !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(
-						genModel.getEditorProjectDirectory()).appendSegment("plugin.xml"));
+				&& !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter)
+						.toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml"));
 		encoding = "ISO-8859-1";
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
@@ -172,10 +172,9 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -338,8 +338,8 @@ public class ClassgenOperationjavadocoverride {
 		}
 		if (!genModel.isSuppressEMFModelTags()) {
 			boolean first = true;
-			for (StringTokenizer stringTokenizer = new StringTokenizer(genOperation.getModelInfo(), "\n\r"); stringTokenizer
-					.hasMoreTokens();) {
+			for (StringTokenizer stringTokenizer = new StringTokenizer(genOperation.getModelInfo(),
+					"\n\r"); stringTokenizer.hasMoreTokens();) {
 				String modelInfo = stringTokenizer.nextToken();
 				if (first) {
 					first = false;

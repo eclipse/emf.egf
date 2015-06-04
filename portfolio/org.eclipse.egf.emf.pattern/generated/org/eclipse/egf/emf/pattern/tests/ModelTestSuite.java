@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -43,8 +43,8 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tpublic static void main(String[] args)" + NL + "\t{" + NL + "\t\t";
 	protected final String TEXT_12 = ".run(suite());" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic static ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static ";
 	protected final String TEXT_13 = " suite()" + NL + "\t{" + NL + "\t\t";
 	protected final String TEXT_14 = " suite = new ";
 	protected final String TEXT_15 = "(\"";
@@ -52,8 +52,8 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
 	protected final String TEXT_17 = NL + "\t\tsuite.addTest(";
 	protected final String TEXT_18 = ".suite());";
 	protected final String TEXT_19 = NL + "\t\treturn suite;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic ";
 	protected final String TEXT_20 = "(String name)" + NL + "\t{" + NL + "\t\tsuper(name);" + NL + "\t}" + NL + "" + NL
 			+ "} //";
 	protected final String TEXT_21 = NL;
@@ -175,8 +175,8 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
 		 *   IBM - Initial API and implementation
 		 */
 
-		GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = (GenModel) argument;
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -187,10 +187,9 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

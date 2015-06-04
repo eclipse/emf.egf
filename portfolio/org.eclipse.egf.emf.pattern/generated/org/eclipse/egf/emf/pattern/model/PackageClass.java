@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -33,9 +33,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected final String TEXT_5 = ";";
 	protected final String TEXT_6 = NL;
 	protected final String TEXT_7 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL
-			+ " * The <b>Package</b> for the model." + NL
-			+ " * It contains accessors for the meta objects to represent" + NL + " * <ul>" + NL
-			+ " *   <li>each class,</li>" + NL + " *   <li>each feature of each class,</li>";
+			+ " * The <b>Package</b> for the model." + NL + " * It contains accessors for the meta objects to represent"
+			+ NL + " * <ul>" + NL + " *   <li>each class,</li>" + NL + " *   <li>each feature of each class,</li>";
 	protected final String TEXT_8 = NL + " *   <li>each operation of each class,</li>";
 	protected final String TEXT_9 = NL + " *   <li>each enum,</li>" + NL + " *   <li>and each data type</li>" + NL
 			+ " * </ul>" + NL + " * <!-- end-user-doc -->";
@@ -65,23 +64,23 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected final String TEXT_29 = " eNAME = \"";
 	protected final String TEXT_30 = "\";";
 	protected final String TEXT_31 = NL + NL + "\t/**" + NL + "\t * The package namespace URI." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_32 = " eNS_URI = \"";
 	protected final String TEXT_33 = "\";";
 	protected final String TEXT_34 = NL + NL + "\t/**" + NL + "\t * The package namespace name." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_35 = " eNS_PREFIX = \"";
 	protected final String TEXT_36 = "\";";
 	protected final String TEXT_37 = NL + NL + "\t/**" + NL + "\t * The package content type ID." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_38 = " eCONTENT_TYPE = \"";
 	protected final String TEXT_39 = "\";";
 	protected final String TEXT_40 = NL + NL + "\t/**" + NL + "\t * The singleton instance of the package." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_41 = " eINSTANCE = ";
 	protected final String TEXT_42 = ".init();" + NL;
 	protected final String TEXT_43 = NL + "\t/**";
@@ -152,32 +151,12 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected final String TEXT_90 = "#eNS_URI" + NL + "\t * @see #init()" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tprivate ";
 	protected final String TEXT_91 = "()" + NL + "\t{" + NL + "\t\tsuper(eNS_URI, ";
-	protected final String TEXT_92 = ");"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @generated"
-			+ NL
-			+ "\t */"
-			+ NL
-			+ "\tprivate static boolean isInited = false;"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
+	protected final String TEXT_92 = ");" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->"
+			+ NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+			+ "\tprivate static boolean isInited = false;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends."
 			+ NL + "\t * " + NL + "\t * <p>This method is used to initialize {@link ";
-	protected final String TEXT_93 = "#eINSTANCE} when that field is accessed."
-			+ NL
+	protected final String TEXT_93 = "#eINSTANCE} when that field is accessed." + NL
 			+ "\t * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #eNS_URI";
 	protected final String TEXT_94 = NL + "\t * @see #createPackageContents()" + NL
@@ -276,8 +255,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected final String TEXT_177 = "[size];";
 	protected final String TEXT_178 = NL + "\t\t\t\t }" + NL + "\t\t});";
 	protected final String TEXT_179 = NL + "\t}" + NL + "" + NL + "" + NL + "\t/**" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic static class WhiteList implements ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static class WhiteList implements ";
 	protected final String TEXT_180 = ", EBasicWhiteList" + NL + "\t{";
 	protected final String TEXT_181 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL
 			+ "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
@@ -440,11 +419,10 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected final String TEXT_315 = NL + "\t/**" + NL
 			+ "\t * Complete the initialization of the package and its meta-model.  This" + NL
 			+ "\t * method is guarded to have no affect on any invocation but its first." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic void initializePackageContents()" + NL + "\t{" + NL
-			+ "\t\tif (isInitialized) return;" + NL + "\t\tisInitialized = true;" + NL + "" + NL
-			+ "\t\t// Initialize package" + NL + "\t\tsetName(eNAME);" + NL + "\t\tsetNsPrefix(eNS_PREFIX);" + NL
-			+ "\t\tsetNsURI(eNS_URI);";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic void initializePackageContents()" + NL + "\t{" + NL + "\t\tif (isInitialized) return;" + NL
+			+ "\t\tisInitialized = true;" + NL + "" + NL + "\t\t// Initialize package" + NL + "\t\tsetName(eNAME);" + NL
+			+ "\t\tsetNsPrefix(eNS_PREFIX);" + NL + "\t\tsetNsURI(eNS_URI);";
 	protected final String TEXT_316 = NL + NL + "\t\t// Obtain other dependent packages";
 	protected final String TEXT_317 = NL + "\t\t";
 	protected final String TEXT_318 = " ";
@@ -750,8 +728,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tprivate boolean isLoaded = false;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Laods the package and any sub-packages from their serialized form." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic void loadPackage()" + NL + "\t{" + NL + "\t\tif (isLoaded) return;" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic void loadPackage()" + NL + "\t{" + NL + "\t\tif (isLoaded) return;" + NL
 			+ "\t\tisLoaded = true;" + NL + "" + NL + "\t\t";
 	protected final String TEXT_617 = " url = getClass().getResource(packageFilename);" + NL + "\t\tif (url == null)"
 			+ NL + "\t\t{" + NL
@@ -770,8 +748,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tprivate boolean isFixed = false;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Fixes up the loaded package, to make it appear as if it had been programmatically built." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic void fixPackageContents()" + NL + "\t{" + NL + "\t\tif (isFixed) return;" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic void fixPackageContents()" + NL + "\t{" + NL + "\t\tif (isFixed) return;" + NL
 			+ "\t\tisFixed = true;" + NL + "\t\tfixEClassifiers();" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Sets the instance class on the given classifier." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
@@ -807,16 +785,15 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected final String TEXT_648 = " type, String name, int lowerBound, int upperBound, boolean isUnique, boolean isOrdered)"
 			+ NL + "\t{" + NL + "\t\t";
 	protected final String TEXT_649 = " p = ecoreFactory.createEParameter();" + NL + "\t\tp.setEType(type);" + NL
-			+ "\t\tp.setName(name);" + NL + "\t\tp.setLowerBound(lowerBound);" + NL
-			+ "\t\tp.setUpperBound(upperBound);" + NL + "\t\tp.setUnique(isUnique);" + NL
-			+ "\t\tp.setOrdered(isOrdered);" + NL + "\t\towner.getEParameters().add(p);" + NL + "\t\treturn p;" + NL
-			+ "\t}" + NL + "\t";
+			+ "\t\tp.setName(name);" + NL + "\t\tp.setLowerBound(lowerBound);" + NL + "\t\tp.setUpperBound(upperBound);"
+			+ NL + "\t\tp.setUnique(isUnique);" + NL + "\t\tp.setOrdered(isOrdered);" + NL
+			+ "\t\towner.getEParameters().add(p);" + NL + "\t\treturn p;" + NL + "\t}" + NL + "\t";
 	protected final String TEXT_650 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * Defines literals for the meta objects that represent" + NL + "\t * <ul>" + NL
 			+ "\t *   <li>each class,</li>" + NL + "\t *   <li>each feature of each class,</li>";
 	protected final String TEXT_651 = NL + "\t *   <li>each operation of each class,</li>";
-	protected final String TEXT_652 = NL + "\t *   <li>each enum,</li>" + NL + "\t *   <li>and each data type</li>"
-			+ NL + "\t * </ul>" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+	protected final String TEXT_652 = NL + "\t *   <li>each enum,</li>" + NL + "\t *   <li>and each data type</li>" + NL
+			+ "\t * </ul>" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
 	protected final String TEXT_653 = "public ";
 	protected final String TEXT_654 = "interface Literals" + NL + "\t{";
 	protected final String TEXT_655 = NL + "\t\t/**";
@@ -947,10 +924,11 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		GenPackage genPackage = parameter;
-		argument = ((Object[]) new Object[] { new Object[] {
-				genPackage,
-				genPackage.getGenModel().isSuppressEMFMetaData() || genPackage.getGenModel().isSuppressInterfaces() ? Boolean.TRUE
-						: Boolean.FALSE, Boolean.TRUE } })[0];
+		argument = ((Object[]) new Object[] {
+				new Object[] { genPackage,
+						genPackage.getGenModel().isSuppressEMFMetaData()
+								|| genPackage.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,
+						Boolean.TRUE } })[0];
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setArgument", stringBuffer.toString());
@@ -996,10 +974,9 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -1042,8 +1019,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 			stringBuffer.append(genPackage.getQualifiedFactoryInterfaceName());
 			if (!genModel.isSuppressEMFModelTags()) {
 				boolean first = true;
-				for (StringTokenizer stringTokenizer = new StringTokenizer(genPackage.getModelInfo(), "\n\r"); stringTokenizer
-						.hasMoreTokens();) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(genPackage.getModelInfo(),
+						"\n\r"); stringTokenizer.hasMoreTokens();) {
 					String modelInfo = stringTokenizer.nextToken();
 					if (first) {
 						first = false;
@@ -1401,8 +1378,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 					if (genClassifier instanceof GenClass) {
 						GenClass genClass = (GenClass) genClassifier;
 						if (!genClass.isDynamic()) {
-							String theClass = genClass.isMapEntry() ? genClass.getImportedClassName() : genClass
-									.getRawImportedInterfaceName();
+							String theClass = genClass.isMapEntry() ? genClass.getImportedClassName()
+									: genClass.getRawImportedInterfaceName();
 							if (helpers.add(theClass)) {
 								stringBuffer.append(TEXT_162);
 								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Reflect"));
@@ -1411,8 +1388,9 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 								stringBuffer.append(TEXT_164);
 								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Reflect"));
 								stringBuffer.append(TEXT_165);
-								stringBuffer.append(genClass.isMapEntry() ? genClass.getImportedClassName() : genClass
-										.getRawImportedInterfaceName() + genClass.getInterfaceWildTypeArguments());
+								stringBuffer.append(genClass.isMapEntry() ? genClass.getImportedClassName()
+										: genClass.getRawImportedInterfaceName()
+												+ genClass.getInterfaceWildTypeArguments());
 								stringBuffer.append(TEXT_166);
 								stringBuffer.append(theClass);
 								stringBuffer.append(TEXT_167);
@@ -1462,8 +1440,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 						GenClass genClass = (GenClass) genClassifier;
 						if (!genClass.isDynamic()) {
 							stringBuffer.append(TEXT_181);
-							stringBuffer.append(genClass.isMapEntry() ? genClass.getImportedClassName() : genClass
-									.getImportedWildcardInstanceClassName());
+							stringBuffer.append(genClass.isMapEntry() ? genClass.getImportedClassName()
+									: genClass.getImportedWildcardInstanceClassName());
 							stringBuffer.append(TEXT_182);
 							stringBuffer.append(genClass.getSafeUncapName());
 							stringBuffer.append(TEXT_183);
@@ -1499,10 +1477,11 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 					stringBuffer.append(genClass.getFormattedName());
 					stringBuffer.append(TEXT_194);
 					stringBuffer.append(genClass.getQualifiedInterfaceName());
-					if (!genModel.isSuppressEMFModelTags() && (genClass.isExternalInterface() || genClass.isDynamic())) {
+					if (!genModel.isSuppressEMFModelTags()
+							&& (genClass.isExternalInterface() || genClass.isDynamic())) {
 						boolean first = true;
-						for (StringTokenizer stringTokenizer = new StringTokenizer(genClass.getModelInfo(), "\n\r"); stringTokenizer
-								.hasMoreTokens();) {
+						for (StringTokenizer stringTokenizer = new StringTokenizer(genClass.getModelInfo(),
+								"\n\r"); stringTokenizer.hasMoreTokens();) {
 							String modelInfo = stringTokenizer.nextToken();
 							if (first) {
 								first = false;
@@ -1549,8 +1528,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 					}
 					if (!genModel.isSuppressEMFModelTags()) {
 						boolean first = true;
-						for (StringTokenizer stringTokenizer = new StringTokenizer(genDataType.getModelInfo(), "\n\r"); stringTokenizer
-								.hasMoreTokens();) {
+						for (StringTokenizer stringTokenizer = new StringTokenizer(genDataType.getModelInfo(),
+								"\n\r"); stringTokenizer.hasMoreTokens();) {
 							String modelInfo = stringTokenizer.nextToken();
 							if (first) {
 								first = false;
@@ -1823,8 +1802,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 					Information next() {
 						Information information = new Information();
 						EGenericType eGenericType = information.eGenericType = (EGenericType) iterator.next();
-						for (EObject container = eGenericType.eContainer(); container instanceof EGenericType; container = container
-								.eContainer()) {
+						for (EObject container = eGenericType
+								.eContainer(); container instanceof EGenericType; container = container.eContainer()) {
 							++information.depth;
 						}
 						if (eGenericType.getEClassifier() != null) {
@@ -1837,9 +1816,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 								information.type = genModel.findGenClassifier((EClass) eTypeParameter.eContainer())
 										.getClassifierInstanceName() + "_" + eGenericType.getETypeParameter().getName();
 							} else {
-								information.type = "t"
-										+ (((EOperation) eTypeParameter.eContainer()).getETypeParameters().indexOf(
-												eTypeParameter) + 1);
+								information.type = "t" + (((EOperation) eTypeParameter.eContainer())
+										.getETypeParameters().indexOf(eTypeParameter) + 1);
 							}
 						} else {
 							information.type = "";
@@ -1894,8 +1872,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 								if (!genTypeParameter.getEcoreTypeParameter().getEBounds().isEmpty()
 										|| genTypeParameter.isUsed()) {
 									stringBuffer.append(TEXT_327);
-									stringBuffer.append(genModel
-											.getImportedName("org.eclipse.emf.ecore.ETypeParameter"));
+									stringBuffer
+											.append(genModel.getImportedName("org.eclipse.emf.ecore.ETypeParameter"));
 									stringBuffer.append(TEXT_328);
 									stringBuffer.append(genClassifier.getClassifierInstanceName());
 									stringBuffer.append(TEXT_329);
@@ -2041,8 +2019,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 						}
 						for (GenFeature genFeature : genClass.getGenFeatures()) {
 							if (genFeature.hasGenericType()) {
-								for (InformationIterator i = new InformationIterator(genFeature.getEcoreFeature()
-										.getEGenericType()); i.hasNext();) {
+								for (InformationIterator i = new InformationIterator(
+										genFeature.getEcoreFeature().getEGenericType()); i.hasNext();) {
 									Information info = i.next();
 									String prefix = "";
 									if (maxGenericTypeAssignment <= info.depth) {
@@ -2069,18 +2047,17 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 							}
 							if (genFeature.isReferenceType()) {
 								GenFeature reverseGenFeature = genFeature.getReverse();
-								String reverse = reverseGenFeature == null ? "null" : genPackage
-										.getPackageInstanceVariable(reverseGenFeature.getGenPackage())
-										+ ".get"
-										+ reverseGenFeature.getFeatureAccessorName() + "()";
+								String reverse = reverseGenFeature == null ? "null"
+										: genPackage.getPackageInstanceVariable(reverseGenFeature.getGenPackage())
+												+ ".get" + reverseGenFeature.getFeatureAccessorName() + "()";
 								stringBuffer.append(TEXT_385);
 								stringBuffer.append(genFeature.getFeatureAccessorName());
 								stringBuffer.append(TEXT_386);
 								if (genFeature.hasGenericType()) {
 									stringBuffer.append(TEXT_387);
 								} else {
-									stringBuffer.append(genPackage.getPackageInstanceVariable(genFeature
-											.getTypeGenPackage()));
+									stringBuffer.append(
+											genPackage.getPackageInstanceVariable(genFeature.getTypeGenPackage()));
 									stringBuffer.append(TEXT_388);
 									stringBuffer.append(genFeature.getTypeClassifierAccessorName());
 									stringBuffer.append(TEXT_389);
@@ -2122,8 +2099,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 									stringBuffer.append(TEXT_406);
 									stringBuffer.append(genFeature.getFeatureAccessorName());
 									stringBuffer.append(TEXT_407);
-									stringBuffer.append(genPackage.getPackageInstanceVariable(keyFeature
-											.getGenPackage()));
+									stringBuffer
+											.append(genPackage.getPackageInstanceVariable(keyFeature.getGenPackage()));
 									stringBuffer.append(TEXT_408);
 									stringBuffer.append(keyFeature.getFeatureAccessorName());
 									stringBuffer.append(TEXT_409);
@@ -2135,8 +2112,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 								if (genFeature.hasGenericType()) {
 									stringBuffer.append(TEXT_412);
 								} else {
-									stringBuffer.append(genPackage.getPackageInstanceVariable(genFeature
-											.getTypeGenPackage()));
+									stringBuffer.append(
+											genPackage.getPackageInstanceVariable(genFeature.getTypeGenPackage()));
 									stringBuffer.append(TEXT_413);
 									stringBuffer.append(genFeature.getTypeClassifierAccessorName());
 									stringBuffer.append(TEXT_414);
@@ -2200,8 +2177,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 								if (genOperation.isVoid() || genOperation.hasGenericType()) {
 									stringBuffer.append(TEXT_435);
 								} else {
-									stringBuffer.append(genPackage.getPackageInstanceVariable(genOperation
-											.getTypeGenPackage()));
+									stringBuffer.append(
+											genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage()));
 									stringBuffer.append(TEXT_436);
 									stringBuffer.append(genOperation.getTypeClassifierAccessorName());
 									stringBuffer.append(TEXT_437);
@@ -2233,8 +2210,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 										stringBuffer.append(genClass.getClassifierInstanceName());
 									}
 									stringBuffer.append(TEXT_448);
-									stringBuffer.append(genPackage.getPackageInstanceVariable(genOperation
-											.getTypeGenPackage()));
+									stringBuffer.append(
+											genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage()));
 									stringBuffer.append(TEXT_449);
 									stringBuffer.append(genOperation.getTypeClassifierAccessorName());
 									stringBuffer.append(TEXT_450);
@@ -2261,8 +2238,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 										stringBuffer.append(genClass.getClassifierInstanceName());
 									}
 									stringBuffer.append(TEXT_460);
-									stringBuffer.append(genPackage.getPackageInstanceVariable(genOperation
-											.getTypeGenPackage()));
+									stringBuffer.append(
+											genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage()));
 									stringBuffer.append(TEXT_461);
 									stringBuffer.append(genOperation.getTypeClassifierAccessorName());
 									stringBuffer.append(TEXT_462);
@@ -2300,8 +2277,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 										if (maxTypeParameterAssignment <= t.previousIndex()) {
 											++maxTypeParameterAssignment;
 											typeParameterVariable = genModel
-													.getImportedName("org.eclipse.emf.ecore.ETypeParameter")
-													+ " t"
+													.getImportedName("org.eclipse.emf.ecore.ETypeParameter") + " t"
 													+ t.nextIndex() + " = ";
 										} else {
 											typeParameterVariable = "t" + t.nextIndex() + " = ";
@@ -2349,8 +2325,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 							}
 							for (GenParameter genParameter : genOperation.getGenParameters()) {
 								if (genParameter.hasGenericType()) {
-									for (InformationIterator i = new InformationIterator(genParameter
-											.getEcoreParameter().getEGenericType()); i.hasNext();) {
+									for (InformationIterator i = new InformationIterator(
+											genParameter.getEcoreParameter().getEGenericType()); i.hasNext();) {
 										Information info = i.next();
 										String typePrefix = "";
 										if (maxGenericTypeAssignment <= info.depth) {
@@ -2381,8 +2357,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 									if (genParameter.hasGenericType()) {
 										stringBuffer.append(TEXT_494);
 									} else {
-										stringBuffer.append(genPackage.getPackageInstanceVariable(genParameter
-												.getTypeGenPackage()));
+										stringBuffer.append(genPackage
+												.getPackageInstanceVariable(genParameter.getTypeGenPackage()));
 										stringBuffer.append(TEXT_495);
 										stringBuffer.append(genParameter.getTypeClassifierAccessorName());
 										stringBuffer.append(TEXT_496);
@@ -2406,8 +2382,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 									if (genParameter.hasGenericType()) {
 										stringBuffer.append(TEXT_504);
 									} else {
-										stringBuffer.append(genPackage.getPackageInstanceVariable(genParameter
-												.getTypeGenPackage()));
+										stringBuffer.append(genPackage
+												.getPackageInstanceVariable(genParameter.getTypeGenPackage()));
 										stringBuffer.append(TEXT_505);
 										stringBuffer.append(genParameter.getTypeClassifierAccessorName());
 										stringBuffer.append(TEXT_506);
@@ -2429,8 +2405,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 									if (genParameter.hasGenericType()) {
 										stringBuffer.append(TEXT_514);
 									} else {
-										stringBuffer.append(genPackage.getPackageInstanceVariable(genParameter
-												.getTypeGenPackage()));
+										stringBuffer.append(genPackage
+												.getPackageInstanceVariable(genParameter.getTypeGenPackage()));
 										stringBuffer.append(TEXT_515);
 										stringBuffer.append(genParameter.getTypeClassifierAccessorName());
 										stringBuffer.append(TEXT_516);
@@ -2481,16 +2457,16 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 							} else {
 								for (GenClassifier genException : genOperation.getGenExceptions()) {
 									stringBuffer.append(TEXT_531);
-									stringBuffer.append(genPackage.getPackageInstanceVariable(genException
-											.getGenPackage()));
+									stringBuffer.append(
+											genPackage.getPackageInstanceVariable(genException.getGenPackage()));
 									stringBuffer.append(TEXT_532);
 									stringBuffer.append(genException.getClassifierAccessorName());
 									stringBuffer.append(TEXT_533);
 								}
 							}
 							if (!genOperation.isVoid() && genOperation.hasGenericType()) {
-								for (InformationIterator i = new InformationIterator(genOperation.getEcoreOperation()
-										.getEGenericType()); i.hasNext();) {
+								for (InformationIterator i = new InformationIterator(
+										genOperation.getEcoreOperation().getEGenericType()); i.hasNext();) {
 									Information info = i.next();
 									String typePrefix = "";
 									if (maxGenericTypeAssignment <= info.depth) {
@@ -2539,8 +2515,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 							stringBuffer.append(TEXT_549);
 							stringBuffer.append(genEnum.getClassifierInstanceName());
 							stringBuffer.append(TEXT_550);
-							stringBuffer.append(genEnum.getImportedName().equals(genEnum.getClassifierID()) ? genEnum
-									.getQualifiedName() : genEnum.getImportedName());
+							stringBuffer.append(genEnum.getImportedName().equals(genEnum.getClassifierID())
+									? genEnum.getQualifiedName() : genEnum.getImportedName());
 							stringBuffer.append(TEXT_551);
 							stringBuffer.append(genEnumLiteral.getEnumLiteralInstanceConstantName());
 							stringBuffer.append(TEXT_552);
@@ -2611,8 +2587,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 					for (EAnnotation eAnnotation : genPackage.getAllAnnotations()) {
 						List<GenPackage.AnnotationReferenceData> annotationReferenceDataList = genPackage
 								.getReferenceData(eAnnotation);
-						if (annotationSource == null ? eAnnotation.getSource() == null : annotationSource
-								.equals(eAnnotation.getSource())) {
+						if (annotationSource == null ? eAnnotation.getSource() == null
+								: annotationSource.equals(eAnnotation.getSource())) {
 							stringBuffer.append(TEXT_576);
 							stringBuffer.append(genPackage.getAnnotatedModelElementAccessor(eAnnotation));
 							stringBuffer.append(TEXT_577);
@@ -2664,9 +2640,11 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 								int depth = 0;
 								boolean nonContentAnnotation = false;
 								StringBuilder path = new StringBuilder();
-								for (EObject eContainer = nestedEAnnotation.eContainer(), child = nestedEAnnotation; child != eAnnotation; child = eContainer, eContainer = eContainer
-										.eContainer()) {
-									boolean nonContentChild = child.eContainmentFeature() != EcorePackage.Literals.EANNOTATION__CONTENTS;
+								for (EObject eContainer = nestedEAnnotation
+										.eContainer(), child = nestedEAnnotation; child != eAnnotation; child = eContainer, eContainer = eContainer
+												.eContainer()) {
+									boolean nonContentChild = child
+											.eContainmentFeature() != EcorePackage.Literals.EANNOTATION__CONTENTS;
 									if (path.length() != 0) {
 										path.insert(0, ", ");
 									}
@@ -2699,8 +2677,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 									stringBuffer.append(genModel.getNonNLS());
 								}
 								stringBuffer.append(TEXT_600);
-								for (Iterator<Map.Entry<String, String>> l = nestedEAnnotation.getDetails().iterator(); l
-										.hasNext();) {
+								for (Iterator<Map.Entry<String, String>> l = nestedEAnnotation.getDetails()
+										.iterator(); l.hasNext();) {
 									Map.Entry<String, String> detail = l.next();
 									String key = Literals.toStringLiteral(detail.getKey(), genModel);
 									String value = Literals.toStringLiteral(detail.getValue(), genModel);
@@ -2761,8 +2739,8 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 					stringBuffer.append(TEXT_620);
 					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.resource.Resource"));
 					stringBuffer.append(TEXT_621);
-					stringBuffer.append(genModel
-							.getImportedName("org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl"));
+					stringBuffer.append(
+							genModel.getImportedName("org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl"));
 					stringBuffer.append(TEXT_622);
 					stringBuffer.append(genModel.getImportedName("java.io.IOException"));
 					stringBuffer.append(TEXT_623);

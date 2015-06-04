@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -47,10 +47,10 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 	protected final String TEXT_14 = NL + "\t}" + NL;
 	protected final String TEXT_15 = NL + "\t/**" + NL
 			+ "\t * A load option that turns of the use of the generate data converters." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic static final String OPTION_USE_DATA_CONVERTER = \"USE_DATA_CONVERTER\";" + NL
-			+ "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @generated" + NL + "\t */";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static final String OPTION_USE_DATA_CONVERTER = \"USE_DATA_CONVERTER\";" + NL + "" + NL
+			+ "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated"
+			+ NL + "\t */";
 	protected final String TEXT_16 = NL + "\t@Override";
 	protected final String TEXT_17 = NL + "\tpublic void doLoad(InputStream inputStream, ";
 	protected final String TEXT_18 = " options) throws IOException" + NL + "\t{" + NL
@@ -69,54 +69,17 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 			+ "\t\tif (options != null && Boolean.TRUE.equals(options.get(OPTION_USE_DATA_CONVERTER)))" + NL + "\t\t{"
 			+ NL + "\t\t  getContents().add" + NL + "\t\t\t (load" + NL + "\t\t\t\t (inputSource," + NL + "\t\t\t\t  (";
 	protected final String TEXT_24 = ")options.get(XMLResource.OPTION_PARSER_FEATURES), " + NL + "\t\t\t\t  (";
-	protected final String TEXT_25 = ")options.get(XMLResource.OPTION_PARSER_PROPERTIES), "
-			+ NL
-			+ "\t\t\t\t  Boolean.TRUE.equals(options.get(XMLResource.OPTION_USE_LEXICAL_HANDLER))).eContainer());"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t\telse"
-			+ NL
-			+ "\t\t{  "
-			+ NL
-			+ "\t\t\tsuper.doLoad(inputSource, options);"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @generated"
-			+ NL
-			+ "\t */"
-			+ NL
-			+ "\tprotected static final XMLParserPool parserPool = new XMLParserPoolImpl();"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * Loads an instance from the input."
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
-			+ "\t * <!-- end-user-doc -->"
-			+ NL
-			+ "\t * @param inputSource the input from which to load."
-			+ NL
-			+ "\t * @param features a map of the parser features and their values."
-			+ NL
-			+ "\t * @param properties a map of a parser properties and their values."
-			+ NL
-			+ "\t * @param useLexicalHandler whether a lexical handler should be used during loading."
-			+ NL
+	protected final String TEXT_25 = ")options.get(XMLResource.OPTION_PARSER_PROPERTIES), " + NL
+			+ "\t\t\t\t  Boolean.TRUE.equals(options.get(XMLResource.OPTION_USE_LEXICAL_HANDLER))).eContainer());" + NL
+			+ "\t\t}" + NL + "\t\telse" + NL + "\t\t{  " + NL + "\t\t\tsuper.doLoad(inputSource, options);" + NL
+			+ "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+			+ "\tprotected static final XMLParserPool parserPool = new XMLParserPoolImpl();" + NL + "" + NL + "\t/**"
+			+ NL + "\t * Loads an instance from the input." + NL + "\t * <!-- begin-user-doc -->" + NL
+			+ "\t * <!-- end-user-doc -->" + NL + "\t * @param inputSource the input from which to load." + NL
+			+ "\t * @param features a map of the parser features and their values." + NL
+			+ "\t * @param properties a map of a parser properties and their values." + NL
+			+ "\t * @param useLexicalHandler whether a lexical handler should be used during loading." + NL
 			+ "\t * @return the root object; for the case of a document root, the child of that document root is return."
 			+ NL + "\t * @throws ParserConfigurationException" + NL + "\t * @throws SAXException" + NL
 			+ "\t * @generated" + NL + "\t */" + NL + "\tpublic static EObject load(InputSource inputSource, ";
@@ -131,20 +94,9 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 			+ "\t\t\tproperties = Collections.";
 	protected final String TEXT_30 = "emptyMap()";
 	protected final String TEXT_31 = "EMPTY_MAP";
-	protected final String TEXT_32 = ";"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t\t"
-			+ NL
-			+ "\t\tSAXParser saxParser = null;"
-			+ NL
-			+ "\t\ttry"
-			+ NL
-			+ "\t\t{"
-			+ NL
-			+ "\t\t\tsaxParser = parserPool.get(requiredFeatures, properties, useLexicalHandler);"
-			+ NL
+	protected final String TEXT_32 = ";" + NL + "\t\t}" + NL + "\t\t" + NL + "\t\tSAXParser saxParser = null;" + NL
+			+ "\t\ttry" + NL + "\t\t{" + NL
+			+ "\t\t\tsaxParser = parserPool.get(requiredFeatures, properties, useLexicalHandler);" + NL
 			+ "\t\t\tfinal FrameFactory.DocumentRootStackFrame documentRoot = FrameFactory.INSTANCE.pushDocumentRoot(null, null);"
 			+ NL + "\t\t\tXMLTypeResourceImpl.Handler handler = new XMLTypeResourceImpl.Handler(documentRoot);" + NL
 			+ "\t\t\tsaxParser.parse(inputSource, handler);";
@@ -283,8 +235,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 	protected final String TEXT_135 = NL + "\t\t\t\t\t";
 	protected final String TEXT_136 = " = null;" + NL + "\t\t\t\t}";
 	protected final String TEXT_137 = NL + "\t\t\t\tsuper.endElement(child);";
-	protected final String TEXT_138 = NL + "\t\t\t\telse" + NL + "\t\t\t\t{" + NL
-			+ "\t\t\t\t\tsuper.endElement(child);" + NL + "\t\t\t\t}";
+	protected final String TEXT_138 = NL + "\t\t\t\telse" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\tsuper.endElement(child);"
+			+ NL + "\t\t\t\t}";
 	protected final String TEXT_139 = NL + "\t\t\t}" + NL + "" + NL + "\t\t\t/**" + NL
 			+ "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated"
 			+ NL + "\t\t\t */";
@@ -481,10 +433,9 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -515,11 +466,10 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 		if (genPackage.getResource() == GenResourceKind.XML_LITERAL) { // Do nothing
 		}
 		stringBuffer.append(TEXT_14);
-		if (genPackage.isDataTypeConverters()
-				&& (genPackage.hasDocumentRoot() || org.eclipse.emf.ecore.xml.type.XMLTypePackage.eNS_URI
-						.equals(genPackage.getNSURI()))) {
-			boolean isXMLTypePackage = org.eclipse.emf.ecore.xml.type.XMLTypePackage.eNS_URI.equals(genPackage
-					.getNSURI());
+		if (genPackage.isDataTypeConverters() && (genPackage.hasDocumentRoot()
+				|| org.eclipse.emf.ecore.xml.type.XMLTypePackage.eNS_URI.equals(genPackage.getNSURI()))) {
+			boolean isXMLTypePackage = org.eclipse.emf.ecore.xml.type.XMLTypePackage.eNS_URI
+					.equals(genPackage.getNSURI());
 			final String _Map = genModel.useGenerics() ? "Map<?, ?>" : "Map";
 			final String _MapStringBoolean = genModel.useGenerics() ? "Map<String, Boolean>" : "Map";
 			final String _MapStringWildcard = genModel.useGenerics() ? "Map<String, ?>" : "Map";
@@ -660,12 +610,12 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 				stringBuffer.append(TEXT_70);
 				for (GenFeature genFeature : genClass.getAllGenFeatures()) {
 					String name = extendedMetaData.getName(genFeature.getEcoreFeature());
-					if ((elements.contains(genFeature.getEcoreFeature()) || attributes.contains(genFeature
-							.getEcoreFeature())) && name.indexOf(":") == -1) {
+					if ((elements.contains(genFeature.getEcoreFeature())
+							|| attributes.contains(genFeature.getEcoreFeature())) && name.indexOf(":") == -1) {
 						if (genFeature.isReferenceType()) {
 							stringBuffer.append(TEXT_71);
-							stringBuffer.append(genFeature.getTypeGenClass().getGenPackage()
-									.getImportedResourceClassName());
+							stringBuffer.append(
+									genFeature.getTypeGenClass().getGenPackage().getImportedResourceClassName());
 							stringBuffer.append(TEXT_72);
 							stringBuffer.append(genFeature.getTypeGenClass().getName());
 							stringBuffer.append(TEXT_73);
@@ -690,8 +640,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 					String name = extendedMetaData.getName(genFeature.getEcoreFeature());
 					if (attributes.contains(genFeature.getEcoreFeature()) && !genFeature.isDerived()
 							&& name.indexOf(":") == -1) {
-						String namespace = Literals.toStringLiteral(
-								extendedMetaData.getNamespace(genFeature.getEcoreFeature()), genModel);
+						String namespace = Literals
+								.toStringLiteral(extendedMetaData.getNamespace(genFeature.getEcoreFeature()), genModel);
 						if ("null".equals(namespace))
 							namespace = "\"\"";
 						if (!genFeature.isReferenceType()) {
@@ -729,8 +679,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 								stringBuffer.append(TEXT_95);
 								stringBuffer.append(genFeature.getImportedType(null));
 								stringBuffer.append(TEXT_96);
-								stringBuffer.append(genClassifier.getGenPackage()
-										.getQualifiedEFactoryInstanceAccessor());
+								stringBuffer
+										.append(genClassifier.getGenPackage().getQualifiedEFactoryInstanceAccessor());
 								stringBuffer.append(TEXT_97);
 								stringBuffer.append(genClassifier.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_98);
@@ -753,8 +703,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 				for (GenFeature genFeature : genClass.getAllGenFeatures()) {
 					String name = extendedMetaData.getName(genFeature.getEcoreFeature());
 					if (elements.contains(genFeature.getEcoreFeature()) && name.indexOf(":") == -1) {
-						String namespace = Literals.toStringLiteral(
-								extendedMetaData.getNamespace(genFeature.getEcoreFeature()), genModel);
+						String namespace = Literals
+								.toStringLiteral(extendedMetaData.getNamespace(genFeature.getEcoreFeature()), genModel);
 						if ("null".equals(namespace))
 							namespace = "\"\"";
 						stringBuffer.append(TEXT_105);
@@ -768,8 +718,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 						stringBuffer.append(TEXT_109);
 						stringBuffer.append(genFeature.getSafeName());
 						stringBuffer.append(TEXT_110);
-						stringBuffer.append(genFeature.getTypeGenClassifier().getGenPackage()
-								.getImportedResourceClassName());
+						stringBuffer.append(
+								genFeature.getTypeGenClassifier().getGenPackage().getImportedResourceClassName());
 						stringBuffer.append(TEXT_111);
 						stringBuffer.append(genFeature.getTypeGenClassifier().getName());
 						stringBuffer.append(TEXT_112);
@@ -804,8 +754,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 							stringBuffer.append(TEXT_124);
 							stringBuffer.append(genFeature.getGetAccessor());
 							stringBuffer.append(TEXT_125);
-							stringBuffer.append(genFeature.getTypeGenClassifier().getGenPackage()
-									.getImportedResourceClassName());
+							stringBuffer.append(
+									genFeature.getTypeGenClassifier().getGenPackage().getImportedResourceClassName());
 							stringBuffer.append(TEXT_126);
 							stringBuffer.append(genFeature.getTypeGenClassifier().getName());
 							stringBuffer.append(TEXT_127);
@@ -817,8 +767,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 							stringBuffer.append(TEXT_130);
 							stringBuffer.append(genFeature.getAccessorName());
 							stringBuffer.append(TEXT_131);
-							stringBuffer.append(genFeature.getTypeGenClassifier().getGenPackage()
-									.getImportedResourceClassName());
+							stringBuffer.append(
+									genFeature.getTypeGenClassifier().getGenPackage().getImportedResourceClassName());
 							stringBuffer.append(TEXT_132);
 							stringBuffer.append(genFeature.getTypeGenClassifier().getName());
 							stringBuffer.append(TEXT_133);
@@ -907,8 +857,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 					stringBuffer.append(TEXT_173);
 					stringBuffer.append(genDataType.getSafeUncapName());
 					stringBuffer.append(TEXT_174);
-				} else if (genDataType.isPrimitiveType()
-						&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
+				} else
+					if (genDataType.isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
 					stringBuffer.append(TEXT_175);
 					stringBuffer.append(genDataType.getImportedInstanceClassName());
 					stringBuffer.append(TEXT_176);

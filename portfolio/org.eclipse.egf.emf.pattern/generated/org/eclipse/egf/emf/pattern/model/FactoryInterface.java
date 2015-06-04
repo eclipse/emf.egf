@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -54,17 +54,17 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_20 = ";";
 	protected final String TEXT_21 = NL;
 	protected final String TEXT_22 = NL + "\t/**" + NL + "\t * The singleton instance of the factory." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_23 = " eINSTANCE = init();" + NL;
 	protected final String TEXT_24 = NL + "\t/**" + NL + "\t * The singleton instance of the factory." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_25 = " INSTANCE = ";
 	protected final String TEXT_26 = ".eINSTANCE;" + NL;
 	protected final String TEXT_27 = NL + "\t/**" + NL + "\t * The singleton instance of the factory." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\t";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\t";
 	protected final String TEXT_28 = " eINSTANCE = ";
 	protected final String TEXT_29 = ".init();" + NL;
 	protected final String TEXT_30 = NL + "\t/**" + NL + "\t * Creates the default factory implementation." + NL
@@ -95,9 +95,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_47 = ": return ";
 	protected final String TEXT_48 = "create";
 	protected final String TEXT_49 = "();";
-	protected final String TEXT_50 = NL
-			+ "\t\t\tdefault:"
-			+ NL
+	protected final String TEXT_50 = NL + "\t\t\tdefault:" + NL
 			+ "\t\t\t\tthrow new IllegalArgumentException(\"The class '\" + eClass.getName() + \"' is not a valid classifier\");";
 	protected final String TEXT_51 = NL + "\t\t}" + NL + "\t}" + NL;
 	protected final String TEXT_52 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
@@ -110,9 +108,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_57 = ".";
 	protected final String TEXT_58 = ":" + NL + "\t\t\t\treturn create";
 	protected final String TEXT_59 = "FromString(eDataType, initialValue);";
-	protected final String TEXT_60 = NL
-			+ "\t\t\tdefault:"
-			+ NL
+	protected final String TEXT_60 = NL + "\t\t\tdefault:" + NL
 			+ "\t\t\t\tthrow new IllegalArgumentException(\"The datatype '\" + eDataType.getName() + \"' is not a valid classifier\");";
 	protected final String TEXT_61 = NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
@@ -125,9 +121,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_66 = ".";
 	protected final String TEXT_67 = ":" + NL + "\t\t\t\treturn convert";
 	protected final String TEXT_68 = "ToString(eDataType, instanceValue);";
-	protected final String TEXT_69 = NL
-			+ "\t\t\tdefault:"
-			+ NL
+	protected final String TEXT_69 = NL + "\t\t\tdefault:" + NL
 			+ "\t\t\t\tthrow new IllegalArgumentException(\"The datatype '\" + eDataType.getName() + \"' is not a valid classifier\");";
 	protected final String TEXT_70 = NL + "\t\t}" + NL + "\t}" + NL;
 	protected final String TEXT_71 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
@@ -161,8 +155,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_97 = NL + "\t\t";
 	protected final String TEXT_98 = NL + "\t\t";
 	protected final String TEXT_99 = " result = ";
-	protected final String TEXT_100 = ".get(literal);"
-			+ NL
+	protected final String TEXT_100 = ".get(literal);" + NL
 			+ "\t\tif (result == null) throw new IllegalArgumentException(\"The value '\" + literal + \"' is not a valid enumerator of '\" + ";
 	protected final String TEXT_101 = ".getName() + \"'\");";
 	protected final String TEXT_102 = NL + "\t\treturn result;";
@@ -231,9 +224,9 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_165 = "new ";
 	protected final String TEXT_166 = "(result)";
 	protected final String TEXT_167 = "result";
-	protected final String TEXT_168 = ", null, null))" + NL + "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL
-			+ "\t\t\t}" + NL + "\t\t}" + NL + "\t\tcatch (RuntimeException e)" + NL + "\t\t{" + NL
-			+ "\t\t\texception = e;" + NL + "\t\t}";
+	protected final String TEXT_168 = ", null, null))" + NL + "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL + "\t\t\t}"
+			+ NL + "\t\t}" + NL + "\t\tcatch (RuntimeException e)" + NL + "\t\t{" + NL + "\t\t\texception = e;" + NL
+			+ "\t\t}";
 	protected final String TEXT_169 = NL + "\t\tif (";
 	protected final String TEXT_170 = "result != null || ";
 	protected final String TEXT_171 = "exception == null) return result;" + NL + "    " + NL + "\t\tthrow exception;";
@@ -263,8 +256,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_193 = "(initialValue);";
 	protected final String TEXT_194 = NL + "\t\t";
 	protected final String TEXT_195 = " result = ";
-	protected final String TEXT_196 = ".get(initialValue);"
-			+ NL
+	protected final String TEXT_196 = ".get(initialValue);" + NL
 			+ "\t\tif (result == null) throw new IllegalArgumentException(\"The value '\" + initialValue + \"' is not a valid enumerator of '\" + eDataType.getName() + \"'\");";
 	protected final String TEXT_197 = NL + "\t\treturn result;";
 	protected final String TEXT_198 = NL + "\t\treturn ";
@@ -685,8 +677,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		 */
 
 		GenPackage genPackage = (GenPackage) ((Object[]) argument)[0];
-		GenModel genModel = genPackage.getGenModel(); /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = genPackage.getGenModel();
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		boolean isInterface = Boolean.TRUE.equals(((Object[]) argument)[1]);
 		boolean isImplementation = Boolean.TRUE.equals(((Object[]) argument)[2]);
 		String publicStaticFinalFlag = isImplementation ? "public static final " : "";
@@ -700,10 +692,9 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -789,8 +780,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		}
 		if (isImplementation) {
 			stringBuffer.append(TEXT_30);
-			String factoryType = genModel.isSuppressEMFMetaData() ? genPackage.getFactoryClassName() : genPackage
-					.getImportedFactoryInterfaceName();
+			String factoryType = genModel.isSuppressEMFMetaData() ? genPackage.getFactoryClassName()
+					: genPackage.getImportedFactoryInterfaceName();
 			stringBuffer.append(TEXT_31);
 			stringBuffer.append(factoryType);
 			stringBuffer.append(TEXT_32);
@@ -910,8 +901,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 						stringBuffer.append(genClass.getImportedClassName());
 						stringBuffer.append(genClass.getClassTypeArguments());
 						stringBuffer.append(TEXT_82);
-						if (genModel.isSuppressInterfaces()
-								&& !genPackage.getReflectionPackageName().equals(genPackage.getInterfacePackageName())) {
+						if (genModel.isSuppressInterfaces() && !genPackage.getReflectionPackageName()
+								.equals(genPackage.getInterfacePackageName())) {
 							stringBuffer.append(TEXT_83);
 						}
 						stringBuffer.append(TEXT_84);
@@ -982,15 +973,15 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 									stringBuffer.append(TEXT_108);
 									stringBuffer.append(genDataType.getObjectInstanceClassName());
 									stringBuffer.append(TEXT_109);
-									stringBuffer.append(genBaseType.getGenPackage()
-											.getQualifiedEFactoryInternalInstanceAccessor());
+									stringBuffer.append(
+											genBaseType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 									stringBuffer.append(TEXT_110);
 									stringBuffer.append(genBaseType.getName());
 									stringBuffer.append(TEXT_111);
 								} else {
 									stringBuffer.append(TEXT_112);
-									stringBuffer.append(genBaseType.getGenPackage()
-											.getQualifiedEFactoryInternalInstanceAccessor());
+									stringBuffer.append(
+											genBaseType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 									stringBuffer.append(TEXT_113);
 									stringBuffer.append(genBaseType.getName());
 									stringBuffer.append(TEXT_114);
@@ -1002,8 +993,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 									stringBuffer.append(genDataType.getObjectInstanceClassName());
 									stringBuffer.append(TEXT_117);
 								}
-								stringBuffer.append(genBaseType.getGenPackage()
-										.getQualifiedEFactoryInternalInstanceAccessor());
+								stringBuffer.append(
+										genBaseType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 								stringBuffer.append(TEXT_118);
 								stringBuffer.append(genBaseType.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_119);
@@ -1016,8 +1007,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 							stringBuffer.append(genModel.getImportedName("java.util.ArrayList"));
 							if (genModel.useGenerics()) {
 								stringBuffer.append(TEXT_122);
-								stringBuffer.append(genItemType.getObjectType()
-										.getImportedParameterizedInstanceClassName());
+								stringBuffer.append(
+										genItemType.getObjectType().getImportedParameterizedInstanceClassName());
 								stringBuffer.append(TEXT_123);
 							}
 							stringBuffer.append(TEXT_124);
@@ -1051,15 +1042,15 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								if (genItemType.getGenPackage().isDataTypeConverters()) {
 									genItemType = genItemType.getObjectType();
 									stringBuffer.append(TEXT_136);
-									stringBuffer.append(genItemType.getGenPackage()
-											.getQualifiedEFactoryInternalInstanceAccessor());
+									stringBuffer.append(
+											genItemType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 									stringBuffer.append(TEXT_137);
 									stringBuffer.append(genItemType.getName());
 									stringBuffer.append(TEXT_138);
 								} else {
 									stringBuffer.append(TEXT_139);
-									stringBuffer.append(genItemType.getGenPackage()
-											.getQualifiedEFactoryInternalInstanceAccessor());
+									stringBuffer.append(
+											genItemType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 									stringBuffer.append(TEXT_140);
 									stringBuffer.append(genItemType.getQualifiedClassifierAccessor());
 									stringBuffer.append(TEXT_141);
@@ -1117,8 +1108,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								if (!genDataType.isPrimitiveType()) {
 									stringBuffer.append(TEXT_162);
 								}
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.util.Diagnostician"));
+								stringBuffer
+										.append(genModel.getImportedName("org.eclipse.emf.ecore.util.Diagnostician"));
 								stringBuffer.append(TEXT_163);
 								stringBuffer.append(eDataType);
 								stringBuffer.append(TEXT_164);
@@ -1137,11 +1128,10 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								stringBuffer.append(TEXT_170);
 							}
 							stringBuffer.append(TEXT_171);
-						} else if (!genDataType.hasConversionDelegate()
-								&& genModel.useGenerics()
+						} else if (!genDataType.hasConversionDelegate() && genModel.useGenerics()
 								&& (genDataType.isArrayType()
-										|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty() || genDataType
-										.getEcoreDataType().getInstanceTypeName().contains("<"))) {
+										|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty()
+										|| genDataType.getEcoreDataType().getInstanceTypeName().contains("<"))) {
 							stringBuffer.append(TEXT_172);
 							stringBuffer.append(genDataType.getImportedParameterizedObjectInstanceClassName());
 							stringBuffer.append(TEXT_173);
@@ -1203,8 +1193,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 						GenDataType genBaseType = genDataType.getBaseType();
 						if (genBaseType.getGenPackage() == genPackage) {
 							stringBuffer.append(TEXT_198);
-							if (!genDataType.getObjectInstanceClassName().equals(
-									genBaseType.getObjectInstanceClassName())) {
+							if (!genDataType.getObjectInstanceClassName()
+									.equals(genBaseType.getObjectInstanceClassName())) {
 								stringBuffer.append(TEXT_199);
 								stringBuffer.append(genDataType.getObjectInstanceClassName());
 								stringBuffer.append(TEXT_200);
@@ -1221,8 +1211,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								stringBuffer.append(genDataType.getObjectInstanceClassName());
 								stringBuffer.append(TEXT_206);
 							}
-							stringBuffer.append(genBaseType.getGenPackage()
-									.getQualifiedEFactoryInternalInstanceAccessor());
+							stringBuffer
+									.append(genBaseType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 							stringBuffer.append(TEXT_207);
 							stringBuffer.append(genBaseType.getQualifiedClassifierAccessor());
 							stringBuffer.append(TEXT_208);
@@ -1240,8 +1230,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 							stringBuffer.append(genModel.getImportedName("java.util.ArrayList"));
 							if (genModel.useGenerics()) {
 								stringBuffer.append(TEXT_213);
-								stringBuffer.append(genItemType.getObjectType()
-										.getImportedParameterizedInstanceClassName());
+								stringBuffer.append(
+										genItemType.getObjectType().getImportedParameterizedInstanceClassName());
 								stringBuffer.append(TEXT_214);
 							}
 							stringBuffer.append(TEXT_215);
@@ -1271,8 +1261,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 									stringBuffer.append(genItemType.getObjectInstanceClassName());
 									stringBuffer.append(TEXT_227);
 								}
-								stringBuffer.append(genItemType.getGenPackage()
-										.getQualifiedEFactoryInternalInstanceAccessor());
+								stringBuffer.append(
+										genItemType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 								stringBuffer.append(TEXT_228);
 								stringBuffer.append(genItemType.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_229);
@@ -1301,9 +1291,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								stringBuffer.append(TEXT_238);
 								if (genMemberType.getGenPackage() == genPackage) {
 									stringBuffer.append(TEXT_239);
-									if (!genDataType.isObjectType()
-											&& !genDataType.getObjectInstanceClassName().equals(
-													genMemberType.getObjectInstanceClassName())) {
+									if (!genDataType.isObjectType() && !genDataType.getObjectInstanceClassName()
+											.equals(genMemberType.getObjectInstanceClassName())) {
 										stringBuffer.append(TEXT_240);
 										stringBuffer.append(genDataType.getObjectInstanceClassName());
 										stringBuffer.append(TEXT_241);
@@ -1327,8 +1316,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 									stringBuffer.append(TEXT_249);
 								}
 								stringBuffer.append(TEXT_250);
-								stringBuffer.append(genModel
-										.getImportedName("org.eclipse.emf.ecore.util.Diagnostician"));
+								stringBuffer
+										.append(genModel.getImportedName("org.eclipse.emf.ecore.util.Diagnostician"));
 								stringBuffer.append(TEXT_251);
 							}
 							stringBuffer.append(TEXT_252);
@@ -1337,11 +1326,10 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 						stringBuffer.append(TEXT_253);
 						stringBuffer.append(genDataType.getName());
 						stringBuffer.append(TEXT_254);
-					} else if (!genDataType.hasConversionDelegate()
-							&& genModel.useGenerics()
+					} else if (!genDataType.hasConversionDelegate() && genModel.useGenerics()
 							&& (genDataType.isArrayType()
-									|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty() || genDataType
-									.getEcoreDataType().getInstanceTypeName().contains("<"))) {
+									|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty()
+									|| genDataType.getEcoreDataType().getInstanceTypeName().contains("<"))) {
 						stringBuffer.append(TEXT_255);
 						if (!genDataType.isObjectType()) {
 							stringBuffer.append(TEXT_256);
@@ -1412,8 +1400,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								stringBuffer.append(TEXT_284);
 							} else {
 								stringBuffer.append(TEXT_285);
-								stringBuffer.append(genBaseType.getGenPackage()
-										.getQualifiedEFactoryInternalInstanceAccessor());
+								stringBuffer.append(
+										genBaseType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 								stringBuffer.append(TEXT_286);
 								stringBuffer.append(genBaseType.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_287);
@@ -1461,8 +1449,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								if (genItemType.getGenPackage().isDataTypeConverters()) {
 									genItemType = genItemType.getObjectType();
 									stringBuffer.append(TEXT_304);
-									stringBuffer.append(genItemType.getGenPackage()
-											.getQualifiedEFactoryInternalInstanceAccessor());
+									stringBuffer.append(
+											genItemType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 									stringBuffer.append(TEXT_305);
 									stringBuffer.append(genItemType.getName());
 									stringBuffer.append(TEXT_306);
@@ -1472,8 +1460,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 									stringBuffer.append(TEXT_308);
 								} else {
 									stringBuffer.append(TEXT_309);
-									stringBuffer.append(genItemType.getGenPackage()
-											.getQualifiedEFactoryInternalInstanceAccessor());
+									stringBuffer.append(
+											genItemType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 									stringBuffer.append(TEXT_310);
 									stringBuffer.append(genItemType.getQualifiedClassifierAccessor());
 									stringBuffer.append(TEXT_311);
@@ -1491,8 +1479,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 									stringBuffer.append(TEXT_316);
 									if (genMemberType.getGenPackage() == genPackage) {
 										if (genPackage.isDataTypeConverters()) {
-											if (genMemberType.getQualifiedInstanceClassName().equals(
-													genDataType.getQualifiedInstanceClassName())) {
+											if (genMemberType.getQualifiedInstanceClassName()
+													.equals(genDataType.getQualifiedInstanceClassName())) {
 												stringBuffer.append(TEXT_317);
 												stringBuffer.append(genMemberType.getName());
 												stringBuffer.append(TEXT_318);
@@ -1501,8 +1489,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 												stringBuffer.append(TEXT_319);
 												stringBuffer.append(genMemberType.getName());
 												stringBuffer.append(TEXT_320);
-												stringBuffer.append(genMemberType.getObjectType()
-														.getImportedInstanceClassName());
+												stringBuffer.append(
+														genMemberType.getObjectType().getImportedInstanceClassName());
 												stringBuffer.append(TEXT_321);
 												stringBuffer.append(genMemberType.getPrimitiveValueFunction());
 												stringBuffer.append(TEXT_322);
@@ -1597,11 +1585,10 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 							stringBuffer.append(TEXT_358);
 							stringBuffer.append(eDataType);
 							stringBuffer.append(TEXT_359);
-						} else if (!genDataType.hasConversionDelegate()
-								&& genModel.useGenerics()
+						} else if (!genDataType.hasConversionDelegate() && genModel.useGenerics()
 								&& (genDataType.isArrayType()
-										|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty() || genDataType
-										.getEcoreDataType().getInstanceTypeName().contains("<"))) {
+										|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty()
+										|| genDataType.getEcoreDataType().getInstanceTypeName().contains("<"))) {
 							stringBuffer.append(TEXT_360);
 						} else if (!genDataType.hasConversionDelegate() && genDataType.isArrayType()) {
 							stringBuffer.append(TEXT_361);
@@ -1651,8 +1638,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 							stringBuffer.append(TEXT_380);
 						} else {
 							stringBuffer.append(TEXT_381);
-							stringBuffer.append(genBaseType.getGenPackage()
-									.getQualifiedEFactoryInternalInstanceAccessor());
+							stringBuffer
+									.append(genBaseType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 							stringBuffer.append(TEXT_382);
 							stringBuffer.append(genBaseType.getQualifiedClassifierAccessor());
 							stringBuffer.append(TEXT_383);
@@ -1701,8 +1688,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 								stringBuffer.append(TEXT_400);
 							} else {
 								stringBuffer.append(TEXT_401);
-								stringBuffer.append(genItemType.getGenPackage()
-										.getQualifiedEFactoryInternalInstanceAccessor());
+								stringBuffer.append(
+										genItemType.getGenPackage().getQualifiedEFactoryInternalInstanceAccessor());
 								stringBuffer.append(TEXT_402);
 								stringBuffer.append(genItemType.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_403);
@@ -1778,11 +1765,10 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 							stringBuffer.append(genDataType.getImportedBoundedWildcardInstanceClassName());
 							stringBuffer.append(TEXT_435);
 						}
-					} else if (!genDataType.hasConversionDelegate()
-							&& genModel.useGenerics()
+					} else if (!genDataType.hasConversionDelegate() && genModel.useGenerics()
 							&& (genDataType.isArrayType()
-									|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty() || genDataType
-									.getEcoreDataType().getInstanceTypeName().contains("<"))) {
+									|| !genDataType.getEcoreDataType().getETypeParameters().isEmpty()
+									|| genDataType.getEcoreDataType().getInstanceTypeName().contains("<"))) {
 						stringBuffer.append(TEXT_436);
 					} else if (!genDataType.hasConversionDelegate() && genDataType.isArrayType()) {
 						stringBuffer.append(TEXT_437);

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,27 +41,16 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
 	protected final String TEXT_9 = ";";
 	protected final String TEXT_10 = NL;
 	protected final String TEXT_11 = NL + "\t/**" + NL + "\t * The cached model package." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected static ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected static ";
 	protected final String TEXT_12 = " modelPackage;" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Creates an instance of the adapter factory." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
 	protected final String TEXT_13 = "()" + NL + "\t{" + NL + "\t\tif (modelPackage == null)" + NL + "\t\t{" + NL
 			+ "\t\t\tmodelPackage = ";
-	protected final String TEXT_14 = ".eINSTANCE;"
-			+ NL
-			+ "\t\t}"
-			+ NL
-			+ "\t}"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t/**"
-			+ NL
-			+ "\t * Returns whether this factory is applicable for the type of the object."
-			+ NL
-			+ "\t * <!-- begin-user-doc -->"
-			+ NL
+	protected final String TEXT_14 = ".eINSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
+			+ "\t * Returns whether this factory is applicable for the type of the object." + NL
+			+ "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model."
 			+ NL + "\t * <!-- end-user-doc -->" + NL
 			+ "\t * @return whether this factory is applicable for the type of the object." + NL + "\t * @generated"
@@ -73,8 +62,8 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
 			+ "\t\t\treturn ((EObject)object).eClass().getEPackage() == modelPackage;" + NL + "\t\t}" + NL
 			+ "\t\treturn false;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * The switch that delegates to the <code>createXXX</code> methods." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprotected ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprotected ";
 	protected final String TEXT_17 = " modelSwitch =" + NL + "\t\tnew ";
 	protected final String TEXT_18 = "()" + NL + "\t\t{";
 	protected final String TEXT_19 = NL + "\t\t\t@Override";
@@ -229,8 +218,8 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
 		 */
 
 		GenPackage genPackage = (GenPackage) argument;
-		GenModel genModel = genPackage.getGenModel(); /* Trick to import java.util.* without warnings */
-		Iterator.class.getName();
+		GenModel genModel = genPackage.getGenModel();
+		/* Trick to import java.util.* without warnings */Iterator.class.getName();
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -241,10 +230,9 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -349,9 +337,8 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
 				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate
-				&& (genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses()
-						.isEmpty());
+		canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.isAdapterFactory()
+				&& !genPackage.getGenClasses().isEmpty());
 		return canGenerate;
 	}
 }

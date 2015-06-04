@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.editor.call.Editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -159,11 +159,14 @@ public class EditoraddItemProviderFactoriesoverride {
 																												this._ListOfPropertySheetPage = (java.lang.String) _ListOfPropertySheetPageParameter;
 																												this._ArrayListOfPropertySheetPage = (java.lang.String) _ArrayListOfPropertySheetPageParameter;
 
-																												if (preCondition(ctx)) {
-																													ctx.setNode(new Node.Container(
-																															currentNode,
-																															getClass()));
-																													orchestration(ctx);
+																												if (preCondition(
+																														ctx)) {
+																													ctx.setNode(
+																															new Node.Container(
+																																	currentNode,
+																																	getClass()));
+																													orchestration(
+																															ctx);
 																												}
 
 																											}

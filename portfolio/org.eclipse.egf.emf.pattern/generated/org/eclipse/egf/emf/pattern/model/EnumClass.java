@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.qualifier
+//Generated with EGF 1.3.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -115,26 +115,25 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 			+ "\t * @param literal the literal." + NL + "\t * @return the matching enumerator or <code>null</code>."
 			+ NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
 	protected final String TEXT_74 = " get(";
-	protected final String TEXT_75 = " literal)" + NL + "\t{" + NL
-			+ "\t\tfor (int i = 0; i < VALUES_ARRAY.length; ++i)" + NL + "\t\t{" + NL + "\t\t\t";
+	protected final String TEXT_75 = " literal)" + NL + "\t{" + NL + "\t\tfor (int i = 0; i < VALUES_ARRAY.length; ++i)"
+			+ NL + "\t\t{" + NL + "\t\t\t";
 	protected final String TEXT_76 = " result = VALUES_ARRAY[i];" + NL + "\t\t\tif (result.toString().equals(literal))"
 			+ NL + "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn null;"
 			+ NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the '<em><b>";
-	protected final String TEXT_77 = "</b></em>' literal with the specified name." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param name the name."
-			+ NL + "\t * @return the matching enumerator or <code>null</code>." + NL + "\t * @generated" + NL + "\t */"
-			+ NL + "\tpublic static ";
+	protected final String TEXT_77 = "</b></em>' literal with the specified name." + NL + "\t * <!-- begin-user-doc -->"
+			+ NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param name the name." + NL
+			+ "\t * @return the matching enumerator or <code>null</code>." + NL + "\t * @generated" + NL + "\t */" + NL
+			+ "\tpublic static ";
 	protected final String TEXT_78 = " getByName(";
 	protected final String TEXT_79 = " name)" + NL + "\t{" + NL + "\t\tfor (int i = 0; i < VALUES_ARRAY.length; ++i)"
 			+ NL + "\t\t{" + NL + "\t\t\t";
-	protected final String TEXT_80 = " result = VALUES_ARRAY[i];" + NL + "\t\t\tif (result.getName().equals(name))"
-			+ NL + "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn null;"
-			+ NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the '<em><b>";
+	protected final String TEXT_80 = " result = VALUES_ARRAY[i];" + NL + "\t\t\tif (result.getName().equals(name))" + NL
+			+ "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn null;" + NL
+			+ "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the '<em><b>";
 	protected final String TEXT_81 = "</b></em>' literal with the specified integer value." + NL
 			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @param value the integer value." + NL
-			+ "\t * @return the matching enumerator or <code>null</code>." + NL + "\t * @generated" + NL + "\t */" + NL
-			+ "\tpublic static ";
+			+ "\t * @param value the integer value." + NL + "\t * @return the matching enumerator or <code>null</code>."
+			+ NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
 	protected final String TEXT_82 = " get(int value)" + NL + "\t{" + NL + "\t\tswitch (value)" + NL + "\t\t{";
 	protected final String TEXT_83 = NL + "\t\t\tcase ";
 	protected final String TEXT_84 = ": return ";
@@ -148,8 +147,8 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate final ";
 	protected final String TEXT_89 = " literal;" + NL;
 	protected final String TEXT_90 = NL + "\t/**" + NL + "\t * Only this class can construct instances." + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tprivate ";
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tprivate ";
 	protected final String TEXT_91 = "(int value, ";
 	protected final String TEXT_92 = " name, ";
 	protected final String TEXT_93 = " literal)" + NL + "\t{";
@@ -158,13 +157,13 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 	protected final String TEXT_95 = NL + "\t\tsuper(value, name, literal);";
 	protected final String TEXT_96 = NL + "\t}" + NL;
 	protected final String TEXT_97 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
-			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic int getValue()"
-			+ NL + "\t{" + NL + "\t  return value;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
-			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
-			+ "\t */" + NL + "\tpublic ";
+			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic int getValue()" + NL
+			+ "\t{" + NL + "\t  return value;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic ";
 	protected final String TEXT_98 = " getName()" + NL + "\t{" + NL + "\t  return name;" + NL + "\t}" + NL + "" + NL
-			+ "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-			+ "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+			+ "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated"
+			+ NL + "\t */" + NL + "\tpublic ";
 	protected final String TEXT_99 = " getLiteral()" + NL + "\t{" + NL + "\t  return literal;" + NL + "\t}" + NL + ""
 			+ NL + "\t/**" + NL
 			+ "\t * Returns the literal value of the enumerator, which is its string representation." + NL
@@ -323,10 +322,9 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
-							new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -384,9 +382,10 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 			stringBuffer.append(TEXT_20);
 		}
 		stringBuffer.append(TEXT_21);
-		stringBuffer.append(genModel.isSuppressEMFMetaData() && !genModel.isSuppressInterfaces() ? "Internal"
-				+ genEnum.getName() : genModel.getImportedName(isEnum ? "org.eclipse.emf.common.util.Enumerator"
-				: "org.eclipse.emf.common.util.AbstractEnumerator"));
+		stringBuffer.append(
+				genModel.isSuppressEMFMetaData() && !genModel.isSuppressInterfaces() ? "Internal" + genEnum.getName()
+						: genModel.getImportedName(isEnum ? "org.eclipse.emf.common.util.Enumerator"
+								: "org.eclipse.emf.common.util.AbstractEnumerator"));
 		stringBuffer.append(TEXT_22);
 		if (isEnum) {
 			if (genEnum.getGenEnumLiterals().isEmpty()) {
@@ -446,8 +445,8 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 			stringBuffer.append(genEnumLiteral.getEnumLiteralInstanceConstantName());
 			if (!genModel.isSuppressEMFModelTags()) {
 				boolean first = true;
-				for (StringTokenizer stringTokenizer = new StringTokenizer(genEnumLiteral.getModelInfo(), "\n\r"); stringTokenizer
-						.hasMoreTokens();) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(genEnumLiteral.getModelInfo(),
+						"\n\r"); stringTokenizer.hasMoreTokens();) {
 					String modelInfo = stringTokenizer.nextToken();
 					if (first) {
 						first = false;
