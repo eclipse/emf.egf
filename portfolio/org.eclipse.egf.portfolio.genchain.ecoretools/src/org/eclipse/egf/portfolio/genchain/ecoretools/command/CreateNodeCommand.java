@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.common.tools.api.interpreter.EvaluationException;
 import org.eclipse.sirius.common.tools.api.interpreter.IInterpreter;
+import org.eclipse.sirius.common.tools.api.util.RefreshIdsHolder;
 import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
@@ -153,7 +154,8 @@ public class CreateNodeCommand extends RecordingCommand {
 	 * @param parent a {@link DragAndDropTarget} element wherein the node will be created
 	 */
 	private AbstractDNode createOneNode(EObject target, AbstractNodeMapping mapping, DragAndDropTarget parent){
-		final AbstractDNodeCandidate abstractDNodeCandidate = new AbstractDNodeCandidate(mapping, target, parent, null); 
+		RefreshIdsHolder refreshIdsHolder = new RefreshIdsHolder();
+		final AbstractDNodeCandidate abstractDNodeCandidate = new AbstractDNodeCandidate(mapping, target, parent, refreshIdsHolder); 
 		return diagramSynchronizer.getElementSynchronizer().createNewNode(diagramMappingsManager, abstractDNodeCandidate, false);
 	}
 
