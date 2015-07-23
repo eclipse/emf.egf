@@ -58,7 +58,7 @@
 		
 		<pathconvert property="featurefile<%=stepName%>">
 			<first count="1">
-				<fileset dir="${result}/output" includes="<%=featurename%>*eclipse.feature/temp/feature.xml" />
+				<fileset dir="${result}/output" includes="<%=featurename%>*eclipse.feature/temp/manifest/feature.xml" />
 			</first>
 		</pathconvert>
 		<loadfile property="featureversion<%=stepName%>" srcFile="${featurefile<%=stepName%>}">

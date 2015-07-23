@@ -50,7 +50,8 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
 	protected final String TEXT_19 = ":buckminster#convertSiteToRuntime\" />" + NL + "\t\t\t</cmdargs>" + NL + "\t\t</buckminster>" + NL + "\t\t" + NL
 			+ "\t\t<pathconvert property=\"featurefile";
 	protected final String TEXT_20 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<fileset dir=\"${result}/output\" includes=\"";
-	protected final String TEXT_21 = "*eclipse.feature/temp/feature.xml\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL + "\t\t<loadfile property=\"featureversion";
+	protected final String TEXT_21 = "*eclipse.feature/temp/manifest/feature.xml\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL
+			+ "\t\t<loadfile property=\"featureversion";
 	protected final String TEXT_22 = "\" srcFile=\"${featurefile";
 	protected final String TEXT_23 = "}\">" + NL + "\t\t\t<filterchain>" + NL + "\t\t\t\t<striplinebreaks/>" + NL + "\t\t\t\t<replaceregex" + NL
 			+ "\t\t\t\t\tpattern=\"^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$\"" + NL + "\t\t\t\t\treplace=\"\\1\"/>" + NL + "\t\t\t</filterchain>" + NL
