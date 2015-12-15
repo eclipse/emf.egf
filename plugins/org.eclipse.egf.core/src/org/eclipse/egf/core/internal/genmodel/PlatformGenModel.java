@@ -46,33 +46,13 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
 
     private URI _genModelURI;
 
-    private static Map<URI, URI> _targetPlatformGenModelLocationMap;
+    private static Map<URI, URI> workspaceGenModelLocationMap;
 
-    private static Map<URI, IPlatformGenModel> _nsURIToTargetPlatformGenModel;
+    private static Map<URI, IPlatformGenModel> nsURIToWorkspaceGenModel;
 
-    private static Map<URI, URI> _runtimePlatformGenModelLocationMap;
+    private static Map<URI, URI> platformGenModelLocationMap;
 
-    private static Map<URI, IPlatformGenModel> _nsURIToRuntimePlatformGenModel;
-
-    /**
-     * Returns a map from {@link EPackage#getNsURI() package namespace URI} (represented as a String)
-     * to the location of the GenModel containing a GenPackage for the package (represented as a {@link URI URI}).
-     * 
-     * @return a map from package namespace to GenModel location.
-     */
-    public static Map<URI, URI> getTargetPlatformGenModelLocationMap() {
-        if (_targetPlatformGenModelLocationMap == null) {
-            _targetPlatformGenModelLocationMap = new HashMap<URI, URI>();
-        }
-        return _targetPlatformGenModelLocationMap;
-    }
-
-    public static Map<URI, IPlatformGenModel> getTargetPlatformGenModels() {
-        if (_nsURIToTargetPlatformGenModel == null) {
-            _nsURIToTargetPlatformGenModel = new HashMap<URI, IPlatformGenModel>();
-        }
-        return _nsURIToTargetPlatformGenModel;
-    }
+    private static Map<URI, IPlatformGenModel> nsURIToPlatformGenModel;
 
     /**
      * Returns a map from {@link EPackage#getNsURI() package namespace URI} (represented as a String)
@@ -80,18 +60,38 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
      * 
      * @return a map from package namespace to GenModel location.
      */
-    public static Map<URI, URI> getRuntimePlatformGenModelLocationMap() {
-        if (_runtimePlatformGenModelLocationMap == null) {
-            _runtimePlatformGenModelLocationMap = new HashMap<URI, URI>();
+    public static Map<URI, URI> getWorkspaceGenModelLocationMap() {
+        if (workspaceGenModelLocationMap == null) {
+            workspaceGenModelLocationMap = new HashMap<URI, URI>();
         }
-        return _runtimePlatformGenModelLocationMap;
+        return workspaceGenModelLocationMap;
     }
 
-    public static Map<URI, IPlatformGenModel> getRuntimePlatformGenModels() {
-        if (_nsURIToRuntimePlatformGenModel == null) {
-            _nsURIToRuntimePlatformGenModel = new HashMap<URI, IPlatformGenModel>();
+    public static Map<URI, IPlatformGenModel> getWorkspacePlatformGenModels() {
+        if (nsURIToWorkspaceGenModel == null) {
+            nsURIToWorkspaceGenModel = new HashMap<URI, IPlatformGenModel>();
         }
-        return _nsURIToRuntimePlatformGenModel;
+        return nsURIToWorkspaceGenModel;
+    }
+
+    /**
+     * Returns a map from {@link EPackage#getNsURI() package namespace URI} (represented as a String)
+     * to the location of the GenModel containing a GenPackage for the package (represented as a {@link URI URI}).
+     * 
+     * @return a map from package namespace to GenModel location.
+     */
+    public static Map<URI, URI> getPlatformGenModelLocationMap() {
+        if (platformGenModelLocationMap == null) {
+            platformGenModelLocationMap = new HashMap<URI, URI>();
+        }
+        return platformGenModelLocationMap;
+    }
+
+    public static Map<URI, IPlatformGenModel> getPlatformGenModels() {
+        if (nsURIToPlatformGenModel == null) {
+            nsURIToPlatformGenModel = new HashMap<URI, IPlatformGenModel>();
+        }
+        return nsURIToPlatformGenModel;
     }
 
     public URI getEPackageNsURI(URI uri) {
@@ -143,9 +143,9 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         if (genModel != null && genModel.trim().length() != 0) {
             _genModel = genModel.trim();
             _genModelURI = URIHelper.getPlatformPluginURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
-            getTargetPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+            getWorkspaceGenModelLocationMap().put(getNsURI(), _genModelURI);
         }
-        getTargetPlatformGenModels().put(getNsURI(), this);
+        getWorkspacePlatformGenModels().put(getNsURI(), this);
     }
 
     public PlatformGenModel(IPlatformBundle bundle, String uri, String uniqueIdentifier, int handleId, String className, String genModel) {
@@ -158,9 +158,9 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         if (genModel != null && genModel.trim().length() != 0) {
             _genModel = genModel.trim();
             _genModelURI = URIHelper.getPlatformPluginURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
-            getRuntimePlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+            getPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
         }
-        getRuntimePlatformGenModels().put(getNsURI(), this);
+        getPlatformGenModels().put(getNsURI(), this);
     }
 
     @Override
@@ -169,17 +169,17 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         // when merged, the previous discarded one could clean the registry
         if (_genModelURI != null) {
             if (isRuntime()) {
-                getRuntimePlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+                getPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
                 EcorePlugin.getEPackageNsURIToGenModelLocationMap().put(getNsURI().toString(), _genModelURI);
             } else {
-                getTargetPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+                getWorkspaceGenModelLocationMap().put(getNsURI(), _genModelURI);
             }
         }
         if (isRuntime()) {
-            getRuntimePlatformGenModels().put(getNsURI(), this);
+            getPlatformGenModels().put(getNsURI(), this);
             EPackage.Registry.INSTANCE.put(getNsURI().toString(), getEPackage());
         } else {
-            getTargetPlatformGenModels().put(getNsURI(), this);
+            getWorkspacePlatformGenModels().put(getNsURI(), this);
         }
     }
 
@@ -295,11 +295,11 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
     protected void dispose() {
         if (isRuntime()) {
             // Clean local registry
-            getRuntimePlatformGenModelLocationMap().remove(getNsURI());
-            getRuntimePlatformGenModels().remove(getNsURI());
+            getPlatformGenModelLocationMap().remove(getNsURI());
+            getPlatformGenModels().remove(getNsURI());
         } else {
-            getTargetPlatformGenModelLocationMap().remove(getNsURI());
-            getTargetPlatformGenModels().remove(getNsURI());
+            getWorkspaceGenModelLocationMap().remove(getNsURI());
+            getWorkspacePlatformGenModels().remove(getNsURI());
         }
     }
 

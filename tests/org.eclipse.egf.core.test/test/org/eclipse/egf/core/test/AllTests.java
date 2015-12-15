@@ -10,14 +10,10 @@
  */
 package org.eclipse.egf.core.test;
 
+import org.eclipse.egf.core.test.resourceset.ResourceSetTests;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-import org.eclipse.egf.core.test.factorycomponent.ContextFactoryComponent;
-import org.eclipse.egf.core.test.loader.ContextLoader;
-import org.eclipse.egf.core.test.model.validation.ModelValidation;
-import org.eclipse.egf.core.test.resourceset.ResourceSetTests;
-import org.eclipse.egf.core.test.task.ContextTask;
 
 /**
  * @author Xavier Maysonnave
@@ -25,24 +21,24 @@ import org.eclipse.egf.core.test.task.ContextTask;
  */
 public class AllTests {
 
-    public static Test suite() {
+	public static Test suite() {
 
-        TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
+		TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
 
-        TestSuite init = new TestSuite("EGF Core Test Initialization"); //$NON-NLS-1$
-        init.addTest(WorkspaceInitializationTest.suite());
-        suite.addTest(init);
+		TestSuite init = new TestSuite("EGF Core Test Initialization"); //$NON-NLS-1$
+		init.addTest(WorkspaceInitializationTest.suite());
+		suite.addTest(init);
 
-        new ModelTestHelper().addModelTest(suite);
+		//        new ModelTestHelper().addModelTest(suite);
+		//
+		//        suite.addTest(ModelValidation.suite());
+		//        suite.addTest(ContextFactoryComponent.suite());
+		//        suite.addTest(ContextTask.suite());
+		//        suite.addTest(ContextLoader.suite());
 
-        suite.addTest(ModelValidation.suite());
-        suite.addTest(ContextFactoryComponent.suite());
-        suite.addTest(ContextTask.suite());
-        suite.addTest(ContextLoader.suite());
+		suite.addTest(ResourceSetTests.suite());
+		return suite;
 
-        suite.addTest(ResourceSetTests.suite());
-        return suite;
-
-    }
+	}
 
 }

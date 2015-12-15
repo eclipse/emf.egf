@@ -10,63 +10,12 @@
  */
 package org.eclipse.egf.core.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TargetPlatformResourceSet extends ResourceSetImpl {
 
-    protected class TargetResourcesEList<E extends Object & Resource> extends ResourcesEList<E> {
-
-        private static final long serialVersionUID = 1L;
-
-        private Map<URI, Resource> _uriResourceMap;
-
-        public TargetResourcesEList(Map<URI, Resource> uriResourceMap) {
-            super();
-            _uriResourceMap = uriResourceMap;
-        }
-
-        @Override
-        public E remove(int i) {
-            E object = super.remove(i);
-            if (object != null) {
-                _uriResourceMap.remove(((Resource) object).getURI());
-            }
-            return object;
-        }
-
-    }
-
-    public TargetPlatformResourceSet() {
-        super();
-        setURIResourceMap(new HashMap<URI, Resource>());
-        setURIConverter(EGFCorePlugin.getTargetPlatformURIConverter());
-    }
-
-    @Override
-    public Resource getResource(URI uri, boolean loadOnDemand) {
-        if (uri == null) {
-            return null;
-        }
-        return super.getResource(URI.createURI(URI.decode(uri.toString())), loadOnDemand);
-    }
-
-    @Override
-    public EList<Resource> getResources() {
-        if (resources == null) {
-            resources = new TargetResourcesEList<Resource>(getURIResourceMap());
-        }
-        return resources;
-    }
+//TODO a virer
+public class TargetPlatformResourceSet extends EgfResourceSet {
 
 }

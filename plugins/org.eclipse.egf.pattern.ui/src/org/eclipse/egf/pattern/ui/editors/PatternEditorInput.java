@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -117,9 +118,9 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
 
     public URI getURI() {
         if (getPattern() != null) {
-            return EGFCorePlugin.getTargetPlatformURIConverter().normalize(EcoreUtil.getURI(getPattern()));
+            return EGFPlatformPlugin.getPlatformURIConverter().normalize(EcoreUtil.getURI(getPattern()));
         }
-        return EGFCorePlugin.getTargetPlatformURIConverter().normalize(getResource().getURI());
+        return EGFPlatformPlugin.getPlatformURIConverter().normalize(getResource().getURI());
     }
 
     public ImageDescriptor getImageDescriptor() {

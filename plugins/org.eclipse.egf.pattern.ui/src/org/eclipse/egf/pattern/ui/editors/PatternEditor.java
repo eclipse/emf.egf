@@ -29,6 +29,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener;
 import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -458,7 +459,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         if (getEditorInput() == null) {
             return super.getTitleToolTip();
         }
-        return EGFCorePlugin.getTargetPlatformURIConverter().normalize(getResource().getURI()).toString();
+        return EGFPlatformPlugin.getPlatformURIConverter().normalize(getResource().getURI()).toString();
     }
 
     @SuppressWarnings("rawtypes")

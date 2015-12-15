@@ -30,8 +30,7 @@ import org.eclipse.egf.ant.taskdefs.EGFTask;
 import org.eclipse.egf.application.internal.activator.EGFApplicationPlugin;
 import org.eclipse.egf.application.internal.activity.ActivityRunner;
 import org.eclipse.egf.application.internal.l10n.ApplicationMessages;
-import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
@@ -56,74 +55,70 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ActivityTask extends EGFTask {
 
-    protected List<NestedActivity> _nestedActivities;
+	protected List<NestedActivity> _nestedActivities;
 
-    public void addConfiguredActivity(NestedActivity activity) {
-        if (_nestedActivities == null) {
-            _nestedActivities = new ArrayList<NestedActivity>();
-        }
-        _nestedActivities.add(activity);
-    }
+	public void addConfiguredActivity(NestedActivity activity) {
+		if (_nestedActivities == null) {
+			_nestedActivities = new ArrayList<NestedActivity>();
+		}
+		_nestedActivities.add(activity);
+	}
 
-    @Override
-    protected void checkAttributes() throws BuildException {
-        assertTrue("Nested 'activity' must be specified.", _nestedActivities != null); //$NON-NLS-1$
-        for (NestedActivity activity : _nestedActivities) {
-            activity.checkAttributes();
-        }
-    }
+	@Override
+	protected void checkAttributes() throws BuildException {
+		assertTrue("Nested 'activity' must be specified.", _nestedActivities != null); //$NON-NLS-1$
+		for (NestedActivity activity : _nestedActivities) {
+			activity.checkAttributes();
+		}
+	}
 
-    @Override
-    protected void doExecute() throws Exception {
-        // Build a list of activities if any
-        List<Activity> activities = new UniqueEList<Activity>();
-        for (NestedActivity activity : _nestedActivities) {
-            ResourceSet resourceSet = null;
-            if (activity.isRuntime()) {
-                resourceSet = new RuntimePlatformResourceSet();
-            } else {
-                resourceSet = new TargetPlatformResourceSet();
-            }
-            EObject eObject = null;
-            // Load it in our resource set
-            try {
-                eObject = resourceSet.getEObject(resourceSet.getURIConverter().normalize(activity.getUri()), true);
-            } catch (Throwable t) {
-                EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.NestedActivity_EObject_Loading_Error, activity.getUri().toString()), t)));
-                continue;
-            }
-            // Verify if we face an Activity
-            if (eObject == null || eObject instanceof Activity == false) {
-                EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.NestedActivity_Invalid_Activity_Argument, activity.getUri().toString()), null)));
-                continue;
-            }
-            // to be runned activities
-            activities.add((Activity) eObject);
-        }
-        if (activities.isEmpty()) {
-            return;
-        }
-        runHelper(activities);
-    }
+	@Override
+	protected void doExecute() throws Exception {
+		// Build a list of activities if any
+		List<Activity> activities = new UniqueEList<Activity>();
+		for (NestedActivity activity : _nestedActivities) {
+			ResourceSet resourceSet = new EgfResourceSet(activity.isRuntime());
 
-    public void runHelper(final List<Activity> activities) throws Exception {
-        try {
-            final IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+			EObject eObject = null;
+			// Load it in our resource set
+			try {
+				eObject = resourceSet.getEObject(resourceSet.getURIConverter().normalize(activity.getUri()), true);
+			} catch (Throwable t) {
+				EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.NestedActivity_EObject_Loading_Error, activity.getUri().toString()), t)));
+				continue;
+			}
+			// Verify if we face an Activity
+			if (eObject == null || eObject instanceof Activity == false) {
+				EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.NestedActivity_Invalid_Activity_Argument, activity.getUri().toString()), null)));
+				continue;
+			}
+			// to be runned activities
+			activities.add((Activity) eObject);
+		}
+		if (activities.isEmpty()) {
+			return;
+		}
+		runHelper(activities);
+	}
 
-                public void run(IProgressMonitor monitor) throws CoreException {
-                    try {
-                        ActivityRunner runner = new ActivityRunner(activities);
-                        runner.run(monitor);
-                    } finally {
-                        monitor.done();
-                    }
-                }
-            };
-            workspace.run(runnable, getProgressMonitor());
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+	public void runHelper(final List<Activity> activities) throws Exception {
+		try {
+			final IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+
+				public void run(IProgressMonitor monitor) throws CoreException {
+					try {
+						ActivityRunner runner = new ActivityRunner(activities);
+						runner.run(monitor);
+					} finally {
+						monitor.done();
+					}
+				}
+			};
+			workspace.run(runnable, getProgressMonitor());
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 
 }

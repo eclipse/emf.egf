@@ -8,7 +8,7 @@
   <viewpointContainer xmi:id="_2YVyYCoqEeG7qpXDyiIq8A">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_2-2_0CoqEeG7qpXDyiIq8A">
       <domains xmi:type="domain:EMFDomain" xmi:id="_3t2z0CoqEeG7qpXDyiIq8A" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
-          uri="platform:/resource/org.eclipse.egf.usecase.pattern.uc3.m2treporting/model/extlibrary.ecore"/>
+          uri="platform:/plugin/org.eclipse.egf.usecase.pattern.uc3.m2treporting/model/extlibrary.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_Ez8gUCorEeG7qpXDyiIq8A">
       <libraries xmi:id="_FKms0CorEeG7qpXDyiIq8A" name="org.eclipse.egf.usecase.pattern.uc3.m2treporting.postprocessing">

@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.l10n.EGFModelMessages;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -87,7 +88,7 @@ public class TemplateFileHelper {
             return getFileContent(file);
         }
         URI uri = URIHelper.getPlatformPluginURI(pluginId, templatePath.toPortableString(), false);
-        return getContent(EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri));
+        return getContent(EGFPlatformPlugin.getPlatformURIConverter().createInputStream(uri));
     }
 
     /**

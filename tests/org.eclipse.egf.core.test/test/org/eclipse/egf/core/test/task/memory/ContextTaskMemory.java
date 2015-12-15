@@ -83,10 +83,10 @@ public class ContextTaskMemory extends TestCase {
 
     }
 
-    public void testOutputContractClassNotTheSameH1() throws Exception {
+    public void testOutputContractClassNotTheSameH3() throws Exception {
 
         Task task = FtaskFactory.eINSTANCE.createTask();
-        task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+        task.setImplementation("org.eclipse.egf.core.test.task.memory.Task"); //$NON-NLS-1$
         task.setKind("java"); //$NON-NLS-1$
 
         ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();

@@ -58,7 +58,7 @@ public class TargetPlatformPackageDialog extends ElementListSelectionDialog {
     }
 
     protected void updateElements() {
-        IPlatformGenModel[] elements = EGFCorePlugin.getTargetPlatformGenModels();
+        IPlatformGenModel[] elements = EGFCorePlugin.getPlatformGenModels();
         Arrays.sort(elements);
         setListElements(elements);
     }

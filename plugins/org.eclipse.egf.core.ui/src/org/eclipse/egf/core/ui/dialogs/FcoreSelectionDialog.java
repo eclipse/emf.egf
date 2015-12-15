@@ -70,7 +70,7 @@ public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
             }
             URI uri = URI.createURI(tag);
             // TODO: We should have an index to improve such control
-            for (IPlatformFcore fcore : EGFCorePlugin.getTargetPlatformFcores()) {
+            for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
                 if (fcore.getURI().equals(uri)) {
                     _previous = fcore;
                     return fcore;
@@ -153,7 +153,7 @@ public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
     }
 
     private static IPlatformFcore[] getElements() {
-        return EGFCorePlugin.getTargetPlatformFcores();
+        return EGFCorePlugin.getPlatformFcores();
     }
 
     private ILabelProvider _labelProvider = new LabelProvider() {

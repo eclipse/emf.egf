@@ -14,7 +14,7 @@ import java.util.Collection;
 
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -29,27 +29,27 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class TypeGenPackageHelper {
 
-    private TypeGenPackageHelper() {
-        // Prevent Instantiation
-    }
+	private TypeGenPackageHelper() {
+		// Prevent Instantiation
+	}
 
-    public static Collection<GenPackage> getAvailableGenPackage(EObject eObject) {
-        Collection<GenPackage> result = new UniqueEList<GenPackage>();
-        ResourceSet resourceSet = new TargetPlatformResourceSet();
-        if (eObject != null) {
-            // Load available GenPackage
-            for (URI uri : new UniqueEList<URI>(EGFCorePlugin.getTargetPlatformGenModelLocationMap().values())) {
-                Resource resource = resourceSet.getResource(uri, true);
-                if (resource != null) {
-                    EcoreUtil.resolveAll(resource);
-                }
-            }
-            // Locate GenPackages
-            for (Resource resource : resourceSet.getResources()) {
-                result.addAll(EMFHelper.getAllGenPackages(resource));
-            }
-        }
-        return result;
-    }
+	public static Collection<GenPackage> getAvailableGenPackage(EObject eObject) {
+		Collection<GenPackage> result = new UniqueEList<GenPackage>();
+		ResourceSet resourceSet = new EgfResourceSet();
+		if (eObject != null) {
+			// Load available GenPackage
+			for (URI uri : new UniqueEList<URI>(EGFCorePlugin.getTargetPlatformGenModelLocationMap().values())) {
+				Resource resource = resourceSet.getResource(uri, true);
+				if (resource != null) {
+					EcoreUtil.resolveAll(resource);
+				}
+			}
+			// Locate GenPackages
+			for (Resource resource : resourceSet.getResources()) {
+				result.addAll(EMFHelper.getAllGenPackages(resource));
+			}
+		}
+		return result;
+	}
 
 }

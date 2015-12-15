@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -33,6 +33,7 @@ import org.eclipse.egf.portfolio.genchain.tools.utils.FCMatcher;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * 
@@ -40,52 +41,52 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public class FcoreBuilderTask extends DomainDrivenStrategyTask {
 
-    @Override
-    protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
+	@Override
+	protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
 
-        super.readContext(context, ctx);
-        // Create FC
-        String name = (String) ctx.getValue(FcoreBuilderConstants.NAME);
+		super.readContext(context, ctx);
+		// Create FC
+		String name = (String) ctx.getValue(FcoreBuilderConstants.NAME);
 
-        TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
+		ResourceSet resourceSet = new EgfResourceSet();
 
-        Collection<FactoryComponent> unusedFC = new ArrayList<FactoryComponent>();
-        URI fcoreUri = URI.createPlatformResourceURI((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH), true);
-        FactoryComponent mainFC = null;
+		Collection<FactoryComponent> unusedFC = new ArrayList<FactoryComponent>();
+		URI fcoreUri = URI.createPlatformResourceURI((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH), true);
+		FactoryComponent mainFC = null;
 
-        Resource resource = null;
-        try {
-            resource = resourceSet.getResource(fcoreUri, true);
-            for (EObject obj : resource.getContents()) {
-                if (obj instanceof FactoryComponent) {
-                    FactoryComponent fc = (FactoryComponent) obj;
-                    if (FCMatcher.isLauncherFC(fc)) {
-                        mainFC = fc;
-                        ActivityInvocationHelper.clearOrchestration(fc);
-                    } else
-                        unusedFC.add(fc);
-                }
-            }
+		Resource resource = null;
+		try {
+			resource = resourceSet.getResource(fcoreUri, true);
+			for (EObject obj : resource.getContents()) {
+				if (obj instanceof FactoryComponent) {
+					FactoryComponent fc = (FactoryComponent) obj;
+					if (FCMatcher.isLauncherFC(fc)) {
+						mainFC = fc;
+						ActivityInvocationHelper.clearOrchestration(fc);
+					} else
+						unusedFC.add(fc);
+				}
+			}
 
-            // TODO match de fc,
-        } catch (Exception e) {
-            resource = resourceSet.createResource(fcoreUri);
-        }
+			// TODO match de fc,
+		} catch (Exception e) {
+			resource = resourceSet.createResource(fcoreUri);
+		}
 
-        if (mainFC == null) {
-            mainFC = ActivityInvocationHelper.createDefaultFC(name + " Launcher"); //$NON-NLS-1$
-            resource.getContents().add(mainFC);
-        }
+		if (mainFC == null) {
+			mainFC = ActivityInvocationHelper.createDefaultFC(name + " Launcher"); //$NON-NLS-1$
+			resource.getContents().add(mainFC);
+		}
 
-        Map<GenerationElement, FactoryComponent> fcs = new HashMap<GenerationElement, FactoryComponent>();
-        fcs.put(null, mainFC);
-        ctx.setValue(FcoreBuilderConstants.MAIN_FCORE, mainFC);
-        ctx.setValue(FcoreBuilderConstants.CURRENT_FCORE, fcs);
+		Map<GenerationElement, FactoryComponent> fcs = new HashMap<GenerationElement, FactoryComponent>();
+		fcs.put(null, mainFC);
+		ctx.setValue(FcoreBuilderConstants.MAIN_FCORE, mainFC);
+		ctx.setValue(FcoreBuilderConstants.CURRENT_FCORE, fcs);
 
-        ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<EmfGeneration, URI>());
-        ctx.setValue(FcoreBuilderConstants.UNUSED_FCORE, unusedFC);
-        ctx.setValue(FcoreBuilderConstants.RESOURCE_SET, resourceSet);
+		ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<EmfGeneration, URI>());
+		ctx.setValue(FcoreBuilderConstants.UNUSED_FCORE, unusedFC);
+		ctx.setValue(FcoreBuilderConstants.RESOURCE_SET, resourceSet);
 
-    }
+	}
 
 }

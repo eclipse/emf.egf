@@ -27,7 +27,7 @@ import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
  * @author Thomas Guiu
  * 
  */
-public class TargetPlatformEditingDomainFactory extends WorkspaceEditingDomainFactory {
+public class EgfEditingDomainFactory extends WorkspaceEditingDomainFactory {
 
     @Override
     public TransactionalEditingDomain createEditingDomain() {
@@ -56,7 +56,7 @@ public class TargetPlatformEditingDomainFactory extends WorkspaceEditingDomainFa
     public synchronized TransactionalEditingDomain createEditingDomain(IOperationHistory history) {
         WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
         stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
-        TransactionalEditingDomain result = new TargetPlatformEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
+        TransactionalEditingDomain result = new EgfEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
         mapResourceSet(result);
         return result;
     }
@@ -76,7 +76,7 @@ public class TargetPlatformEditingDomainFactory extends WorkspaceEditingDomainFa
     public synchronized TransactionalEditingDomain createEditingDomain(ResourceSet rset, IOperationHistory history) {
         WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
         stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
-        TransactionalEditingDomain result = new TargetPlatformEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
+        TransactionalEditingDomain result = new EgfEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
         mapResourceSet(result);
         return result;
     }

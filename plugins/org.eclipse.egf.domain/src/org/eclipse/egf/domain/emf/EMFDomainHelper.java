@@ -15,7 +15,7 @@
 
 package org.eclipse.egf.domain.emf;
 
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.egf.domain.Activator;
 import org.eclipse.egf.domain.DomainException;
 import org.eclipse.egf.domain.LoadableDomainHelper;
@@ -33,45 +33,45 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  */
 public class EMFDomainHelper extends LoadableDomainHelper {
 
-    protected boolean doLoadDomain(LoadableDomain domain) throws DomainException {
-        if (domain instanceof EMFDomain) {
-            EMFDomain myDomain = (EMFDomain) domain;
-            myDomain.setLoaded(true);
-            // ResourceSet set = new RuntimePlatformResourceSet();
-            ResourceSet set = new TargetPlatformResourceSet();
-            final URI uri = myDomain.getUri();
-            if (uri == null || "".equals(uri.toString())) { //$NON-NLS-1$
-                Activator.getDefault().logWarning(Messages.bind(Messages.Load_EMFDomain_error1, domain.getName()));
-                return true;
-            }
-            Resource domainResource = null;
-            try {
-                domainResource = set.getResource(uri, true);
-            } catch (Exception e) {
-                throw new DomainException(Messages.bind(Messages.Load_EMFDomain_error2, uri.toString()), e);
-            }
+	protected boolean doLoadDomain(LoadableDomain domain) throws DomainException {
+		if (domain instanceof EMFDomain) {
+			EMFDomain myDomain = (EMFDomain) domain;
+			myDomain.setLoaded(true);
+			// ResourceSet set = new RuntimePlatformResourceSet();
+			ResourceSet set = new EgfResourceSet();
+			final URI uri = myDomain.getUri();
+			if (uri == null || "".equals(uri.toString())) { //$NON-NLS-1$
+				Activator.getDefault().logWarning(Messages.bind(Messages.Load_EMFDomain_error1, domain.getName()));
+				return true;
+			}
+			Resource domainResource = null;
+			try {
+				domainResource = set.getResource(uri, true);
+			} catch (Exception e) {
+				throw new DomainException(Messages.bind(Messages.Load_EMFDomain_error2, uri.toString()), e);
+			}
 
-            if (!myDomain.getContent().isEmpty())
-                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
-            myDomain.getContent().addAll(domainResource.getContents());
-            return true;
-        }
-        return false;
-    }
+			if (!myDomain.getContent().isEmpty())
+				throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
+			myDomain.getContent().addAll(domainResource.getContents());
+			return true;
+		}
+		return false;
+	}
 
-    protected boolean doUnLoadDomain(LoadableDomain domain) throws DomainException {
-        if (domain instanceof EMFDomain) {
-            EMFDomain myDomain = (EMFDomain) domain;
-            if (!myDomain.getContent().isEmpty()) {
-                final Resource eResource = ((EObject) myDomain.getContent().get(0)).eResource();
-                if (eResource != null)
-                    eResource.unload();
-                myDomain.getContent().clear();
-                myDomain.setLoaded(false);
-            }
-            return true;
-        }
-        return false;
-    }
+	protected boolean doUnLoadDomain(LoadableDomain domain) throws DomainException {
+		if (domain instanceof EMFDomain) {
+			EMFDomain myDomain = (EMFDomain) domain;
+			if (!myDomain.getContent().isEmpty()) {
+				final Resource eResource = ((EObject) myDomain.getContent().get(0)).eResource();
+				if (eResource != null)
+					eResource.unload();
+				myDomain.getContent().clear();
+				myDomain.setLoaded(false);
+			}
+			return true;
+		}
+		return false;
+	}
 
 }

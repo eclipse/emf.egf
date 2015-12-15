@@ -65,7 +65,7 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
 
     private EditingDomain _editingDomain;
 
-    private IPlatformFcore[] _fcores = EGFCorePlugin.getTargetPlatformFcores();
+    private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
 
     protected ComposedAdapterFactory _adapterFactory;
 

@@ -29,11 +29,11 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.pattern.PatternFolders;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.dev.Activator;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -53,108 +53,108 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  */
 public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelegate {
 
-    public DeleteUnusedTemplatesAction() {
-        // Nothing to do
-    }
+	public DeleteUnusedTemplatesAction() {
+		// Nothing to do
+	}
 
-    public void run(IAction action) {
-        final List<Pattern> patterns = new ArrayList<Pattern>(200);
-        Set<IFolder> folders = new HashSet<IFolder>();
+	public void run(IAction action) {
+		final List<Pattern> patterns = new ArrayList<Pattern>(200);
+		Set<IFolder> folders = new HashSet<IFolder>();
 
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getWorkspaceTargetPlatformFcores();
-        ResourceSet resourceSet = new TargetPlatformResourceSet();
-        try {
-            for (IPlatformFcore platformFcore : platformFcores) {
-                URI uri = platformFcore.getURI();
-                Resource res = resourceSet.getResource(uri, true);
-                PatternCollector.INSTANCE.collect(res.getContents(), patterns, PatternCollector.EMPTY_ID_SET);
+		IPlatformFcore[] platformFcores = EGFPlatformPlugin.getPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformFcore.class);
+		ResourceSet resourceSet = new EgfResourceSet();
+		try {
+			for (IPlatformFcore platformFcore : platformFcores) {
+				URI uri = platformFcore.getURI();
+				Resource res = resourceSet.getResource(uri, true);
+				PatternCollector.INSTANCE.collect(res.getContents(), patterns, PatternCollector.EMPTY_ID_SET);
 
-                IProject project = platformFcore.getPlatformBundle().getProject();
-                IFolder folder = project.getFolder(PatternFolders.getTemplatesFolderName());
-                if (folder.exists())
-                    folders.add(folder);
-            }
+				IProject project = platformFcore.getPlatformBundle().getProject();
+				IFolder folder = project.getFolder(PatternFolders.getTemplatesFolderName());
+				if (folder.exists())
+					folders.add(folder);
+			}
 
-            for (IFolder folder : folders) {
+			for (IFolder folder : folders) {
 
-                folder.accept(new IResourceVisitor() {
+				folder.accept(new IResourceVisitor() {
 
-                    public boolean visit(IResource resource) throws CoreException {
-                        if (resource.getType() == IResource.FILE) {
-                            if (TemplateModelFileHelper.PATTERN_UNIT_FILE_EXTENSION.equals(resource.getFileExtension())) {
-                                if (!found(patterns, resource)) {
-                                    delete(resource);
-                                    if (resource.getParent().getType() == IResource.FOLDER) {
-                                        IFolder innerFolder = (IFolder) resource.getParent();
-                                        if (innerFolder.members().length == 0)
-                                            delete(innerFolder);
-                                    }
-                                }
-                            }
-                            return false;
-                        }
-                        return true;
-                    }
+					public boolean visit(IResource resource) throws CoreException {
+						if (resource.getType() == IResource.FILE) {
+							if (TemplateModelFileHelper.PATTERN_UNIT_FILE_EXTENSION.equals(resource.getFileExtension())) {
+								if (!found(patterns, resource)) {
+									delete(resource);
+									if (resource.getParent().getType() == IResource.FOLDER) {
+										IFolder innerFolder = (IFolder) resource.getParent();
+										if (innerFolder.members().length == 0)
+											delete(innerFolder);
+									}
+								}
+							}
+							return false;
+						}
+						return true;
+					}
 
-                    private void delete(IResource resource) throws CoreException {
-                        Activator.getDefault().logInfo("Will delete " + resource); //$NON-NLS-1$
-                        resource.delete(true, new NullProgressMonitor());
-                    }
+					private void delete(IResource resource) throws CoreException {
+						Activator.getDefault().logInfo("Will delete " + resource); //$NON-NLS-1$
+						resource.delete(true, new NullProgressMonitor());
+					}
 
-                    private boolean found(final List<Pattern> innerPatterns, IResource resource) {
-                        for (Pattern pattern : innerPatterns) {
-                            IProject project = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore().getPlatformBundle().getProject();
-                            if (project.equals(resource.getProject())) {
-                                for (PatternMethod method : pattern.getMethods()) {
-                                    IFile methodFile = (IFile) ResourcesPlugin.getWorkspace().getRoot().findMember(method.getPatternFilePath().toPlatformString(true));
-                                    if (methodFile != null && methodFile.equals(resource)) {
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                        return false;
-                    }
+					private boolean found(final List<Pattern> innerPatterns, IResource resource) {
+						for (Pattern pattern : innerPatterns) {
+							IProject project = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore().getPlatformBundle().getProject();
+							if (project.equals(resource.getProject())) {
+								for (PatternMethod method : pattern.getMethods()) {
+									IFile methodFile = (IFile) ResourcesPlugin.getWorkspace().getRoot().findMember(method.getPatternFilePath().toPlatformString(true));
+									if (methodFile != null && methodFile.equals(resource)) {
+										return true;
+									}
+								}
+							}
+						}
+						return false;
+					}
 
-                });
+				});
 
-            }
-        } catch (Throwable t) {
-            ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), t);
-        }
-        Activator.getDefault().logInfo("finished"); //$NON-NLS-1$
-    }
+			}
+		} catch (Throwable t) {
+			ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), t);
+		}
+		Activator.getDefault().logInfo("finished"); //$NON-NLS-1$
+	}
 
-    /**
-     * Selection in the workbench has been changed. We
-     * can change the state of the 'real' action here
-     * if we want, but this can only happen after
-     * the delegate has been created.
-     * 
-     * @see IWorkbenchWindowActionDelegate#selectionChanged
-     */
-    public void selectionChanged(IAction action, ISelection selection) {
-        // Nothing to do
-    }
+	/**
+	 * Selection in the workbench has been changed. We
+	 * can change the state of the 'real' action here
+	 * if we want, but this can only happen after
+	 * the delegate has been created.
+	 * 
+	 * @see IWorkbenchWindowActionDelegate#selectionChanged
+	 */
+	public void selectionChanged(IAction action, ISelection selection) {
+		// Nothing to do
+	}
 
-    /**
-     * We can use this method to dispose of any system
-     * resources we previously allocated.
-     * 
-     * @see IWorkbenchWindowActionDelegate#dispose
-     */
-    public void dispose() {
-        // Nothing to do
-    }
+	/**
+	 * We can use this method to dispose of any system
+	 * resources we previously allocated.
+	 * 
+	 * @see IWorkbenchWindowActionDelegate#dispose
+	 */
+	public void dispose() {
+		// Nothing to do
+	}
 
-    /**
-     * We will cache window object in order to
-     * be able to provide parent shell for the message dialog.
-     * 
-     * @see IWorkbenchWindowActionDelegate#init
-     */
-    public void init(IWorkbenchWindow window) {
-        // Nothing to do
-    }
+	/**
+	 * We will cache window object in order to
+	 * be able to provide parent shell for the message dialog.
+	 * 
+	 * @see IWorkbenchWindowActionDelegate#init
+	 */
+	public void init(IWorkbenchWindow window) {
+		// Nothing to do
+	}
 
 }

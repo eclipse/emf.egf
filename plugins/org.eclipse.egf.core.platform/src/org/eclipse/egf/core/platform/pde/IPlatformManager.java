@@ -10,26 +10,33 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+
 /**
  * @author Xavier Maysonnave
  * 
  */
 public interface IPlatformManager {
 
-    public IPlatformBundle[] getPlatformBundles();
+	//	public IPlatformBundle[] getPlatformBundles();
 
-    public IPlatformBundle getPlatformBundle(String id);
+	public IPlatformBundle getPlatformBundle(String id);
 
-    public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz);
+	public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz);
 
-    public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String id, Class<T> clazz);
+	public <T extends IPlatformExtensionPoint> T[] getRuntimePlatformExtensionPoints(Class<T> clazz);
 
-    public void addPlatformExtensionPointListener(IPlatformExtensionPointListener listener);
+	public <T extends IPlatformExtensionPoint> T[] getWorkspacePlatformExtensionPoints(Class<T> clazz);
 
-    public void removePlatformExtensionPointListener(IPlatformExtensionPointListener listener);
+	public <T extends IPlatformExtensionPoint> T[] getRuntimePlatformExtensionPoints(String id, Class<T> clazz);
 
-    public int getPlatformBundleSize();
+	public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String id, Class<T> clazz);
 
-    public int getPlatformExtensionPointSize();
+	public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(IPluginModelBase model, Class<T> class1);
 
+	public void addPlatformExtensionPointListener(IPlatformExtensionPointListener listener);
+
+	public void removePlatformExtensionPointListener(IPlatformExtensionPointListener listener);
+
+	public void dispose();
 }

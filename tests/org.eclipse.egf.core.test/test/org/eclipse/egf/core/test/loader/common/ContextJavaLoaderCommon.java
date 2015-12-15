@@ -28,7 +28,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 public class ContextJavaLoaderCommon extends TestCase {
 
-    private IProject _h1;
+    private IProject _h3;
 
     private IProject _h2;
 
@@ -40,11 +40,11 @@ public class ContextJavaLoaderCommon extends TestCase {
     protected void setUp() throws Exception {
 
         // Setup project
-        IProject h1 = ProjectHelper.getProject("org.eclipse.egf.example.task.h1"); //$NON-NLS-1$
-        assertNotNull(h1);
-        assertTrue(h1.exists());
-        assertTrue(h1.isOpen());
-        _h1 = h1;
+        IProject h3 = ProjectHelper.getProject("org.eclipse.egf.example.task.h3"); //$NON-NLS-1$
+        assertNotNull(h3);
+        assertTrue(h3.exists());
+        assertTrue(h3.isOpen());
+        _h3 = h3;
 
         // Setup project
         IProject h2 = ProjectHelper.getProject("org.eclipse.egf.example.task.h2"); //$NON-NLS-1$
@@ -55,39 +55,39 @@ public class ContextJavaLoaderCommon extends TestCase {
 
     }
 
-    public void testLoadClassH1() throws Exception {
+    public void testLoadClassH3() throws Exception {
 
-        IJavaProject h1Project = null;
+        IJavaProject h3Project = null;
 
         try {
 
             // Test Project
-            h1Project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(_h1.getFullPath().toString()));
-            assertNotNull(h1Project);
-            assertTrue(h1Project.exists());
-            if (h1Project.isOpen() == false) {
-                h1Project.open(new NullProgressMonitor());
+            h3Project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(_h3.getFullPath().toString()));
+            assertNotNull(h3Project);
+            assertTrue(h3Project.exists());
+            if (h3Project.isOpen() == false) {
+                h3Project.open(new NullProgressMonitor());
             }
-            assertTrue(h1Project.isOpen());
-            assertTrue(h1Project.isConsistent());
+            assertTrue(h3Project.isOpen());
+            assertTrue(h3Project.isConsistent());
 
             // Test JavaProject
-            IJavaClassLoader loader = JavaClassLoaderFactory.getJavaClassLoader(h1Project);
+            IJavaClassLoader loader = JavaClassLoaderFactory.getJavaClassLoader(h3Project);
             assertNotNull(loader);
-            assertEquals(h1Project, loader.getJavaProject());
+            assertEquals(h3Project, loader.getJavaProject());
 
             // Test Dependencies
             IJavaProject[] dependencies = loader.getWorkspaceDependencies();
             assertTrue(dependencies != null && dependencies.length == 1);
 
             // Load Java Project class
-            Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+            Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
             assertNotNull(clazz);
 
         } finally {
 
-            if (h1Project != null) {
-                h1Project.close();
+            if (h3Project != null) {
+                h3Project.close();
             }
 
         }
@@ -122,7 +122,7 @@ public class ContextJavaLoaderCommon extends TestCase {
             // Load Java Project class from a dependent Java Project
             Class<?> clazz = null;
             try {
-                clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+                clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
             } catch (ClassNotFoundException cnfe) {
                 // Just Ignore
             }
@@ -166,11 +166,12 @@ public class ContextJavaLoaderCommon extends TestCase {
             // Load Java Project class from a dependent Java Project
             Class<?> clazz = null;
             try {
-                clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
-            } catch (ClassNotFoundException cnfe) {
-                // Just Ignore
+                clazz = loader.loadClass("org.eclipse.egf.example.task.h2.H2"); //$NON-NLS-1$
+                clazz = loader.loadClass("org.eclipse.egf.common.ui.EGFCommonUIPlugin"); //$NON-NLS-1$
+                clazz = loader.loadClass("junit.framework.Test"); //$NON-NLS-1$
+            } catch (ClassNotFoundException e) {
+            	fail(e.getLocalizedMessage());
             }
-            assertNotNull(clazz);
 
         } finally {
 
@@ -184,22 +185,22 @@ public class ContextJavaLoaderCommon extends TestCase {
 
     public void testLoadClassJavaUtil() throws Exception {
 
-        IJavaProject h1Project = null;
+        IJavaProject h3Project = null;
 
         try {
 
             // Test Project
-            h1Project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(_h1.getFullPath().toString()));
-            assertNotNull(h1Project);
-            assertTrue(h1Project.exists());
-            if (h1Project.isOpen() == false) {
-                h1Project.open(new NullProgressMonitor());
+            h3Project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(_h3.getFullPath().toString()));
+            assertNotNull(h3Project);
+            assertTrue(h3Project.exists());
+            if (h3Project.isOpen() == false) {
+                h3Project.open(new NullProgressMonitor());
             }
-            assertTrue(h1Project.isOpen());
-            assertTrue(h1Project.isConsistent());
+            assertTrue(h3Project.isOpen());
+            assertTrue(h3Project.isConsistent());
 
             // Test JavaProject
-            IJavaClassLoader loader = JavaClassLoaderFactory.getJavaClassLoader(h1Project);
+            IJavaClassLoader loader = JavaClassLoaderFactory.getJavaClassLoader(h3Project);
             assertNotNull(loader);
 
             // Test Dependencies
@@ -212,45 +213,45 @@ public class ContextJavaLoaderCommon extends TestCase {
 
         } finally {
 
-            if (h1Project != null) {
-                h1Project.close();
+            if (h3Project != null) {
+                h3Project.close();
             }
 
         }
 
     }
 
-    public void testLoadResourceH1() throws Exception {
+    public void testLoadResourceH3() throws Exception {
 
-        IJavaProject h1Project = null;
+        IJavaProject h3Project = null;
 
         try {
 
             // Test Project
-            h1Project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(_h1.getFullPath().toString()));
-            assertNotNull(h1Project);
-            assertTrue(h1Project.exists());
-            if (h1Project.isOpen() == false) {
-                h1Project.open(new NullProgressMonitor());
+            h3Project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(_h3.getFullPath().toString()));
+            assertNotNull(h3Project);
+            assertTrue(h3Project.exists());
+            if (h3Project.isOpen() == false) {
+                h3Project.open(new NullProgressMonitor());
             }
-            assertTrue(h1Project.isOpen());
-            assertTrue(h1Project.isConsistent());
+            assertTrue(h3Project.isOpen());
+            assertTrue(h3Project.isConsistent());
 
             // Test JavaProject
-            IJavaClassLoader loader = JavaClassLoaderFactory.getJavaClassLoader(h1Project);
+            IJavaClassLoader loader = JavaClassLoaderFactory.getJavaClassLoader(h3Project);
             assertNotNull(loader);
-            assertEquals(h1Project, loader.getJavaProject());
+            assertEquals(h3Project, loader.getJavaProject());
 
             // Class
-            Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+            Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
             assertNotNull(clazz);
 
             // Load resource
-            InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h1.fcore"); //$NON-NLS-1$
+            InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h3.fcore"); //$NON-NLS-1$
             assertNull(stream);
 
             // Load resource            
-            stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
+            stream = clazz.getClassLoader().getResourceAsStream("egf/task_h3.fcore"); //$NON-NLS-1$
             assertNotNull(stream);
 
             try {
@@ -263,8 +264,8 @@ public class ContextJavaLoaderCommon extends TestCase {
 
         } finally {
 
-            if (h1Project != null) {
-                h1Project.close();
+            if (h3Project != null) {
+                h3Project.close();
             }
 
         }
@@ -297,12 +298,21 @@ public class ContextJavaLoaderCommon extends TestCase {
             assertNotNull(clazz);
 
             // Load resource
-            InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h1.fcore"); //$NON-NLS-1$
+            InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h3.fcore"); //$NON-NLS-1$
             assertNull(stream);
 
             // Load resource            
-            stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
-            assertNull(stream);
+            stream = clazz.getClassLoader().getResourceAsStream("egf/task_h2.fcore"); //$NON-NLS-1$
+            assertNotNull(stream);
+
+            // Load resources from linked projects            
+            try {
+				Class<?> clazzH3 = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
+			} catch (Exception e) {
+				fail(e.getLocalizedMessage());
+			}
+            stream = clazz.getClassLoader().getResourceAsStream("egf/task_h3.fcore"); //$NON-NLS-1$
+            assertNotNull(stream);
 
             try {
                 if (stream != null) {

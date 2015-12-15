@@ -31,6 +31,7 @@ import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.pattern.PatternFolders;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.l10n.EGFModelMessages;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.emf.common.util.URI;
@@ -143,7 +144,7 @@ public class TemplateModelFileHelper {
         if (method == null) {
             throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
         }
-        return EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(getTemplateURI(method));
+        return EGFPlatformPlugin.getPlatformURIConverter().createInputStream(getTemplateURI(method));
 
     }
 

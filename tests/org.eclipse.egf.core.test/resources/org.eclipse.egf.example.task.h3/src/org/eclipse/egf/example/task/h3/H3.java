@@ -1,4 +1,4 @@
-package org.eclipse.egf.example.task.h1;
+package org.eclipse.egf.example.task.h3;
 
 import java.util.Collection;
 
@@ -8,7 +8,7 @@ import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.emf.codegen.merge.java.JMerger;
 
-public class H1 implements ITaskProduction {
+public class H3 implements ITaskProduction {
 
   private Integer quantity;
 

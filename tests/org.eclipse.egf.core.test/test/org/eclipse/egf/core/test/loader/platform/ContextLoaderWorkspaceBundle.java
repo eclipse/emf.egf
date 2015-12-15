@@ -27,7 +27,7 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
 
 public class ContextLoaderWorkspaceBundle extends TestCase {
 
-    private IPluginModelBase _h1;
+    private IPluginModelBase _h3;
 
     private IPluginModelBase _h2;
 
@@ -39,13 +39,13 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
     protected void setUp() throws Exception {
 
         // Setup project
-        IProject h1 = ProjectHelper.getProject("org.eclipse.egf.example.task.h1"); //$NON-NLS-1$
-        assertNotNull(h1);
-        assertTrue(h1.exists());
-        assertTrue(h1.isOpen());
+        IProject h3 = ProjectHelper.getProject("org.eclipse.egf.example.task.h3"); //$NON-NLS-1$
+        assertNotNull(h3);
+        assertTrue(h3.exists());
+        assertTrue(h3.isOpen());
         // Find model
-        _h1 = PluginRegistry.findModel(h1);
-        assertNotNull(_h1);
+        _h3 = PluginRegistry.findModel(h3);
+        assertNotNull(_h3);
 
         // Setup project
         IProject h2 = ProjectHelper.getProject("org.eclipse.egf.example.task.h2"); //$NON-NLS-1$
@@ -58,19 +58,19 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
 
     }
 
-    public void testLoadClassH1() throws Exception {
+    public void testLoadClassH3() throws Exception {
 
         // Loader
-        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h1);
+        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h3);
         assertNotNull(loader);
-        assertEquals(_h1.getUnderlyingResource().getProject(), loader.getProject());
+        assertEquals(_h3.getUnderlyingResource().getProject(), loader.getProject());
 
         // Test Dependencies
         IProject[] dependencies = loader.getWorkspaceDependencies();
         assertTrue(dependencies != null && dependencies.length == 1);
 
         // Class
-        Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+        Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
         assertNotNull(clazz);
 
     }
@@ -89,7 +89,7 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
         // Class
         Class<?> clazz = null;
         try {
-            clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+            clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
         } catch (ClassNotFoundException cnfe) {
             // Just Ignore
         }
@@ -100,7 +100,7 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
     public void testInstantiateEcoreEPackage() throws Exception {
 
         // Loader
-        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h1);
+        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h3);
         assertNotNull(loader);
 
         // Class
@@ -122,7 +122,7 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
     public void testLoadClassJavaUtil() throws Exception {
 
         // Loader
-        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h1);
+        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h3);
         assertNotNull(loader);
 
         // Class
@@ -131,23 +131,23 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
 
     }
 
-    public void testLoadResourceH1() throws Exception {
+    public void testLoadResourceH3() throws Exception {
 
         // Loader
-        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h1);
+        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(_h3);
         assertNotNull(loader);
-        assertEquals(_h1.getUnderlyingResource().getProject(), loader.getProject());
+        assertEquals(_h3.getUnderlyingResource().getProject(), loader.getProject());
 
         // Class
-        Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+        Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
         assertNotNull(clazz);
 
         // Load resource
-        InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h1.fcore"); //$NON-NLS-1$
+        InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h3.fcore"); //$NON-NLS-1$
         assertNull(stream);
 
         // Load resource            
-        stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
+        stream = clazz.getClassLoader().getResourceAsStream("egf/task_h3.fcore"); //$NON-NLS-1$
         assertNotNull(stream);
 
         try {
@@ -168,15 +168,15 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
         assertEquals(_h2.getUnderlyingResource().getProject(), loader.getProject());
 
         // Class
-        Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+        Class<?> clazz = loader.loadClass("org.eclipse.egf.example.task.h3.H3"); //$NON-NLS-1$
         assertNotNull(clazz);
 
-        // Load resource from dependent h1
-        InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h1.fcore"); //$NON-NLS-1$
+        // Load resource from dependent h3
+        InputStream stream = clazz.getClassLoader().getResourceAsStream("task_h3.fcore"); //$NON-NLS-1$
         assertNull(stream);
 
-        // Load resource from dependent h1            
-        stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
+        // Load resource from dependent h3            
+        stream = clazz.getClassLoader().getResourceAsStream("egf/task_h3.fcore"); //$NON-NLS-1$
         assertNotNull(stream);
 
         try {

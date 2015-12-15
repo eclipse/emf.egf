@@ -26,73 +26,55 @@ import org.eclipse.emf.common.util.URI;
  */
 public class ParameterTypeHelper {
 
-    public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
+	public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
 
-    private ParameterTypeHelper() {
-    }
+	private ParameterTypeHelper() {
+	}
 
-    public String getSourceTypeLiteral(String type) {
-        return getTypeLiteral(type, true);
-    }
+	public String getSourceTypeLiteral(String type) {
+		return getTypeLiteral(type, true);
+	}
 
-    public String getBinaryTypeLiteral(String type) {
-        return getTypeLiteral(type, false);
-    }
+	public String getBinaryTypeLiteral(String type) {
+		return getTypeLiteral(type, false);
+	}
 
-    /**
-     * Compute the literal value associated to the given type.<br/>
-     * It can be a java classname or an uri to an EObject.
-     * 
-     */
-    private String getTypeLiteral(String type, boolean handleInnerClass) {
-        // clearProxies();
-        if (type == null || "".equals(type)) {
-            throw new IllegalArgumentException();
-        }
-        // Java Type
-        int index = type.indexOf('#');
-        if (index == -1) {
-            return handleInnerClass ? type.replace('$', '.') : type;
-        }
+	/**
+	 * Compute the literal value associated to the given type.<br/>
+	 * It can be a java classname or an uri to an EObject.
+	 * 
+	 */
+	private String getTypeLiteral(String type, boolean handleInnerClass) {
+		// clearProxies();
+		if (type == null || "".equals(type)) {
+			throw new IllegalArgumentException();
+		}
+		// Java Type
+		int index = type.indexOf('#');
+		if (index == -1) {
+			return handleInnerClass ? type.replace('$', '.') : type;
+		}
 
-        URI uri = URI.createURI(type.trim());
+		URI uri = URI.createURI(type.trim());
 
-        IPlatformGenModel genModel = null;
-        for (IPlatformGenModel model : EGFCorePlugin.getWorkspaceTargetPlatformGenModels()) {
-            if (model.getURI().equals(uri.trimFragment())) {
-                genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-                break;
-            }
-        }
+		IPlatformGenModel genModel = null;
+		genModel = EGFCorePlugin.getWorspacePlatformGenModel(uri.trimFragment());
 
-        if (genModel == null) {
-            genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-        }
+		if (genModel == null) {
+			genModel = EGFCorePlugin.getRuntimePlatformGenModel(uri.trimFragment());
+		}
+		if (genModel != null) {
+			return genModel.getBasePackage() + '.' + getClassName(type, index).replace('/', '.');
+		}
 
-        if (genModel == null) {
-            for (IPlatformGenModel model : EGFCorePlugin.getNonWorkspaceTargetPlatformGenModels()) {
-                if (model.getURI().equals(uri.trimFragment())) {
-                    genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-                    break;
-                }
-            }
-        }
+		throw new IllegalStateException("Cannot find model: " + uri);
+	}
 
-        if (genModel == null) {
-            genModel = EGFCorePlugin.getRuntimePlatformGenModel(uri.trimFragment());
-        }
-        if (genModel != null) {
-            return genModel.getBasePackage() + '.' + getClassName(type, index).replace('/', '.');
-        }
-
-        throw new IllegalStateException("Cannot find model: " + uri);
-    }
-
-    private String getClassName(String type, int index) {
-        String className = type.substring(index + 1);
-        if (className.startsWith("//")) //$NON-NLS-1$
-            return className.substring(2);
-        return className;
-    }
+	private String getClassName(String type, int index) {
+		String className = type.substring(index + 1);
+		if (className.startsWith("//")) //$NON-NLS-1$
+			return className.substring(2);
+		return className;
+	}
 
 }

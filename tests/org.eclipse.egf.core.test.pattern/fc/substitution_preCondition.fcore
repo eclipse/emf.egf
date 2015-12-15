@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fcore:FactoryComponent xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+<fcore:FactoryComponent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Kwg6YXkjEd-R_void7tQ-Q"
-    name="substitution_preCondition">
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Kwg6YXkjEd-R_void7tQ-Q" name="substitution_preCondition">
   <viewpointContainer xmi:id="_LicGkHkjEd-R_void7tQ-Q">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_MQ7kQHkjEd-R_void7tQ-Q">
       <libraries xmi:id="_M7ingHkjEd-R_void7tQ-Q" name="substitution.preCondition">
@@ -39,7 +37,7 @@
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_wTLqgHkjEd-R_void7tQ-Q">
       <domains xmi:type="domain:EMFDomain" xmi:id="_zmenQHkjEd-R_void7tQ-Q" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
-          uri="platform:/resource/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_r779cHkjEd-R_void7tQ-Q">

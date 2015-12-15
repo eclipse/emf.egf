@@ -1,4 +1,4 @@
-package org.eclipse.egf.example.task.h1;
+package org.eclipse.egf.example.task.h3;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
@@ -26,7 +26,7 @@ public class Activator extends EGFAbstractPlugin {
   public void start(BundleContext context) throws Exception {
     super.start(context);
     plugin = this;
-    logInfo("org.eclipse.egf.example.task.h1 is starting"); //$NON-NLS-1$
+    logInfo("org.eclipse.egf.example.task.h3 is starting"); //$NON-NLS-1$
   }
 
   /*
@@ -42,7 +42,7 @@ public class Activator extends EGFAbstractPlugin {
   public void stop(BundleContext context) throws Exception {
     Bundle bundle = Platform.getBundle("org.eclipse.swt"); //$NON-NLS-1$
     if (bundle.getState() == Bundle.ACTIVE) {
-      logInfo("org.eclipse.egf.example.task.h1 is stopping"); //$NON-NLS-1$
+      logInfo("org.eclipse.egf.example.task.h3 is stopping"); //$NON-NLS-1$
     }
     plugin = null;
     super.stop(context);

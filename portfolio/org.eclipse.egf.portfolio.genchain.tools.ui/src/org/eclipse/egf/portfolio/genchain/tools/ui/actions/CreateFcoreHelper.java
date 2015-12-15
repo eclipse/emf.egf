@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.domain.IDomainHelper;
@@ -77,7 +77,7 @@ public class CreateFcoreHelper {
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 				try {
-					TargetPlatformResourceSet set = new TargetPlatformResourceSet();
+					ResourceSet set = new EgfResourceSet();
 					runFcore(set, generationChain, fcoreOutputPath, monitor);
 					generateFeaturePlugin(set, generationChain, monitor);
 					if (afterJob != null) {
@@ -143,7 +143,7 @@ public class CreateFcoreHelper {
 	}
 
 	public WorkspaceJob createJob(URI fcoreURI, boolean run) {
-		final TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
+		final ResourceSet resourceSet = new EgfResourceSet();
 		final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
 
 		return createJob(generationChain, run);
@@ -172,7 +172,7 @@ public class CreateFcoreHelper {
 	}
 
 	protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
-		FactoryComponent fc = (FactoryComponent) new TargetPlatformResourceSet().getEObject(getGeneratorURI(), true);
+		FactoryComponent fc = (FactoryComponent) new EgfResourceSet().getEObject(getGeneratorURI(), true);
 		EMFDomain domain = DomainFactory.eINSTANCE.createEMFDomain();
 		final URI uri = generationChain.eResource().getURI();
 		domain.setUri(uri);

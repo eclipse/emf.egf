@@ -42,6 +42,7 @@ import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener;
 import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
@@ -1449,7 +1450,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         if (getEditorInput() == null) {
             return super.getTitleToolTip();
         }
-        return EGFCorePlugin.getTargetPlatformURIConverter().normalize(getResource().getURI()).toString();
+        return EGFPlatformPlugin.getPlatformURIConverter().normalize(getResource().getURI()).toString();
     }
 
     /**

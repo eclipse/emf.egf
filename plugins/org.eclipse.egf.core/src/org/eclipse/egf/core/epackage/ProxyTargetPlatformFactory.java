@@ -58,7 +58,7 @@ public class ProxyTargetPlatformFactory {
         }
         // Locate an IPlatformGenModel
         URI nsURI = getEPackageNsURI(uri);
-        IPlatformGenModel packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(nsURI);
+        IPlatformGenModel packageGenModel = EGFCorePlugin.getWorspacePlatformGenModel(nsURI);
         // Not found
         if (packageGenModel == null) {
             return null;
@@ -66,7 +66,7 @@ public class ProxyTargetPlatformFactory {
         // Inner ePackage processing if applicable
         URI innerNsURI = packageGenModel.getEPackageNsURI(uri);
         if (innerNsURI != null) {
-            packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(innerNsURI);
+            packageGenModel = EGFCorePlugin.getWorspacePlatformGenModel(innerNsURI);
         }
         // Not found
         if (packageGenModel == null) {
