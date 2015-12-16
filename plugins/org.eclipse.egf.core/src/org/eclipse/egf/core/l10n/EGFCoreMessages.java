@@ -29,6 +29,8 @@ public class EGFCoreMessages {
 
     public static String EObject_no_Resource;
 
+    public static String EObject_is_proxy;
+
     public static String EObject_no_Bundle;
 
     public static String Fcore_not_found;

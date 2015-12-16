@@ -87,7 +87,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
                     if (fqcn != null && fqcn.trim().length() != 0) {
                         object = BundleHelper.instantiate(fqcn.trim(), bundle);
                         if (object == null) {
-                            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, fqcn, bundle.getSymbolicName()), null)));
+                            throw new InvocationException(NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, fqcn, bundle.getSymbolicName()));
                         }
                     }
                 }
@@ -101,7 +101,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
                     context.addOutputData(key, abstractClass.getType(), object, true);
                 }
             } catch (Throwable t) {
-                throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), t)));
+                throw new InvocationException(NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), t);
             }
         } else {
             // Type and object are validated in the ProductionContext while added
@@ -131,14 +131,16 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     public ModelElementManager(P element) throws InvocationException {
         Assert.isNotNull(element);
         _element = element;
+        if (_element.eIsProxy())
+        	throw new InvocationException(NLS.bind(EGFCoreMessages.EObject_is_proxy, EcoreUtil.getURI(_element)));
         if (_element.eResource() == null) {
-            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.EObject_no_Resource, EcoreUtil.getURI(_element)), null)));
+            throw new InvocationException( NLS.bind(EGFCoreMessages.EObject_no_Resource, EcoreUtil.getURI(_element)));
         }
         if (_element.eResource() instanceof IPlatformFcoreProvider) {
             _fcore = ((IPlatformFcoreProvider) _element.eResource()).getIPlatformFcore();
         }
         if (_fcore == null) {
-            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(_element).trimFragment()), null)));
+            throw new InvocationException(NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(_element).trimFragment()));
         }
     }
 
@@ -155,14 +157,14 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
         _parent = parent;
         _element = element;
         if (_element.eResource() == null && parent.getBundle() == null) {
-            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.EObject_no_Bundle, EcoreUtil.getURI(_element)), null)));
+            throw new InvocationException(NLS.bind(EGFCoreMessages.EObject_no_Bundle, EcoreUtil.getURI(_element)));
         }
         if (_element.eResource() != null) {
             if (_element.eResource() instanceof IPlatformFcoreProvider) {
                 _fcore = ((IPlatformFcoreProvider) _element.eResource()).getIPlatformFcore();
             }
             if (_fcore == null) {
-                throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(_element).trimFragment()), null)));
+                throw new InvocationException(NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(_element).trimFragment()));
             }
         }
     }
@@ -201,7 +203,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
                 }
             }
             // Cannot associate a Bundle to a target platform fcore
-            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, _fcore.getPlatformBundle().getBundleId()), null)));
+            throw new InvocationException(NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, _fcore.getPlatformBundle().getBundleId()));
         }
         // Memory takes its bundle from its parent
         if (getParent() != null) {
