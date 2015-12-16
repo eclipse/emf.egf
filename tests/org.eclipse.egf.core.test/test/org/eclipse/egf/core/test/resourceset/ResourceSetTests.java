@@ -17,6 +17,8 @@ import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
 import org.eclipse.egf.core.test.factorycomponent.memory.ContextFactoryComponentMemory;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
@@ -39,11 +41,8 @@ public class ResourceSetTests extends TestCase {
 
 	public void testRuntime() throws Exception {
 		{
-			Bundle bundle = Platform.getBundle("org.eclipse.egf.example.task.h4");
-			System.out.println(bundle.getLocation());
 			ResourceSet resourceSet = new RuntimePlatformResourceSet();
-			URI uri = URI.createURI(
-					"platform:/plugin/org.eclipse.egf.example.task.h4/egf/task_h4.fcore#1Zvd4LdCEd6AWpPtW_wFiQ"); //$NON-NLS-1$
+			URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h4/egf/task_h4.fcore#1Zvd4LdCEd6AWpPtW_wFiQ"); //$NON-NLS-1$
 			Activity activity = (Activity) resourceSet.getEObject(uri, true);
 			ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
 			IActivityManager<Activity> manager = producer.createActivityManager(activity);
@@ -54,9 +53,8 @@ public class ResourceSetTests extends TestCase {
 				EGFCoreTestPlugin.getDefault().logError(e);
 				fail(e.getMessage());
 			}
-			bundle = Platform.getBundle("org.eclipse.egf.example.task.h4");
-			System.out.println(bundle.getLocation());
-
+			String outputValue = manager.getProductionContext().getOutputValue("result", String.class);
+			assertEquals("Hello from runtime", outputValue);
 		}
 		{
 			ResourceSet resourceSet = new EgfResourceSet();
@@ -72,8 +70,8 @@ public class ResourceSetTests extends TestCase {
 				EGFCoreTestPlugin.getDefault().logError(e);
 				fail(e.getMessage());
 			}
-			Bundle bundle = Platform.getBundle("org.eclipse.egf.example.task.h4");
-			System.out.println(bundle.getLocation());
+			String outputValue = manager.getProductionContext().getOutputValue("result", String.class);
+			assertEquals("Hello from workspace", outputValue);
 
 		}
 	}

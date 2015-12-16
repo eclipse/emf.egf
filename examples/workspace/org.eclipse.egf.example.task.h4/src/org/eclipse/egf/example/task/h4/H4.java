@@ -21,7 +21,7 @@ public class H4 implements ITaskProduction {
     }
 
     public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
-    	System.out.println("Hello from runtime");    
+    	context.setOutputValue("result", "Hello from runtime");    
     }
 
     public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {

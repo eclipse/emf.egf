@@ -16,6 +16,7 @@ import junit.framework.TestSuite;
 import org.eclipse.egf.core.test.factorycomponent.ContextFactoryComponent;
 import org.eclipse.egf.core.test.loader.ContextLoader;
 import org.eclipse.egf.core.test.model.validation.ModelValidation;
+import org.eclipse.egf.core.test.resourceset.ResourceSetTests;
 import org.eclipse.egf.core.test.task.ContextTask;
 
 /**
@@ -39,6 +40,7 @@ public class AllTests {
         suite.addTest(ContextTask.suite());
         suite.addTest(ContextLoader.suite());
 
+//        suite.addTest(ResourceSetTests.suite());
         return suite;
 
     }

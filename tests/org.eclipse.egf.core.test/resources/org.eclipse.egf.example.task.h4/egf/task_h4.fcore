@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ftask:Task xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+<ftask:Task xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
     xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ" description="" name="H4" kind="java"
-    implementation="org.eclipse.egf.example.task.h4.H4"/>
+    implementation="org.eclipse.egf.example.task.h4.H4">
+  <contractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
+    <contracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="result" mode="Out">
+      <type xmi:type="types:TypeString" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw" value="..."/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>
+
