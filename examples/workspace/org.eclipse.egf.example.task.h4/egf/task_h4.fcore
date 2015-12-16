@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ" description="" name="H4" kind="java"
+    implementation="org.eclipse.egf.example.task.h4.H4"/>
