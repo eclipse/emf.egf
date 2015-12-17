@@ -12,8 +12,8 @@ package org.eclipse.egf.core.test.resourceset;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.core.domain.EgfResourceSet;
 import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
 import org.eclipse.egf.core.test.factorycomponent.memory.ContextFactoryComponentMemory;
 import org.eclipse.egf.model.fcore.Activity;
@@ -41,6 +41,8 @@ public class ResourceSetTests extends TestCase {
 
 	public void testRuntime() throws Exception {
 		{
+			Bundle bundle = Platform.getBundle("org.eclipse.egf.example.task.h4");
+			System.out.println(bundle);
 			ResourceSet resourceSet = new RuntimePlatformResourceSet();
 			URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h4/egf/task_h4.fcore#1Zvd4LdCEd6AWpPtW_wFiQ"); //$NON-NLS-1$
 			Activity activity = (Activity) resourceSet.getEObject(uri, true);
@@ -57,7 +59,7 @@ public class ResourceSetTests extends TestCase {
 			assertEquals("Hello from runtime", outputValue);
 		}
 		{
-			ResourceSet resourceSet = new EgfResourceSet();
+			ResourceSet resourceSet = new TargetPlatformResourceSet();
 			URI uri = URI.createURI(
 					"platform:/plugin/org.eclipse.egf.example.task.h4/egf/task_h4.fcore#1Zvd4LdCEd6AWpPtW_wFiQ"); //$NON-NLS-1$
 			Activity activity = (Activity) resourceSet.getEObject(uri, true);

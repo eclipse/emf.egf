@@ -40,7 +40,7 @@ public class AllTests {
         suite.addTest(ContextTask.suite());
         suite.addTest(ContextLoader.suite());
 
-//        suite.addTest(ResourceSetTests.suite());
+        suite.addTest(ResourceSetTests.suite());
         return suite;
 
     }
