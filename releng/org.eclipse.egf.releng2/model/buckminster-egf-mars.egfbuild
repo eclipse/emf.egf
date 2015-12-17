@@ -12,13 +12,16 @@
   <steps xsi:type="buildstep:BuildStep" xmi:id="_2fryoQF8EeGO5KzPHjNKFQ">
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_2frypgF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix=".feature" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_2fryqgF8EeGO5KzPHjNKFQ" url="${updateSiteURL}"/>
     <components xsi:type="buildstep:Feature" xmi:id="_2fryrgF8EeGO5KzPHjNKFQ" id="org.eclipse.egf"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_QDSgsAVXEeGaseR7kNQ8hw" id="org.eclipse.emf.importer"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_RUfp4AVXEeGaseR7kNQ8hw" id="org.eclipse.emf.codegen.ecore.ui"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_wQp78KSvEeWdJq8DhT0Nfw" id="org.eclipse.egf.releng"/>
   </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_s3vmwKSsEeWdJq8DhT0Nfw" component="_wQp78KSvEeWdJq8DhT0Nfw"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_-TnB8AF8EeGO5KzPHjNKFQ" component="_2fryrgF8EeGO5KzPHjNKFQ"/>
-  <steps xsi:type="buildstep:InstallStep" xmi:id="_BfnD4AF9EeGO5KzPHjNKFQ" id="egf" profile="EGF" resultSteps="_-TnB8AF8EeGO5KzPHjNKFQ">
+  <steps xsi:type="buildstep:InstallStep" xmi:id="_BfnD4AF9EeGO5KzPHjNKFQ" id="egf" profile="EGF" resultSteps="_-TnB8AF8EeGO5KzPHjNKFQ _s3vmwKSsEeWdJq8DhT0Nfw">
     <updateSiteUrls>${updateSiteURL}</updateSiteUrls>
     <productNames>org.eclipse.platform.ide</productNames>
   </steps>
@@ -31,11 +34,10 @@
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix=".feature" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
-    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_eDETsKS7EeWwG8SaAv5e9g" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="${updateSiteURL}"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_dxRz4OdwEeSQjKFw76jQug" url="${ecoretoolsSiteURL}"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_BltOoOdzEeSQjKFw76jQug" pattern="" url="${siriusSiteURL}"/>
-    <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" id="org.eclipse.egf.releng2"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" id="org.eclipse.egf.test"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" id="org.eclipse.egf.portfolio.task.ant.test"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDiR_EeCpI_U_Er6QNA" id="org.eclipse.egf.sdk"/>
@@ -45,6 +47,7 @@
     <components xsi:type="buildstep:Feature" xmi:id="_vivKEDkHEeCbr7W3e6bJPQ" id="org.eclipse.egf.portfolio.atl"/>
     <components xsi:type="buildstep:Feature" xmi:id="_wsm2oUAiEeCi4-1Y9vbHyQ" id="org.eclipse.egf.portfolio.atl.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_6VPlEL53EeCiHNhYwuZwog" id="org.eclipse.egf.portfolio.genchain.ecoretools"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_fHWbMKS7EeWwG8SaAv5e9g" id="org.eclipse.egf.releng2"/>
   </steps>
   <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.pde.SchemaBuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.pde.ManifestBuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.jdt.core.javabuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
