@@ -1,13 +1,20 @@
 package org.eclipse.egf.core.platform.internal.pde;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.internal.registry.Handle;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IRegistryEventListener;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
@@ -44,11 +51,16 @@ public abstract class BasePlatformManager implements IPlatformManager {
 		initializeRegistry();
 		PDECore.getDefault().getModelManager().addPluginModelListener(listener);
 		PDECore.getDefault().getModelManager().addExtensionDeltaListener(listener);
+		for (Map.Entry<String, Class<? extends IPlatformExtensionPoint>> entry : EGFPlatformPlugin.getPlatformExtensionPoints().entrySet()) {
+			String point = entry.getKey().trim();
+			RuntimeRegistryListener l = new RuntimeRegistryListener(point, entry.getValue());
+			RegistryFactory.getRegistry().addListener(l, point);
+		}
 
 	}
 
 	private void initializeRegistry() {
-		//runtime registry
+		// runtime registry
 		for (Map.Entry<String, Class<? extends IPlatformExtensionPoint>> entry : EGFPlatformPlugin.getPlatformExtensionPoints().entrySet()) {
 			IConfigurationElement[] elements = RegistryFactory.getRegistry().getConfigurationElementsFor(entry.getKey());
 			if (elements == null) {
@@ -59,7 +71,7 @@ public abstract class BasePlatformManager implements IPlatformManager {
 			}
 		}
 
-		//workspace registry
+		// workspace registry
 		for (IPluginModelBase base : PluginRegistry.getWorkspaceModels()) {
 			addWorkspaceElement(base);
 		}
@@ -100,7 +112,6 @@ public abstract class BasePlatformManager implements IPlatformManager {
 		return platformBundle;
 	}
 
-	//TODO WIU voir le rôle du param init 
 	private void addRuntimeElement(IConfigurationElement element, Class<? extends IPlatformExtensionPoint> clazz, boolean init) {
 		Bundle bundle = BundleHelper.getBundle(element.getDeclaringExtension().getContributor());
 		if (bundle == null || element.isValid() == false) {
@@ -144,7 +155,7 @@ public abstract class BasePlatformManager implements IPlatformManager {
 			listener.platformExtensionPointChanged(delta);
 	}
 
-	protected static void collectPlatformExtensionPoints(Map<Class<?>, Set<Object>> registry, Class<?> clazz, List<Object> collector) {
+	protected static void collectPlatformExtensionPoints(Map<Class<?>, Set<Object>> registry, Class<?> clazz, Collection<Object> collector) {
 		if (clazz != null) {
 			if (registry.get(clazz) != null) {
 				collector.addAll(registry.get(clazz));
@@ -171,4 +182,109 @@ public abstract class BasePlatformManager implements IPlatformManager {
 		}
 
 	}
+
+	private class RuntimeRegistryListener implements IRegistryEventListener {
+
+		private Class<? extends IPlatformExtensionPoint> _clazz;
+
+		public RuntimeRegistryListener(String point, Class<? extends IPlatformExtensionPoint> clazz) {
+			Assert.isNotNull(point);
+			Assert.isLegal(point.trim().length() != 0);
+			Assert.isNotNull(clazz);
+			_clazz = clazz;
+		}
+
+		public void removed(IExtension[] extensions) {
+			// Initialize a delta
+			PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
+			// Lock PlatformManager
+			{
+				if (extensions == null) {
+					return;
+				}
+				// Process
+				for (IExtension extension : extensions) {
+					for (Iterator<IPlatformBundle> it = runtimeRegistry.values().iterator(); it.hasNext();) {
+						PlatformBundle bundle = (PlatformBundle) it.next();
+						// Analyse Removed Extension Points
+						for (IPlatformExtensionPoint extensionPoint : bundle.getPlatformExtensionPoints(_clazz)) {
+							if (originatesFrom(extension, extensionPoint.getUniqueIdentifier(), extensionPoint.getHandleId())) {
+								// Remove this ExtensionPoint from our existing
+								// model
+								if (bundle.removePlatformExtensionPoint(_clazz, extensionPoint) == false) {
+									EGFPlatformPlugin.getDefault().logError(NLS.bind("RuntimePlatformManager$RuntimeRegistryListener.removed(..) _ ''{0}'' unable to remove Extension Point from IPlatformBundle.", //$NON-NLS-1$
+											extensionPoint));
+								}
+								removeExtensionPoint(extensionPoint, _clazz, runtimeExtensionPointRegistry, delta);
+							}
+						}
+						if (bundle.isEmpty()) {
+							it.remove();
+						}
+					}
+				}
+			}
+			// Broadcast
+			if (delta.isEmpty() == false) {
+				// Notify all interested listeners
+				firePlatformExtensionPoint(delta);
+			}
+		}
+
+		protected void removeExtensionPoint(IPlatformExtensionPoint extensionPoint, Class<? extends IPlatformExtensionPoint> clazz, Map<Class<?>, Set<Object>> extensions, PlatformExtensionPointDelta delta) {
+			// remove extension point from Extension registry
+			if (extensions.get(clazz).remove(extensionPoint)) {
+				// Clean Extension registry if necessary
+				if (extensions.get(clazz).isEmpty()) {
+					extensions.remove(clazz);
+				}
+				// Update delta
+				if (delta != null) {
+					delta.storeRemovedPlatformExtensionPoint(clazz, extensionPoint);
+				}
+			}
+		}
+
+		public void added(IExtension[] extensions) {
+			// Initialize a delta
+			PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
+			// Lock PlatformManager
+			{
+				// Process
+				for (IExtension extension : extensions) {
+					for (IConfigurationElement element : extension.getConfigurationElements()) {
+						addRuntimeElement(element, _clazz, false);
+					}
+				}
+			}
+			// Broadcast
+			if (delta.isEmpty() == false) {
+				// Notify all interested listeners
+				firePlatformExtensionPoint(delta);
+			}
+		}
+
+		public void added(IExtensionPoint[] extensionPoints) {
+			// Nothing to do
+			System.out.println();
+		}
+
+		public void removed(IExtensionPoint[] extensionPoints) {
+			// Nothing to do
+			System.out.println();
+		}
+
+		public boolean originatesFrom(IExtension extension, String uniqueIdentifier, int handleId) {
+			String id = extension.getUniqueIdentifier();
+			if (id != null) {
+				return id.equals(uniqueIdentifier);
+			}
+			if (extension instanceof Handle == false) {
+				return false;
+			}
+			return (handleId == ((Handle) extension).getId());
+		}
+
+	}
+
 }

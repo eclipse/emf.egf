@@ -22,31 +22,20 @@ import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 
 public final class PlatformFcore extends PlatformExtensionPointURI implements IPlatformFcore {
 
-    private String _name;
+	private String _name;
 
-    public PlatformFcore(IPlatformBundle bundle, String id) {
-        super(bundle, id);
-        _name = new Path(getURI().lastSegment()).removeFileExtension().toString();
-    }
+	public PlatformFcore(IPlatformBundle bundle, String id) {
+		super(bundle, id);
+		_name = new Path(getURI().lastSegment()).removeFileExtension().toString();
+	}
 
-    public PlatformFcore(IPlatformBundle bundle, String id, String uniqueIdentifier, int handleId) {
-        super(bundle, id, uniqueIdentifier, handleId);
-        _name = new Path(getURI().lastSegment()).removeFileExtension().toString();
-    }
+	public PlatformFcore(IPlatformBundle bundle, String id, String uniqueIdentifier, int handleId) {
+		super(bundle, id, uniqueIdentifier, handleId);
+		_name = new Path(getURI().lastSegment()).removeFileExtension().toString();
+	}
 
-    public String getName() {
-        return _name;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (super.equals(object) == false) {
-            return false;
-        }
-        if (object instanceof IPlatformFcore == false) {
-            return false;
-        }
-        return true;
-    }
+	public String getName() {
+		return _name;
+	}
 
 }

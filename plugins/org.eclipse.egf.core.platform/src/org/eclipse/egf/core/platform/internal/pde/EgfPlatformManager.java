@@ -1,7 +1,9 @@
 package org.eclipse.egf.core.platform.internal.pde;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.CollectionHelper;
@@ -20,7 +22,7 @@ public class EgfPlatformManager extends BasePlatformManager {
 	}
 
 	public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz) {
-		List<Object> extensionPoints = new ArrayList<Object>();
+		Set<Object> extensionPoints = new HashSet<Object>();
 		collectPlatformExtensionPoints(workspaceExtensionPointRegistry, clazz, extensionPoints);
 		collectPlatformExtensionPoints(runtimeExtensionPointRegistry, clazz, extensionPoints);
 		return CollectionHelper.toArray(extensionPoints, clazz);

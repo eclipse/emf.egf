@@ -89,7 +89,7 @@ public class EgfEditingDomainFactory extends WorkspaceEditingDomainFactory {
      */
     protected void configure(final TransactionalEditingDomain domain) {
         // the listener depends on UI to ask the user to solve conflict
-        new EGFWorkspaceSynchronizer(domain, TargetPlatformResourceLoadedListener.getResourceLoadedListener());
+        new EGFWorkspaceSynchronizer(domain, PlatformResourceLoadedListener.getResourceLoadedListener());
         // configure domain management
         configureResourceModificationManagement(domain);
     }

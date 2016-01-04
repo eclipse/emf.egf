@@ -10,7 +10,11 @@
  */
 package org.eclipse.egf.core.test;
 
+import org.eclipse.egf.core.test.factorycomponent.ContextFactoryComponent;
+import org.eclipse.egf.core.test.loader.ContextLoader;
+import org.eclipse.egf.core.test.model.validation.ModelValidation;
 import org.eclipse.egf.core.test.resourceset.ResourceSetTests;
+import org.eclipse.egf.core.test.task.ContextTask;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -29,12 +33,12 @@ public class AllTests {
 		init.addTest(WorkspaceInitializationTest.suite());
 		suite.addTest(init);
 
-		//        new ModelTestHelper().addModelTest(suite);
-		//
-		//        suite.addTest(ModelValidation.suite());
-		//        suite.addTest(ContextFactoryComponent.suite());
-		//        suite.addTest(ContextTask.suite());
-		//        suite.addTest(ContextLoader.suite());
+		new ModelTestHelper().addModelTest(suite);
+
+		suite.addTest(ModelValidation.suite());
+		suite.addTest(ContextFactoryComponent.suite());
+		suite.addTest(ContextTask.suite());
+		suite.addTest(ContextLoader.suite());
 
 		suite.addTest(ResourceSetTests.suite());
 		return suite;

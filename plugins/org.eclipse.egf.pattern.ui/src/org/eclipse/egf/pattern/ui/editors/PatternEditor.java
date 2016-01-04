@@ -26,9 +26,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener;
-import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceListener;
-import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.domain.PlatformResourceLoadedListener;
+import org.eclipse.egf.core.domain.PlatformResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.core.domain.PlatformResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -361,7 +361,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      */
     protected void handleChangedResource() {
         if (isDirty() == false || handleDirtyConflict()) {
-            TargetPlatformResourceLoadedListener.getResourceManager().reloadResource(getResource());
+            PlatformResourceLoadedListener.getResourceManager().reloadResource(getResource());
         }
     }
 
@@ -520,10 +520,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         site.getPage().addPartListener(partListener);
         pattern = ((PatternEditorInput) getEditorInput()).getPattern();
         partName = pattern.getName();
-        resourceHasBeenExternallyChanged = TargetPlatformResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
-        TargetPlatformResourceLoadedListener.getResourceManager().addObserver(this);
+        resourceHasBeenExternallyChanged = PlatformResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
+        PlatformResourceLoadedListener.getResourceManager().addObserver(this);
         // populate operation history if applicable
-        TargetPlatformResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
+        PlatformResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
         addPatternChangeAdapter();
         setPartName(pattern.getName());
     }
@@ -543,7 +543,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             removePatternChangeAdapter();
         }
         // Initialized in initializeEditingDomain, if init failed, this must be disposed
-        TargetPlatformResourceLoadedListener.getResourceManager().removeObserver(this);
+        PlatformResourceLoadedListener.getResourceManager().removeObserver(this);
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
         editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);

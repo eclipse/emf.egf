@@ -29,7 +29,6 @@ import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.EgfResourceSet;
-import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
@@ -178,7 +177,7 @@ public class RunActivityAction implements IObjectActionDelegate {
 					}
 
 					// 5 - Switch to runtime mode
-					ResourceSet resourceSet = new RuntimePlatformResourceSet();
+					ResourceSet resourceSet = new EgfResourceSet(true);
 					Activity activity = (Activity) resourceSet.getEObject(EcoreUtil.getURI(_activity), true);
 
 					// 6 - Locate an ActivityManagerProducer and create an
