@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.ModelEntry;
-import org.eclipse.pde.internal.core.IExtensionDeltaListener;
 import org.eclipse.pde.internal.core.IPluginModelListener;
 import org.eclipse.pde.internal.core.PDECore;
 import org.eclipse.pde.internal.core.PluginModelDelta;
@@ -401,7 +400,6 @@ public final class PlatformResourceLoadedListener implements EGFWorkspaceSynchro
 	};
 
 	private PlatformResourceLoadedListener() {
-		// TODO WIU est ce bien utile ?
 		// EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
 		PDECore.getDefault().getModelManager().addPluginModelListener(listener);
 	}

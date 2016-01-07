@@ -936,17 +936,7 @@ public class TypesValidator extends EObjectValidator {
 		InputStream inputStream = null;
 		// Try to open an InputStream
 		try {
-			//TODO WIU switch runtime
-			//            if (typeURI.eResource() != null && typeURI.eResource() instanceof IPlatformFcoreProvider) {
-			//                IPlatformFcore fcore = ((IPlatformFcoreProvider) typeURI.eResource()).getIPlatformFcore();
-			//                if (fcore != null && fcore.isRuntime()) {
-			//                    inputStream = EGFPlatformPlugin.getRuntimePlatformURIConverter().createInputStream(uri);
-			//                } else {
-			//                    inputStream = EGFPlatformPlugin.getPlatformURIConverter().createInputStream(uri);
-			//                }
-			//            } else {
 			inputStream = EGFPlatformPlugin.getPlatformURIConverter().createInputStream(uri);
-			//            }
 		} catch (IOException exception) {
 			valid = false;
 		}

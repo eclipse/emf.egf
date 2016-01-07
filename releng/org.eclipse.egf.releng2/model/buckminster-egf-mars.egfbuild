@@ -21,9 +21,13 @@
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_s3vmwKSsEeWdJq8DhT0Nfw" component="_wQp78KSvEeWdJq8DhT0Nfw"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_-TnB8AF8EeGO5KzPHjNKFQ" component="_2fryrgF8EeGO5KzPHjNKFQ"/>
-  <steps xsi:type="buildstep:InstallStep" xmi:id="_BfnD4AF9EeGO5KzPHjNKFQ" id="egf" profile="EGF" resultSteps="_-TnB8AF8EeGO5KzPHjNKFQ _s3vmwKSsEeWdJq8DhT0Nfw">
+  <steps xsi:type="buildstep:InstallStep" xmi:id="_BfnD4AF9EeGO5KzPHjNKFQ" id="egf" profile="EGF">
     <updateSiteUrls>${updateSiteURL}</updateSiteUrls>
     <productNames>org.eclipse.platform.ide</productNames>
+  </steps>
+  <steps xsi:type="buildstep:InstallStep" xmi:id="_27Q7ULXdEeWcK7feYwOw2Q" id="egf" profile="EGF" resultSteps="_-TnB8AF8EeGO5KzPHjNKFQ _s3vmwKSsEeWdJq8DhT0Nfw" p2_os="">
+    <updateSiteUrls>${updateSiteURL}</updateSiteUrls>
+    <featureNames>org.eclipse.egf</featureNames>
   </steps>
   <steps xsi:type="buildstep:AntStep" xmi:id="_bfnpIAF9EeGO5KzPHjNKFQ" targetName="copy_egf_to_tools" xml="&lt;target name=&quot;copy_egf_to_tools&quot;>&#xD;&#xA;&#x9;&lt;delete dir=&quot;${tools}/egf&quot;/>&#xD;&#xA;&#x9;&lt;copy todir=&quot;${tools}/egf&quot;>&#xD;&#xA;&#x9;&#x9;&lt;fileset dir=&quot;${publish}/egf&quot;/>&#xD;&#xA;&#x9;&lt;/copy>&#xD;&#xA;&lt;/target>"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>

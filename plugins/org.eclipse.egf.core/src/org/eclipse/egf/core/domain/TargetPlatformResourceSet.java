@@ -15,7 +15,7 @@ package org.eclipse.egf.core.domain;
  * 
  */
 
-//TODO a virer
+// kept for compatibility
 public class TargetPlatformResourceSet extends EgfResourceSet {
 
 }

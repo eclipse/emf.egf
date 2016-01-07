@@ -315,14 +315,14 @@ proxyData/HTTPS/host=proxy.eclipse.org
         </echoproperties>
     </target>
 	
-	<target name="all" depends="CleanStep_1,CleanStep_2,BuildStep_3,PublishStep_4,PublishStep_5,InstallStep_6,AntStep_7,CleanStep_8,BuildStep_9,AntStep_10,BuildStep_11,TestStep_12,TestStep_13,EgfStep_14,PublishStep_15,EgfStep_16,PublishStep_17,EgfStep_18,PublishStep_19,PublishStep_20,AggregateStep_21,AntStep_22,JavadocStep_23" />
+	<target name="all" depends="CleanStep_1,CleanStep_2,BuildStep_3,PublishStep_4,PublishStep_5,InstallStep_6,InstallStep_7,AntStep_8,CleanStep_9,BuildStep_10,AntStep_11,BuildStep_12,TestStep_13,TestStep_14,EgfStep_15,PublishStep_16,EgfStep_17,PublishStep_18,EgfStep_19,PublishStep_20,PublishStep_21,AggregateStep_22,AntStep_23,JavadocStep_24" />
 	<target name="CleanStep_1" >
 		<antcall target="clean.result" />
 	</target>
 	<target name="CleanStep_2" >
 		<antcall target="clean.workspace" />
 	</target>
-	<target name="CleanStep_8" >
+	<target name="CleanStep_9" >
 		<antcall target="clean.result" />
 	</target>
     <target name="BuildStep_3" depends="init,install.buckminster">
@@ -362,7 +362,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		</buckminster>
     </target>
 
-    <target name="BuildStep_9" depends="init,install.buckminster">
+    <target name="BuildStep_10" depends="init,install.buckminster">
         <echo message="Importing projects into workspace ${workspace} and binaries into target platform" />
 
 		<echo message="install JRE ${env.JAVA_HOME}" />
@@ -378,14 +378,14 @@ proxyData/HTTPS/host=proxy.eclipse.org
         <buckminster command="importtargetdefinition">
             <cmdargs>
                 <arg value="--active" />
-                <arg value="${relengDir}/buckminster_BuildStep_9/build.target" />
+                <arg value="${relengDir}/buckminster_BuildStep_10/build.target" />
             </cmdargs>
         </buckminster>
 		<echo message="provision : import projects in workspace" />
         <buckminster command="import">
             <!-- Uncomment to debug <globargs><jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/></globargs> -->
             <cmdargs>
-                <arg value="${relengDir}/buckminster_BuildStep_9/build.mspec" />
+                <arg value="${relengDir}/buckminster_BuildStep_10/build.mspec" />
             </cmdargs>
         </buckminster>
 
@@ -393,7 +393,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
         <echo message="No builders invocation specified" />
     </target>
 
-    <target name="BuildStep_11" depends="init,install.buckminster">
+    <target name="BuildStep_12" depends="init,install.buckminster">
         <echo message="Importing projects into workspace ${workspace} and binaries into target platform" />
 
 		<echo message="install JRE ${env.JAVA_HOME}" />
@@ -409,14 +409,14 @@ proxyData/HTTPS/host=proxy.eclipse.org
         <buckminster command="importtargetdefinition">
             <cmdargs>
                 <arg value="--active" />
-                <arg value="${relengDir}/buckminster_BuildStep_11/build.target" />
+                <arg value="${relengDir}/buckminster_BuildStep_12/build.target" />
             </cmdargs>
         </buckminster>
 		<echo message="provision : import projects in workspace" />
         <buckminster command="import">
             <!-- Uncomment to debug <globargs><jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/></globargs> -->
             <cmdargs>
-                <arg value="${relengDir}/buckminster_BuildStep_11/build.mspec" />
+                <arg value="${relengDir}/buckminster_BuildStep_12/build.mspec" />
             </cmdargs>
         </buckminster>
 
@@ -488,7 +488,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 	</target>
 
-	<target name="PublishStep_15" depends="init,install.buckminster" >
+	<target name="PublishStep_16" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -517,7 +517,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 	</target>
 
-	<target name="PublishStep_17" depends="init,install.buckminster" >
+	<target name="PublishStep_18" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -546,7 +546,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 	</target>
 
-	<target name="PublishStep_19" depends="init,install.buckminster" >
+	<target name="PublishStep_20" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -575,7 +575,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 	</target>
 
-	<target name="PublishStep_20" depends="init,install.buckminster" >
+	<target name="PublishStep_21" depends="init,install.buckminster" >
 
 		
 		<echo message="Generate Site"/>
@@ -604,26 +604,12 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 	</target>
 
-	<target name="TestStep_12" depends="init,install.buckminster">
-	  <echo message="Running Junit tests " />
-      <buckminster command="junit">
-        <cmdargs>
-          <arg value="-l" />
-          <arg value="org.eclipse.egf.core.test/EGF_Core_Tests.launch" />
-          <arg value="-o" />
-          <arg value="${result}/testReportTestStep_12.xml" />
-          <arg value="--terseXML" />
-          <arg value="--flatXML"/>
-        </cmdargs>
-      </buckminster>
-	</target>
-
 	<target name="TestStep_13" depends="init,install.buckminster">
 	  <echo message="Running Junit tests " />
       <buckminster command="junit">
         <cmdargs>
           <arg value="-l" />
-          <arg value="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch" />
+          <arg value="org.eclipse.egf.core.test/EGF_Core_Tests.launch" />
           <arg value="-o" />
           <arg value="${result}/testReportTestStep_13.xml" />
           <arg value="--terseXML" />
@@ -632,8 +618,22 @@ proxyData/HTTPS/host=proxy.eclipse.org
       </buckminster>
 	</target>
 
+	<target name="TestStep_14" depends="init,install.buckminster">
+	  <echo message="Running Junit tests " />
+      <buckminster command="junit">
+        <cmdargs>
+          <arg value="-l" />
+          <arg value="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch" />
+          <arg value="-o" />
+          <arg value="${result}/testReportTestStep_14.xml" />
+          <arg value="--terseXML" />
+          <arg value="--flatXML"/>
+        </cmdargs>
+      </buckminster>
+	</target>
 
-	<target name="AntStep_7">
+
+	<target name="AntStep_8">
 		<antcall target="copy_egf_to_tools"/>
 	</target>
 
@@ -644,7 +644,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</copy>
 </target>
 
-	<target name="AntStep_10" depends="init,install.egf" >
+	<target name="AntStep_11" depends="init,install.egf" >
 		<anteclipse target="recompile_egf_patterns" />
 	</target>	
 
@@ -656,7 +656,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 </target>
 
 
-	<target name="AntStep_22">
+	<target name="AntStep_23">
 		<antcall target="stats"/>
 	</target>
 
@@ -678,7 +678,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	<delete file="${p2.site.path}/artifacts.xml.orig" />
 </target>
 
-	<target name="JavadocStep_23">
+	<target name="JavadocStep_24">
 		<delete dir="${build.root}/../javadoc" />
 		<javadoc
 			destdir="${build.root}/../javadoc"
@@ -709,7 +709,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</javadoc>
 </target>
 
-	<target name="EgfStep_14" depends="init,install.egf">
+	<target name="EgfStep_15" depends="init,install.egf">
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
@@ -722,7 +722,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</activities>
 		</egf>
 	</target>
-	<target name="EgfStep_16" depends="init,install.egf">
+	<target name="EgfStep_17" depends="init,install.egf">
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
@@ -735,7 +735,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</activities>
 		</egf>
 	</target>
-	<target name="EgfStep_18" depends="init,install.egf">
+	<target name="EgfStep_19" depends="init,install.egf">
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
@@ -748,15 +748,15 @@ proxyData/HTTPS/host=proxy.eclipse.org
 			</activities>
 		</egf>
 	</target>
-	<target name="AggregateStep_21" depends="init,install.egf" >
-		<anteclipse target="AggregateStep_21_dropins" />
-		<anteclipse target="AggregateStep_21_sitep2" />
+	<target name="AggregateStep_22" depends="init,install.egf" >
+		<anteclipse target="AggregateStep_22_dropins" />
+		<anteclipse target="AggregateStep_22_sitep2" />
 	</target>	
 
-	<target name="AggregateStep_21_dropins">
+	<target name="AggregateStep_22_dropins">
 	</target>	
 
-	<target name="AggregateStep_21_sitep2">
+	<target name="AggregateStep_22_sitep2">
 		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
 		<p2.mirror>
 			<repository location="file:/${publish}/org.eclipse.egf.site/site.p2" name="buckminster-egf-mars/org.eclipse.egf.site" />
@@ -800,14 +800,55 @@ proxyData/HTTPS/host=proxy.eclipse.org
                 <arg value="-r" />
                 <arg value="${updateSiteURL}" />
 
-                <arg value="-r" />
-                <arg value="file:/${publish}/org.eclipse.egf/site.p2" />
-                <arg value="-r" />
-                <arg value="file:/${publish}/org.eclipse.egf.releng/site.p2" />
                 
 
                 <arg value="-i" />
                 <arg value="org.eclipse.platform.ide" />
+
+
+            </args>
+        </eclipse.launch>
+	</target>	
+	<target name="InstallStep_7" depends="init,install.director" >
+        <eclipse.launch app="director">
+            <args>
+                <jvmarg value="-Declipse.p2.mirrors=false" />
+                    <jvmarg value="-Xmx1024m"/>
+                    <jvmarg value="-XX:MaxPermSize=256m"/>
+                    
+                    <jvmarg value="-Dhttp.proxyHost=proxy.eclipse.org"/>
+                    <jvmarg value="-Dhttp.proxyPort=9898"/>
+                    <jvmarg value="-Dhttps.proxyHost=proxy.eclipse.org"/>
+                    <jvmarg value="-Dhttps.proxyPort=9898"/>
+                    <jvmarg value="-Dhttp.nonProxyHosts=*.eclipse.org"/>
+                    <jvmarg value="-Dhttps.nonProxyHosts=*.eclipse.org"/>
+                    <jvmarg value="-Dftp.proxyHost=proxy.eclipse.org"/>
+                    <jvmarg value="-Dftp.proxyPort=9898"/>
+                    <jvmarg value="-Dftp.nonProxyHosts=*.eclipse.org"/>
+
+
+
+            	<arg value="-roaming" />
+            	<arg value="-profileProperties" />
+                <arg value="org.eclipse.update.install.features=true " />
+
+                <arg value="-d" />
+                <arg value="${publish}/egf" />
+                
+                <arg value="-p" />
+                <arg value="EGF" />
+
+                <arg value="-r" />
+                <arg value="${updateSiteURL}" />
+
+                <arg value="-r" />
+                <arg value="file:/${publish}/org.eclipse.egf/site.p2" />
+                <arg value="-r" />
+                <arg value="file:/${publish}/org.eclipse.egf.releng/site.p2" />
+
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.feature.group" />                
+
 
                 <arg value="-i" />
                 <arg value="org.eclipse.egf.feature.group" />

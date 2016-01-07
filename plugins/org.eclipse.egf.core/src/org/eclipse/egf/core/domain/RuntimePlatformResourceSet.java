@@ -14,8 +14,7 @@ package org.eclipse.egf.core.domain;
  * @author Xavier Maysonnave
  * 
  */
-
-//TODO WIU a virer
+//kept for compatibility
 public class RuntimePlatformResourceSet extends EgfResourceSet {
 
 	public RuntimePlatformResourceSet() {
