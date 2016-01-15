@@ -51,7 +51,9 @@ public class DefaultDomainVisitor extends AbstractDomainVisitor {
         if (model instanceof IContainer) {
 
             try {
-                return ((IContainer) model).members();
+                IContainer container = (IContainer) model;
+                if (container.isAccessible())
+                	return container.members();
             } catch (CoreException e) {
                 EGFPatternPlugin.getDefault().logError(e);
             }
