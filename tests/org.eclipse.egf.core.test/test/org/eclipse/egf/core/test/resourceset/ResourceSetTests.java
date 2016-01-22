@@ -62,7 +62,7 @@ public class ResourceSetTests extends TestCase {
 				manager.invoke(new NullProgressMonitor());
 			} catch (Exception e) {
 				EGFCoreTestPlugin.getDefault().logError(e);
-				fail(e.getMessage());
+				fail(e.getClass().getName()+": "+e.getMessage());
 			}
 			String outputValue = manager.getProductionContext().getOutputValue("result", String.class);
 			assertEquals("Hello from workspace", outputValue);

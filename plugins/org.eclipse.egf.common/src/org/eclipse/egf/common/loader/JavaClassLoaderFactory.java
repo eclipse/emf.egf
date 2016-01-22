@@ -22,7 +22,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.helper.FileHelper;
-import org.eclipse.egf.common.internal.loader.JavaProjectClassLoader;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.IClasspathContainer;
@@ -78,14 +77,14 @@ public class JavaClassLoaderFactory {
         // Process local project stuff and parent project stuff
         try {
             // Always add the current project
-            URL url = JavaClassLoaderFactory.getURL(project.getProject().getLocation());
+            URL url = getURL(project.getProject().getLocation());
             if (url != null) {
                 urls.add(url);
             }
             // Default Output location analysis
             IFolder folder = FileHelper.getFolder(project.getOutputLocation());
             if (folder != null) {
-                url = JavaClassLoaderFactory.getURL(folder.getLocation());
+                url = getURL(folder.getLocation());
                 if (url != null) {
                     urls.add(url);
                 }
@@ -96,7 +95,7 @@ public class JavaClassLoaderFactory {
                 if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
                     folder = FileHelper.getFolder(entry.getOutputLocation());
                     if (folder != null) {
-                        url = JavaClassLoaderFactory.getURL(folder.getLocation());
+                        url = getURL(folder.getLocation());
                         if (url != null) {
                             urls.add(url);
                         }
@@ -151,49 +150,6 @@ public class JavaClassLoaderFactory {
             throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.JavaProject_AnalysisFailure, project.getProject().getName()), t));
         }
         return urls;
-    }
-
-    public static IJavaClassLoader getJavaClassLoader(final IJavaProject project) throws CoreException {
-        return getJavaClassLoader(project, null);
-    }
-
-    public static IJavaClassLoader getJavaClassLoader(final IJavaProject project, final ClassLoader parent) throws CoreException {
-
-        // Debug
-        long startTime = System.currentTimeMillis();
-        // Temp all visited parents Java project
-        List<IJavaProject> tempVisited = new UniqueEList<IJavaProject>();
-        // Final with all parents Java project URLs
-        final List<URL> urls = getURLs(project, tempVisited);
-        // Final all visited parents Java projects
-        final List<IJavaProject> visited = tempVisited;
-
-        // Debug
-        long endTime = System.currentTimeMillis();
-        try {
-
-            return AccessController.doPrivileged(new PrivilegedAction<IJavaClassLoader>() {
-
-                public IJavaClassLoader run() {
-
-                    return new JavaProjectClassLoader(project, visited, urls.toArray(new URL[urls.size()]), parent);
-
-                }
-
-            });
-
-        } finally {
-
-            if (EGFCommonPlugin.getDefault().isDebugging()) {
-                long time = (endTime - startTime);
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind("BundleClassLoaderFactory _ build {0} in an ''{1}'' ms", //$NON-NLS-1$ 
-                        new Object[] {
-                                IJavaClassLoader.class.getSimpleName(), time
-                        }));
-            }
-
-        }
-
     }
 
 }

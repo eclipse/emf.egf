@@ -14,7 +14,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.loader.common.ContextJavaLoaderCommon;
 import org.eclipse.egf.core.test.loader.platform.ContextLoaderWorkspaceBundle;
 import org.eclipse.egf.core.test.loader.platform.ContextLoaderTargetBundle;
 
@@ -22,7 +21,6 @@ public class ContextLoader extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite("EGF Core Loader Test Suite"); //$NON-NLS-1$
-        suite.addTest(ContextJavaLoaderCommon.suite());
         suite.addTest(ContextLoaderWorkspaceBundle.suite());
         suite.addTest(ContextLoaderTargetBundle.suite());
         return suite;
