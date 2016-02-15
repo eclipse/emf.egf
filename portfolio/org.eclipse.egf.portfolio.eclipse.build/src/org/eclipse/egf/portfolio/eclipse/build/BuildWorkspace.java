@@ -46,6 +46,11 @@ public class BuildWorkspace implements ITaskProduction {
             wsRoot.refreshLocal(IResource.DEPTH_INFINITE, progressMonitor);
             ws.build(IncrementalProjectBuilder.CLEAN_BUILD, progressMonitor);
             ws.build(IncrementalProjectBuilder.FULL_BUILD, progressMonitor);
+            ws.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, progressMonitor);
+            ws.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, progressMonitor);
+            ws.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, progressMonitor);
+            ws.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, progressMonitor);
+            ws.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, progressMonitor);
         } catch (CoreException e) {
             e.printStackTrace();
         }
