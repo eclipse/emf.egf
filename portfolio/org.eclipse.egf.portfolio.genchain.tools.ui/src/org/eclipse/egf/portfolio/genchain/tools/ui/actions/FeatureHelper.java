@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.portfolio.genchain.tools.Activator;
@@ -23,6 +24,7 @@ import org.eclipse.pde.internal.core.feature.WorkspaceFeatureModel;
 import org.eclipse.pde.internal.core.ifeature.IFeature;
 import org.eclipse.pde.internal.core.ifeature.IFeatureChild;
 import org.eclipse.pde.internal.core.ifeature.IFeaturePlugin;
+import org.eclipse.pde.internal.core.project.PDEProject;
 import org.eclipse.pde.internal.ui.wizards.feature.CreateFeatureProjectOperation;
 import org.eclipse.pde.internal.ui.wizards.feature.FeatureData;
 
@@ -80,9 +82,37 @@ public class FeatureHelper {
 		FeatureData featureData = new FeatureData();
 		featureData.id = id + ".feature";
 		featureData.name = name + " Feature";
-		featureData.version = VERSION;
 		// featureData.provider = "THALESGROUP";
+		final IProject fproject = ResourcesPlugin.getWorkspace().getRoot().getProject(id + ".feature");
+		featureData.version = getFeatureProjectVersion(fproject);
 		return featureData;
+	}
+	
+	@SuppressWarnings("restriction")
+	private static String getFeatureProjectVersion(IProject fproject){
+		String version = VERSION;
+		if (fproject.exists())
+		{
+			WorkspaceFeatureModel model = null;
+			try {
+				IFile file = PDEProject.getFeatureXml(fproject);
+				file.refreshLocal(IFile.DEPTH_ONE, new NullProgressMonitor());
+				model = new WorkspaceFeatureModel(file);
+				model.load();
+				IFeature feature = model.getFeature();
+				version = feature.getVersion();
+			} catch (Exception e) {
+				// Do nothing and return the default version
+			}
+			finally {
+				if (model!= null)
+				{
+					model.dispose();
+				}
+			}
+		}
+		
+		return version;
 	}
 
 	@SuppressWarnings("restriction")
