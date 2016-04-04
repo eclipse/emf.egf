@@ -47,6 +47,7 @@ public class UpdateFeatureOperation extends WorkspaceModifyOperation{
 	private String _featureID; 
 	private String _pluginID; 
 	private String _featureToIncludeID;
+	private final String DEFAULT_VERSION = "0.0.0"; //$NON-NLS-1$
 	
 	public UpdateFeatureOperation(String featureID, String pluginID, String featureToIncludeID) {
 		super();
@@ -96,7 +97,8 @@ public class UpdateFeatureOperation extends WorkspaceModifyOperation{
 			IPluginModelBase candidate = candidates[i];		
 			FeaturePlugin fplugin = (FeaturePlugin) model.getFactory().createPlugin();
 			fplugin.loadFrom(candidate.getPluginBase());
-			fplugin.setVersion(candidate.getPluginBase().getVersion()); //$NON-NLS-1$
+//			fplugin.setVersion(candidate.getPluginBase().getVersion()); //$NON-NLS-1$
+			fplugin.setVersion(DEFAULT_VERSION);
 			fplugin.setUnpack(CoreUtility.guessUnpack(candidate.getBundleDescription()));
 			candidate_plugin[i] = fplugin;
 		}
@@ -144,7 +146,8 @@ public class UpdateFeatureOperation extends WorkspaceModifyOperation{
 			IFeature candidate = candidates[i];
 			FeatureChild featureChild = (FeatureChild)model.getFactory().createChild();
 			featureChild.loadFrom(candidate);
-			featureChild.setVersion(candidate.getVersion()); //$NON-NLS-1$
+//			featureChild.setVersion(candidate.getVersion()); //$NON-NLS-1$
+			featureChild.setVersion(DEFAULT_VERSION);
 			added[i] = featureChild;
 		}
 		feature.addIncludedFeatures(added);
