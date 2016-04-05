@@ -10,7 +10,8 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Require-Bundle: 
  org.eclipse.egf.model.ftask;visibility:=reexport,
- org.eclipse.egf.core.pde
+ org.eclipse.egf.core.pde,
+ org.eclipse.pde.ui
 Bundle-Activator: 
  org.eclipse.egf.eclipse.resources.mgt.Activator
 Export-Package: 

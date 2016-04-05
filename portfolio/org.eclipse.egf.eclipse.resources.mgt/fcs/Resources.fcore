@@ -88,4 +88,32 @@
       </contracts>
     </contractContainer>
   </ftask:Task>
+  <ftask:Task xmi:id="_HCbnYNFiEeWW24r44ga24w" name="Plugin Management" kind="java"
+      implementation="org.eclipse.egf.eclipse.resources.mgt.PluginManagementTask">
+    <contractContainer xmi:id="_1FhfcNFtEeWW24r44ga24w">
+      <contracts xmi:id="_5XrRINFtEeWW24r44ga24w" name="plugin_id" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_9XGUENFtEeWW24r44ga24w"/>
+      </contracts>
+      <contracts xmi:id="__QxygNFtEeWW24r44ga24w" description="" name="plugin_version"
+          mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_Dhc9gNFuEeWW24r44ga24w"/>
+      </contracts>
+      <contracts xmi:id="_M4_UoNFuEeWW24r44ga24w" name="plugin_id_suffix">
+        <type xmi:type="types:TypeString" xmi:id="_QPhyoNFuEeWW24r44ga24w"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_YX8rQNFuEeWW24r44ga24w" name="Copy Files" kind="java" implementation="org.eclipse.egf.eclipse.resources.mgt.CopyFilesTask">
+    <contractContainer xmi:id="_c8TAMNFuEeWW24r44ga24w">
+      <contracts xmi:id="_djbRoNFuEeWW24r44ga24w" name="plugin_id" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_gbK60NFuEeWW24r44ga24w"/>
+      </contracts>
+      <contracts xmi:id="_kKZloNFuEeWW24r44ga24w" name="destination_path" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_nu61QNFuEeWW24r44ga24w"/>
+      </contracts>
+      <contracts xmi:id="_pRtdsNFuEeWW24r44ga24w" name="source_path" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_reTRENFuEeWW24r44ga24w"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
 </xmi:XMI>
