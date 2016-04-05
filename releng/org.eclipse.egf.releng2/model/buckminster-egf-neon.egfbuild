@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.1/buildcore" xmlns:builddeploy="http://www.eclipse.org/egf/1.0.0/builddeploy" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.2/buildstep" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-neon">
+  <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="neon"/>
+  <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="${eclipse.download.prefix}/releases/${releaseName}"/>
+  <properties xmi:id="_MGxhAOdwEeSQjKFw76jQug" key="ecoretoolsSiteURL" value="${eclipse.download.prefix}/ecoretools/updates/nightly/3.0.x/luna"/>
+  <properties xmi:id="_8pX3gOdyEeSQjKFw76jQug" key="siriusSiteURL" value="http://download.eclipse.org/sirius/updates/milestones/4.0.0M6/neon"/>
+  <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
+  <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
+  <properties xmi:id="_-VgtMVYwEeGPArgfLJHEWg" key="git.branch" value="master"/>
+  <steps xsi:type="buildstep:CleanStep" xmi:id="_N69VIvjIEeCQBPQJHiANYA" type="Result"/>
+  <steps xsi:type="buildstep:CleanStep" xmi:id="_u0eHIOyqEeSA26PkcoM-4g"/>
+  <steps xsi:type="buildstep:BuildStep" xmi:id="_2fryoQF8EeGO5KzPHjNKFQ">
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_2frypgF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix=".feature" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_2fryqgF8EeGO5KzPHjNKFQ" url="${updateSiteURL}"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_2fryrgF8EeGO5KzPHjNKFQ" id="org.eclipse.egf"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_QDSgsAVXEeGaseR7kNQ8hw" id="org.eclipse.emf.importer"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_RUfp4AVXEeGaseR7kNQ8hw" id="org.eclipse.emf.codegen.ecore.ui"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_wQp78KSvEeWdJq8DhT0Nfw" id="org.eclipse.egf.releng"/>
+  </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_s3vmwKSsEeWdJq8DhT0Nfw" component="_wQp78KSvEeWdJq8DhT0Nfw"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_-TnB8AF8EeGO5KzPHjNKFQ" component="_2fryrgF8EeGO5KzPHjNKFQ"/>
+  <steps xsi:type="buildstep:InstallStep" xmi:id="_BfnD4AF9EeGO5KzPHjNKFQ" id="egf" profile="EGF">
+    <updateSiteUrls>${updateSiteURL}</updateSiteUrls>
+    <productNames>org.eclipse.platform.ide</productNames>
+  </steps>
+  <steps xsi:type="buildstep:InstallStep" xmi:id="_27Q7ULXdEeWcK7feYwOw2Q" id="egf" profile="EGF" resultSteps="_-TnB8AF8EeGO5KzPHjNKFQ _s3vmwKSsEeWdJq8DhT0Nfw" p2_os="">
+    <updateSiteUrls>${updateSiteURL}</updateSiteUrls>
+    <featureNames>org.eclipse.egf</featureNames>
+  </steps>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_bfnpIAF9EeGO5KzPHjNKFQ" targetName="copy_egf_to_tools" xml="&lt;target name=&quot;copy_egf_to_tools&quot;>&#xD;&#xA;&#x9;&lt;delete dir=&quot;${tools}/egf&quot;/>&#xD;&#xA;&#x9;&lt;copy todir=&quot;${tools}/egf&quot;>&#xD;&#xA;&#x9;&#x9;&lt;fileset dir=&quot;${publish}/egf&quot;/>&#xD;&#xA;&#x9;&lt;/copy>&#xD;&#xA;&lt;/target>"/>
+  <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>
+  <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" noBuildersInvocation="true">
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix=".feature" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_eDETsKS7EeWwG8SaAv5e9g" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="${updateSiteURL}"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_dxRz4OdwEeSQjKFw76jQug" url="${ecoretoolsSiteURL}"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_BltOoOdzEeSQjKFw76jQug" pattern="" url="${siriusSiteURL}"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" id="org.eclipse.egf.test"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" id="org.eclipse.egf.portfolio.task.ant.test"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDiR_EeCpI_U_Er6QNA" id="org.eclipse.egf.sdk"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DECR_EeCpI_U_Er6QNA" id="org.eclipse.egf.examples"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_rivfYTkHEeCbr7W3e6bJPQ" id="org.eclipse.egf.portfolio.acceleo3"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_wsm2oEAiEeCi4-1Y9vbHyQ" id="org.eclipse.egf.portfolio.acceleo3.examples"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_vivKEDkHEeCbr7W3e6bJPQ" id="org.eclipse.egf.portfolio.atl"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_wsm2oUAiEeCi4-1Y9vbHyQ" id="org.eclipse.egf.portfolio.atl.examples"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_6VPlEL53EeCiHNhYwuZwog" id="org.eclipse.egf.portfolio.genchain.ecoretools"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_fHWbMKS7EeWwG8SaAv5e9g" id="org.eclipse.egf.releng2"/>
+  </steps>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.pde.SchemaBuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.pde.ManifestBuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.jdt.core.javabuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
+  <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="${updateSiteURL}"/>
+  </steps>
+  <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
+  <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
+  <steps xsi:type="buildstep:EgfStep" xmi:id="_lrpyMCVpEeCrBLgWv91aGQ">
+    <properties xmi:id="_lrpyMSVpEeCrBLgWv91aGQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_GeIQ8UAdEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.examples-feature"/>
+    <properties xmi:id="_lrpyMiVpEeCrBLgWv91aGQ" key="outputFolder" value="${publish}/org.eclipse.egf.sdk/examples"/>
+    <properties xmi:id="_s1jtcc85EeCzhPch9tJ3Og" key="importerName" value="org.eclipse.egf.examples.installer"/>
+    <egfActivities xmi:id="_N69VIfjIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ"/>
+  </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_91ptYCR_EeCpI_U_Er6QNA" component="_VP8DDiR_EeCpI_U_Er6QNA" signing="true"/>
+  <steps xsi:type="buildstep:EgfStep" xmi:id="_jR6TcEAfEeCi4-1Y9vbHyQ">
+    <properties xmi:id="_jR6TcUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_jR6TckAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.acceleo3.examples-feature"/>
+    <properties xmi:id="_jR6Tc0AfEeCi4-1Y9vbHyQ" key="outputFolder" value="${publish}/org.eclipse.egf.portfolio.acceleo3/examples"/>
+    <properties xmi:id="_wqXR0dIYEeCajoLOvUaMlg" key="importerName" value="org.eclipse.egf.portfolio.acceleo3.examples.installer"/>
+    <egfActivities xmi:id="_N69VIPjIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ"/>
+  </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_ANqPQDkIEeCbr7W3e6bJPQ" component="_rivfYTkHEeCbr7W3e6bJPQ" signing="true"/>
+  <steps xsi:type="buildstep:EgfStep" xmi:id="_jr12YEAfEeCi4-1Y9vbHyQ">
+    <properties xmi:id="_jr12YUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_jr12YkAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.atl.examples-feature"/>
+    <properties xmi:id="_jr12Y0AfEeCi4-1Y9vbHyQ" key="outputFolder" value="${publish}/org.eclipse.egf.portfolio.atl/examples"/>
+    <properties xmi:id="_w5aacNIYEeCajoLOvUaMlg" key="importerName" value="org.eclipse.egf.portfolio.atl.examples.installer"/>
+    <egfActivities xmi:id="_N69VI_jIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ"/>
+  </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_Ae8zkDkIEeCbr7W3e6bJPQ" component="_vivKEDkHEeCbr7W3e6bJPQ" signing="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_3mAXob53EeCiHNhYwuZwog" component="_6VPlEL53EeCiHNhYwuZwog" signing="true"/>
+  <steps xsi:type="buildstep:AggregateStep" xmi:id="_G99gMEAgEeCi4-1Y9vbHyQ" id="org.eclipse.egf.site" publishSteps="_91ptYCR_EeCpI_U_Er6QNA _ANqPQDkIEeCbr7W3e6bJPQ _Ae8zkDkIEeCbr7W3e6bJPQ _3mAXob53EeCiHNhYwuZwog"/>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_WfRXUEAzEeCsoY6xB0CJEA" targetName="stats" xml="&lt;target name=&quot;stats&quot;>&#xD;&#xA;&#x9;&lt;property name=&quot;p2.site.path&quot; value=&quot;${publish}/org.eclipse.egf.site/site.p2&quot; />&#xD;&#xA;&#xD;&#xA;&#x9;&lt;unzip src=&quot;${p2.site.path}/artifacts.jar&quot; dest=&quot;${p2.site.path}&quot; />&#xD;&#xA;&#x9;&lt;delete file=&quot;${p2.site.path}/artifacts.jar&quot; />&#xD;&#xA;&#x9;&lt;move file=&quot;${p2.site.path}/artifacts.xml&quot; tofile=&quot;${p2.site.path}/artifacts.xml.orig&quot; />&#xD;&#xA;&#xD;&#xA;&#x9;&lt;xslt style=&quot;${build.root}/git/git_eclipse/releng/org.eclipse.egf.releng2/ant/statsURI.xsl&quot; &#xD;&#xA;&#x9;&#x9;in=&quot;${p2.site.path}/artifacts.xml.orig&quot; &#xD;&#xA;&#x9;&#x9;out=&quot;${p2.site.path}/artifacts.xml&quot;>&#xD;&#xA;&#x9;&#x9;&lt;param name=&quot;releaseName&quot; expression=&quot;${releaseName}&quot;/>&#xD;&#xA;&#x9; &lt;/xslt>&#xD;&#xA;&#xD;&#xA;&#x9;&lt;zip destfile=&quot;${p2.site.path}/artifacts.jar&quot; basedir=&quot;${p2.site.path}&quot; includes=&quot;artifacts.xml&quot; />&#xD;&#xA;&#x9;&lt;delete file=&quot;${p2.site.path}/artifacts.xml&quot; />&#xD;&#xA;&#x9;&lt;delete file=&quot;${p2.site.path}/artifacts.xml.orig&quot; />&#xD;&#xA;&lt;/target>"/>
+  <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DAiR_EeCpI_U_Er6QNA">
+    <includes>**/*.java</includes>
+    <links>http://download.oracle.com/javase/1.5.0/docs/api/</links>
+    <links>http://www.osgi.org/javadoc/r4v42/</links>
+    <links>http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/</links>
+    <links>http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/</links>
+  </steps>
+  <scms xsi:type="buildscm:GIT" xmi:id="_VP8DGCR_EeCpI_U_Er6QNA">
+    <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" protocol="https://" url="git.eclipse.org/r/egf/org.eclipse.emf.egf" localPath="git_eclipse" branch="${git.branch}" username="" password=""/>
+  </scms>
+  <deployment xsi:type="builddeploy:HudsonDeployment" xmi:id="_cVWxoNqkEeOOJoyshCcAFA" userDeployServerUrl="https://hudson.eclipse.org/hudson">
+    <users xmi:id="_C_SdENqrEeOIAvxYf5-NWA" login="mhelleboid" permission="WRITE"/>
+    <users xmi:id="_6xAXkNqrEeOIAvxYf5-NWA" login="langlois" permission="WRITE"/>
+    <users xmi:id="_64dqcNqrEeOIAvxYf5-NWA" login="tguiu" permission="WRITE"/>
+    <generationLocation xsi:type="buildscm:GITGenerationLocation" xmi:id="__kt-MNqrEeOIAvxYf5-NWA" folderName="releng/org.eclipse.egf.releng2/jobs" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA"/>
+  </deployment>
+</buildcore:Job>
