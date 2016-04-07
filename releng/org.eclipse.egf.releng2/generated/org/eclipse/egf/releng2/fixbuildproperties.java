@@ -23,7 +23,7 @@ public class fixbuildproperties extends org.eclipse.egf.portfolio.eclipse.build.
 			+ NL + "cloudsmith.download.prefix=http://download.cloudsmith.com" + NL
 			+ "polarion.download.prefix=http://community.polarion.com" + NL + "" + NL + "#director" + NL
 			+ "director.url=${eclipse.download.prefix}/tools/buckminster/products/director_latest.zip" + NL + "" + NL
-			+ "#buckminster installation" + NL + "buckminster.release=4.2" + NL
+			+ "#buckminster installation" + NL + "buckminster.release=4.5" + NL
 			+ "bm.headless.site=${eclipse.download.prefix}/tools/buckminster/headless-${buckminster.release}" + NL
 			+ "bm.external.site=${cloudsmith.download.prefix}/buckminster/external-${buckminster.release}" + NL
 			+ "polarion.site=${polarion.download.prefix}/projects/subversive/download/eclipse/2.0/update-site/" + NL
