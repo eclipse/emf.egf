@@ -214,7 +214,7 @@ public class PublishExamplesTask implements ITaskProduction {
 		//We want to have same code for all platforms. But Neon version of ZipFileExporter class comes with a new constructor signature :( 
 		//		return new ZipFileExporter(zipPath, true);
 		//		return new ZipFileExporter(zipPath, true, true);
-		if (constructor.getParameters().length == 3)
+		if (constructor.getParameterTypes().length == 3)
 			return (ZipFileExporter) constructor.newInstance(zipPath, true, true);
 		return (ZipFileExporter) constructor.newInstance(zipPath, true);
 	}
