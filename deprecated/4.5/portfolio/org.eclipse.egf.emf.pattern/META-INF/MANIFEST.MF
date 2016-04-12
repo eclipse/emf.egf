@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.emf.pattern;singleton:=true
+Bundle-Version: 1.1.0.2_11_0_v20150518-0831_qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eclipse.egf.emf.pattern.edit,
+ org.eclipse.egf.emf.pattern.edit.call.ItemProvider,
+ org.eclipse.egf.emf.pattern.editor,
+ org.eclipse.egf.emf.pattern.editor.call.Editor,
+ org.eclipse.egf.emf.pattern.model,
+ org.eclipse.egf.emf.pattern.model.call.Class,
+ org.eclipse.egf.emf.pattern.model.call.Interface,
+ org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass,
+ org.eclipse.egf.emf.pattern.model.call.ValidatorClass,
+ org.eclipse.egf.emf.pattern.tests,
+ org.eclipse.egf.emf.pattern.tests.call.TestCase
+Require-Bundle: 
+ org.eclipse.egf.model.fprod,
+ org.eclipse.egf.pattern.jet,
+ org.eclipse.egf.emf.pattern.base;visibility:=reexport,
+ org.eclipse.egf.model.ftask;visibility:=reexport
+Bundle-ActivationPolicy: lazy
