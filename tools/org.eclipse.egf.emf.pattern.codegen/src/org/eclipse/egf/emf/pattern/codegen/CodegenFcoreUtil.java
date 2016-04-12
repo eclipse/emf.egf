@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ *  Copyright (c) 2009-2016 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -49,242 +49,243 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  */
 public class CodegenFcoreUtil {
 
-    public static final String N = "\n"; //$NON-NLS-1$
+	public static final String N = "\n"; //$NON-NLS-1$
 
-    protected IProject codegenProject;
+	protected IProject codegenProject;
 
-    protected IProject fcoreProject;
+	protected IProject fcoreProject;
 
-    protected Resource mdpstResource;
+	protected Resource mdpstResource;
 
-    protected Resource emfPatternBaseResource;
+	protected Resource emfPatternBaseResource;
 
-    protected Resource emfPatternResource;
+	protected Resource emfPatternResource;
 
-    protected CodegenPatternHelper codegenPatternHelper;
+	protected CodegenPatternHelper codegenPatternHelper;
 
-    protected CodegenEGFHelper codegenEGFHelper;
+	protected CodegenEGFHelper codegenEGFHelper;
 
-    protected CodegenJetPatternHelper codegenJetPatternHelper;
+	protected CodegenJetPatternHelper codegenJetPatternHelper;
 
-    protected List<PatternInfo> patternInfos;
+	protected List<PatternInfo> patternInfos;
 
-    protected CodegenVersionHelper codegenVersionHelper;
+	protected CodegenVersionHelper codegenVersionHelper;
 
-    protected class ClearCommand extends RecordingCommand {
+	protected class ClearCommand extends RecordingCommand {
 
-        protected Exception exception;
+		protected Exception exception;
 
-        public ClearCommand(TransactionalEditingDomain domain) {
-            super(domain);
-        }
+		public ClearCommand(TransactionalEditingDomain domain) {
+			super(domain);
+		}
 
-        @Override
-        protected void doExecute() {
-            try {
-                emfPatternResource.getContents().clear();
-            } catch (Exception e) {
-                this.exception = e;
-            }
-        }
+		@Override
+		protected void doExecute() {
+			try {
+				emfPatternResource.getContents().clear();
+			} catch (Exception e) {
+				this.exception = e;
+			}
+		}
 
-    }
+	}
 
-    protected class CreateCommand extends RecordingCommand {
+	protected class CreateCommand extends RecordingCommand {
 
-        protected Exception exception;
+		protected Exception exception;
 
-        protected IProgressMonitor monitor;
+		protected IProgressMonitor monitor;
 
-        public CreateCommand(TransactionalEditingDomain domain, IProgressMonitor monitor) {
-            super(domain);
-            this.monitor = monitor;
-        }
+		public CreateCommand(TransactionalEditingDomain domain, IProgressMonitor monitor) {
+			super(domain);
+			this.monitor = monitor;
+		}
 
-        @Override
-        protected void doExecute() {
-            try {
-                createPatterns(monitor);
-                codegenEGFHelper.createOrchestration(emfPatternBaseResource, mdpstResource, patternInfos, monitor, codegenPatternHelper);
-                codegenEGFHelper.createAllFactoryComponent();
-                codegenEGFHelper.fixPatternElementOrder();
-            } catch (Exception e) {
-                this.exception = e;
-            }
-        }
-    }
+		@Override
+		protected void doExecute() {
+			try {
+				createPatterns(monitor);
+				codegenEGFHelper.createOrchestration(emfPatternBaseResource, mdpstResource, patternInfos, monitor, codegenPatternHelper);
+				codegenEGFHelper.createAllFactoryComponent();
+				codegenEGFHelper.fixPatternElementOrder();
+			} catch (Exception e) {
+				this.exception = e;
+			}
+		}
+	}
 
-    public void createFcoreFile(IFile fcore, String emfCodegenEcoreProjectName, final IProgressMonitor monitor) throws Exception {
-        final IOException[] ioExceptions = new IOException[1];
+	public void createFcoreFile(IFile fcore, String emfCodegenEcoreProjectName, final IProgressMonitor monitor) throws Exception {
+		final IOException[] ioExceptions = new IOException[1];
 
-        fcoreProject = fcore.getProject();
-        codegenProject = ResourcesPlugin.getWorkspace().getRoot().getProject(emfCodegenEcoreProjectName);
-        if (!codegenProject.exists())
-            throw new IllegalStateException("Cannot find project " + emfCodegenEcoreProjectName + " in workspace"); //$NON-NLS-1$ //$NON-NLS-2$
+		fcoreProject = fcore.getProject();
+		codegenProject = ResourcesPlugin.getWorkspace().getRoot().getProject(emfCodegenEcoreProjectName);
+		if (!codegenProject.exists())
+			throw new IllegalStateException("Cannot find project " + emfCodegenEcoreProjectName + " in workspace"); //$NON-NLS-1$ //$NON-NLS-2$
 
-        if (!codegenProject.isOpen())
-            throw new IllegalStateException("Project " + emfCodegenEcoreProjectName + " is closed"); //$NON-NLS-1$ //$NON-NLS-2$
+		if (!codegenProject.isOpen())
+			throw new IllegalStateException("Project " + emfCodegenEcoreProjectName + " is closed"); //$NON-NLS-1$ //$NON-NLS-2$
 
-        // Retrieve our editing domain
-        TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+		// Retrieve our editing domain
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
 
-        // Feed our URIConverter
-        URI platformPluginURI = URI.createPlatformPluginURI(fcore.getFullPath().toString(), false);
-        URI platformResourceURI = URI.createPlatformResourceURI(fcore.getFullPath().toString(), true);
-        editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
+		// Feed our URIConverter
+		URI platformPluginURI = URI.createPlatformPluginURI(fcore.getFullPath().toString(), false);
+		URI platformResourceURI = URI.createPlatformResourceURI(fcore.getFullPath().toString(), true);
+		editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
 
-        // Create a resource for this file.
-        if (fcore.exists()) {
-            emfPatternResource = editingDomain.getResourceSet().getResource(platformPluginURI, true);
-            keepPreviousFcoreIdsAndOrder(fcore, editingDomain, platformPluginURI);
-            clearFcore(editingDomain);
-        } else
-            emfPatternResource = editingDomain.getResourceSet().createResource(platformPluginURI);
+		// Create a resource for this file.
+		if (fcore.exists()) {
+			emfPatternResource = editingDomain.getResourceSet().getResource(platformPluginURI, true);
+			keepPreviousFcoreIdsAndOrder(fcore, editingDomain, platformPluginURI);
+			clearFcore(editingDomain);
+		} else
+			emfPatternResource = editingDomain.getResourceSet().createResource(platformPluginURI);
 
-        URI emfPatternBaseResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore", true); //$NON-NLS-1$
-        emfPatternBaseResource = editingDomain.getResourceSet().getResource(emfPatternBaseResourceURI, true);
-        URI mdpstResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore", true); //$NON-NLS-1$
-        mdpstResource = editingDomain.getResourceSet().getResource(mdpstResourceURI, true);
+		URI emfPatternBaseResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore", true); //$NON-NLS-1$
+		emfPatternBaseResource = editingDomain.getResourceSet().getResource(emfPatternBaseResourceURI, true);
+		URI mdpstResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore", true); //$NON-NLS-1$
+		mdpstResource = editingDomain.getResourceSet().getResource(mdpstResourceURI, true);
 
-        createCodegenVersionHelper();
-        createCodegenPatternHelper();
-        createCodegenEGFHelper(); //called with the newly created resource
-        createCodegenJetPattenHelper();
-        createPatternInfos(monitor);
-        computePatternInfoNames();
-        computeSubPatternInfo(monitor);
-        computePatternInfoNames();
-        computeMethodsContent(monitor);
-        computePatternInfoDescription();
-        replaceManifestVersion();
+		createCodegenVersionHelper();
+		createCodegenPatternHelper();
+		createCodegenEGFHelper(); //called with the newly created resource
+		createCodegenJetPattenHelper();
+		createPatternInfos(monitor);
+		computePatternInfoNames();
+		computeSubPatternInfo(monitor);
+		computePatternInfoNames();
+		computeMethodsContent(monitor);
+		computePatternInfoDescription();
 
-        // Add factory component to the contents.
-        CreateCommand createCommand = new CreateCommand(editingDomain, monitor);
-        editingDomain.getCommandStack().execute(createCommand);
-        if (createCommand.exception != null)
-            throw createCommand.exception;
+		// Add factory component to the contents.
+		CreateCommand createCommand = new CreateCommand(editingDomain, monitor);
+		editingDomain.getCommandStack().execute(createCommand);
+		if (createCommand.exception != null)
+			throw createCommand.exception;
 
-        // save fcore
-        try {
-            editingDomain.runExclusive(new Runnable() {
+		// save fcore
+		try {
+			editingDomain.runExclusive(new Runnable() {
 
-                public void run() {
-                    try {
-                        emfPatternResource.save(Collections.EMPTY_MAP);
-                    } catch (IOException ioe) {
-                        ioExceptions[0] = ioe;
-                    }
-                }
-            });
-        } catch (InterruptedException ie) {
-            return;
-        }
+				public void run() {
+					try {
+						emfPatternResource.save(Collections.EMPTY_MAP);
+					} catch (IOException ioe) {
+						ioExceptions[0] = ioe;
+					}
+				}
+			});
+		} catch (InterruptedException ie) {
+			return;
+		}
 
-        // Rethrow exception if any
-        if (ioExceptions[0] != null) {
-            throw ioExceptions[0];
-        }
+		// Rethrow exception if any
+		if (ioExceptions[0] != null) {
+			throw ioExceptions[0];
+		}
 
-        return;
-    }
+		replaceManifestVersion();
 
-    protected void replaceManifestVersion() throws CoreException, IOException {
-        codegenVersionHelper.replaceManifestVersion();
-    }
+		return;
+	}
 
-    protected void clearFcore(TransactionalEditingDomain editingDomain) throws Exception {
-        ClearCommand clearCommand = new ClearCommand(editingDomain);
-        editingDomain.getCommandStack().execute(clearCommand);
-        if (clearCommand.exception != null)
-            throw clearCommand.exception;
-    }
+	protected void replaceManifestVersion() throws CoreException, IOException {
+		codegenVersionHelper.replaceManifestVersion();
+	}
 
-    protected void keepPreviousFcoreIdsAndOrder(IFile fcore, TransactionalEditingDomain editingDomain, URI platformPluginURI) {
-        // Try to keep xmi ids if fcore exists
-        createCodegenEGFHelper(); //called with old resource
-        codegenEGFHelper.populateXmiIds();
-        codegenEGFHelper.populatePatternOrder();
-    }
+	protected void clearFcore(TransactionalEditingDomain editingDomain) throws Exception {
+		ClearCommand clearCommand = new ClearCommand(editingDomain);
+		editingDomain.getCommandStack().execute(clearCommand);
+		if (clearCommand.exception != null)
+			throw clearCommand.exception;
+	}
 
-    protected void createCodegenPatternHelper() {
-        codegenPatternHelper = new CodegenPatternHelper();
-    }
+	protected void keepPreviousFcoreIdsAndOrder(IFile fcore, TransactionalEditingDomain editingDomain, URI platformPluginURI) {
+		// Try to keep xmi ids if fcore exists
+		createCodegenEGFHelper(); //called with old resource
+		codegenEGFHelper.populateXmiIds();
+		codegenEGFHelper.populatePatternOrder();
+	}
 
-    protected void createCodegenEGFHelper() {
-        codegenEGFHelper = new CodegenEGFHelper(emfPatternResource, codegenEGFHelper);
-    }
+	protected void createCodegenPatternHelper() {
+		codegenPatternHelper = new CodegenPatternHelper();
+	}
 
-    public void createPatternInfos(IProgressMonitor monitor) throws Exception {
-        patternInfos = new CodegenASTHelper().createPatternInfo(codegenProject, monitor);
-        // sort list to have Model, Edit, Editor, Tests according to PartType
-        // ordinal order
-        Collections.sort(patternInfos, new AbstractInfoComparator());
-    }
+	protected void createCodegenEGFHelper() {
+		codegenEGFHelper = new CodegenEGFHelper(emfPatternResource, codegenEGFHelper);
+	}
 
-    public void computeSubPatternInfo(IProgressMonitor monitor) throws Exception {
-        codegenJetPatternHelper.computeJetSubPatternInfo(patternInfos);
-    }
+	public void createPatternInfos(IProgressMonitor monitor) throws Exception {
+		patternInfos = new CodegenASTHelper().createPatternInfo(codegenProject, monitor);
+		// sort list to have Model, Edit, Editor, Tests according to PartType
+		// ordinal order
+		Collections.sort(patternInfos, new AbstractInfoComparator());
+	}
 
-    public void createCodegenJetPattenHelper() {
-        codegenJetPatternHelper = new CodegenJetPatternHelper(codegenPatternHelper, codegenProject, emfPatternBaseResource, emfPatternResource);
-    }
+	public void computeSubPatternInfo(IProgressMonitor monitor) throws Exception {
+		codegenJetPatternHelper.computeJetSubPatternInfo(patternInfos);
+	}
 
-    public void createCodegenVersionHelper() {
-        codegenVersionHelper = new CodegenVersionHelper(codegenProject, fcoreProject);
-    }
+	public void createCodegenJetPattenHelper() {
+		codegenJetPatternHelper = new CodegenJetPatternHelper(codegenPatternHelper, codegenProject, emfPatternBaseResource, emfPatternResource);
+	}
 
-    public void computePatternInfoNames() {
-        new CodegenPatternNameResolver(codegenPatternHelper).computePatternName(patternInfos);
-    }
+	public void createCodegenVersionHelper() {
+		codegenVersionHelper = new CodegenVersionHelper(codegenProject, fcoreProject);
+	}
 
-    public void computePatternInfoDescription() throws Exception {
-        new CodegenPatternDescriptionHandler(codegenProject).computeDescription(patternInfos, codegenVersionHelper);
-    }
+	public void computePatternInfoNames() {
+		new CodegenPatternNameResolver(codegenPatternHelper).computePatternName(patternInfos);
+	}
 
-    public void computeMethodsContent(IProgressMonitor monitor) {
-        for (PatternInfo patternInfo : patternInfos) {
-            CodegenPatternMethodContentResolver codegenPatternMethodContentResolver = new CodegenPatternMethodContentResolver(codegenProject, codegenPatternHelper, emfPatternBaseResource, codegenJetPatternHelper);
-            if (patternInfo instanceof JetPatternInfo) {
-                JetPatternInfo jetPatternInfo = (JetPatternInfo) patternInfo;
-                codegenPatternMethodContentResolver.computeMethodsContent(jetPatternInfo);
-            } else if (patternInfo instanceof GIFPatternInfo) {
-                GIFPatternInfo gifPatternInfo = (GIFPatternInfo) patternInfo;
-                codegenPatternMethodContentResolver.computeMethodsContent(gifPatternInfo);
-            } else if (patternInfo instanceof JetSubPatternInfo) {
-                JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
-                codegenPatternMethodContentResolver.computeMethodsContent(jetSubPatternInfo);
-            } else
-                throw new IllegalStateException();
+	public void computePatternInfoDescription() throws Exception {
+		new CodegenPatternDescriptionHandler(codegenProject).computeDescription(patternInfos, codegenVersionHelper);
+	}
 
-            monitor.worked(10);
-        }
-    }
+	public void computeMethodsContent(IProgressMonitor monitor) {
+		for (PatternInfo patternInfo : patternInfos) {
+			CodegenPatternMethodContentResolver codegenPatternMethodContentResolver = new CodegenPatternMethodContentResolver(codegenProject, codegenPatternHelper, emfPatternBaseResource, codegenJetPatternHelper);
+			if (patternInfo instanceof JetPatternInfo) {
+				JetPatternInfo jetPatternInfo = (JetPatternInfo) patternInfo;
+				codegenPatternMethodContentResolver.computeMethodsContent(jetPatternInfo);
+			} else if (patternInfo instanceof GIFPatternInfo) {
+				GIFPatternInfo gifPatternInfo = (GIFPatternInfo) patternInfo;
+				codegenPatternMethodContentResolver.computeMethodsContent(gifPatternInfo);
+			} else if (patternInfo instanceof JetSubPatternInfo) {
+				JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
+				codegenPatternMethodContentResolver.computeMethodsContent(jetSubPatternInfo);
+			} else
+				throw new IllegalStateException();
 
-    public void createPatterns(IProgressMonitor monitor) throws Exception {
-        for (PatternInfo patternInfo : patternInfos) {
-            Pattern pattern = getPatternFactory(patternInfo).createPattern();
-            CodegenEngine codegenEngine = getCodeEngine(patternInfo);
-            ContentProvider contentProvider = createContentProvider(patternInfo);
-            TemplateInitializer initializer = getPatternTemplateInitializer(pattern, patternInfo, codegenEngine, contentProvider);
-            initializer.initContent();
+			monitor.worked(10);
+		}
+	}
 
-            monitor.worked(10);
-        }
-    }
+	public void createPatterns(IProgressMonitor monitor) throws Exception {
+		for (PatternInfo patternInfo : patternInfos) {
+			Pattern pattern = getPatternFactory(patternInfo).createPattern();
+			CodegenEngine codegenEngine = getCodeEngine(patternInfo);
+			ContentProvider contentProvider = createContentProvider(patternInfo);
+			TemplateInitializer initializer = getPatternTemplateInitializer(pattern, patternInfo, codegenEngine, contentProvider);
+			initializer.initContent();
 
-    public TemplateInitializer getPatternTemplateInitializer(Pattern pattern, PatternInfo patternInfo, CodegenEngine codegenEngine, ContentProvider contentProvider) {
-        return new CodegenJetPatternInitializer(fcoreProject, pattern, codegenEngine, contentProvider);
-    }
+			monitor.worked(10);
+		}
+	}
 
-    public ContentProvider createContentProvider(PatternInfo patternInfo) {
-        return new ContentProvider(patternInfo, true);
-    }
+	public TemplateInitializer getPatternTemplateInitializer(Pattern pattern, PatternInfo patternInfo, CodegenEngine codegenEngine, ContentProvider contentProvider) {
+		return new CodegenJetPatternInitializer(fcoreProject, pattern, codegenEngine, contentProvider);
+	}
 
-    public CodegenEngine getCodeEngine(PatternInfo patternInfo) {
-        return new CodegenEngine(org.eclipse.egf.pattern.jet.Activator.getDefault().getPluginID(), fcoreProject, JetPreferences.getTemplateFileExtension());
-    }
+	public ContentProvider createContentProvider(PatternInfo patternInfo) {
+		return new ContentProvider(patternInfo, true);
+	}
 
-    public CodegenPatternFactory getPatternFactory(PatternInfo patternInfo) {
-        return new CodegenPatternFactory(new JetPatternFactory(), emfPatternBaseResource, codegenEGFHelper, patternInfo, codegenPatternHelper);
-    }
+	public CodegenEngine getCodeEngine(PatternInfo patternInfo) {
+		return new CodegenEngine(org.eclipse.egf.pattern.jet.Activator.getDefault().getPluginID(), fcoreProject, JetPreferences.getTemplateFileExtension());
+	}
+
+	public CodegenPatternFactory getPatternFactory(PatternInfo patternInfo) {
+		return new CodegenPatternFactory(new JetPatternFactory(), emfPatternBaseResource, codegenEGFHelper, patternInfo, codegenPatternHelper);
+	}
 }
