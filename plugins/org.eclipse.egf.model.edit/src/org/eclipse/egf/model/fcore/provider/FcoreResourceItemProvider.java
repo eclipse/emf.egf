@@ -15,6 +15,7 @@ import java.util.Collection;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -141,13 +142,16 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
         if (resource instanceof IPlatformFcoreProvider) {
             IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
             if (fcore != null) {
-                if (fcore.getPlatformBundle().isTarget()) {
+                IPlatformBundle platformBundle = fcore.getPlatformBundle();
+				if (platformBundle.isTarget()) 
                     buffer.append(" [Target]"); //$NON-NLS-1$
-                } else {
+				else if (platformBundle.isRuntime())
+					buffer.append(" [Runtime]"); //$NON-NLS-1$
+				else 
                     buffer.append(" [Workspace]"); //$NON-NLS-1$
-                }
+                
                 buffer.append(" ["); //$NON-NLS-1$
-                buffer.append(fcore.getPlatformBundle().getInstallLocation());
+                buffer.append(platformBundle.getInstallLocation());
                 buffer.append("]"); //$NON-NLS-1$
             }
         }
