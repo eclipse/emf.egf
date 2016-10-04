@@ -12,6 +12,7 @@ package org.eclipse.egf.core.domain;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,6 +22,14 @@ import java.util.Map;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -33,6 +42,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.ModelEntry;
@@ -50,7 +60,7 @@ public final class PlatformResourceLoadedListener implements EGFWorkspaceSynchro
 
 	private static volatile ResourceManager resourceManager = new ResourceManager();
 
-	private final WorkspaceListener listener = new WorkspaceListener();
+	private final WorkspaceListener workspaceListener = new WorkspaceListener();
 
 	public static ResourceManager getResourceManager() {
 		return resourceManager;
@@ -240,7 +250,7 @@ public final class PlatformResourceLoadedListener implements EGFWorkspaceSynchro
 					resource.unload();
 					resourceSet.getResources().remove(resource);
 					if (EGFCorePlugin.getDefault().isDebugging()) {
-						EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformResourceLoadedListener$ResourceManager.movedResource(...) - discard loaded empty resource with errors ''{0}''", //$NON-NLS-1$
+						EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformResourceLoadedListener$ResourceManager.movedResource(...) - discard loaded empty resource with errors ''{0}''", //$NON-NLS-1$
 								URIHelper.toString(newURI)));
 					}
 					// Load it in our resource set
@@ -358,7 +368,7 @@ public final class PlatformResourceLoadedListener implements EGFWorkspaceSynchro
 						resource.unload();
 						resource.getResourceSet().getResources().remove(resource);
 						if (EGFCorePlugin.getDefault().isDebugging()) {
-							EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", //$NON-NLS-1$
+							EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", //$NON-NLS-1$
 									fcore.toString()));
 						}
 						// Load it in our resource set, beware the URIConverter
@@ -400,8 +410,7 @@ public final class PlatformResourceLoadedListener implements EGFWorkspaceSynchro
 	};
 
 	private PlatformResourceLoadedListener() {
-		// EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
-		PDECore.getDefault().getModelManager().addPluginModelListener(listener);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(workspaceListener);
 	}
 
 	private TransactionalEditingDomain getEditingDomain() {
@@ -493,36 +502,60 @@ public final class PlatformResourceLoadedListener implements EGFWorkspaceSynchro
 	}
 
 	public synchronized void dispose() {
-		PDECore.getDefault().getModelManager().removePluginModelListener(listener);
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(workspaceListener);
 		EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(platformListener);
 		getResourceManager().dispose();
 		resourceManager = null;
 	}
 
-	public class WorkspaceListener implements IPluginModelListener {
+	public class WorkspaceListener  implements IResourceChangeListener, IResourceDeltaVisitor {
 
-		public void modelsChanged(PluginModelDelta delta) {
+		public void resourceChanged(IResourceChangeEvent event) {
+			switch (event.getType()) {
+			case IResourceChangeEvent.POST_CHANGE :
+				IResourceDelta delta = event.getDelta();
+				if (delta != null)
+					try {
+						delta.accept(this);
+					} catch (CoreException e) {
+						EGFPlatformPlugin.getDefault().logError(e);
+					}
+				break;
+			case IResourceChangeEvent.PRE_CLOSE :
+				IProject proj = (IProject) event.getResource();
+				reload(proj);
+				break;
+		}
+		}
+
+		private void reload(IProject proj) {
 			TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-			for (ModelEntry entry : delta.getChangedEntries()) {
-				String id = entry.getId();
-				for (Resource r : editingDomain.getResourceSet().getResources()) {
-					if (id.equals(r.getURI().segment(1)))
-						reloadResource(r);
+			for (Resource r : editingDomain.getResourceSet().getResources()) {
+				if (proj.getName().equals(r.getURI().segment(1)))
+				{
+					getResourceManager().reloadResource(r);
 				}
 			}
+
 		}
 
-		private void reloadResource(Resource r) {
-			System.out.println("reload " + r.getURI());
-			r.unload();
-			try {
-				r.load(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				EGFPlatformPlugin.getDefault().logError(e);
+		public boolean visit(IResourceDelta delta) throws CoreException {
+			final IResource resource = delta.getResource();
+			switch (resource.getType()) {
+
+				case IResource.ROOT :
+					return true;
+				case IResource.PROJECT : {
+					IProject project = (IProject) resource;
+					if ( (delta.getKind() == IResourceDelta.ADDED || delta.getKind() == IResourceDelta.REMOVED || (delta.getFlags() & IResourceDelta.OPEN) != 0)) {
+						reload(project);
+						return false;
+					}
+					return true;
+				}
 			}
-
+			return false;
 		}
-
+		
 	}
-
 }

@@ -59,6 +59,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.ui.ViewerPane;
 import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
@@ -675,7 +676,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         currentViewerPane.setTitle(reloadedResource);
                     }
                     updateProblemIndication = true;
-                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(reloadedResource.getURI())));
+                    setInputWithNotify(new URIEditorInput(reloadedResource.getURI()));
                     firePropertyChange(PROP_TITLE);
                 }
 
