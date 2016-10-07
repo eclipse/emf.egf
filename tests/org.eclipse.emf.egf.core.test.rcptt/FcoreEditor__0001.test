@@ -1,0 +1,50 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _udoH0IyNEeaLRPgUbfwOUw,_s8H40IyNEeaLRPgUbfwOUw
+Element-Name: FcoreEditor__0001
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _ExirQIyNEeaLRPgUbfwOUw
+Runtime-Version: 2.0.2.201511100828
+Save-Time: 10/7/16 3:02 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | get-menu "New/Java Project" | click
+with [get-window "New Java Project"] {
+    get-editbox -after [get-label "Project name:"] | set-text A
+    get-button Finish | click
+}
+get-view "Package Explorer" | get-tree | select A | get-menu "New/Other..." | click
+with [get-window New] {
+    get-tree | select "EGF/EGF Activity"
+    get-button "Next >" | click
+    get-button Finish | click
+}
+with [get-editor "default.fcore" | get-tree] {
+    get-item "default \\[Factory Component\\]" | click
+    select "default [Factory Component]" | get-menu "New Child/Viewpoint Container" | click
+    get-item "default \\[Factory Component\\]/\\[Viewpoint Container\\]" | click
+    select "default [Factory Component]/[Viewpoint Container]" | get-menu "New Child/Pattern Viewpoint" | click
+    get-item "default \\[Factory Component\\]/\\[Viewpoint Container\\]/\\[Pattern Viewpoint\\]" | click
+    select "default [Factory Component]/[Viewpoint Container]/[Pattern Viewpoint]" | get-menu "New Child/Library" 
+        | click
+    get-item "default \\[Factory Component\\]/\\[Viewpoint Container\\]/\\[Pattern Viewpoint\\]/default_package \\[Library\\]" 
+        | click
+    select "default [Factory Component]/[Viewpoint Container]/[Pattern Viewpoint]/default_package [Library]" 
+        | get-menu "New Child/JetNature Pattern" | click
+}
+get-button "Save (M1+S)" | click
+with [get-view "Package Explorer" | get-tree] {
+    get-item A | get-property childCount | equals 9 | verify-true
+    get-item "A/default.fcore" | get-property caption | equals "default.fcore" | verify-true
+}
+get-view "Package Explorer" | get-tree | get-item "A/templates" | get-property caption | equals templates | verify-true
+get-editor "default.fcore" | get-tree 
+    | get-item "default \\[Factory Component\\]/\\[Viewpoint Container\\]/\\[Pattern Viewpoint\\]/default_package \\[Library\\]/myPattern \\[Pattern\\]" 
+    | get-property caption | equals "myPattern [Pattern]" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
