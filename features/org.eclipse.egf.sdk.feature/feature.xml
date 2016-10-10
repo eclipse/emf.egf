@@ -48,6 +48,78 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.egf.portfolio.genchain"
          version="0.0.0"/>
 
+    <includes
+        id="org.eclipse.egf.common.source"
+        version="0.0.0"/>     
+
+    <includes
+        id="org.eclipse.egf.common.ui.source"
+        version="0.0.0"/>
+  
+   <includes
+         id="org.eclipse.egf.core.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.core.ui.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.examples.source"
+         version="0.0.0"/>
+
+    <includes 
+        id="org.eclipse.egf.model.edit.source" 
+        version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.model.source"
+         version="0.0.0"/>
+
+    <includes
+        id="org.eclipse.egf.model.fprod.edit.source"
+        version="0.0.0"/>
+
+    <includes
+        id="org.eclipse.egf.model.fprod.source"
+        version="0.0.0"/>
+
+    <includes
+        id="org.eclipse.egf.model.ftask.edit.source"
+        version="0.0.0"/>
+
+    <includes
+        id="org.eclipse.egf.model.ftask.source"
+        version="0.0.0"/>
+
+    <includes
+        id="org.eclipse.egf.model.ui.source"
+        version="0.0.0"/>
+   
+   <includes
+         id="org.eclipse.egf.portfolio.emf.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.portfolio.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.portfolio.genchain.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.egf.portfolio.task.ant.source"
+         version="0.0.0"/>
+
+    <includes
+        id="org.eclipse.egf.producer.source"
+        version="0.0.0"/>
+
+    <includes 
+        id="org.eclipse.egf.producer.ui.source" 
+        version="0.0.0"/>
+           
    <plugin
          id="org.eclipse.egf.examples.installer"
          download-size="0"

@@ -59,11 +59,6 @@ http://www.eclipse.org/legal/epl-v10.html
         />
     </requires>
   
-    <includes
-        id="org.eclipse.egf.common.source"
-        version="0.0.0"
-    />     
-
     <plugin
         id="org.eclipse.egf.common"
         download-size="0"
