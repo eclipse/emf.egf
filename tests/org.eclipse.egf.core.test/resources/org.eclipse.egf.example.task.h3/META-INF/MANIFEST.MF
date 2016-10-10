@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.example.task.h3;singleton:=true
 Bundle-Activator: org.eclipse.egf.example.task.h3.Activator
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.4.1.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-ClassPath: .

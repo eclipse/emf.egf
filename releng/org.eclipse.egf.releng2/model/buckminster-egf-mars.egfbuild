@@ -3,7 +3,7 @@
   <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="mars"/>
   <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="${eclipse.download.prefix}/releases/${releaseName}"/>
   <properties xmi:id="_MGxhAOdwEeSQjKFw76jQug" key="ecoretoolsSiteURL" value="${eclipse.download.prefix}/ecoretools/updates/nightly/3.0.x/luna"/>
-  <properties xmi:id="_8pX3gOdyEeSQjKFw76jQug" key="siriusSiteURL" value="http://download.eclipse.org/sirius/updates/milestones/3.0.0rc2/mars"/>
+  <properties xmi:id="_8pX3gOdyEeSQjKFw76jQug" key="siriusSiteURL" value="http://download.eclipse.org/sirius/updates/releases/4.1.0/mars"/>
   <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
   <properties xmi:id="_-VgtMVYwEeGPArgfLJHEWg" key="git.branch" value="master"/>
