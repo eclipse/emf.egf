@@ -32,6 +32,10 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.egf"/>
    </requires>
 
+   <includes
+         id="org.eclipse.egf.examples.source"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.egf.example.emf.docgen.html"
          download-size="0"
