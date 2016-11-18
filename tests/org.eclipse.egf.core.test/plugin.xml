@@ -16,9 +16,6 @@
            id="resources/org.eclipse.egf.example.fcs/egf/fc2.fcore">
      </fcore>
      <fcore
-           id="resources/org.eclipse.egf.example.task.h1/egf/task_h1.fcore">
-     </fcore>
-     <fcore
            id="resources/org.eclipse.egf.example.task.h2/egf/task_h2.fcore">
      </fcore>
      <fcore

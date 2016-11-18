@@ -13,6 +13,7 @@ package org.eclipse.egf.model.editor.dialogs;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -89,10 +90,15 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
 
 	private IPlatformFcore[] _content = null;
 
-	private IPlatformFcore[] _targetFcores = EGFPlatformPlugin.getPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformFcore.class);
-
 	private IPlatformFcore[] _runtimeFcores = EGFPlatformPlugin.getPlatformManager().getRuntimePlatformExtensionPoints(IPlatformFcore.class);
 
+	private IPlatformFcore[] _targetFcores = concat(_runtimeFcores, EGFPlatformPlugin.getPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformFcore.class));
+
+	private static <T> T[] concat(T[] first, T[] second) {
+		  T[] result = Arrays.copyOf(first, first.length + second.length);
+		  System.arraycopy(second, 0, result, first.length, second.length);
+		  return result;
+		}
 	/**
 	 * <code>ActivitySelectionHistory</code> provides behavior specific to
 	 * Activity - storing and restoring <code>Activity</code>s state
