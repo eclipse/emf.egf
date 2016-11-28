@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.example.strategy.modeldriven;singleton:=true
 Bundle-Activator: strategy.Activator
-Bundle-Version: 1.4.1.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
