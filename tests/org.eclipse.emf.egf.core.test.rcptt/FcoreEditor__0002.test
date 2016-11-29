@@ -1,0 +1,60 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _udoH0IyNEeaLRPgUbfwOUw,_DgZHQLYgEea1os7Kor2vgw
+Element-Name: FcoreEditor__0002
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _xI5LgLYfEea1os7Kor2vgw
+Runtime-Version: 2.2.0.201611290016
+Save-Time: 11/29/16 11:43 AM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "A/default.fcore" | double-click
+with [get-editor "default.fcore" | get-tree] {
+    get-item -path "default \\[Factory Component\\]" | click
+    select "default [Factory Component]" | get-menu -path "New Child/Production Plan" | click
+    get-item -path "default \\[Factory Component\\]/\\[Production Plan\\]" | click
+    select "default [Factory Component]/[Production Plan]" | get-menu -path "Invoke Activity" | click
+}
+get-window "Invoke Activity" | get-table | get-property itemCount | equals 0 | verify-true
+get-window "Invoke Activity" | get-editbox 
+    -after [get-label "Select an EGF 'Activity' (? = any character, * = any string):"] | set-text "**"
+
+wait 2000
+
+get-window "Invoke Activity" | get-table | get-property itemCount | equals 69 | verify-true
+with [get-window "Invoke Activity"] {
+    get-table | select "Build Generation \\(Chain as a Job\\)"
+    get-button "Next >" | click
+}
+with [get-window "Invoke Activity" | get-table] {
+    get-property "getItems().TableItem[0].getText()" | equals "buildModelPath [In] [Factory Component Contract]" 
+        | verify-true
+    get-property "getItems().TableItem[1].getText()" | equals "generationPath [In] [Factory Component Contract]" 
+        | verify-true
+    get-property "getItems().TableItem[2].getText()" 
+        | equals "Model validation pattern substitutions [In] [Factory Component Contract]" | verify-true
+    get-property "getItems().TableItem[3].getText()" 
+        | equals "Model transformation pattern substitutions [In] [Factory Component Contract]" | verify-true
+    get-property "getItems().TableItem[4].getText()" 
+        | equals "Hudson pattern substitutions [In] [Factory Component Contract]" | verify-true
+    get-property "getItems().TableItem[5].getText()" 
+        | equals "Buckminster pattern substitutions [In] [Factory Component Contract]" | verify-true
+    get-property "getItems().TableItem[6].getText()" | equals "copyright [In] [Factory Component Contract]" 
+        | verify-true
+}
+get-window "Invoke Activity" | get-button Finish | click
+with [get-editor "default.fcore" | get-tree] {
+    get-item 
+        -path "default \\[Factory Component\\]/\\[Production Plan\\]/\\[Production Plan Invocation\\] -> Build Generation \\(Chain as a Job\\) \\[Factory Component\\]/\\[Invocation Contract Container\\]" 
+        | get-property caption | equals "[Invocation Contract Container]" | verify-true
+    get-item 
+        -path "default \\[Factory Component\\]/\\[Production Plan\\]/\\[Production Plan Invocation\\] -> Build Generation \\(Chain as a Job\\) \\[Factory Component\\]/\\[Invocation Contract Container\\]" 
+        | get-property "getItemCount()" | equals 7 | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
