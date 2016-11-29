@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.egf.test"
       label="%featureName"
-      version="1.5.0"
+      version="1.5.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.egf.core.test"
       image="eclipse_update_120.jpg">
