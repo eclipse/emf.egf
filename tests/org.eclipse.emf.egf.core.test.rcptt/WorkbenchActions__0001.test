@@ -1,0 +1,35 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _udoH0IyNEeaLRPgUbfwOUw,_DgZHQLYgEea1os7Kor2vgw
+Element-Name: WorkbenchActions__0001
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _676vULYgEea1os7Kor2vgw
+Runtime-Version: 2.2.0.201611290016
+Save-Time: 11/29/16 11:59 AM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-button "Opens an EGF Fcore" | click
+get-window "EGF Fcore Selection" | get-table | get-property itemCount | equals 0 | verify-true
+get-window "EGF Fcore Selection" | get-editbox -after [get-label "Select a registered EGF Fcore:"] | set-text "**"
+get-window "EGF Fcore Selection" | get-table | get-property itemCount | equals 27 | verify-true
+with [get-window "EGF Fcore Selection"] {
+// workaround: there is a weird behaviour 
+    get-editbox -after [get-label "Select a registered EGF Fcore:"] | set-text d
+    wait 4000
+    get-editbox -after [get-label "Select a registered EGF Fcore:"] | set-text def
+    wait 4000
+    get-table | select default
+}
+with [get-window "EGF Fcore Selection" | get-table] {
+    get-item -path "platform:\\/plugin\\/A\\/default.fcore" | get-property caption 
+        | equals "platform:/plugin/A/default.fcore" | verify-true
+    get-item -path "platform:\\/plugin\\/A\\/default.fcore" | get-property index | equals 1 | verify-true
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
