@@ -500,7 +500,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 		<pathconvert property="featurefilePublishStep_13">
 			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.sdk*eclipse.feature/temp/feature.xml" />
+				<fileset dir="${result}/output" includes="org.eclipse.egf.sdk*eclipse.feature/temp/manifest/feature.xml" />
 			</first>
 		</pathconvert>
 		<loadfile property="featureversionPublishStep_13" srcFile="${featurefilePublishStep_13}">
@@ -569,7 +569,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 		<pathconvert property="featurefilePublishStep_15">
 			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.acceleo3*eclipse.feature/temp/feature.xml" />
+				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.acceleo3*eclipse.feature/temp/manifest/feature.xml" />
 			</first>
 		</pathconvert>
 		<loadfile property="featureversionPublishStep_15" srcFile="${featurefilePublishStep_15}">
@@ -638,7 +638,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 		<pathconvert property="featurefilePublishStep_17">
 			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.atl*eclipse.feature/temp/feature.xml" />
+				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.atl*eclipse.feature/temp/manifest/feature.xml" />
 			</first>
 		</pathconvert>
 		<loadfile property="featureversionPublishStep_17" srcFile="${featurefilePublishStep_17}">
@@ -707,7 +707,7 @@ proxyData/HTTPS/host=proxy.eclipse.org
 		
 		<pathconvert property="featurefilePublishStep_18">
 			<first count="1">
-				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.genchain.ecoretools*eclipse.feature/temp/feature.xml" />
+				<fileset dir="${result}/output" includes="org.eclipse.egf.portfolio.genchain.ecoretools*eclipse.feature/temp/manifest/feature.xml" />
 			</first>
 		</pathconvert>
 		<loadfile property="featureversionPublishStep_18" srcFile="${featurefilePublishStep_18}">
