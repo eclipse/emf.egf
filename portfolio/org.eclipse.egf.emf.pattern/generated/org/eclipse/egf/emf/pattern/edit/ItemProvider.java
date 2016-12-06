@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -340,8 +340,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		stringBuffer.append(TEXT_3);
 		genModel.addImport("org.eclipse.emf.common.notify.AdapterFactory");
 		genModel.addImport("org.eclipse.emf.common.notify.Notification");
-		String _List = genModel.getImportedName(genModel.useGenerics()
-				? "java.util.List<org.eclipse.emf.edit.provider.IItemPropertyDescriptor>" : "java.util.List");
+		String _List = genModel.getImportedName(
+				genModel.useGenerics() ? "java.util.List<org.eclipse.emf.edit.provider.IItemPropertyDescriptor>"
+						: "java.util.List");
 		genModel.markImportLocation(stringBuffer);
 		stringBuffer.append(TEXT_4);
 		stringBuffer.append(genClass.getQualifiedInterfaceName());

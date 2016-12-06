@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -585,15 +585,19 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 		String _LinkedHashMapOfStringToCollectionOfIAction = null;
 		if (genModel.isCreationCommands()) {
 			_CollectionOfAnything = genModel.getImportedName("Collection" + (genModel.useGenerics() ? "<?>" : ""));
-			_CollectionOfIAction = genModel.getImportedName(genModel.useGenerics()
-					? "java.util.Collection<org.eclipse.jface.action.IAction>" : "java.util.Collection");
-			_ArrayListOfIAction = genModel.getImportedName(genModel.useGenerics()
-					? "java.util.ArrayList<org.eclipse.jface.action.IAction>" : "java.util.ArrayList");
-			_CollectionOfExtendsIAction = genModel.getImportedName(genModel.useGenerics()
-					? "java.util.Collection<? extends org.eclipse.jface.action.IAction>" : "java.util.Collection");
+			_CollectionOfIAction = genModel
+					.getImportedName(genModel.useGenerics() ? "java.util.Collection<org.eclipse.jface.action.IAction>"
+							: "java.util.Collection");
+			_ArrayListOfIAction = genModel
+					.getImportedName(genModel.useGenerics() ? "java.util.ArrayList<org.eclipse.jface.action.IAction>"
+							: "java.util.ArrayList");
+			_CollectionOfExtendsIAction = genModel.getImportedName(
+					genModel.useGenerics() ? "java.util.Collection<? extends org.eclipse.jface.action.IAction>"
+							: "java.util.Collection");
 			if (genModel.isCreationSubmenus()) {
-				_IteratorOfIAction = genModel.getImportedName(genModel.useGenerics()
-						? "java.util.Iterator<org.eclipse.jface.action.IAction>" : "java.util.Iterator");
+				_IteratorOfIAction = genModel
+						.getImportedName(genModel.useGenerics() ? "java.util.Iterator<org.eclipse.jface.action.IAction>"
+								: "java.util.Iterator");
 				_MapOfStringToCollectionOfIAction = genModel.getImportedName("java.util.Map")
 						+ (genModel.useGenerics() ? ("<String, " + _CollectionOfIAction + ">") : "");
 				_MapEntryOfStringToCollectionOfIAction = genModel.getImportedName("java.util.Map") + ".Entry"

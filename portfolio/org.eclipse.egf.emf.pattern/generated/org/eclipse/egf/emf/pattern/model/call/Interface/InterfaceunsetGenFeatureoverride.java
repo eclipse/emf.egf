@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -505,7 +505,7 @@ public class InterfaceunsetGenFeatureoverride {
 				stringBuffer.append(TEXT_8);
 			}
 			stringBuffer.append(TEXT_9);
-			if (genModel.isDynamicDelegation()) {
+			if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
 				stringBuffer.append(TEXT_10);
 				stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
 				if (genClass.hasStaticFeatures()) {
@@ -576,7 +576,8 @@ public class InterfaceunsetGenFeatureoverride {
 						GenFeature reverseFeature = genFeature.getReverse();
 						GenClass targetClass = reverseFeature.getGenClass();
 						String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
-								? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
+								? " + " + genClass.getOffsetCorrectionField(genFeature)
+								: "";
 						stringBuffer.append(TEXT_40);
 						stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject"));
 						stringBuffer.append(TEXT_41);

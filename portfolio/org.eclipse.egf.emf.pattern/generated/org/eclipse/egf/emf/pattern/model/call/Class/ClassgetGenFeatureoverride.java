@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -525,13 +525,11 @@ public class ClassgetGenFeatureoverride {
 			stringBuffer.append(genFeature.getGetAccessor());
 			stringBuffer.append(TEXT_7);
 		} else {
-			if (genModel.useGenerics()
-					&& ((genFeature.isContainer() || genFeature.isResolveProxies()) && !genFeature.isListType()
-							&& !(genModel.isReflectiveDelegation() && genModel.isDynamicDelegation())
-							&& genFeature.isUncheckedCast(genClass)
-							|| genFeature.isListType() && !genFeature.isFeatureMapType()
-									&& (genModel.isReflectiveDelegation() || genModel.isVirtualDelegation()
-											|| genModel.isDynamicDelegation())
+			if (genModel.useGenerics() && ((genFeature.isContainer() || genFeature.isResolveProxies())
+					&& !genFeature.isListType() && genFeature.isUncheckedCast(genClass)
+					|| genFeature.isListType() && !genFeature.isFeatureMapType()
+							&& (genModel.isReflectiveDelegation() || genModel.isVirtualDelegation()
+									|| (genModel.isDynamicDelegation() && !genFeature.isVolatile()))
 					|| genFeature.isListDataType() && genFeature.hasDelegateFeature()
 					|| genFeature.isListType() && genFeature.hasSettingDelegate())) {
 				stringBuffer.append(TEXT_8);
@@ -573,7 +571,7 @@ public class ClassgetGenFeatureoverride {
 				stringBuffer.setLength(0);
 			}
 
-			if (genModel.isDynamicDelegation()) {
+			if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
 				stringBuffer.append(TEXT_14);
 				if (!isJDK50 && genFeature.isPrimitiveType()) {
 					stringBuffer.append(TEXT_15);
@@ -749,7 +747,8 @@ public class ClassgetGenFeatureoverride {
 								GenFeature reverseFeature = genFeature.getReverse();
 								GenClass targetClass = reverseFeature.getGenClass();
 								String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
-										? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
+										? " + " + genClass.getOffsetCorrectionField(genFeature)
+										: "";
 								stringBuffer.append(TEXT_91);
 								stringBuffer.append(
 										genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain"));
@@ -776,7 +775,8 @@ public class ClassgetGenFeatureoverride {
 								GenFeature reverseFeature = genFeature.getReverse();
 								GenClass targetClass = reverseFeature.getGenClass();
 								String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
-										? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
+										? " + " + genClass.getOffsetCorrectionField(genFeature)
+										: "";
 								stringBuffer.append(TEXT_101);
 								stringBuffer.append(genFeature.getCapName());
 								stringBuffer.append(TEXT_102);

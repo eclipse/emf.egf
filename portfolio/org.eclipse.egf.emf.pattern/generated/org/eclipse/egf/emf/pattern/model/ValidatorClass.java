@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -498,221 +498,223 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 	protected final String TEXT_423 = ", ";
 	protected final String TEXT_424 = ", ";
 	protected final String TEXT_425 = ");";
-	protected final String TEXT_426 = NL + "\t\tboolean ";
-	protected final String TEXT_427 = " = ";
-	protected final String TEXT_428 = ".unscaledValue().abs().toString().length() <= ";
-	protected final String TEXT_429 = ";" + NL + "\t\tif (!";
-	protected final String TEXT_430 = " && ";
-	protected final String TEXT_431 = " != null)" + NL + "\t\t\treportTotalDigitsViolation(";
-	protected final String TEXT_432 = ", ";
-	protected final String TEXT_433 = ", ";
+	protected final String TEXT_426 = NL + "\t\tint scale = ";
+	protected final String TEXT_427 = ".scale();" + NL + "\t\tint totalDigits = scale < 0 ? ";
+	protected final String TEXT_428 = ".precision() - scale : ";
+	protected final String TEXT_429 = ".precision();" + NL + "\t\tboolean ";
+	protected final String TEXT_430 = " = totalDigits <= ";
+	protected final String TEXT_431 = ";" + NL + "\t\tif (!";
+	protected final String TEXT_432 = " && ";
+	protected final String TEXT_433 = " != null)" + NL + "\t\t\treportTotalDigitsViolation(";
 	protected final String TEXT_434 = ", ";
 	protected final String TEXT_435 = ", ";
-	protected final String TEXT_436 = ");";
-	protected final String TEXT_437 = NL + "\t\tboolean ";
-	protected final String TEXT_438 = " = ";
-	protected final String TEXT_439 = ".compareTo(";
-	protected final String TEXT_440 = "__LOWER_BOUND) > 0 && ";
+	protected final String TEXT_436 = ", ";
+	protected final String TEXT_437 = ", ";
+	protected final String TEXT_438 = ");";
+	protected final String TEXT_439 = NL + "\t\tboolean ";
+	protected final String TEXT_440 = " = ";
 	protected final String TEXT_441 = ".compareTo(";
-	protected final String TEXT_442 = "__UPPER_BOUND) < 0;" + NL + "\t\tif (!";
-	protected final String TEXT_443 = " && ";
-	protected final String TEXT_444 = " != null)" + NL + "\t\t\treportTotalDigitsViolation(";
-	protected final String TEXT_445 = ", ";
-	protected final String TEXT_446 = ", ";
+	protected final String TEXT_442 = "__LOWER_BOUND) > 0 && ";
+	protected final String TEXT_443 = ".compareTo(";
+	protected final String TEXT_444 = "__UPPER_BOUND) < 0;" + NL + "\t\tif (!";
+	protected final String TEXT_445 = " && ";
+	protected final String TEXT_446 = " != null)" + NL + "\t\t\treportTotalDigitsViolation(";
 	protected final String TEXT_447 = ", ";
 	protected final String TEXT_448 = ", ";
-	protected final String TEXT_449 = ");";
-	protected final String TEXT_450 = NL + "\t\treturn ";
-	protected final String TEXT_451 = ";";
-	protected final String TEXT_452 = NL + "\t\tboolean ";
-	protected final String TEXT_453 = " = ";
-	protected final String TEXT_454 = ".scale() <= ";
-	protected final String TEXT_455 = ";" + NL + "\t\tif (!";
-	protected final String TEXT_456 = " && ";
-	protected final String TEXT_457 = " != null)" + NL + "\t\t\treportFractionDigitsViolation(";
-	protected final String TEXT_458 = ", ";
-	protected final String TEXT_459 = ", ";
+	protected final String TEXT_449 = ", ";
+	protected final String TEXT_450 = ", ";
+	protected final String TEXT_451 = ");";
+	protected final String TEXT_452 = NL + "\t\treturn ";
+	protected final String TEXT_453 = ";";
+	protected final String TEXT_454 = NL + "\t\tboolean ";
+	protected final String TEXT_455 = " = ";
+	protected final String TEXT_456 = ".scale() <= ";
+	protected final String TEXT_457 = ";" + NL + "\t\tif (!";
+	protected final String TEXT_458 = " && ";
+	protected final String TEXT_459 = " != null)" + NL + "\t\t\treportFractionDigitsViolation(";
 	protected final String TEXT_460 = ", ";
 	protected final String TEXT_461 = ", ";
-	protected final String TEXT_462 = ");" + NL + "\t\treturn ";
-	protected final String TEXT_463 = ";";
-	protected final String TEXT_464 = NL + "\t\t// TODO override the constraint, if desired" + NL
+	protected final String TEXT_462 = ", ";
+	protected final String TEXT_463 = ", ";
+	protected final String TEXT_464 = ");" + NL + "\t\treturn ";
+	protected final String TEXT_465 = ";";
+	protected final String TEXT_466 = NL + "\t\t// TODO override the constraint, if desired" + NL
 			+ "\t\t// -> uncomment the scaffolding" + NL
 			+ "\t\t// -> specify the condition that violates the constraint" + NL
 			+ "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL
 			+ "\t\t{" + NL + "\t\t\tif (";
-	protected final String TEXT_465 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-	protected final String TEXT_466 = ".add";
-	protected final String TEXT_467 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_468 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_467 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+	protected final String TEXT_468 = ".add";
+	protected final String TEXT_469 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_470 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
-	protected final String TEXT_469 = NL + "\t\t\t\t\t\t new Object[] { \"";
-	protected final String TEXT_470 = "\", getValueLabel(";
-	protected final String TEXT_471 = ", ";
-	protected final String TEXT_472 = ", ";
-	protected final String TEXT_473 = ") },";
-	protected final String TEXT_474 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_475 = " }," + NL + "\t\t\t\t\t\t context));";
-	protected final String TEXT_476 = NL + "\t\t\t\t\t(new ";
-	protected final String TEXT_477 = NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_478 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_471 = NL + "\t\t\t\t\t\t new Object[] { \"";
+	protected final String TEXT_472 = "\", getValueLabel(";
+	protected final String TEXT_473 = ", ";
+	protected final String TEXT_474 = ", ";
+	protected final String TEXT_475 = ") },";
+	protected final String TEXT_476 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_477 = " }," + NL + "\t\t\t\t\t\t context));";
+	protected final String TEXT_478 = NL + "\t\t\t\t\t(new ";
+	protected final String TEXT_479 = NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_480 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t ";
-	protected final String TEXT_479 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
-	protected final String TEXT_480 = "\", getValueLabel(";
-	protected final String TEXT_481 = ", ";
-	protected final String TEXT_482 = ", ";
-	protected final String TEXT_483 = ") }),";
-	protected final String TEXT_484 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_485 = " }));";
-	protected final String TEXT_486 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn ";
-	protected final String TEXT_487 = "validate";
-	protected final String TEXT_488 = "_";
-	protected final String TEXT_489 = "(";
-	protected final String TEXT_490 = ", ";
-	protected final String TEXT_491 = ", ";
-	protected final String TEXT_492 = ");";
-	protected final String TEXT_493 = NL + "\t\treturn" + NL + "\t\t\tvalidate" + NL + "\t\t\t\t(";
-	protected final String TEXT_494 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_495 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_481 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+	protected final String TEXT_482 = "\", getValueLabel(";
+	protected final String TEXT_483 = ", ";
+	protected final String TEXT_484 = ", ";
+	protected final String TEXT_485 = ") }),";
+	protected final String TEXT_486 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_487 = " }));";
+	protected final String TEXT_488 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn ";
+	protected final String TEXT_489 = "validate";
+	protected final String TEXT_490 = "_";
+	protected final String TEXT_491 = "(";
+	protected final String TEXT_492 = ", ";
+	protected final String TEXT_493 = ", ";
+	protected final String TEXT_494 = ");";
+	protected final String TEXT_495 = NL + "\t\treturn" + NL + "\t\t\tvalidate" + NL + "\t\t\t\t(";
 	protected final String TEXT_496 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_497 = "," + NL + "\t\t\t\t \"";
-	protected final String TEXT_498 = "\",";
-	protected final String TEXT_499 = NL + "\t\t\t\t \"";
+	protected final String TEXT_497 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_498 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_499 = "," + NL + "\t\t\t\t \"";
 	protected final String TEXT_500 = "\",";
-	protected final String TEXT_501 = NL + "\t\t\t\t ";
-	protected final String TEXT_502 = "__";
-	protected final String TEXT_503 = "__EEXPRESSION," + NL + "\t\t\t\t ";
-	protected final String TEXT_504 = ".ERROR," + NL + "\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t 0);";
-	protected final String TEXT_505 = NL + "\t\t// TODO implement the constraint" + NL
+	protected final String TEXT_501 = NL + "\t\t\t\t \"";
+	protected final String TEXT_502 = "\",";
+	protected final String TEXT_503 = NL + "\t\t\t\t ";
+	protected final String TEXT_504 = "__";
+	protected final String TEXT_505 = "__EEXPRESSION," + NL + "\t\t\t\t ";
+	protected final String TEXT_506 = ".ERROR," + NL + "\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t 0);";
+	protected final String TEXT_507 = NL + "\t\t// TODO implement the constraint" + NL
 			+ "\t\t// -> specify the condition that violates the constraint" + NL
 			+ "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL
 			+ "\t\t{" + NL + "\t\t\tif (";
-	protected final String TEXT_506 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-	protected final String TEXT_507 = ".add";
-	protected final String TEXT_508 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_509 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_508 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+	protected final String TEXT_509 = ".add";
+	protected final String TEXT_510 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_511 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
-	protected final String TEXT_510 = NL + "\t\t\t\t\t\t new Object[] { \"";
-	protected final String TEXT_511 = "\", getValueLabel(";
-	protected final String TEXT_512 = ", ";
-	protected final String TEXT_513 = ", ";
-	protected final String TEXT_514 = ") },";
-	protected final String TEXT_515 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_516 = " }," + NL + "\t\t\t\t\t\t context));";
-	protected final String TEXT_517 = NL + "\t\t\t\t\t(new ";
-	protected final String TEXT_518 = NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_519 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_512 = NL + "\t\t\t\t\t\t new Object[] { \"";
+	protected final String TEXT_513 = "\", getValueLabel(";
+	protected final String TEXT_514 = ", ";
+	protected final String TEXT_515 = ", ";
+	protected final String TEXT_516 = ") },";
+	protected final String TEXT_517 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_518 = " }," + NL + "\t\t\t\t\t\t context));";
+	protected final String TEXT_519 = NL + "\t\t\t\t\t(new ";
+	protected final String TEXT_520 = NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_521 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t ";
-	protected final String TEXT_520 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
-	protected final String TEXT_521 = "\", getValueLabel(";
-	protected final String TEXT_522 = ", ";
-	protected final String TEXT_523 = ", ";
-	protected final String TEXT_524 = ") }),";
-	protected final String TEXT_525 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_526 = " }));";
-	protected final String TEXT_527 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL
+	protected final String TEXT_522 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+	protected final String TEXT_523 = "\", getValueLabel(";
+	protected final String TEXT_524 = ", ";
+	protected final String TEXT_525 = ", ";
+	protected final String TEXT_526 = ") }),";
+	protected final String TEXT_527 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_528 = " }));";
+	protected final String TEXT_529 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL
 			+ "\t\treturn true;";
-	protected final String TEXT_528 = NL + "\t\treturn ";
-	protected final String TEXT_529 = ".";
-	protected final String TEXT_530 = "(";
-	protected final String TEXT_531 = ", ";
-	protected final String TEXT_532 = ");";
-	protected final String TEXT_533 = NL + "\t\t// TODO override the constraint, if desired" + NL
+	protected final String TEXT_530 = NL + "\t\treturn ";
+	protected final String TEXT_531 = ".";
+	protected final String TEXT_532 = "(";
+	protected final String TEXT_533 = ", ";
+	protected final String TEXT_534 = ");";
+	protected final String TEXT_535 = NL + "\t\t// TODO override the constraint, if desired" + NL
 			+ "\t\t// -> uncomment the scaffolding" + NL
 			+ "\t\t// -> specify the condition that violates the constraint" + NL
 			+ "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL
 			+ "\t\t{" + NL + "\t\t\tif (";
-	protected final String TEXT_534 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-	protected final String TEXT_535 = ".add";
-	protected final String TEXT_536 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_537 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_536 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+	protected final String TEXT_537 = ".add";
+	protected final String TEXT_538 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_539 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
-	protected final String TEXT_538 = NL + "\t\t\t\t\t\t new Object[] { \"";
-	protected final String TEXT_539 = "\", getObjectLabel(";
-	protected final String TEXT_540 = ", ";
-	protected final String TEXT_541 = ") },";
-	protected final String TEXT_542 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_543 = " }," + NL + "\t\t\t\t\t\t context));";
-	protected final String TEXT_544 = NL + "\t\t\t\t\t(new ";
-	protected final String TEXT_545 = NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_546 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_540 = NL + "\t\t\t\t\t\t new Object[] { \"";
+	protected final String TEXT_541 = "\", getObjectLabel(";
+	protected final String TEXT_542 = ", ";
+	protected final String TEXT_543 = ") },";
+	protected final String TEXT_544 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_545 = " }," + NL + "\t\t\t\t\t\t context));";
+	protected final String TEXT_546 = NL + "\t\t\t\t\t(new ";
+	protected final String TEXT_547 = NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_548 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t ";
-	protected final String TEXT_547 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
-	protected final String TEXT_548 = "\", getObjectLabel(";
-	protected final String TEXT_549 = ", ";
-	protected final String TEXT_550 = ") }),";
-	protected final String TEXT_551 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_552 = " }));";
-	protected final String TEXT_553 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn ";
-	protected final String TEXT_554 = "validate";
-	protected final String TEXT_555 = "_";
-	protected final String TEXT_556 = "(";
-	protected final String TEXT_557 = ", ";
-	protected final String TEXT_558 = ", ";
-	protected final String TEXT_559 = ");";
-	protected final String TEXT_560 = NL + "\t\treturn" + NL + "\t\t\tvalidate" + NL + "\t\t\t\t(";
-	protected final String TEXT_561 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_562 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_549 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+	protected final String TEXT_550 = "\", getObjectLabel(";
+	protected final String TEXT_551 = ", ";
+	protected final String TEXT_552 = ") }),";
+	protected final String TEXT_553 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_554 = " }));";
+	protected final String TEXT_555 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn ";
+	protected final String TEXT_556 = "validate";
+	protected final String TEXT_557 = "_";
+	protected final String TEXT_558 = "(";
+	protected final String TEXT_559 = ", ";
+	protected final String TEXT_560 = ", ";
+	protected final String TEXT_561 = ");";
+	protected final String TEXT_562 = NL + "\t\treturn" + NL + "\t\t\tvalidate" + NL + "\t\t\t\t(";
 	protected final String TEXT_563 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_564 = "," + NL + "\t\t\t\t \"";
-	protected final String TEXT_565 = "\",";
-	protected final String TEXT_566 = NL + "\t\t\t\t \"";
+	protected final String TEXT_564 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_565 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_566 = "," + NL + "\t\t\t\t \"";
 	protected final String TEXT_567 = "\",";
-	protected final String TEXT_568 = NL + "\t\t\t\t ";
-	protected final String TEXT_569 = "__";
-	protected final String TEXT_570 = "__EEXPRESSION," + NL + "\t\t\t\t ";
-	protected final String TEXT_571 = ".ERROR," + NL + "\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t 0);";
-	protected final String TEXT_572 = NL + "\t\t// TODO implement the constraint" + NL
+	protected final String TEXT_568 = NL + "\t\t\t\t \"";
+	protected final String TEXT_569 = "\",";
+	protected final String TEXT_570 = NL + "\t\t\t\t ";
+	protected final String TEXT_571 = "__";
+	protected final String TEXT_572 = "__EEXPRESSION," + NL + "\t\t\t\t ";
+	protected final String TEXT_573 = ".ERROR," + NL + "\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t 0);";
+	protected final String TEXT_574 = NL + "\t\t// TODO implement the constraint" + NL
 			+ "\t\t// -> specify the condition that violates the constraint" + NL
 			+ "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL
 			+ "\t\t{" + NL + "\t\t\tif (";
-	protected final String TEXT_573 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-	protected final String TEXT_574 = ".add";
-	protected final String TEXT_575 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_576 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_575 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+	protected final String TEXT_576 = ".add";
+	protected final String TEXT_577 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_578 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
-	protected final String TEXT_577 = NL + "\t\t\t\t\t\t new Object[] { \"";
-	protected final String TEXT_578 = "\", getObjectLabel(";
-	protected final String TEXT_579 = ", ";
-	protected final String TEXT_580 = ") },";
-	protected final String TEXT_581 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_582 = " }," + NL + "\t\t\t\t\t\t context));";
-	protected final String TEXT_583 = NL + "\t\t\t\t\t(new ";
-	protected final String TEXT_584 = NL + "\t\t\t\t\t\t(";
-	protected final String TEXT_585 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
+	protected final String TEXT_579 = NL + "\t\t\t\t\t\t new Object[] { \"";
+	protected final String TEXT_580 = "\", getObjectLabel(";
+	protected final String TEXT_581 = ", ";
+	protected final String TEXT_582 = ") },";
+	protected final String TEXT_583 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_584 = " }," + NL + "\t\t\t\t\t\t context));";
+	protected final String TEXT_585 = NL + "\t\t\t\t\t(new ";
+	protected final String TEXT_586 = NL + "\t\t\t\t\t\t(";
+	protected final String TEXT_587 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL
 			+ "\t\t\t\t\t\t ";
-	protected final String TEXT_586 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
-	protected final String TEXT_587 = "\", getObjectLabel(";
-	protected final String TEXT_588 = ", ";
-	protected final String TEXT_589 = ") }),";
-	protected final String TEXT_590 = NL + "\t\t\t\t\t\t new Object[] { ";
-	protected final String TEXT_591 = " }));";
-	protected final String TEXT_592 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL
+	protected final String TEXT_588 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+	protected final String TEXT_589 = "\", getObjectLabel(";
+	protected final String TEXT_590 = ", ";
+	protected final String TEXT_591 = ") }),";
+	protected final String TEXT_592 = NL + "\t\t\t\t\t\t new Object[] { ";
+	protected final String TEXT_593 = " }));";
+	protected final String TEXT_594 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL
 			+ "\t\treturn true;";
-	protected final String TEXT_593 = NL + "\t}" + NL;
-	protected final String TEXT_594 = NL + "\t/**" + NL
+	protected final String TEXT_595 = NL + "\t}" + NL;
+	protected final String TEXT_596 = NL + "\t/**" + NL
 			+ "\t * Returns the resource locator that will be used to fetch messages for this validator's diagnostics."
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */";
-	protected final String TEXT_595 = NL + "\t@Override";
-	protected final String TEXT_596 = NL + "\tpublic ";
-	protected final String TEXT_597 = " getResourceLocator()" + NL + "\t{";
-	protected final String TEXT_598 = NL + "\t\treturn ";
-	protected final String TEXT_599 = ".INSTANCE;";
-	protected final String TEXT_600 = NL + "\t\t// TODO" + NL
+	protected final String TEXT_597 = NL + "\t@Override";
+	protected final String TEXT_598 = NL + "\tpublic ";
+	protected final String TEXT_599 = " getResourceLocator()" + NL + "\t{";
+	protected final String TEXT_600 = NL + "\t\treturn ";
+	protected final String TEXT_601 = ".INSTANCE;";
+	protected final String TEXT_602 = NL + "\t\t// TODO" + NL
 			+ "\t\t// Specialize this to return a resource locator for messages specific to this validator." + NL
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL
 			+ "\t\treturn super.getResourceLocator();";
-	protected final String TEXT_601 = NL + "\t}" + NL;
-	protected final String TEXT_602 = NL;
-	protected final String TEXT_603 = NL + "} //";
+	protected final String TEXT_603 = NL + "\t}" + NL;
 	protected final String TEXT_604 = NL;
-	protected final String TEXT_605 = NL;
+	protected final String TEXT_605 = NL + "} //";
 	protected final String TEXT_606 = NL;
+	protected final String TEXT_607 = NL;
+	protected final String TEXT_608 = NL;
 
 	public ValidatorClass() {
 		//Here is the constructor
@@ -748,8 +750,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_605);
-		stringBuffer.append(TEXT_606);
+		stringBuffer.append(TEXT_607);
+		stringBuffer.append(TEXT_608);
 		return stringBuffer.toString();
 	}
 
@@ -852,8 +854,10 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 		stringBuffer.append(genPackage.getUtilitiesPackageName());
 		stringBuffer.append(TEXT_3);
 		genModel.addImport("java.util.Map");
-		final String _Map = genModel.useGenerics() ? "Map<" + genModel.getImportedName("java.lang.Object") + ", "
-				+ genModel.getImportedName("java.lang.Object") + ">" : "Map";
+		final String _Map = genModel.useGenerics()
+				? "Map<" + genModel.getImportedName("java.lang.Object") + ", "
+						+ genModel.getImportedName("java.lang.Object") + ">"
+				: "Map";
 		final String objectArgument = genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.Object") + ">"
 				: "";
 		genModel.addImport("org.eclipse.emf.common.util.DiagnosticChain");
@@ -1052,7 +1056,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 											constraintImplementor.getGenPackage()) + "Validator.";
 					String cast = constraintImplementor == null && genClassifier instanceof GenClass
 							&& !((GenClass) genClassifier).isEObjectExtension()
-									? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
+									? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")"
+									: "";
 					String accessor = constraintImplementor != null && genClassifier instanceof GenDataType
 							&& !((GenDataType) genClassifier).isPrimitiveType()
 							&& ((GenDataType) constraintImplementor).isPrimitiveType()
@@ -1130,12 +1135,14 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 								+ "Validator.";
 				String cast = constraintDelegate == null && genClassifier instanceof GenClass
 						&& !((GenClass) genClassifier).isEObjectExtension()
-								? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
+								? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")"
+								: "";
 				String accessor = constraintDelegate != null && genClassifier instanceof GenDataType
 						&& !((GenDataType) genClassifier).isPrimitiveType()
 						&& ((GenDataType) constraintDelegate).isPrimitiveType()
 						&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50
-								? "." + ((GenDataType) constraintDelegate).getPrimitiveValueFunction() + "()" : "";
+								? "." + ((GenDataType) constraintDelegate).getPrimitiveValueFunction() + "()"
+								: "";
 				if (genClassifier instanceof GenDataType) {
 					GenDataType genDataType = (GenDataType) genClassifier;
 					if (constraint.equals("Min") && genDataType.getMinLiteral() != null) {
@@ -1861,381 +1868,385 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 							}
 						} else if ("java.math.BigDecimal".equals(genDataType.getQualifiedInstanceClassName())) {
 							stringBuffer.append(TEXT_426);
-							stringBuffer.append(result);
+							stringBuffer.append(genDataType.getSafeUncapName());
 							stringBuffer.append(TEXT_427);
 							stringBuffer.append(genDataType.getSafeUncapName());
 							stringBuffer.append(TEXT_428);
-							stringBuffer.append(genDataType.getTotalDigits());
+							stringBuffer.append(genDataType.getSafeUncapName());
 							stringBuffer.append(TEXT_429);
 							stringBuffer.append(result);
 							stringBuffer.append(TEXT_430);
-							stringBuffer.append(diagnostics);
-							stringBuffer.append(TEXT_431);
-							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
-							stringBuffer.append(TEXT_432);
-							stringBuffer.append(genDataType.getSafeUncapName());
-							stringBuffer.append(TEXT_433);
 							stringBuffer.append(genDataType.getTotalDigits());
-							stringBuffer.append(TEXT_434);
-							stringBuffer.append(diagnostics);
-							stringBuffer.append(TEXT_435);
-							stringBuffer.append(context);
-							stringBuffer.append(TEXT_436);
-						} else {
-							stringBuffer.append(TEXT_437);
+							stringBuffer.append(TEXT_431);
 							stringBuffer.append(result);
-							stringBuffer.append(TEXT_438);
+							stringBuffer.append(TEXT_432);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_433);
+							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
+							stringBuffer.append(TEXT_434);
 							stringBuffer.append(genDataType.getSafeUncapName());
+							stringBuffer.append(TEXT_435);
+							stringBuffer.append(genDataType.getTotalDigits());
+							stringBuffer.append(TEXT_436);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_437);
+							stringBuffer.append(context);
+							stringBuffer.append(TEXT_438);
+						} else {
 							stringBuffer.append(TEXT_439);
-							stringBuffer.append(constant);
+							stringBuffer.append(result);
 							stringBuffer.append(TEXT_440);
 							stringBuffer.append(genDataType.getSafeUncapName());
 							stringBuffer.append(TEXT_441);
 							stringBuffer.append(constant);
 							stringBuffer.append(TEXT_442);
-							stringBuffer.append(result);
-							stringBuffer.append(TEXT_443);
-							stringBuffer.append(diagnostics);
-							stringBuffer.append(TEXT_444);
-							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
-							stringBuffer.append(TEXT_445);
 							stringBuffer.append(genDataType.getSafeUncapName());
-							stringBuffer.append(TEXT_446);
-							stringBuffer.append(genDataType.getTotalDigits());
-							stringBuffer.append(TEXT_447);
+							stringBuffer.append(TEXT_443);
+							stringBuffer.append(constant);
+							stringBuffer.append(TEXT_444);
+							stringBuffer.append(result);
+							stringBuffer.append(TEXT_445);
 							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_446);
+							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
+							stringBuffer.append(TEXT_447);
+							stringBuffer.append(genDataType.getSafeUncapName());
 							stringBuffer.append(TEXT_448);
-							stringBuffer.append(context);
+							stringBuffer.append(genDataType.getTotalDigits());
 							stringBuffer.append(TEXT_449);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_450);
+							stringBuffer.append(context);
+							stringBuffer.append(TEXT_451);
 						}
-						stringBuffer.append(TEXT_450);
-						stringBuffer.append(result);
-						stringBuffer.append(TEXT_451);
-					} else if (constraint.equals("FractionDigits") && genDataType.getFractionDigits() != -1
-							&& "java.math.BigDecimal".equals(genDataType.getQualifiedInstanceClassName())) {
 						stringBuffer.append(TEXT_452);
 						stringBuffer.append(result);
 						stringBuffer.append(TEXT_453);
-						stringBuffer.append(genDataType.getSafeUncapName());
+					} else if (constraint.equals("FractionDigits") && genDataType.getFractionDigits() != -1
+							&& "java.math.BigDecimal".equals(genDataType.getQualifiedInstanceClassName())) {
 						stringBuffer.append(TEXT_454);
-						stringBuffer.append(genDataType.getFractionDigits());
+						stringBuffer.append(result);
 						stringBuffer.append(TEXT_455);
-						stringBuffer.append(result);
-						stringBuffer.append(TEXT_456);
-						stringBuffer.append(diagnostics);
-						stringBuffer.append(TEXT_457);
-						stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
-						stringBuffer.append(TEXT_458);
 						stringBuffer.append(genDataType.getSafeUncapName());
-						stringBuffer.append(TEXT_459);
+						stringBuffer.append(TEXT_456);
 						stringBuffer.append(genDataType.getFractionDigits());
-						stringBuffer.append(TEXT_460);
-						stringBuffer.append(diagnostics);
-						stringBuffer.append(TEXT_461);
-						stringBuffer.append(context);
-						stringBuffer.append(TEXT_462);
+						stringBuffer.append(TEXT_457);
 						stringBuffer.append(result);
+						stringBuffer.append(TEXT_458);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_459);
+						stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
+						stringBuffer.append(TEXT_460);
+						stringBuffer.append(genDataType.getSafeUncapName());
+						stringBuffer.append(TEXT_461);
+						stringBuffer.append(genDataType.getFractionDigits());
+						stringBuffer.append(TEXT_462);
+						stringBuffer.append(diagnostics);
 						stringBuffer.append(TEXT_463);
-					} else if (constraintDelegate != null) {
+						stringBuffer.append(context);
 						stringBuffer.append(TEXT_464);
-						stringBuffer.append(diagnostics);
+						stringBuffer.append(result);
 						stringBuffer.append(TEXT_465);
-						stringBuffer.append(diagnostics);
+					} else if (constraintDelegate != null) {
 						stringBuffer.append(TEXT_466);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_467);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_468);
 						if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {
-							stringBuffer.append(TEXT_467);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-							stringBuffer.append(TEXT_468);
-							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_469);
-							stringBuffer.append(constraint);
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 							stringBuffer.append(TEXT_470);
-							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
-							stringBuffer.append(TEXT_471);
-							stringBuffer.append(genClassifier.getSafeUncapName());
-							stringBuffer.append(TEXT_472);
-							stringBuffer.append(context);
-							stringBuffer.append(TEXT_473);
 							stringBuffer.append(genModel.getNonNLS());
-							stringBuffer.append(TEXT_474);
+							stringBuffer.append(TEXT_471);
+							stringBuffer.append(constraint);
+							stringBuffer.append(TEXT_472);
+							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
+							stringBuffer.append(TEXT_473);
 							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(TEXT_474);
+							stringBuffer.append(context);
 							stringBuffer.append(TEXT_475);
-						} else {
+							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_476);
+							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(TEXT_477);
+						} else {
+							stringBuffer.append(TEXT_478);
 							stringBuffer
 									.append(genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
-							stringBuffer.append(TEXT_477);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-							stringBuffer.append(TEXT_478);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
 							stringBuffer.append(TEXT_479);
-							stringBuffer.append(constraint);
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 							stringBuffer.append(TEXT_480);
-							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
 							stringBuffer.append(TEXT_481);
-							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(constraint);
 							stringBuffer.append(TEXT_482);
-							stringBuffer.append(context);
+							stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
 							stringBuffer.append(TEXT_483);
+							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(TEXT_484);
+							stringBuffer.append(context);
+							stringBuffer.append(TEXT_485);
 							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(genModel.getNonNLS(2));
-							stringBuffer.append(TEXT_484);
+							stringBuffer.append(TEXT_486);
 							stringBuffer.append(genClassifier.getSafeUncapName());
-							stringBuffer.append(TEXT_485);
+							stringBuffer.append(TEXT_487);
 						}
-						stringBuffer.append(TEXT_486);
-						stringBuffer.append(delegate);
-						stringBuffer.append(TEXT_487);
-						stringBuffer.append(constraintDelegate.getName());
 						stringBuffer.append(TEXT_488);
-						stringBuffer.append(constraint);
+						stringBuffer.append(delegate);
 						stringBuffer.append(TEXT_489);
+						stringBuffer.append(constraintDelegate.getName());
+						stringBuffer.append(TEXT_490);
+						stringBuffer.append(constraint);
+						stringBuffer.append(TEXT_491);
 						stringBuffer.append(genClassifier.getSafeUncapName());
 						stringBuffer.append(accessor);
-						stringBuffer.append(TEXT_490);
-						stringBuffer.append(diagnostics);
-						stringBuffer.append(TEXT_491);
-						stringBuffer.append(context);
 						stringBuffer.append(TEXT_492);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_493);
+						stringBuffer.append(context);
+						stringBuffer.append(TEXT_494);
 					} else {
 						if (genClassifier.hasConstraintExpression(constraint)) {
-							stringBuffer.append(TEXT_493);
-							stringBuffer.append(genClassifier.getQualifiedClassifierAccessor());
-							stringBuffer.append(TEXT_494);
-							stringBuffer.append(genClassifier.getSafeUncapName());
 							stringBuffer.append(TEXT_495);
-							stringBuffer.append(diagnostics);
+							stringBuffer.append(genClassifier.getQualifiedClassifierAccessor());
 							stringBuffer.append(TEXT_496);
-							stringBuffer.append(context);
+							stringBuffer.append(genClassifier.getSafeUncapName());
 							stringBuffer.append(TEXT_497);
-							stringBuffer.append(genClassifier.getValidationDelegate(constraint));
+							stringBuffer.append(diagnostics);
 							stringBuffer.append(TEXT_498);
-							stringBuffer.append(genModel.getNonNLS());
+							stringBuffer.append(context);
 							stringBuffer.append(TEXT_499);
-							stringBuffer.append(constraint);
+							stringBuffer.append(genClassifier.getValidationDelegate(constraint));
 							stringBuffer.append(TEXT_500);
 							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_501);
-							stringBuffer.append(genClassifier.getClassifierID());
+							stringBuffer.append(constraint);
 							stringBuffer.append(TEXT_502);
-							stringBuffer.append(CodeGenUtil.upperName(constraint));
+							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_503);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
+							stringBuffer.append(genClassifier.getClassifierID());
 							stringBuffer.append(TEXT_504);
-						} else {
+							stringBuffer.append(CodeGenUtil.upperName(constraint));
 							stringBuffer.append(TEXT_505);
-							stringBuffer.append(diagnostics);
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 							stringBuffer.append(TEXT_506);
-							stringBuffer.append(diagnostics);
+						} else {
 							stringBuffer.append(TEXT_507);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_508);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_509);
 							if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {
-								stringBuffer.append(TEXT_508);
-								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-								stringBuffer.append(TEXT_509);
-								stringBuffer.append(genModel.getNonNLS());
 								stringBuffer.append(TEXT_510);
-								stringBuffer.append(constraint);
+								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 								stringBuffer.append(TEXT_511);
-								stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
-								stringBuffer.append(TEXT_512);
-								stringBuffer.append(genClassifier.getSafeUncapName());
-								stringBuffer.append(TEXT_513);
-								stringBuffer.append(context);
-								stringBuffer.append(TEXT_514);
 								stringBuffer.append(genModel.getNonNLS());
-								stringBuffer.append(TEXT_515);
+								stringBuffer.append(TEXT_512);
+								stringBuffer.append(constraint);
+								stringBuffer.append(TEXT_513);
+								stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
+								stringBuffer.append(TEXT_514);
 								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(TEXT_515);
+								stringBuffer.append(context);
 								stringBuffer.append(TEXT_516);
-							} else {
+								stringBuffer.append(genModel.getNonNLS());
 								stringBuffer.append(TEXT_517);
+								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(TEXT_518);
+							} else {
+								stringBuffer.append(TEXT_519);
 								stringBuffer.append(
 										genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
-								stringBuffer.append(TEXT_518);
+								stringBuffer.append(TEXT_520);
 								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-								stringBuffer.append(TEXT_519);
+								stringBuffer.append(TEXT_521);
 								stringBuffer
 										.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
-								stringBuffer.append(TEXT_520);
-								stringBuffer.append(constraint);
-								stringBuffer.append(TEXT_521);
-								stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_522);
-								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(constraint);
 								stringBuffer.append(TEXT_523);
-								stringBuffer.append(context);
+								stringBuffer.append(genDataType.getQualifiedClassifierAccessor());
 								stringBuffer.append(TEXT_524);
+								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(TEXT_525);
+								stringBuffer.append(context);
+								stringBuffer.append(TEXT_526);
 								stringBuffer.append(genModel.getNonNLS());
 								stringBuffer.append(genModel.getNonNLS(2));
-								stringBuffer.append(TEXT_525);
+								stringBuffer.append(TEXT_527);
 								stringBuffer.append(genClassifier.getSafeUncapName());
-								stringBuffer.append(TEXT_526);
+								stringBuffer.append(TEXT_528);
 							}
-							stringBuffer.append(TEXT_527);
+							stringBuffer.append(TEXT_529);
 						}
 					}
 				} else {
 					GenOperation genOperation = ((GenClass) genClassifier).getInvariantOperation(constraint);
 					if (genOperation != null) {
-						stringBuffer.append(TEXT_528);
-						stringBuffer.append(genClassifier.getSafeUncapName());
-						stringBuffer.append(TEXT_529);
-						stringBuffer.append(constraint);
 						stringBuffer.append(TEXT_530);
-						stringBuffer.append(diagnostics);
+						stringBuffer.append(genClassifier.getSafeUncapName());
 						stringBuffer.append(TEXT_531);
-						stringBuffer.append(context);
+						stringBuffer.append(constraint);
 						stringBuffer.append(TEXT_532);
-					} else if (constraintDelegate != null) {
+						stringBuffer.append(diagnostics);
 						stringBuffer.append(TEXT_533);
-						stringBuffer.append(diagnostics);
+						stringBuffer.append(context);
 						stringBuffer.append(TEXT_534);
-						stringBuffer.append(diagnostics);
+					} else if (constraintDelegate != null) {
 						stringBuffer.append(TEXT_535);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_536);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_537);
 						if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {
-							stringBuffer.append(TEXT_536);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-							stringBuffer.append(TEXT_537);
-							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_538);
-							stringBuffer.append(constraint);
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 							stringBuffer.append(TEXT_539);
-							stringBuffer.append(genClassifier.getSafeUncapName());
-							stringBuffer.append(TEXT_540);
-							stringBuffer.append(context);
-							stringBuffer.append(TEXT_541);
 							stringBuffer.append(genModel.getNonNLS());
-							stringBuffer.append(TEXT_542);
+							stringBuffer.append(TEXT_540);
+							stringBuffer.append(constraint);
+							stringBuffer.append(TEXT_541);
 							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(TEXT_542);
+							stringBuffer.append(context);
 							stringBuffer.append(TEXT_543);
-						} else {
+							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_544);
+							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(TEXT_545);
+						} else {
+							stringBuffer.append(TEXT_546);
 							stringBuffer
 									.append(genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
-							stringBuffer.append(TEXT_545);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-							stringBuffer.append(TEXT_546);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
 							stringBuffer.append(TEXT_547);
-							stringBuffer.append(constraint);
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 							stringBuffer.append(TEXT_548);
-							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
 							stringBuffer.append(TEXT_549);
-							stringBuffer.append(context);
+							stringBuffer.append(constraint);
 							stringBuffer.append(TEXT_550);
+							stringBuffer.append(genClassifier.getSafeUncapName());
+							stringBuffer.append(TEXT_551);
+							stringBuffer.append(context);
+							stringBuffer.append(TEXT_552);
 							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(genModel.getNonNLS(2));
-							stringBuffer.append(TEXT_551);
+							stringBuffer.append(TEXT_553);
 							stringBuffer.append(genClassifier.getSafeUncapName());
-							stringBuffer.append(TEXT_552);
+							stringBuffer.append(TEXT_554);
 						}
-						stringBuffer.append(TEXT_553);
-						stringBuffer.append(delegate);
-						stringBuffer.append(TEXT_554);
-						stringBuffer.append(constraintDelegate.getName());
 						stringBuffer.append(TEXT_555);
-						stringBuffer.append(constraint);
+						stringBuffer.append(delegate);
 						stringBuffer.append(TEXT_556);
+						stringBuffer.append(constraintDelegate.getName());
+						stringBuffer.append(TEXT_557);
+						stringBuffer.append(constraint);
+						stringBuffer.append(TEXT_558);
 						stringBuffer.append(cast);
 						stringBuffer.append(genClassifier.getSafeUncapName());
-						stringBuffer.append(TEXT_557);
-						stringBuffer.append(diagnostics);
-						stringBuffer.append(TEXT_558);
-						stringBuffer.append(context);
 						stringBuffer.append(TEXT_559);
+						stringBuffer.append(diagnostics);
+						stringBuffer.append(TEXT_560);
+						stringBuffer.append(context);
+						stringBuffer.append(TEXT_561);
 					} else {
 						if (genClassifier.hasConstraintExpression(constraint)) {
-							stringBuffer.append(TEXT_560);
-							stringBuffer.append(genClassifier.getQualifiedClassifierAccessor());
-							stringBuffer.append(TEXT_561);
-							stringBuffer.append(genClassifier.getSafeUncapName());
 							stringBuffer.append(TEXT_562);
-							stringBuffer.append(diagnostics);
+							stringBuffer.append(genClassifier.getQualifiedClassifierAccessor());
 							stringBuffer.append(TEXT_563);
-							stringBuffer.append(context);
+							stringBuffer.append(genClassifier.getSafeUncapName());
 							stringBuffer.append(TEXT_564);
-							stringBuffer.append(genClassifier.getValidationDelegate(constraint));
+							stringBuffer.append(diagnostics);
 							stringBuffer.append(TEXT_565);
-							stringBuffer.append(genModel.getNonNLS());
+							stringBuffer.append(context);
 							stringBuffer.append(TEXT_566);
-							stringBuffer.append(constraint);
+							stringBuffer.append(genClassifier.getValidationDelegate(constraint));
 							stringBuffer.append(TEXT_567);
 							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_568);
-							stringBuffer.append(genClassifier.getClassifierID());
+							stringBuffer.append(constraint);
 							stringBuffer.append(TEXT_569);
-							stringBuffer.append(CodeGenUtil.upperName(constraint));
+							stringBuffer.append(genModel.getNonNLS());
 							stringBuffer.append(TEXT_570);
-							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
+							stringBuffer.append(genClassifier.getClassifierID());
 							stringBuffer.append(TEXT_571);
-						} else {
+							stringBuffer.append(CodeGenUtil.upperName(constraint));
 							stringBuffer.append(TEXT_572);
-							stringBuffer.append(diagnostics);
+							stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 							stringBuffer.append(TEXT_573);
-							stringBuffer.append(diagnostics);
+						} else {
 							stringBuffer.append(TEXT_574);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_575);
+							stringBuffer.append(diagnostics);
+							stringBuffer.append(TEXT_576);
 							if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {
-								stringBuffer.append(TEXT_575);
-								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-								stringBuffer.append(TEXT_576);
-								stringBuffer.append(genModel.getNonNLS());
 								stringBuffer.append(TEXT_577);
-								stringBuffer.append(constraint);
+								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
 								stringBuffer.append(TEXT_578);
-								stringBuffer.append(genClassifier.getSafeUncapName());
-								stringBuffer.append(TEXT_579);
-								stringBuffer.append(context);
-								stringBuffer.append(TEXT_580);
 								stringBuffer.append(genModel.getNonNLS());
-								stringBuffer.append(TEXT_581);
+								stringBuffer.append(TEXT_579);
+								stringBuffer.append(constraint);
+								stringBuffer.append(TEXT_580);
 								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(TEXT_581);
+								stringBuffer.append(context);
 								stringBuffer.append(TEXT_582);
-							} else {
+								stringBuffer.append(genModel.getNonNLS());
 								stringBuffer.append(TEXT_583);
+								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(TEXT_584);
+							} else {
+								stringBuffer.append(TEXT_585);
 								stringBuffer.append(
 										genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
-								stringBuffer.append(TEXT_584);
+								stringBuffer.append(TEXT_586);
 								stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
-								stringBuffer.append(TEXT_585);
+								stringBuffer.append(TEXT_587);
 								stringBuffer
 										.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
-								stringBuffer.append(TEXT_586);
-								stringBuffer.append(constraint);
-								stringBuffer.append(TEXT_587);
-								stringBuffer.append(genClassifier.getSafeUncapName());
 								stringBuffer.append(TEXT_588);
-								stringBuffer.append(context);
+								stringBuffer.append(constraint);
 								stringBuffer.append(TEXT_589);
+								stringBuffer.append(genClassifier.getSafeUncapName());
+								stringBuffer.append(TEXT_590);
+								stringBuffer.append(context);
+								stringBuffer.append(TEXT_591);
 								stringBuffer.append(genModel.getNonNLS());
 								stringBuffer.append(genModel.getNonNLS(2));
-								stringBuffer.append(TEXT_590);
+								stringBuffer.append(TEXT_592);
 								stringBuffer.append(genClassifier.getSafeUncapName());
-								stringBuffer.append(TEXT_591);
+								stringBuffer.append(TEXT_593);
 							}
-							stringBuffer.append(TEXT_592);
+							stringBuffer.append(TEXT_594);
 						}
 					}
 				}
-				stringBuffer.append(TEXT_593);
+				stringBuffer.append(TEXT_595);
 			}
 		}
 		if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {
-			stringBuffer.append(TEXT_594);
-			if (genModel.useClassOverrideAnnotation()) {
-				stringBuffer.append(TEXT_595);
-			}
 			stringBuffer.append(TEXT_596);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.ResourceLocator"));
-			stringBuffer.append(TEXT_597);
-			if (genModel.hasModelPluginClass()) {
-				stringBuffer.append(TEXT_598);
-				stringBuffer.append(genModel.getImportedName(genModel.getQualifiedModelPluginClassName()));
-				stringBuffer.append(TEXT_599);
-			} else {
-				stringBuffer.append(TEXT_600);
+			if (genModel.useClassOverrideAnnotation()) {
+				stringBuffer.append(TEXT_597);
 			}
-			stringBuffer.append(TEXT_601);
+			stringBuffer.append(TEXT_598);
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.ResourceLocator"));
+			stringBuffer.append(TEXT_599);
+			if (genModel.hasModelPluginClass()) {
+				stringBuffer.append(TEXT_600);
+				stringBuffer.append(genModel.getImportedName(genModel.getQualifiedModelPluginClassName()));
+				stringBuffer.append(TEXT_601);
+			} else {
+				stringBuffer.append(TEXT_602);
+			}
+			stringBuffer.append(TEXT_603);
 		}
-		stringBuffer.append(TEXT_602);
+		stringBuffer.append(TEXT_604);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ValidatorClass.ValidatorClass.insert" args="genPackage:genPackage,genModel:genModel,singleWildcard:singleWildcard,_Map:_Map,objectArgument:objectArgument,count:count"%>
 
@@ -2256,10 +2267,10 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 			stringBuffer.setLength(0);
 		}
 
-		stringBuffer.append(TEXT_603);
+		stringBuffer.append(TEXT_605);
 		stringBuffer.append(genPackage.getValidatorClassName());
 		genModel.emitSortedImports();
-		stringBuffer.append(TEXT_604);
+		stringBuffer.append(TEXT_606);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

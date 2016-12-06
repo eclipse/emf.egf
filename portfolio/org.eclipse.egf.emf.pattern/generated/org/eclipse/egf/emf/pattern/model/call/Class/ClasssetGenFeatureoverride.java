@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -628,7 +628,7 @@ public class ClasssetGenFeatureoverride {
 				stringBuffer.setLength(0);
 			}
 
-			if (genModel.isDynamicDelegation()) {
+			if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
 				stringBuffer.append(TEXT_14);
 				stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
 				if (genClass.hasStaticFeatures()) {
@@ -683,7 +683,8 @@ public class ClasssetGenFeatureoverride {
 					GenFeature reverseFeature = genFeature.getReverse();
 					GenClass targetClass = reverseFeature.getGenClass();
 					String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
-							? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
+							? " + " + genClass.getOffsetCorrectionField(genFeature)
+							: "";
 					stringBuffer.append(TEXT_37);
 					stringBuffer.append(genFeature.getCapName());
 					stringBuffer.append(TEXT_38);
@@ -779,7 +780,8 @@ public class ClasssetGenFeatureoverride {
 						GenFeature reverseFeature = genFeature.getReverse();
 						GenClass targetClass = reverseFeature.getGenClass();
 						String reverseOffsetCorrection = targetClass.hasOffsetCorrection()
-								? " + " + genClass.getOffsetCorrectionField(genFeature) : "";
+								? " + " + genClass.getOffsetCorrectionField(genFeature)
+								: "";
 						stringBuffer.append(TEXT_79);
 						stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject"));
 						stringBuffer.append(TEXT_80);

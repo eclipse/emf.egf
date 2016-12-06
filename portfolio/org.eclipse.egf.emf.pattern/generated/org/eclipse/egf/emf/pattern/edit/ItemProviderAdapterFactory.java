@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -602,8 +602,9 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
 		}
 		if (genPackage.isExtensibleProviderFactory()) {
 			stringBuffer.append(TEXT_86);
-			stringBuffer.append(genModel.getImportedName(useGenerics
-					? "java.util.List<org.eclipse.emf.edit.provider.IChildCreationExtender>" : "java.util.List"));
+			stringBuffer.append(genModel.getImportedName(
+					useGenerics ? "java.util.List<org.eclipse.emf.edit.provider.IChildCreationExtender>"
+							: "java.util.List"));
 			stringBuffer.append(TEXT_87);
 			stringBuffer
 					.append(genModel.getImportedName(useGenerics ? "java.util.Collection<?>" : "java.util.Collection"));

@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -1785,7 +1785,7 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 				}
 
 				class InformationIterator {
-					Iterator<?> iterator;
+					Iterator<Object> iterator;
 
 					InformationIterator(EGenericType eGenericType) {
 						iterator = EcoreUtil.getAllContents(Collections.singleton(eGenericType));
@@ -2512,7 +2512,8 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 							stringBuffer.append(genEnum.getClassifierInstanceName());
 							stringBuffer.append(TEXT_550);
 							stringBuffer.append(genEnum.getImportedName().equals(genEnum.getClassifierID())
-									? genEnum.getQualifiedName() : genEnum.getImportedName());
+									? genEnum.getQualifiedName()
+									: genEnum.getImportedName());
 							stringBuffer.append(TEXT_551);
 							stringBuffer.append(genEnumLiteral.getEnumLiteralInstanceConstantName());
 							stringBuffer.append(TEXT_552);

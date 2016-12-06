@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -857,8 +857,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 					stringBuffer.append(TEXT_173);
 					stringBuffer.append(genDataType.getSafeUncapName());
 					stringBuffer.append(TEXT_174);
-				} else
-					if (genDataType.isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
+				} else if (genDataType.isPrimitiveType()
+						&& genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
 					stringBuffer.append(TEXT_175);
 					stringBuffer.append(genDataType.getImportedInstanceClassName());
 					stringBuffer.append(TEXT_176);

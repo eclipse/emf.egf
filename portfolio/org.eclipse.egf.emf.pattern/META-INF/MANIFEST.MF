@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.emf.pattern;singleton:=true
-Bundle-Version: 1.5.0.2_11_0_v20150518-0831_qualifier
+Bundle-Version: 1.5.0.2_13_0_v20161031-0512_qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -392,7 +392,7 @@ public class ClassisSetGenFeatureoverride {
 				stringBuffer.append(TEXT_8);
 			}
 			stringBuffer.append(TEXT_9);
-			if (genModel.isDynamicDelegation()) {
+			if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
 				stringBuffer.append(TEXT_10);
 				stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
 				if (genClass.hasStaticFeatures()) {

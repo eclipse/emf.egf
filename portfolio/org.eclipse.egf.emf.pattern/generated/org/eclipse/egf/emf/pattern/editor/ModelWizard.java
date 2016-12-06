@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -666,11 +666,15 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		String _CollectionOfString = "Collection"
 				+ (genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.String") + ">" : "");
 		String _MapOfObjectToObject = "Map"
-				+ (genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.Object") + ", "
-						+ genModel.getImportedName("java.lang.Object") + ">" : "");
+				+ (genModel.useGenerics()
+						? "<" + genModel.getImportedName("java.lang.Object") + ", "
+								+ genModel.getImportedName("java.lang.Object") + ">"
+						: "");
 		String _HashMapOfObjectToObject = "HashMap"
-				+ (genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.Object") + ", "
-						+ genModel.getImportedName("java.lang.Object") + ">" : "");
+				+ (genModel.useGenerics()
+						? "<" + genModel.getImportedName("java.lang.Object") + ", "
+								+ genModel.getImportedName("java.lang.Object") + ">"
+						: "");
 		stringBuffer.append(TEXT_2);
 		stringBuffer.append(genPackage.getPresentationPackageName());
 		stringBuffer.append(TEXT_3);
@@ -730,15 +734,17 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		stringBuffer.append(genModel.getNonNLS(2));
 		stringBuffer.append(genModel.getNonNLS(3));
 		stringBuffer.append(TEXT_29);
-		stringBuffer.append(genModel.isSuppressEMFMetaData()
-				? genModel.getImportedName("org.eclipse.emf.ecore.EPackage") : genPackage.getPackageInterfaceName());
+		stringBuffer
+				.append(genModel.isSuppressEMFMetaData() ? genModel.getImportedName("org.eclipse.emf.ecore.EPackage")
+						: genPackage.getPackageInterfaceName());
 		stringBuffer.append(TEXT_30);
 		stringBuffer.append(genPackage.getUncapPackageName());
 		stringBuffer.append(TEXT_31);
 		stringBuffer.append(genPackage.getPackageInterfaceName());
 		stringBuffer.append(TEXT_32);
-		stringBuffer.append(genModel.isSuppressEMFMetaData()
-				? genModel.getImportedName("org.eclipse.emf.ecore.EFactory") : genPackage.getFactoryInterfaceName());
+		stringBuffer
+				.append(genModel.isSuppressEMFMetaData() ? genModel.getImportedName("org.eclipse.emf.ecore.EFactory")
+						: genPackage.getFactoryInterfaceName());
 		stringBuffer.append(TEXT_33);
 		stringBuffer.append(genPackage.getUncapFactoryName());
 		stringBuffer.append(TEXT_34);

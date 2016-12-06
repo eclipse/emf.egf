@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -362,7 +362,7 @@ public class InterfacegetGenFeaturejavadocoverride {
 				}
 				if (index != -1) {
 					head = typeName.substring(0, index);
-					tail = typeName.substring(index).replaceAll("<", "&lt;");
+					tail = "<code>" + CodeGenUtil.xmlEscapeEncode(typeName.substring(index)) + "</code>";
 				}
 
 				stringBuffer.append(TEXT_15);

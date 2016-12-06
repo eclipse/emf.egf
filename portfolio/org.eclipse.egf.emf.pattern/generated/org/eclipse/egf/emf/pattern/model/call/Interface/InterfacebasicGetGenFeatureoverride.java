@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.5.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -374,7 +374,7 @@ public class InterfacebasicGetGenFeatureoverride {
 			stringBuffer.setLength(0);
 		}
 
-		if (genModel.isDynamicDelegation()) {
+		if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
 			stringBuffer.append(TEXT_7);
 			stringBuffer.append(genFeature.getImportedType(genClass));
 			stringBuffer.append(TEXT_8);
