@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:18 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.4.1.v20161010-1511
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -6,28 +6,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.common.helper.ObjectHolder;
-import org.eclipse.egf.core.domain.EgfResourceSet;
-import org.eclipse.egf.model.pattern.Node;
-import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.pattern.execution.InternalPatternContext;
-import org.eclipse.egf.pattern.execution.OutputManager;
+import org.eclipse.egf.pattern.execution.CallHelper;
+import org.eclipse.egf.pattern.execution.ExecutionContext;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.pattern.*;
+import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.IQuery;
-import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
-import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
-import org.eclipse.egf.portfolio.genchain.tools.utils.EcoreImporterHelper;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.common.util.BasicMonitor;
+import org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.importer.ecore.EcoreImporter;
+
+import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
+import org.eclipse.egf.portfolio.genchain.tools.utils.EcoreImporterHelper;
+import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
+import org.eclipse.emf.common.util.BasicMonitor;
+
+import org.eclipse.core.resources.*;
+import org.eclipse.egf.core.domain.*;
+import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.search.core.text.TextSearchEngine;
 import org.eclipse.search.core.text.TextSearchRequestor;
 import org.eclipse.search.core.text.TextSearchScope;
@@ -36,9 +39,8 @@ import org.eclipse.search.ui.text.FileTextSearchScope;
 public class ModelGenmodelPattern {
 
 	public ModelGenmodelPattern() {
-		// Here is the constructor
-		// add initialisation of the pattern variables (declaration has been
-		// already done).
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -47,8 +49,7 @@ public class ModelGenmodelPattern {
 		Map<String, String> queryCtx = null;
 		Node.Container currentNode = ctx.getNode();
 		List<Object> parameterList = null;
-		// this pattern can only be called by another (i.e. it's not an entry
-		// point in execution)
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object parameterParameter : parameterList) {
 
@@ -103,7 +104,7 @@ public class ModelGenmodelPattern {
 		TextSearchEngine.create().search(fScope, collector, searchPattern, null);
 
 		if (genModelFile.object == null) {
-			ResourceSet resourceSet = new EgfResourceSet();
+			ResourceSet resourceSet = new TargetPlatformResourceSet();
 			Resource resource = null;
 			IPath genmodelPath = ecorePath.removeFileExtension().addFileExtension("genmodel");
 			genmodelPath = new Path(parameter.getPluginName()).append(genmodelPath.removeFirstSegments(1));
@@ -120,13 +121,16 @@ public class ModelGenmodelPattern {
 				if (!project.isOpen())
 					project.open(null);
 
-				importer = EcoreImporterHelper.createEcoreImporter(genmodelPath.removeLastSegments(1), ecoreURI, parameter);
+				importer = EcoreImporterHelper.createEcoreImporter(genmodelPath.removeLastSegments(1), ecoreURI,
+						parameter);
 			}
 			genmodelURI = URI.createPlatformResourceURI(genmodelPath.toString(), false);
-			((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
+			((HashMap<String, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter.getModelPath(),
+					genmodelURI);
 		} else {
 			URI uri = URI.createPlatformResourceURI(genModelFile.object.getFullPath().toString(), false);
-			((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, uri);
+			((HashMap<String, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter.getModelPath(),
+					uri);
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

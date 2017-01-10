@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:18 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.4.1.v20161010-1511
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -78,7 +78,8 @@ public class ModeEcorelPattern {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
+				.getValue(FcoreBuilderConstants.CURRENT_FCORE);
 
 		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 
@@ -86,7 +87,8 @@ public class ModeEcorelPattern {
 		DomainViewpoint dvp = (DomainViewpoint) fc.getViewpointContainer().getViewpoint(DomainViewpoint.class);
 
 		EMFDomain genModelEMFDomain = null;
-		URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter);
+		URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS))
+				.get(parameter.getModelPath());
 		genModelEMFDomain = ActivityInvocationHelper.getDomain(dvp, uri);
 		if (genModelEMFDomain == null) {
 			genModelEMFDomain = DomainFactory.eINSTANCE.createEMFDomain();
@@ -108,31 +110,41 @@ public class ModeEcorelPattern {
 			TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
 			typeEMFDomain.setDomain(genModelEMFDomain);
 			contracts.put("genModel", typeEMFDomain);
-			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true), contracts, parameters);
+			ActivityInvocationHelper.addInvocation(pp,
+					(Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true), contracts,
+					parameters);
 		}
 		if (parameter.isGenerateEdit()) {
 			TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
 			typeEMFDomain.setDomain(genModelEMFDomain);
 			contracts.put("genModel", typeEMFDomain);
-			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true), contracts, parameters);
+			ActivityInvocationHelper.addInvocation(pp,
+					(Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true), contracts,
+					parameters);
 		}
 		if (parameter.isGenerateEditor()) {
 			TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
 			typeEMFDomain.setDomain(genModelEMFDomain);
 			contracts.put("genModel", typeEMFDomain);
-			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts, parameters);
+			ActivityInvocationHelper.addInvocation(pp,
+					(Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts,
+					parameters);
 		}
 		if (parameter.isGenerateTest()) {
 			TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
 			typeEMFDomain.setDomain(genModelEMFDomain);
 			contracts.put("genModel", typeEMFDomain);
-			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.testActivity, false), true), contracts, parameters);
+			ActivityInvocationHelper.addInvocation(pp,
+					(Activity) resourceSet.getEObject(URI.createURI(this.testActivity, false), true), contracts,
+					parameters);
 		}
 		if (parameter.isGenerateJavadoc()) {
 			TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
 			typeEMFDomain.setDomain(genModelEMFDomain);
 			contracts.put("genModel", typeEMFDomain);
-			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.javadocActivity, false), true), contracts, parameters);
+			ActivityInvocationHelper.addInvocation(pp,
+					(Activity) resourceSet.getEObject(URI.createURI(this.javadocActivity, false), true), contracts,
+					parameters);
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

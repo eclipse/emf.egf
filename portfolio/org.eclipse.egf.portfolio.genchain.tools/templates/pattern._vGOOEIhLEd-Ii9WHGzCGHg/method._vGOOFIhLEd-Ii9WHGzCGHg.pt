@@ -6,7 +6,7 @@
         DomainViewpoint dvp = (DomainViewpoint) fc.getViewpointContainer().getViewpoint(DomainViewpoint.class);
 
         EMFDomain genModelEMFDomain = null;
-        URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter);
+        URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter.getModelPath());
         genModelEMFDomain = ActivityInvocationHelper.getDomain(dvp, uri);
         if (genModelEMFDomain == null) {
             genModelEMFDomain = DomainFactory.eINSTANCE.createEMFDomain();

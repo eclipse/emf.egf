@@ -83,7 +83,7 @@ public class FcoreBuilderTask extends DomainDrivenStrategyTask {
 		ctx.setValue(FcoreBuilderConstants.MAIN_FCORE, mainFC);
 		ctx.setValue(FcoreBuilderConstants.CURRENT_FCORE, fcs);
 
-		ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<EmfGeneration, URI>());
+		ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<String, URI>());
 		ctx.setValue(FcoreBuilderConstants.UNUSED_FCORE, unusedFC);
 		ctx.setValue(FcoreBuilderConstants.RESOURCE_SET, resourceSet);
 

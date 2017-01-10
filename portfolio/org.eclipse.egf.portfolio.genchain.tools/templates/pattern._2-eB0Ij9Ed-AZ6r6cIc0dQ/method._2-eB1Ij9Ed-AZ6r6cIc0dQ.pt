@@ -38,9 +38,9 @@
                         importer = EcoreImporterHelper.createEcoreImporter(genmodelPath.removeLastSegments(1), ecoreURI, parameter);
                   }
                   genmodelURI = URI.createPlatformResourceURI(genmodelPath.toString(), false);
-                  ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
+                  ((HashMap<String, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter.getModelPath(), genmodelURI);
             } else {
                   URI uri = URI.createPlatformResourceURI(genModelFile.object.getFullPath().toString(), false);
-                  ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, uri);
+                  ((HashMap<String, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter.getModelPath(), uri);
             }
 
