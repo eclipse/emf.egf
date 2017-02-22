@@ -201,7 +201,7 @@ public class CreateFcoreHelper {
 	}
 
 	protected void runFcore(ResourceSet resourceSet, GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
-		URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
+		URI uri = URI.createPlatformPluginURI(fcoreOutputPath, false);
 		EObject eObject = resourceSet.getResource(uri, true).getContents().get(0);
 		try {
 			RunActivityHelper.run((Activity) eObject, monitor);
