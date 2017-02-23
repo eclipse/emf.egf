@@ -1,0 +1,11 @@
+<%
+GenClass genClass = parameter;
+GenModel genModel=genClass.getGenModel();
+if (genModel.isCreationCommands() && genModel.isCreationIcons()) {
+  for (  GenFeature feature : genClass.getCreateChildFeaturesIncludingDelegation()) {
+    for (    GenClass childClass : genClass.getChildrenClasses(feature)) {
+new CodegenGeneratorAdapter(parameter).generateGIF("edit/CreateChild.gif", genClass.getCreateChildIconFileName(feature,childClass), genClass.getName(), childClass.getName(), false);
+    }
+  }
+}
+%>
