@@ -370,7 +370,7 @@
         <type xmi:type="types:TypeString" xmi:id="_zArTMOFqEeGFJ5Qac-Dqzg" value="cdo"/>
       </contracts>
       <contracts xmi:id="_2GHaIOFqEeGFJ5Qac-Dqzg" name="featureDelegation">
-        <type xmi:type="types:TypeString" xmi:id="_3vKbkOFqEeGFJ5Qac-Dqzg" value="Reflective"/>
+        <type xmi:type="types:TypeString" xmi:id="_3vKbkOFqEeGFJ5Qac-Dqzg" value="Dynamic"/>
       </contracts>
     </contractContainer>
   </ftask:Task>
