@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2014 Thales Corporate Services S.A.S.
+ * Copyright (c) 2014, 2017 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -108,7 +108,8 @@ public class CreateEdgeCommand extends RecordingCommand {
 		/* create the mapping to edge targets map */
 		DDiagramElementSynchronizer elementSynchronizer = diagramSynchronizer.getElementSynchronizer();
 		Map<DiagramElementMapping, Collection<EdgeTarget>> mappingsToEdgeTargets = elementSynchronizer.computeMappingsToEdgeTargets(_session.getSelectedViewpoints(false));
-		diagramSynchronizer.computeDecorations(mappingsToEdgeTargets, edgeToSemanticBasedDecoration, edgeToMappingBasedDecoration);
+// TODO Fix me
+		//diagramSynchronizer.computeDecorations(mappingsToEdgeTargets, edgeToSemanticBasedDecoration, edgeToMappingBasedDecoration);
 		
 		final DiagramMappingsManager diagramMappingsManager = DiagramMappingsManagerRegistryImpl.INSTANCE.getDiagramMappingsManager(_session, _diagram);
 

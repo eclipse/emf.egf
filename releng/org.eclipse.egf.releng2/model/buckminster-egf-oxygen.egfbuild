@@ -2,7 +2,7 @@
 <buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.1/buildcore" xmlns:builddeploy="http://www.eclipse.org/egf/1.0.0/builddeploy" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.2/buildstep" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-oxygen">
   <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="oxygen"/>
   <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="${eclipse.download.prefix}/releases/${releaseName}"/>
-  <properties xmi:id="_MGxhAOdwEeSQjKFw76jQug" key="ecoretoolsSiteURL" value="${eclipse.download.prefix}/ecoretools/updates/milestones/3.3.0M6/oxygen/"/>
+  <properties xmi:id="_MGxhAOdwEeSQjKFw76jQug" key="ecoretoolsSiteURL" value="${eclipse.download.prefix}/ecoretools/updates/milestones/3.3.0RC4/oxygen"/>
   <properties xmi:id="_8pX3gOdyEeSQjKFw76jQug" key="siriusSiteURL" value="${eclipse.download.prefix}/sirius/updates/stable/5.0.0-S20170314-082819/oxygen/"/>
   <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
