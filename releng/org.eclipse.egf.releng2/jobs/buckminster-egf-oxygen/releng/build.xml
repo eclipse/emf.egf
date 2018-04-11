@@ -605,31 +605,11 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</target>
 
 	<target name="TestStep_13" depends="init,install.buckminster">
-	  <echo message="Running Junit tests " />
-      <buckminster command="junit">
-        <cmdargs>
-          <arg value="-l" />
-          <arg value="org.eclipse.egf.core.test/EGF_Core_Tests.launch" />
-          <arg value="-o" />
-          <arg value="${result}/testReportTestStep_13.xml" />
-          <arg value="--terseXML" />
-          <arg value="--flatXML"/>
-        </cmdargs>
-      </buckminster>
+	  <echo message="Running Junit tests -> disabled" />
 	</target>
 
 	<target name="TestStep_14" depends="init,install.buckminster">
-	  <echo message="Running Junit tests " />
-      <buckminster command="junit">
-        <cmdargs>
-          <arg value="-l" />
-          <arg value="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch" />
-          <arg value="-o" />
-          <arg value="${result}/testReportTestStep_14.xml" />
-          <arg value="--terseXML" />
-          <arg value="--flatXML"/>
-        </cmdargs>
-      </buckminster>
+	  <echo message="Running Junit tests  -> disabled" />
 	</target>
 
 

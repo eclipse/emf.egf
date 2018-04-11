@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cdoExtension" nsURI="http://www.eclipse.org/egf/genchain/extension/cdo/1.0.0"
+    nsPrefix="cdoExtension">
+  <eClassifiers xsi:type="ecore:EClass" name="CdoGeneration" eSuperTypes="platform:/plugin/org.eclipse.egf.portfolio.genchain/model/generationChain.ecore#//EcoreElement platform:/plugin/org.eclipse.egf.portfolio.genchain/model/generationChain.ecore#//PluginProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cdoSuffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="cdo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureDelegation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Dynamic"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmi:id="_Woip0fW_EeGfnK-UqqQwfQ" name="cdoExtension">
+  <viewpointContainer xmi:id="_XhJs0PW_EeGfnK-UqqQwfQ">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_X6eLwPW_EeGfnK-UqqQwfQ">
+      <libraries xmi:id="_cMSmQPW_EeGfnK-UqqQwfQ" name="org.eclipse.egf.portfolio.genchain.cdo.patterns">
+        <elements xmi:id="_n-2OUPW_EeGfnK-UqqQwfQ" description=" " name="CdoGeneration"
+            headerMethod="#_n-2OUvW_EeGfnK-UqqQwfQ" conditionMethod="#_n-2OVPW_EeGfnK-UqqQwfQ"
+            initMethod="#_n-2OU_W_EeGfnK-UqqQwfQ" footerMethod="#_n-2OVvW_EeGfnK-UqqQwfQ">
+          <nature xmi:type="javapattern:JavaNature" xmi:id="_n-2OUfW_EeGfnK-UqqQwfQ"
+              name="Java"/>
+          <methods xmi:id="_n-2OUvW_EeGfnK-UqqQwfQ" name="header" patternFilePath="templates/pattern._n-2OUPW_EeGfnK-UqqQwfQ/method._n-2OUvW_EeGfnK-UqqQwfQ.pt"/>
+          <methods xmi:id="_n-2OU_W_EeGfnK-UqqQwfQ" name="init" patternFilePath="templates/pattern._n-2OUPW_EeGfnK-UqqQwfQ/method._n-2OU_W_EeGfnK-UqqQwfQ.pt"/>
+          <methods xmi:id="_n-2OVPW_EeGfnK-UqqQwfQ" name="preCondition" patternFilePath="templates/pattern._n-2OUPW_EeGfnK-UqqQwfQ/method._n-2OVPW_EeGfnK-UqqQwfQ.pt"/>
+          <methods xmi:id="_n-2OVfW_EeGfnK-UqqQwfQ" name="body" patternFilePath="templates/pattern._n-2OUPW_EeGfnK-UqqQwfQ/method._n-2OVfW_EeGfnK-UqqQwfQ.pt"/>
+          <methods xmi:id="_n-2OVvW_EeGfnK-UqqQwfQ" name="footer" patternFilePath="templates/pattern._n-2OUPW_EeGfnK-UqqQwfQ/method._n-2OVvW_EeGfnK-UqqQwfQ.pt"/>
+          <parameters xmi:id="_rVrAMPW_EeGfnK-UqqQwfQ" name="parameter" type="http://www.eclipse.org/egf/genchain/extension/cdo/1.0.0#//CdoGeneration"/>
+          <variables xmi:id="_rqlDwPXAEeGfnK-UqqQwfQ" name="activity" type="java.lang.String"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_n-2OV_W_EeGfnK-UqqQwfQ"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_s2jHoPXAEeGfnK-UqqQwfQ"
+              called="#_n-2OVfW_EeGfnK-UqqQwfQ"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+</fcore:FactoryComponent>
