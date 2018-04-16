@@ -1,3 +1,17 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2018 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
 package org.eclipse.egf.portfolio.genchain.cdo;
 
 import java.util.ArrayList;
@@ -33,13 +47,17 @@ public class CdoGenerationExtension extends ExtensionHelper {
 		List<Substitution> substitutions = new ArrayList<Substitution>();
 		final Substitution substitution = PatternFactory.eINSTANCE.createSubstitution();
 		substitutions.add(substitution);
-		Pattern pattern = (Pattern) set.getEObject(PATTERN_CDO, true);
+		Pattern pattern = (Pattern) set.getEObject(getCdoPattern(), true);
 		substitution.getReplacement().add(pattern);
 		return substitutions;
 	}
 
+	protected CdoGeneration doCreateEcoreElement() {
+		return CdoExtensionFactory.eINSTANCE.createCdoGeneration();
+	}
+
 	public EcoreElement createEcoreElement(Map<String, String> properties) {
-		CdoGeneration elt = CdoExtensionFactory.eINSTANCE.createCdoGeneration();
+		CdoGeneration elt = doCreateEcoreElement();
 		String modelPath = properties.get(MODEL_PATH);
 		elt.setModelPath(modelPath);
 		return elt;
@@ -49,6 +67,10 @@ public class CdoGenerationExtension extends ExtensionHelper {
 	protected void computeDefaultProperties(Map<String, String> context) {
 		properties.put(CdoExtensionPackage.eINSTANCE.getCdoGeneration_CdoSuffix(), "cdo");
 		properties.put(CdoExtensionPackage.eINSTANCE.getCdoGeneration_FeatureDelegation(), "Dynamic");
+	}
+
+	protected URI getCdoPattern() {
+		return PATTERN_CDO;
 	};
 
 }
