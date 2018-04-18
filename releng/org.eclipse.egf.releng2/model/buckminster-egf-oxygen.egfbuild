@@ -32,6 +32,7 @@
   <steps xsi:type="buildstep:AntStep" xmi:id="_bfnpIAF9EeGO5KzPHjNKFQ" targetName="copy_egf_to_tools" xml="&lt;target name=&quot;copy_egf_to_tools&quot;>&#xD;&#xA;&#x9;&lt;delete dir=&quot;${tools}/egf&quot;/>&#xD;&#xA;&#x9;&lt;copy todir=&quot;${tools}/egf&quot;>&#xD;&#xA;&#x9;&#x9;&lt;fileset dir=&quot;${publish}/egf&quot;/>&#xD;&#xA;&#x9;&lt;/copy>&#xD;&#xA;&lt;/target>"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" noBuildersInvocation="true">
+    <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_HWO8oELwEeijnvDjjPeOdw" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/4.7/portfolio"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" gitLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
