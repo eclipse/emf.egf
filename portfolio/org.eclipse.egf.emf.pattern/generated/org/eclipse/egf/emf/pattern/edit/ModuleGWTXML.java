@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -37,7 +38,6 @@ public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText 
 	protected final String TEXT_7 = "\"/>";
 	protected final String TEXT_8 = NL + "</module>" + NL;
 	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
 
 	public ModuleGWTXML() {
 		//Here is the constructor
@@ -74,7 +74,7 @@ public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText 
 		}
 
 		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 

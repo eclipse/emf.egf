@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -56,7 +57,6 @@ public class HomeHTML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 			+ "  <body style=\"height : 100%\">" + NL + "    <div id=\"main\" style=\"height : 100%\">" + NL
 			+ "    </div>" + NL + "  </body>" + NL + "</html>" + NL;
 	protected final String TEXT_5 = NL;
-	protected final String TEXT_6 = NL;
 
 	public HomeHTML() {
 		//Here is the constructor
@@ -93,7 +93,7 @@ public class HomeHTML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		}
 
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 

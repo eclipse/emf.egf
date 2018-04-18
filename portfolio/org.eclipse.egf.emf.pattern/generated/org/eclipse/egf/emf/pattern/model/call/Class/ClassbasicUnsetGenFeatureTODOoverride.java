@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -35,7 +36,6 @@ public class ClassbasicUnsetGenFeatureTODOoverride {
 			+ NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL
 			+ "\t\tthrow new UnsupportedOperationException();" + NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public ClassbasicUnsetGenFeatureTODOoverride() {
 		//Here is the constructor
@@ -138,7 +138,7 @@ public class ClassbasicUnsetGenFeatureTODOoverride {
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

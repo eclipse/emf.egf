@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -33,7 +34,6 @@ public class AppEngineWebXML extends org.eclipse.egf.emf.pattern.base.GenModelTe
 	protected final String TEXT_4 = "-editor</application>" + NL + "\t<version>1</version>" + NL
 			+ "</appengine-web-app>" + NL;
 	protected final String TEXT_5 = NL;
-	protected final String TEXT_6 = NL;
 
 	public AppEngineWebXML() {
 		//Here is the constructor
@@ -70,7 +70,7 @@ public class AppEngineWebXML extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		}
 
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 

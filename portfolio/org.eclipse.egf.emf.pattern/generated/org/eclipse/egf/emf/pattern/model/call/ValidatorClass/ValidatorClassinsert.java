@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.ValidatorClass;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -49,6 +50,8 @@ public class ValidatorClassinsert {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> singleWildcardList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _MapList = null;
@@ -60,23 +63,26 @@ public class ValidatorClassinsert {
 
 		for (Object genPackageParameter : genPackageList) {
 			for (Object genModelParameter : genModelList) {
-				for (Object singleWildcardParameter : singleWildcardList) {
-					for (Object _MapParameter : _MapList) {
-						for (Object objectArgumentParameter : objectArgumentList) {
-							for (Object countParameter : countList) {
+				for (Object isJDK50Parameter : isJDK50List) {
+					for (Object singleWildcardParameter : singleWildcardList) {
+						for (Object _MapParameter : _MapList) {
+							for (Object objectArgumentParameter : objectArgumentList) {
+								for (Object countParameter : countList) {
 
-								this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-								this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-								this.singleWildcard = (java.lang.String) singleWildcardParameter;
-								this._Map = (java.lang.String) _MapParameter;
-								this.objectArgument = (java.lang.String) objectArgumentParameter;
-								this.count = (java.lang.Integer) countParameter;
+									this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+									this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+									this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+									this.singleWildcard = (java.lang.String) singleWildcardParameter;
+									this._Map = (java.lang.String) _MapParameter;
+									this.objectArgument = (java.lang.String) objectArgumentParameter;
+									this.count = (java.lang.Integer) countParameter;
 
-								if (preCondition(ctx)) {
-									ctx.setNode(new Node.Container(currentNode, getClass()));
-									orchestration(ctx);
+									if (preCondition(ctx)) {
+										ctx.setNode(new Node.Container(currentNode, getClass()));
+										orchestration(ctx);
+									}
+
 								}
-
 							}
 						}
 					}
@@ -102,6 +108,7 @@ public class ValidatorClassinsert {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			parameterValues.put("singleWildcard", this.singleWildcard);
 			parameterValues.put("_Map", this._Map);
 			parameterValues.put("objectArgument", this.objectArgument);
@@ -123,6 +130,12 @@ public class ValidatorClassinsert {
 
 	public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
 		this.genModel = object;
+	}
+
+	protected java.lang.Boolean isJDK50 = null;
+
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
 	}
 
 	protected java.lang.String singleWildcard = null;
@@ -153,6 +166,7 @@ public class ValidatorClassinsert {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		parameters.put("singleWildcard", this.singleWildcard);
 		parameters.put("_Map", this._Map);
 		parameters.put("objectArgument", this.objectArgument);

@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.editor.call.Editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -29,12 +30,8 @@ public class EditoraddItemProviderFactoriesoverride {
 	protected final String TEXT_1 = "";
 	protected final String TEXT_2 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
 	protected final String TEXT_3 = "());";
-	protected final String TEXT_4 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
-	protected final String TEXT_5 = "());";
-	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
-	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
+	protected final String TEXT_4 = NL;
+	protected final String TEXT_5 = NL;
 
 	public EditoraddItemProviderFactoriesoverride() {
 		//Here is the constructor
@@ -56,6 +53,8 @@ public class EditoraddItemProviderFactoriesoverride {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> importedOperationClassNameList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> operationMethodNameList = null;
@@ -65,6 +64,8 @@ public class EditoraddItemProviderFactoriesoverride {
 		List<Object> _ArrayListOfSelectionChangedListenerList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _CollectionOfSelectionChangedListenerList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> _ListOfResourceList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _ArrayListOfResourceList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -107,68 +108,74 @@ public class EditoraddItemProviderFactoriesoverride {
 
 		for (Object genPackageParameter : genPackageList) {
 			for (Object genModelParameter : genModelList) {
-				for (Object importedOperationClassNameParameter : importedOperationClassNameList) {
-					for (Object operationMethodNameParameter : operationMethodNameList) {
-						for (Object _ArrayListOfObjectParameter : _ArrayListOfObjectList) {
-							for (Object _ArrayListOfSelectionChangedListenerParameter : _ArrayListOfSelectionChangedListenerList) {
-								for (Object _CollectionOfSelectionChangedListenerParameter : _CollectionOfSelectionChangedListenerList) {
-									for (Object _ArrayListOfResourceParameter : _ArrayListOfResourceList) {
-										for (Object _CollectionOfResourceParameter : _CollectionOfResourceList) {
-											for (Object _MapOfResourceToDiagnosticParameter : _MapOfResourceToDiagnosticList) {
-												for (Object _HashMapOfResourceToBooleanParameter : _HashMapOfResourceToBooleanList) {
-													for (Object _MapOfObjectToObjectParameter : _MapOfObjectToObjectList) {
-														for (Object _HashMapOfObjectToObjectParameter : _HashMapOfObjectToObjectList) {
-															for (Object _LinkedHashMapOfResourceToDiagnosticParameter : _LinkedHashMapOfResourceToDiagnosticList) {
-																for (Object _CollectionOfAnythingParameter : _CollectionOfAnythingList) {
-																	for (Object _ListOfAnythingParameter : _ListOfAnythingList) {
-																		for (Object useExtendedLabelProviderParameter : useExtendedLabelProviderList) {
-																			for (Object useStyledLabelProviderParameter : useStyledLabelProviderList) {
-																				for (Object _AdapterFactoryLabelProviderParameter : _AdapterFactoryLabelProviderList) {
-																					for (Object _DelegatingAdapterFactoryLabelProviderParameter : _DelegatingAdapterFactoryLabelProviderList) {
-																						for (Object _DecoratingColumLabelProviderParameter : _DecoratingColumLabelProviderList) {
-																							for (Object _DiagnosticDecoratorParameter : _DiagnosticDecoratorList) {
-																								for (Object _ArrayListOfStringParameter : _ArrayListOfStringList) {
-																									for (Object _ListOfStringParameter : _ListOfStringList) {
-																										for (Object _ListOfPropertySheetPageParameter : _ListOfPropertySheetPageList) {
-																											for (Object _ArrayListOfPropertySheetPageParameter : _ArrayListOfPropertySheetPageList) {
+				for (Object isJDK50Parameter : isJDK50List) {
+					for (Object importedOperationClassNameParameter : importedOperationClassNameList) {
+						for (Object operationMethodNameParameter : operationMethodNameList) {
+							for (Object _ArrayListOfObjectParameter : _ArrayListOfObjectList) {
+								for (Object _ArrayListOfSelectionChangedListenerParameter : _ArrayListOfSelectionChangedListenerList) {
+									for (Object _CollectionOfSelectionChangedListenerParameter : _CollectionOfSelectionChangedListenerList) {
+										for (Object _ListOfResourceParameter : _ListOfResourceList) {
+											for (Object _ArrayListOfResourceParameter : _ArrayListOfResourceList) {
+												for (Object _CollectionOfResourceParameter : _CollectionOfResourceList) {
+													for (Object _MapOfResourceToDiagnosticParameter : _MapOfResourceToDiagnosticList) {
+														for (Object _HashMapOfResourceToBooleanParameter : _HashMapOfResourceToBooleanList) {
+															for (Object _MapOfObjectToObjectParameter : _MapOfObjectToObjectList) {
+																for (Object _HashMapOfObjectToObjectParameter : _HashMapOfObjectToObjectList) {
+																	for (Object _LinkedHashMapOfResourceToDiagnosticParameter : _LinkedHashMapOfResourceToDiagnosticList) {
+																		for (Object _CollectionOfAnythingParameter : _CollectionOfAnythingList) {
+																			for (Object _ListOfAnythingParameter : _ListOfAnythingList) {
+																				for (Object useExtendedLabelProviderParameter : useExtendedLabelProviderList) {
+																					for (Object useStyledLabelProviderParameter : useStyledLabelProviderList) {
+																						for (Object _AdapterFactoryLabelProviderParameter : _AdapterFactoryLabelProviderList) {
+																							for (Object _DelegatingAdapterFactoryLabelProviderParameter : _DelegatingAdapterFactoryLabelProviderList) {
+																								for (Object _DecoratingColumLabelProviderParameter : _DecoratingColumLabelProviderList) {
+																									for (Object _DiagnosticDecoratorParameter : _DiagnosticDecoratorList) {
+																										for (Object _ArrayListOfStringParameter : _ArrayListOfStringList) {
+																											for (Object _ListOfStringParameter : _ListOfStringList) {
+																												for (Object _ListOfPropertySheetPageParameter : _ListOfPropertySheetPageList) {
+																													for (Object _ArrayListOfPropertySheetPageParameter : _ArrayListOfPropertySheetPageList) {
 
-																												this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-																												this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-																												this.importedOperationClassName = (java.lang.String) importedOperationClassNameParameter;
-																												this.operationMethodName = (java.lang.String) operationMethodNameParameter;
-																												this._ArrayListOfObject = (java.lang.String) _ArrayListOfObjectParameter;
-																												this._ArrayListOfSelectionChangedListener = (java.lang.String) _ArrayListOfSelectionChangedListenerParameter;
-																												this._CollectionOfSelectionChangedListener = (java.lang.String) _CollectionOfSelectionChangedListenerParameter;
-																												this._ArrayListOfResource = (java.lang.String) _ArrayListOfResourceParameter;
-																												this._CollectionOfResource = (java.lang.String) _CollectionOfResourceParameter;
-																												this._MapOfResourceToDiagnostic = (java.lang.String) _MapOfResourceToDiagnosticParameter;
-																												this._HashMapOfResourceToBoolean = (java.lang.String) _HashMapOfResourceToBooleanParameter;
-																												this._MapOfObjectToObject = (java.lang.String) _MapOfObjectToObjectParameter;
-																												this._HashMapOfObjectToObject = (java.lang.String) _HashMapOfObjectToObjectParameter;
-																												this._LinkedHashMapOfResourceToDiagnostic = (java.lang.String) _LinkedHashMapOfResourceToDiagnosticParameter;
-																												this._CollectionOfAnything = (java.lang.String) _CollectionOfAnythingParameter;
-																												this._ListOfAnything = (java.lang.String) _ListOfAnythingParameter;
-																												this.useExtendedLabelProvider = (java.lang.Boolean) useExtendedLabelProviderParameter;
-																												this.useStyledLabelProvider = (java.lang.Boolean) useStyledLabelProviderParameter;
-																												this._AdapterFactoryLabelProvider = (java.lang.String) _AdapterFactoryLabelProviderParameter;
-																												this._DelegatingAdapterFactoryLabelProvider = (java.lang.String) _DelegatingAdapterFactoryLabelProviderParameter;
-																												this._DecoratingColumLabelProvider = (java.lang.String) _DecoratingColumLabelProviderParameter;
-																												this._DiagnosticDecorator = (java.lang.String) _DiagnosticDecoratorParameter;
-																												this._ArrayListOfString = (java.lang.String) _ArrayListOfStringParameter;
-																												this._ListOfString = (java.lang.String) _ListOfStringParameter;
-																												this._ListOfPropertySheetPage = (java.lang.String) _ListOfPropertySheetPageParameter;
-																												this._ArrayListOfPropertySheetPage = (java.lang.String) _ArrayListOfPropertySheetPageParameter;
+																														this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+																														this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+																														this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+																														this.importedOperationClassName = (java.lang.String) importedOperationClassNameParameter;
+																														this.operationMethodName = (java.lang.String) operationMethodNameParameter;
+																														this._ArrayListOfObject = (java.lang.String) _ArrayListOfObjectParameter;
+																														this._ArrayListOfSelectionChangedListener = (java.lang.String) _ArrayListOfSelectionChangedListenerParameter;
+																														this._CollectionOfSelectionChangedListener = (java.lang.String) _CollectionOfSelectionChangedListenerParameter;
+																														this._ListOfResource = (java.lang.String) _ListOfResourceParameter;
+																														this._ArrayListOfResource = (java.lang.String) _ArrayListOfResourceParameter;
+																														this._CollectionOfResource = (java.lang.String) _CollectionOfResourceParameter;
+																														this._MapOfResourceToDiagnostic = (java.lang.String) _MapOfResourceToDiagnosticParameter;
+																														this._HashMapOfResourceToBoolean = (java.lang.String) _HashMapOfResourceToBooleanParameter;
+																														this._MapOfObjectToObject = (java.lang.String) _MapOfObjectToObjectParameter;
+																														this._HashMapOfObjectToObject = (java.lang.String) _HashMapOfObjectToObjectParameter;
+																														this._LinkedHashMapOfResourceToDiagnostic = (java.lang.String) _LinkedHashMapOfResourceToDiagnosticParameter;
+																														this._CollectionOfAnything = (java.lang.String) _CollectionOfAnythingParameter;
+																														this._ListOfAnything = (java.lang.String) _ListOfAnythingParameter;
+																														this.useExtendedLabelProvider = (java.lang.Boolean) useExtendedLabelProviderParameter;
+																														this.useStyledLabelProvider = (java.lang.Boolean) useStyledLabelProviderParameter;
+																														this._AdapterFactoryLabelProvider = (java.lang.String) _AdapterFactoryLabelProviderParameter;
+																														this._DelegatingAdapterFactoryLabelProvider = (java.lang.String) _DelegatingAdapterFactoryLabelProviderParameter;
+																														this._DecoratingColumLabelProvider = (java.lang.String) _DecoratingColumLabelProviderParameter;
+																														this._DiagnosticDecorator = (java.lang.String) _DiagnosticDecoratorParameter;
+																														this._ArrayListOfString = (java.lang.String) _ArrayListOfStringParameter;
+																														this._ListOfString = (java.lang.String) _ListOfStringParameter;
+																														this._ListOfPropertySheetPage = (java.lang.String) _ListOfPropertySheetPageParameter;
+																														this._ArrayListOfPropertySheetPage = (java.lang.String) _ArrayListOfPropertySheetPageParameter;
 
-																												if (preCondition(
-																														ctx)) {
-																													ctx.setNode(
-																															new Node.Container(
-																																	currentNode,
-																																	getClass()));
-																													orchestration(
-																															ctx);
+																														if (preCondition(
+																																ctx)) {
+																															ctx.setNode(
+																																	new Node.Container(
+																																			currentNode,
+																																			getClass()));
+																															orchestration(
+																																	ctx);
+																														}
+
+																													}
 																												}
-
 																											}
 																										}
 																									}
@@ -200,8 +207,8 @@ public class EditoraddItemProviderFactoriesoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 
@@ -214,11 +221,13 @@ public class EditoraddItemProviderFactoriesoverride {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			parameterValues.put("importedOperationClassName", this.importedOperationClassName);
 			parameterValues.put("operationMethodName", this.operationMethodName);
 			parameterValues.put("_ArrayListOfObject", this._ArrayListOfObject);
 			parameterValues.put("_ArrayListOfSelectionChangedListener", this._ArrayListOfSelectionChangedListener);
 			parameterValues.put("_CollectionOfSelectionChangedListener", this._CollectionOfSelectionChangedListener);
+			parameterValues.put("_ListOfResource", this._ListOfResource);
 			parameterValues.put("_ArrayListOfResource", this._ArrayListOfResource);
 			parameterValues.put("_CollectionOfResource", this._CollectionOfResource);
 			parameterValues.put("_MapOfResourceToDiagnostic", this._MapOfResourceToDiagnostic);
@@ -257,6 +266,12 @@ public class EditoraddItemProviderFactoriesoverride {
 		this.genModel = object;
 	}
 
+	protected java.lang.Boolean isJDK50 = null;
+
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
+	}
+
 	protected java.lang.String importedOperationClassName = null;
 
 	public void set_importedOperationClassName(java.lang.String object) {
@@ -285,6 +300,12 @@ public class EditoraddItemProviderFactoriesoverride {
 
 	public void set__CollectionOfSelectionChangedListener(java.lang.String object) {
 		this._CollectionOfSelectionChangedListener = object;
+	}
+
+	protected java.lang.String _ListOfResource = null;
+
+	public void set__ListOfResource(java.lang.String object) {
+		this._ListOfResource = object;
 	}
 
 	protected java.lang.String _ArrayListOfResource = null;
@@ -405,11 +426,13 @@ public class EditoraddItemProviderFactoriesoverride {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		parameters.put("importedOperationClassName", this.importedOperationClassName);
 		parameters.put("operationMethodName", this.operationMethodName);
 		parameters.put("_ArrayListOfObject", this._ArrayListOfObject);
 		parameters.put("_ArrayListOfSelectionChangedListener", this._ArrayListOfSelectionChangedListener);
 		parameters.put("_CollectionOfSelectionChangedListener", this._CollectionOfSelectionChangedListener);
+		parameters.put("_ListOfResource", this._ListOfResource);
 		parameters.put("_ArrayListOfResource", this._ArrayListOfResource);
 		parameters.put("_CollectionOfResource", this._CollectionOfResource);
 		parameters.put("_MapOfResourceToDiagnostic", this._MapOfResourceToDiagnostic);
@@ -444,14 +467,14 @@ public class EditoraddItemProviderFactoriesoverride {
 		}
 		for (GenPackage aGenPackage : genModel.getAllUsedGenPackagesWithClassifiers()) {
 			if (!aGenPackage.getGenClasses().isEmpty() && aGenPackage.getGenModel().hasEditSupport()) {
-				stringBuffer.append(TEXT_4);
+				stringBuffer.append(TEXT_2);
 				stringBuffer.append(aGenPackage.getImportedItemProviderAdapterFactoryClassName());
-				stringBuffer.append(TEXT_5);
+				stringBuffer.append(TEXT_3);
 			}
 		}
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_4);
 		{
-			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.insert" args="genPackage:genPackage,genModel:genModel,importedOperationClassName:importedOperationClassName,operationMethodName:operationMethodName,_ArrayListOfObject:_ArrayListOfObject,_ArrayListOfSelectionChangedListener:_ArrayListOfSelectionChangedListener,_CollectionOfSelectionChangedListener:_CollectionOfSelectionChangedListener,_ArrayListOfResource:_ArrayListOfResource,_CollectionOfResource:_CollectionOfResource,_MapOfResourceToDiagnostic:_MapOfResourceToDiagnostic,_HashMapOfResourceToBoolean:_HashMapOfResourceToBoolean,_MapOfObjectToObject:_MapOfObjectToObject,_HashMapOfObjectToObject:_HashMapOfObjectToObject,_LinkedHashMapOfResourceToDiagnostic:_LinkedHashMapOfResourceToDiagnostic,_CollectionOfAnything:_CollectionOfAnything,_ListOfAnything:_ListOfAnything,useExtendedLabelProvider:useExtendedLabelProvider,useStyledLabelProvider:useStyledLabelProvider,_AdapterFactoryLabelProvider:_AdapterFactoryLabelProvider,_DelegatingAdapterFactoryLabelProvider:_DelegatingAdapterFactoryLabelProvider,_DecoratingColumLabelProvider:_DecoratingColumLabelProvider,_DiagnosticDecorator:_DiagnosticDecorator,_ArrayListOfString:_ArrayListOfString,_ListOfString:_ListOfString,_ListOfPropertySheetPage:_ListOfPropertySheetPage,_ArrayListOfPropertySheetPage:_ArrayListOfPropertySheetPage"%>
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.insert" args="genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,importedOperationClassName:importedOperationClassName,operationMethodName:operationMethodName,_ArrayListOfObject:_ArrayListOfObject,_ArrayListOfSelectionChangedListener:_ArrayListOfSelectionChangedListener,_CollectionOfSelectionChangedListener:_CollectionOfSelectionChangedListener,_ListOfResource:_ListOfResource,_ArrayListOfResource:_ArrayListOfResource,_CollectionOfResource:_CollectionOfResource,_MapOfResourceToDiagnostic:_MapOfResourceToDiagnostic,_HashMapOfResourceToBoolean:_HashMapOfResourceToBoolean,_MapOfObjectToObject:_MapOfObjectToObject,_HashMapOfObjectToObject:_HashMapOfObjectToObject,_LinkedHashMapOfResourceToDiagnostic:_LinkedHashMapOfResourceToDiagnostic,_CollectionOfAnything:_CollectionOfAnything,_ListOfAnything:_ListOfAnything,useExtendedLabelProvider:useExtendedLabelProvider,useStyledLabelProvider:useStyledLabelProvider,_AdapterFactoryLabelProvider:_AdapterFactoryLabelProvider,_DelegatingAdapterFactoryLabelProvider:_DelegatingAdapterFactoryLabelProvider,_DecoratingColumLabelProvider:_DecoratingColumLabelProvider,_DiagnosticDecorator:_DiagnosticDecorator,_ArrayListOfString:_ArrayListOfString,_ListOfString:_ListOfString,_ListOfPropertySheetPage:_ListOfPropertySheetPage,_ArrayListOfPropertySheetPage:_ArrayListOfPropertySheetPage"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
 			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
@@ -460,11 +483,13 @@ public class EditoraddItemProviderFactoriesoverride {
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
+			callParameters.put("isJDK50", isJDK50);
 			callParameters.put("importedOperationClassName", importedOperationClassName);
 			callParameters.put("operationMethodName", operationMethodName);
 			callParameters.put("_ArrayListOfObject", _ArrayListOfObject);
 			callParameters.put("_ArrayListOfSelectionChangedListener", _ArrayListOfSelectionChangedListener);
 			callParameters.put("_CollectionOfSelectionChangedListener", _CollectionOfSelectionChangedListener);
+			callParameters.put("_ListOfResource", _ListOfResource);
 			callParameters.put("_ArrayListOfResource", _ArrayListOfResource);
 			callParameters.put("_CollectionOfResource", _CollectionOfResource);
 			callParameters.put("_MapOfResourceToDiagnostic", _MapOfResourceToDiagnostic);
@@ -490,7 +515,7 @@ public class EditoraddItemProviderFactoriesoverride {
 			stringBuffer.setLength(0);
 		}
 
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_4);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

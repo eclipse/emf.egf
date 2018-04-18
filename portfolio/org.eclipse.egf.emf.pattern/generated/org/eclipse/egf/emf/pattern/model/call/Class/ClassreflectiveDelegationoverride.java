@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -38,7 +39,6 @@ public class ClassreflectiveDelegationoverride {
 	protected final String TEXT_7 = ";" + NL + "\t}" + NL;
 	protected final String TEXT_8 = NL;
 	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
 
 	public ClassreflectiveDelegationoverride() {
 		//Here is the constructor
@@ -136,7 +136,7 @@ public class ClassreflectiveDelegationoverride {
 		}
 
 		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 

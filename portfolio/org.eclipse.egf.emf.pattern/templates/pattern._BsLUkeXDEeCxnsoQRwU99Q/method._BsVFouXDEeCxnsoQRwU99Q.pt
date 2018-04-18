@@ -18,7 +18,7 @@
  * <ul>
 <%for (GenFeature genFeature : genClass.getGenFeatures()) {%>
   <%if (!genFeature.isSuppressedGetVisibility()) {%>
- *   <li>{@link <%=genClass.getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%> <em><%=genFeature.getFormattedName()%></em>}</li>
+ *   <li>{@link <%=genClass.getRawQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%> <em><%=genFeature.getFormattedName()%></em>}</li>
   <%}%>
 <%}%>
  * </ul>
@@ -36,6 +36,9 @@
 <%}}%>
 <%if (genClass.needsRootExtendsInterfaceExtendsTag()) {%>
  * @extends <%=genModel.getImportedName(genModel.getRootExtendsInterface())%>
+<%}%>
+<%if (genClass.hasImplicitAPITags(true)) {%>
+ * <%=genClass.getImplicitAPITags(genModel.getIndentation(stringBuffer), true)%>
 <%}%>
  * @generated
  */

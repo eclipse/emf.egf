@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -32,42 +33,39 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL
 			+ " * The <b>Resource Factory</b> associated with the package." + NL + " * <!-- end-user-doc -->" + NL
 			+ " * @see ";
-	protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
-	protected final String TEXT_6 = " extends ";
-	protected final String TEXT_7 = NL + "{";
-	protected final String TEXT_8 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_5 = NL + " * ";
+	protected final String TEXT_6 = NL + " * @generated" + NL + " */";
+	protected final String TEXT_7 = NL + "@Deprecated";
+	protected final String TEXT_8 = NL + "public class ";
+	protected final String TEXT_9 = " extends ";
+	protected final String TEXT_10 = NL + "{";
+	protected final String TEXT_11 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
-	protected final String TEXT_9 = " copyright = ";
-	protected final String TEXT_10 = ";";
-	protected final String TEXT_11 = NL;
-	protected final String TEXT_12 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_12 = " copyright = ";
+	protected final String TEXT_13 = ";";
+	protected final String TEXT_14 = NL;
+	protected final String TEXT_15 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-	protected final String TEXT_13 = " extendedMetaData;" + NL;
-	protected final String TEXT_14 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
-			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-	protected final String TEXT_15 = " xmlMap = new ";
-	protected final String TEXT_16 = "();" + NL;
-	protected final String TEXT_17 = NL + "\t/**" + NL + "\t * Creates an instance of the resource factory." + NL
+	protected final String TEXT_16 = " extendedMetaData;" + NL;
+	protected final String TEXT_17 = " xmlMap = new ";
+	protected final String TEXT_18 = "();" + NL;
+	protected final String TEXT_19 = NL + "\t/**" + NL + "\t * Creates an instance of the resource factory." + NL
 			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
 			+ NL + "\tpublic ";
-	protected final String TEXT_18 = "()" + NL + "\t{" + NL + "\t\tsuper();";
-	protected final String TEXT_19 = NL + "\t\textendedMetaData = new ";
-	protected final String TEXT_20 = "(new ";
-	protected final String TEXT_21 = "(";
-	protected final String TEXT_22 = ".Registry.INSTANCE));" + NL + "\t\textendedMetaData.putPackage(null, ";
-	protected final String TEXT_23 = ".eINSTANCE);";
-	protected final String TEXT_24 = NL + "\t\txmlMap.setNoNamespacePackage(";
+	protected final String TEXT_20 = "()" + NL + "\t{" + NL + "\t\tsuper();";
+	protected final String TEXT_21 = NL + "\t\textendedMetaData = new ";
+	protected final String TEXT_22 = "(new ";
+	protected final String TEXT_23 = "(";
+	protected final String TEXT_24 = ".Registry.INSTANCE));" + NL + "\t\textendedMetaData.putPackage(null, ";
 	protected final String TEXT_25 = ".eINSTANCE);";
-	protected final String TEXT_26 = NL + "\t}" + NL + "" + NL + "\t/**" + NL
+	protected final String TEXT_26 = NL + "\t\txmlMap.setNoNamespacePackage(";
+	protected final String TEXT_27 = NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * Creates an instance of the resource." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-	protected final String TEXT_27 = NL + "\t@Override";
-	protected final String TEXT_28 = NL + "\tpublic Resource createResource(URI uri)" + NL + "\t{";
-	protected final String TEXT_29 = NL;
+	protected final String TEXT_28 = NL + "\t@Override";
+	protected final String TEXT_29 = NL + "\tpublic Resource createResource(URI uri)" + NL + "\t{";
 	protected final String TEXT_30 = NL + "\t}" + NL + "" + NL + "} //";
 	protected final String TEXT_31 = NL;
-	protected final String TEXT_32 = NL;
-	protected final String TEXT_33 = NL;
 
 	public ResourceFactoryClass() {
 		//Here is the constructor
@@ -103,8 +101,8 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_32);
-		stringBuffer.append(TEXT_33);
+		stringBuffer.append(TEXT_31);
+		stringBuffer.append(TEXT_31);
 		return stringBuffer.toString();
 	}
 
@@ -186,6 +184,7 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 
 		GenPackage genPackage = (GenPackage) argument;
 		GenModel genModel = genPackage.getGenModel();
+		final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -210,57 +209,65 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 		genModel.markImportLocation(stringBuffer);
 		stringBuffer.append(TEXT_4);
 		stringBuffer.append(genPackage.getQualifiedResourceClassName());
-		stringBuffer.append(TEXT_5);
-		stringBuffer.append(genPackage.getResourceFactoryClassName());
+		if (genPackage.hasAPITags()) {
+			stringBuffer.append(TEXT_5);
+			stringBuffer.append(genPackage.getAPITags(genModel.getIndentation(stringBuffer)));
+		}
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(genPackage.getImportedResourceFactoryBaseClassName());
-		stringBuffer.append(TEXT_7);
-		if (genModel.hasCopyrightField()) {
-			stringBuffer.append(TEXT_8);
-			stringBuffer.append(genModel.getImportedName("java.lang.String"));
-			stringBuffer.append(TEXT_9);
-			stringBuffer.append(genModel.getCopyrightFieldLiteral());
-			stringBuffer.append(TEXT_10);
-			stringBuffer.append(genModel.getNonNLS());
-			stringBuffer.append(TEXT_11);
+		if (isJDK50 && genPackage.hasAPIDeprecatedTag()) {
+			stringBuffer.append(TEXT_7);
 		}
-		if (genPackage.hasExtendedMetaData() && !genPackage.hasTargetNamespace()) {
-			stringBuffer.append(TEXT_12);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.ExtendedMetaData"));
-			stringBuffer.append(TEXT_13);
-		} else if (genPackage.hasXMLMap()) {
-			stringBuffer.append(TEXT_14);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource$XMLMap"));
-			stringBuffer.append(TEXT_15);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.xmi.impl.XMLMapImpl"));
-			stringBuffer.append(TEXT_16);
-		}
-		stringBuffer.append(TEXT_17);
+		stringBuffer.append(TEXT_8);
 		stringBuffer.append(genPackage.getResourceFactoryClassName());
-		stringBuffer.append(TEXT_18);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(genPackage.getImportedResourceFactoryBaseClassName());
+		stringBuffer.append(TEXT_10);
+		if (genModel.hasCopyrightField()) {
+			stringBuffer.append(TEXT_11);
+			stringBuffer.append(genModel.getImportedName("java.lang.String"));
+			stringBuffer.append(TEXT_12);
+			stringBuffer.append(genModel.getCopyrightFieldLiteral());
+			stringBuffer.append(TEXT_13);
+			stringBuffer.append(genModel.getNonNLS());
+			stringBuffer.append(TEXT_14);
+		}
 		if (genPackage.hasExtendedMetaData() && !genPackage.hasTargetNamespace()) {
-			stringBuffer.append(TEXT_19);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.BasicExtendedMetaData"));
-			stringBuffer.append(TEXT_20);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.EPackageRegistryImpl"));
+			stringBuffer.append(TEXT_15);
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.ExtendedMetaData"));
+			stringBuffer.append(TEXT_16);
+		} else if (genPackage.hasXMLMap()) {
+			stringBuffer.append(TEXT_15);
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource$XMLMap"));
+			stringBuffer.append(TEXT_17);
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.xmi.impl.XMLMapImpl"));
+			stringBuffer.append(TEXT_18);
+		}
+		stringBuffer.append(TEXT_19);
+		stringBuffer.append(genPackage.getResourceFactoryClassName());
+		stringBuffer.append(TEXT_20);
+		if (genPackage.hasExtendedMetaData() && !genPackage.hasTargetNamespace()) {
 			stringBuffer.append(TEXT_21);
-			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EPackage"));
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.BasicExtendedMetaData"));
 			stringBuffer.append(TEXT_22);
-			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.impl.EPackageRegistryImpl"));
 			stringBuffer.append(TEXT_23);
-		} else if (genPackage.hasXMLMap() && !genPackage.hasTargetNamespace()) {
+			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EPackage"));
 			stringBuffer.append(TEXT_24);
 			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
 			stringBuffer.append(TEXT_25);
+		} else if (genPackage.hasXMLMap() && !genPackage.hasTargetNamespace()) {
+			stringBuffer.append(TEXT_26);
+			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+			stringBuffer.append(TEXT_25);
 		}
-		stringBuffer.append(TEXT_26);
+		stringBuffer.append(TEXT_27);
 		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_27);
+			stringBuffer.append(TEXT_28);
 		}
-		stringBuffer.append(TEXT_28);
 		stringBuffer.append(TEXT_29);
+		stringBuffer.append(TEXT_14);
 		{
-			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel"%>
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel,isJDK50:isJDK50"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
 			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
@@ -269,6 +276,7 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
+			callParameters.put("isJDK50", isJDK50);
 			CallHelper.executeWithParameterInjection(
 					"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw",
 					new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -279,7 +287,7 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 		stringBuffer.append(TEXT_30);
 		stringBuffer.append(genPackage.getResourceFactoryClassName());
 		genModel.emitSortedImports();
-		stringBuffer.append(TEXT_31);
+		stringBuffer.append(TEXT_14);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

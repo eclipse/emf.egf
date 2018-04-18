@@ -49,10 +49,19 @@ package <%=genPackage.getClassPackageName()%>;
  * </ul>
 <%}%>
  *
+<%if (genClass.hasImplicitAPITags()) {%>
+ * <%=genClass.getImplicitAPITags(genModel.getIndentation(stringBuffer))%>
+<%}%>
  * @generated
  */
 <%}%>
+<%if (isJDK50 && genClass.hasImplicitAPIDeprecatedTag()) {%>
+@Deprecated
+<%}%>
 <%if (isImplementation) {%>
+<%if (isJDK50 && !genClass.hasAPIDeprecatedTag() && GenModelUtil.hasImplicitAPIDeprecatedTag(genClass.getEGetGenFeatures(), genClass.getEIsSetGenFeatures(), genClass.getESetGenFeatures(), genClass.getEUnsetGenFeatures(), genClass.getEInverseAddGenFeatures(), genClass.getEInverseRemoveGenFeatures(), genClass.getEBasicRemoveFromContainerGenFeatures(), genClass.getToStringGenFeatures())) {%>
+@SuppressWarnings("deprecation")
+<%}%>
 public<%if (genClass.isAbstract()) {%> abstract<%}%> class <%=genClass.getClassName()%><%=genClass.getTypeParameters().trim()%><%=genClass.getClassExtends()%><%=genClass.getClassImplements()%>
 <%} else {%>
 public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters().trim()%><%=genClass.getInterfaceExtends()%>
@@ -140,9 +149,15 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #<%=genFeature.getGetArrayAccessor()%>()
+       <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+       <%}%>
 	 * @generated
 	 * @ordered
 	 */
+        <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+        <%}%>
         <%if (genFeature.getQualifiedListItemType(genClass).contains("<") || genFeature.getArrayItemType(genClass).contains("<")) {%>
 	@SuppressWarnings("rawtypes")
         <%}%>
@@ -169,8 +184,14 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+       <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+       <%}%>
 	 * @generated
 	 */
+        <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+        <%}%>
 	private static final int <%=genClass.getOffsetCorrectionField(genFeature)%> = <%=reverseFeature.getGenClass().getQualifiedClassifierAccessor()%>.getFeatureID(<%=reverseFeature.getQualifiedFeatureAccessor()%>) - <%=reverseFeature.getGenClass().getQualifiedFeatureID(reverseFeature)%>;
 
     <%}%>
@@ -725,7 +746,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	{
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		<%=genModel.useGenerics() ? "StringBuilder" : "StringBuffer"%> result = new <%=genModel.useGenerics() ? "StringBuilder" : "StringBuffer"%>(super.toString());
   <%{ boolean first = true;%>
     <%for (GenFeature genFeature : genClass.getToStringGenFeatures()) {%>
       <%if (first) { first = false;%>

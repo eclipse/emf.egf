@@ -12,6 +12,7 @@
  */
 %>
 <%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();%>
+<%final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
 
@@ -24,8 +25,14 @@ package <%=genPackage.getUtilitiesPackageName()%>;
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
  * @see <%=genPackage.getQualifiedResourceClassName()%>
+<%if (genPackage.hasAPITags()) {%>
+ * <%=genPackage.getAPITags(genModel.getIndentation(stringBuffer))%>
+<%}%>
  * @generated
  */
+<%if (isJDK50 && genPackage.hasAPIDeprecatedTag()) {%>
+@Deprecated
+<%}%>
 public class <%=genPackage.getResourceFactoryClassName()%> extends <%=genPackage.getImportedResourceFactoryBaseClassName()%>
 {
 <%if (genModel.hasCopyrightField()) {%>
@@ -82,7 +89,7 @@ public class <%=genPackage.getResourceFactoryClassName()%> extends <%=genPackage
   <%}%>
 	public Resource createResource(URI uri)
 	{
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel"%><%//ResourceFactoryClass/createResource.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel,isJDK50:isJDK50"%><%//ResourceFactoryClass/createResource.override.javajetinc%>
 	}
 
 } //<%=genPackage.getResourceFactoryClassName()%>

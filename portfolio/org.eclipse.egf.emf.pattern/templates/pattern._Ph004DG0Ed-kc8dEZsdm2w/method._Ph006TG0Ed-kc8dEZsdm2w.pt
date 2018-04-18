@@ -12,6 +12,7 @@
  */
 %>
 <%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();%>
+<%final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;%>
 <%final String singleWildcard = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<?>" : "";%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
@@ -33,8 +34,16 @@ package <%=genPackage.getUtilitiesPackageName()%>;
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see <%=genPackage.getQualifiedPackageInterfaceName()%>
+<%if (genPackage.hasAPITags()) {%>
+ * <%=genPackage.getAPITags(genModel.getIndentation(stringBuffer))%>
+<%}%>
  * @generated
  */
+<%if (isJDK50 && genPackage.hasAPIDeprecatedTag()) {%>
+@Deprecated
+<%} else if (isJDK50 && GenModelUtil.hasAPIDeprecatedTag(genPackage.getGenClassifiers())) {%>
+@SuppressWarnings("deprecation")
+<%}%>
 public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.util.EObjectValidator")%>
 {
 <%if (genModel.hasCopyrightField()) {%>
@@ -187,8 +196,14 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+    <%if (genClassifier.hasAPITags()) {%>
+	 * <%=genClassifier.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
+  <%if (isJDK50 && genClassifier.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+  <%}%>
 	public boolean validate<%=genClassifier.getName()%>(<%=genClassifier.getImportedWildcardInstanceClassName()%> <%=genClassifier.getSafeUncapName()%>, DiagnosticChain <%=diagnostics%>, <%=_Map%> <%=context%>)
 	{
 <%if (genClassifier.getAllGenConstraints().isEmpty()) {%>
@@ -589,7 +604,7 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 		return
 			validate
 				(<%=genClassifier.getQualifiedClassifierAccessor()%>,
-				 <%=genClassifier.getSafeUncapName()%>,
+				 <%if (!((GenClass)genClassifier).isEObjectExtension()) {%>(<%=genModel.getImportedName("org.eclipse.emf.ecore.EObject")%>)<%}%><%=genClassifier.getSafeUncapName()%>,
 				 <%=diagnostics%>,
 				 <%=context%>,
 				 "<%=genClassifier.getValidationDelegate(constraint)%>",<%=genModel.getNonNLS()%>
@@ -658,6 +673,6 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 	}
 
 <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ValidatorClass.ValidatorClass.insert" args="genPackage:genPackage,genModel:genModel,singleWildcard:singleWildcard,_Map:_Map,objectArgument:objectArgument,count:count"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ValidatorClass.ValidatorClass.insert" args="genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,singleWildcard:singleWildcard,_Map:_Map,objectArgument:objectArgument,count:count"%>
 } //<%=genPackage.getValidatorClassName()%>
 <%genModel.emitSortedImports();%>

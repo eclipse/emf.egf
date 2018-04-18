@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -38,7 +39,6 @@ public class InterfacegetGenFeatureTODOoverride {
 	protected final String TEXT_8 = " should be used.";
 	protected final String TEXT_9 = NL + "\t\tthrow new UnsupportedOperationException();" + NL;
 	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
 
 	public InterfacegetGenFeatureTODOoverride() {
 		//Here is the constructor
@@ -141,7 +141,7 @@ public class InterfacegetGenFeatureTODOoverride {
 		}
 
 		stringBuffer.append(TEXT_10);
-		stringBuffer.append(TEXT_11);
+		stringBuffer.append(TEXT_10);
 		return stringBuffer.toString();
 	}
 

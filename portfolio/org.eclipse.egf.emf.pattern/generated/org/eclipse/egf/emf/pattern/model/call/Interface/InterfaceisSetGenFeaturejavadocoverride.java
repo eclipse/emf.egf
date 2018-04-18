@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -35,17 +36,15 @@ public class InterfaceisSetGenFeaturejavadocoverride {
 	protected final String TEXT_7 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
 			+ "\t * @return whether the value of the '<em>";
 	protected final String TEXT_8 = "</em>' ";
-	protected final String TEXT_9 = " is set.";
-	protected final String TEXT_10 = NL + "\t * @see #unset";
-	protected final String TEXT_11 = "()";
-	protected final String TEXT_12 = NL + "\t * @see #";
-	protected final String TEXT_13 = "()";
-	protected final String TEXT_14 = NL + "\t * @see #set";
-	protected final String TEXT_15 = "(";
-	protected final String TEXT_16 = ")";
-	protected final String TEXT_17 = NL + "\t * @generated" + NL + "\t */" + NL;
-	protected final String TEXT_18 = NL;
-	protected final String TEXT_19 = NL;
+	protected final String TEXT_9 = NL + "\t * @see #unset";
+	protected final String TEXT_10 = "()";
+	protected final String TEXT_11 = NL + "\t * @see #";
+	protected final String TEXT_12 = NL + "\t * @see #set";
+	protected final String TEXT_13 = "(";
+	protected final String TEXT_14 = ")";
+	protected final String TEXT_15 = NL + "\t * ";
+	protected final String TEXT_16 = NL + "\t * @generated" + NL + "\t */" + NL;
+	protected final String TEXT_17 = NL;
 
 	public InterfaceisSetGenFeaturejavadocoverride() {
 		//Here is the constructor
@@ -147,8 +146,8 @@ public class InterfaceisSetGenFeaturejavadocoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_18);
-		stringBuffer.append(TEXT_19);
+		stringBuffer.append(TEXT_17);
+		stringBuffer.append(TEXT_17);
 		return stringBuffer.toString();
 	}
 
@@ -286,7 +285,7 @@ public class InterfaceisSetGenFeaturejavadocoverride {
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
-		stringBuffer.append(genClass.getQualifiedInterfaceName());
+		stringBuffer.append(genClass.getRawQualifiedInterfaceName());
 		stringBuffer.append(TEXT_2);
 		stringBuffer.append(genFeature.getGetAccessor());
 		stringBuffer.append(TEXT_3);
@@ -327,23 +326,27 @@ public class InterfaceisSetGenFeaturejavadocoverride {
 		stringBuffer.append(genFeature.getFormattedName());
 		stringBuffer.append(TEXT_8);
 		stringBuffer.append(genFeature.getFeatureKind());
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_5);
 		if (genFeature.isChangeable() && !genFeature.isSuppressedUnsetVisibility()) {
+			stringBuffer.append(TEXT_9);
+			stringBuffer.append(genFeature.getAccessorName());
 			stringBuffer.append(TEXT_10);
-			stringBuffer.append(genFeature.getAccessorName());
-			stringBuffer.append(TEXT_11);
 		}
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_11);
 		stringBuffer.append(genFeature.getGetAccessor());
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_10);
 		if (!genFeature.isListType() && genFeature.isChangeable() && !genFeature.isSuppressedSetVisibility()) {
-			stringBuffer.append(TEXT_14);
+			stringBuffer.append(TEXT_12);
 			stringBuffer.append(genFeature.getAccessorName());
-			stringBuffer.append(TEXT_15);
+			stringBuffer.append(TEXT_13);
 			stringBuffer.append(genFeature.getRawImportedBoundType());
-			stringBuffer.append(TEXT_16);
+			stringBuffer.append(TEXT_14);
 		}
-		stringBuffer.append(TEXT_17);
+		if (genFeature.hasAPITags()) {
+			stringBuffer.append(TEXT_15);
+			stringBuffer.append(genFeature.getAPITags(genModel.getIndentation(stringBuffer)));
+		}
+		stringBuffer.append(TEXT_16);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

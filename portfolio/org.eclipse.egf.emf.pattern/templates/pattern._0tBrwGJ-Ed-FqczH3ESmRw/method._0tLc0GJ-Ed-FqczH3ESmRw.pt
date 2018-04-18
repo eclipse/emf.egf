@@ -7,9 +7,15 @@
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>)
+      <%if (genOperation.hasAPITags()) {%>
+	 * <%=genOperation.getAPITags(genModel.getIndentation(stringBuffer))%>
+      <%}%>
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isJDK50 && genOperation.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+      <%}%>
 	protected static final <%=genModel.getImportedName("java.lang.String")%> <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EEXPRESSION = "<%=genOperation.getInvariantExpression("\t\t")%>";<%=genModel.getNonNLS()%>
 
     <%} else if (genOperation.hasInvocationDelegate()) {%>
@@ -18,9 +24,15 @@
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>)
+      <%if (genOperation.hasAPITags()) {%>
+	 * <%=genOperation.getAPITags(genModel.getIndentation(stringBuffer))%>
+      <%}%>
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isJDK50 && genOperation.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+      <%}%>
 	protected static final <%=genModel.getImportedName("org.eclipse.emf.ecore.EOperation")%>.Internal.InvocationDelegate <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.EOperation")%>.Internal)<%=genOperation.getQualifiedOperationAccessor()%>).getInvocationDelegate();
 
     <%}%>
@@ -31,11 +43,17 @@
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+      <%if (genOperation.hasAPITags()) {%>
+	 * <%=genOperation.getAPITags(genModel.getIndentation(stringBuffer))%>
+      <%}%>
 	 * @generated
 	 */
 <%if (isJDK50) { //Class/genOperation.annotations.insert.javajetinc%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.annotations.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 <%}%>
+<%}%>
+<%if (isJDK50 && genOperation.hasAPIDeprecatedTag()) {%>
+	@Deprecated
 <%}%>
 <%if (!isImplementation) {%>
 	<%=genOperation.getTypeParameters(genClass)%><%=genOperation.getImportedType(genClass)%> <%=genOperation.getName()%>(<%=genOperation.getParameters(genClass)%>)<%=genOperation.getThrows(genClass)%>;

@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -33,55 +34,40 @@ public class InterfacegetGenFeaturejavadocoverride {
 	protected final String TEXT_5 = "list of {@link ";
 	protected final String TEXT_6 = "}";
 	protected final String TEXT_7 = "{@link ";
-	protected final String TEXT_8 = "}";
-	protected final String TEXT_9 = "," + NL + "\t * and the value is of type ";
-	protected final String TEXT_10 = "list of {@link ";
-	protected final String TEXT_11 = "}";
-	protected final String TEXT_12 = "{@link ";
-	protected final String TEXT_13 = "}";
-	protected final String TEXT_14 = ",";
-	protected final String TEXT_15 = NL + "\t * The list contents are of type {@link ";
-	protected final String TEXT_16 = "}";
-	protected final String TEXT_17 = ".";
-	protected final String TEXT_18 = NL + "\t * The default value is <code>";
-	protected final String TEXT_19 = "</code>.";
-	protected final String TEXT_20 = NL + "\t * The literals are from the enumeration {@link ";
-	protected final String TEXT_21 = "}.";
-	protected final String TEXT_22 = NL + "\t * It is bidirectional and its opposite is '{@link ";
-	protected final String TEXT_23 = "#";
-	protected final String TEXT_24 = " <em>";
-	protected final String TEXT_25 = "</em>}'.";
-	protected final String TEXT_26 = NL;
-	protected final String TEXT_27 = NL + "\t * <!-- begin-user-doc -->";
-	protected final String TEXT_28 = NL + "\t * <p>" + NL + "\t * If the meaning of the '<em>";
-	protected final String TEXT_29 = "</em>' ";
-	protected final String TEXT_30 = " isn't clear," + NL + "\t * there really should be more of a description here..."
+	protected final String TEXT_8 = "," + NL + "\t * and the value is of type ";
+	protected final String TEXT_9 = ",";
+	protected final String TEXT_10 = NL + "\t * The list contents are of type {@link ";
+	protected final String TEXT_11 = NL + "\t * The default value is <code>";
+	protected final String TEXT_12 = "</code>.";
+	protected final String TEXT_13 = NL + "\t * The literals are from the enumeration {@link ";
+	protected final String TEXT_14 = "}.";
+	protected final String TEXT_15 = NL + "\t * It is bidirectional and its opposite is '{@link ";
+	protected final String TEXT_16 = "#";
+	protected final String TEXT_17 = " <em>";
+	protected final String TEXT_18 = "</em>}'.";
+	protected final String TEXT_19 = NL;
+	protected final String TEXT_20 = NL + "\t * <!-- begin-user-doc -->";
+	protected final String TEXT_21 = NL + "\t * <p>" + NL + "\t * If the meaning of the '<em>";
+	protected final String TEXT_22 = "</em>' ";
+	protected final String TEXT_23 = " isn't clear," + NL + "\t * there really should be more of a description here..."
 			+ NL + "\t * </p>";
-	protected final String TEXT_31 = NL + "\t * <!-- end-user-doc -->";
-	protected final String TEXT_32 = NL + "\t * <!-- begin-model-doc -->" + NL + "\t * ";
-	protected final String TEXT_33 = NL + "\t * <!-- end-model-doc -->";
-	protected final String TEXT_34 = NL + "\t * @return the value of the '<em>";
-	protected final String TEXT_35 = "</em>' ";
-	protected final String TEXT_36 = ".";
-	protected final String TEXT_37 = NL + "\t * @see ";
-	protected final String TEXT_38 = NL + "\t * @see #isSet";
-	protected final String TEXT_39 = "()";
-	protected final String TEXT_40 = NL + "\t * @see #unset";
-	protected final String TEXT_41 = "()";
-	protected final String TEXT_42 = NL + "\t * @see #set";
-	protected final String TEXT_43 = "(";
-	protected final String TEXT_44 = ")";
-	protected final String TEXT_45 = NL + "\t * @see ";
-	protected final String TEXT_46 = "#get";
-	protected final String TEXT_47 = "()";
-	protected final String TEXT_48 = NL + "\t * @see ";
-	protected final String TEXT_49 = "#";
-	protected final String TEXT_50 = NL + "\t * @model ";
-	protected final String TEXT_51 = NL + "\t *        ";
-	protected final String TEXT_52 = NL + "\t * @model";
-	protected final String TEXT_53 = NL + "\t * @generated" + NL + "\t */" + NL;
-	protected final String TEXT_54 = NL;
-	protected final String TEXT_55 = NL;
+	protected final String TEXT_24 = NL + "\t * <!-- end-user-doc -->";
+	protected final String TEXT_25 = NL + "\t * <!-- begin-model-doc -->" + NL + "\t * ";
+	protected final String TEXT_26 = NL + "\t * <!-- end-model-doc -->";
+	protected final String TEXT_27 = NL + "\t * @return the value of the '<em>";
+	protected final String TEXT_28 = NL + "\t * @see ";
+	protected final String TEXT_29 = NL + "\t * @see #isSet";
+	protected final String TEXT_30 = "()";
+	protected final String TEXT_31 = NL + "\t * @see #unset";
+	protected final String TEXT_32 = NL + "\t * @see #set";
+	protected final String TEXT_33 = "(";
+	protected final String TEXT_34 = ")";
+	protected final String TEXT_35 = "#get";
+	protected final String TEXT_36 = NL + "\t * @model ";
+	protected final String TEXT_37 = NL + "\t *        ";
+	protected final String TEXT_38 = NL + "\t * @model";
+	protected final String TEXT_39 = NL + "\t * @generated" + NL + "\t */" + NL;
+	protected final String TEXT_40 = NL;
 
 	public InterfacegetGenFeaturejavadocoverride() {
 		//Here is the constructor
@@ -183,8 +169,8 @@ public class InterfacegetGenFeaturejavadocoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_54);
-		stringBuffer.append(TEXT_55);
+		stringBuffer.append(TEXT_40);
+		stringBuffer.append(TEXT_40);
 		return stringBuffer.toString();
 	}
 
@@ -338,19 +324,19 @@ public class InterfacegetGenFeaturejavadocoverride {
 				} else {
 					stringBuffer.append(TEXT_7);
 					stringBuffer.append(keyFeature.getType(genClass));
-					stringBuffer.append(TEXT_8);
+					stringBuffer.append(TEXT_6);
+				}
+				stringBuffer.append(TEXT_8);
+				if (valueFeature.isListType()) {
+					stringBuffer.append(TEXT_5);
+					stringBuffer.append(valueFeature.getQualifiedListItemType(genClass));
+					stringBuffer.append(TEXT_6);
+				} else {
+					stringBuffer.append(TEXT_7);
+					stringBuffer.append(valueFeature.getType(genClass));
+					stringBuffer.append(TEXT_6);
 				}
 				stringBuffer.append(TEXT_9);
-				if (valueFeature.isListType()) {
-					stringBuffer.append(TEXT_10);
-					stringBuffer.append(valueFeature.getQualifiedListItemType(genClass));
-					stringBuffer.append(TEXT_11);
-				} else {
-					stringBuffer.append(TEXT_12);
-					stringBuffer.append(valueFeature.getType(genClass));
-					stringBuffer.append(TEXT_13);
-				}
-				stringBuffer.append(TEXT_14);
 			} else if (!genFeature.isWrappedFeatureMapType() && !(genModel.isSuppressEMFMetaData()
 					&& "org.eclipse.emf.ecore.EObject".equals(genFeature.getQualifiedListItemType(genClass)))) {
 				String typeName = genFeature.getQualifiedListItemType(genClass);
@@ -365,35 +351,35 @@ public class InterfacegetGenFeaturejavadocoverride {
 					tail = "<code>" + CodeGenUtil.xmlEscapeEncode(typeName.substring(index)) + "</code>";
 				}
 
-				stringBuffer.append(TEXT_15);
+				stringBuffer.append(TEXT_10);
 				stringBuffer.append(head);
-				stringBuffer.append(TEXT_16);
+				stringBuffer.append(TEXT_6);
 				stringBuffer.append(tail);
-				stringBuffer.append(TEXT_17);
+				stringBuffer.append(TEXT_3);
 			}
 		} else if (genFeature.isSetDefaultValue()) {
-			stringBuffer.append(TEXT_18);
+			stringBuffer.append(TEXT_11);
 			stringBuffer.append(genFeature.getDefaultValue());
-			stringBuffer.append(TEXT_19);
+			stringBuffer.append(TEXT_12);
 		}
 		if (genFeature.getTypeGenEnum() != null) {
-			stringBuffer.append(TEXT_20);
+			stringBuffer.append(TEXT_13);
 			stringBuffer.append(genFeature.getTypeGenEnum().getQualifiedName());
-			stringBuffer.append(TEXT_21);
+			stringBuffer.append(TEXT_14);
 		}
 		if (genFeature.isBidirectional() && !genFeature.getReverse().getGenClass().isMapEntry()) {
 			GenFeature reverseGenFeature = genFeature.getReverse();
 			if (!reverseGenFeature.isSuppressedGetVisibility()) {
-				stringBuffer.append(TEXT_22);
-				stringBuffer.append(reverseGenFeature.getGenClass().getQualifiedInterfaceName());
-				stringBuffer.append(TEXT_23);
+				stringBuffer.append(TEXT_15);
+				stringBuffer.append(reverseGenFeature.getGenClass().getRawQualifiedInterfaceName());
+				stringBuffer.append(TEXT_16);
 				stringBuffer.append(reverseGenFeature.getGetAccessor());
-				stringBuffer.append(TEXT_24);
+				stringBuffer.append(TEXT_17);
 				stringBuffer.append(reverseGenFeature.getFormattedName());
-				stringBuffer.append(TEXT_25);
+				stringBuffer.append(TEXT_18);
 			}
 		}
-		stringBuffer.append(TEXT_26);
+		stringBuffer.append(TEXT_19);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.javadoc.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
@@ -422,61 +408,61 @@ public class InterfacegetGenFeaturejavadocoverride {
 			stringBuffer.setLength(0);
 		}
 
-		stringBuffer.append(TEXT_27);
+		stringBuffer.append(TEXT_20);
 		if (!genFeature.hasDocumentation()) {
-			stringBuffer.append(TEXT_28);
+			stringBuffer.append(TEXT_21);
 			stringBuffer.append(genFeature.getFormattedName());
-			stringBuffer.append(TEXT_29);
+			stringBuffer.append(TEXT_22);
 			stringBuffer.append(genFeature.getFeatureKind());
-			stringBuffer.append(TEXT_30);
+			stringBuffer.append(TEXT_23);
 		}
-		stringBuffer.append(TEXT_31);
+		stringBuffer.append(TEXT_24);
 		if (genFeature.hasDocumentation()) {
-			stringBuffer.append(TEXT_32);
+			stringBuffer.append(TEXT_25);
 			stringBuffer.append(genFeature.getDocumentation(genModel.getIndentation(stringBuffer)));
-			stringBuffer.append(TEXT_33);
+			stringBuffer.append(TEXT_26);
 		}
-		stringBuffer.append(TEXT_34);
+		stringBuffer.append(TEXT_27);
 		stringBuffer.append(genFeature.getFormattedName());
-		stringBuffer.append(TEXT_35);
+		stringBuffer.append(TEXT_22);
 		stringBuffer.append(genFeature.getFeatureKind());
-		stringBuffer.append(TEXT_36);
+		stringBuffer.append(TEXT_3);
 		if (genFeature.getTypeGenEnum() != null) {
-			stringBuffer.append(TEXT_37);
+			stringBuffer.append(TEXT_28);
 			stringBuffer.append(genFeature.getTypeGenEnum().getQualifiedName());
 		}
 		if (genFeature.isUnsettable()) {
 			if (!genFeature.isSuppressedIsSetVisibility()) {
-				stringBuffer.append(TEXT_38);
+				stringBuffer.append(TEXT_29);
 				stringBuffer.append(genFeature.getAccessorName());
-				stringBuffer.append(TEXT_39);
+				stringBuffer.append(TEXT_30);
 			}
 			if (genFeature.isChangeable() && !genFeature.isSuppressedUnsetVisibility()) {
-				stringBuffer.append(TEXT_40);
+				stringBuffer.append(TEXT_31);
 				stringBuffer.append(genFeature.getAccessorName());
-				stringBuffer.append(TEXT_41);
+				stringBuffer.append(TEXT_30);
 			}
 		}
 		if (genFeature.isChangeable() && !genFeature.isListType() && !genFeature.isSuppressedSetVisibility()) {
-			stringBuffer.append(TEXT_42);
+			stringBuffer.append(TEXT_32);
 			stringBuffer.append(genFeature.getAccessorName());
-			stringBuffer.append(TEXT_43);
+			stringBuffer.append(TEXT_33);
 			stringBuffer.append(genFeature.getRawImportedBoundType());
-			stringBuffer.append(TEXT_44);
+			stringBuffer.append(TEXT_34);
 		}
 		if (!genModel.isSuppressEMFMetaData()) {
-			stringBuffer.append(TEXT_45);
+			stringBuffer.append(TEXT_28);
 			stringBuffer.append(genPackage.getQualifiedPackageInterfaceName());
-			stringBuffer.append(TEXT_46);
+			stringBuffer.append(TEXT_35);
 			stringBuffer.append(genFeature.getFeatureAccessorName());
-			stringBuffer.append(TEXT_47);
+			stringBuffer.append(TEXT_30);
 		}
 		if (genFeature.isBidirectional() && !genFeature.getReverse().getGenClass().isMapEntry()) {
 			GenFeature reverseGenFeature = genFeature.getReverse();
 			if (!reverseGenFeature.isSuppressedGetVisibility()) {
-				stringBuffer.append(TEXT_48);
-				stringBuffer.append(reverseGenFeature.getGenClass().getQualifiedInterfaceName());
-				stringBuffer.append(TEXT_49);
+				stringBuffer.append(TEXT_28);
+				stringBuffer.append(reverseGenFeature.getGenClass().getRawQualifiedInterfaceName());
+				stringBuffer.append(TEXT_16);
 				stringBuffer.append(reverseGenFeature.getGetAccessor());
 			}
 		}
@@ -487,18 +473,18 @@ public class InterfacegetGenFeaturejavadocoverride {
 				String modelInfo = stringTokenizer.nextToken();
 				if (first) {
 					first = false;
-					stringBuffer.append(TEXT_50);
+					stringBuffer.append(TEXT_36);
 					stringBuffer.append(modelInfo);
 				} else {
-					stringBuffer.append(TEXT_51);
+					stringBuffer.append(TEXT_37);
 					stringBuffer.append(modelInfo);
 				}
 			}
 			if (first) {
-				stringBuffer.append(TEXT_52);
+				stringBuffer.append(TEXT_38);
 			}
 		}
-		stringBuffer.append(TEXT_53);
+		stringBuffer.append(TEXT_39);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

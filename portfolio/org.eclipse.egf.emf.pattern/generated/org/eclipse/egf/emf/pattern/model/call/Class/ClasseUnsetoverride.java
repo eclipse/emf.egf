@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -44,18 +45,15 @@ public class ClasseUnsetoverride {
 	protected final String TEXT_14 = NL + "\t\t\t\tset";
 	protected final String TEXT_15 = "((";
 	protected final String TEXT_16 = ")null);";
-	protected final String TEXT_17 = NL + "\t\t\t\t";
-	protected final String TEXT_18 = "__ESETTING_DELEGATE.dynamicUnset(this, null, 0);";
-	protected final String TEXT_19 = NL + "\t\t\t\tset";
-	protected final String TEXT_20 = "(";
-	protected final String TEXT_21 = ");";
-	protected final String TEXT_22 = NL + "\t\t\t\treturn;";
-	protected final String TEXT_23 = NL + "\t\t}";
-	protected final String TEXT_24 = NL + "\t\tsuper.eUnset(featureID);";
-	protected final String TEXT_25 = NL + "\t\teDynamicUnset(featureID);";
-	protected final String TEXT_26 = NL + "\t}" + NL + NL;
-	protected final String TEXT_27 = NL;
-	protected final String TEXT_28 = NL;
+	protected final String TEXT_17 = "__ESETTING_DELEGATE.dynamicUnset(this, null, 0);";
+	protected final String TEXT_18 = "(";
+	protected final String TEXT_19 = ");";
+	protected final String TEXT_20 = NL + "\t\t\t\treturn;";
+	protected final String TEXT_21 = NL + "\t\t}";
+	protected final String TEXT_22 = NL + "\t\tsuper.eUnset(featureID);";
+	protected final String TEXT_23 = NL + "\t\teDynamicUnset(featureID);";
+	protected final String TEXT_24 = NL + "\t}" + NL + NL;
+	protected final String TEXT_25 = NL;
 
 	public ClasseUnsetoverride() {
 		//Here is the constructor
@@ -152,8 +150,8 @@ public class ClasseUnsetoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_27);
-		stringBuffer.append(TEXT_28);
+		stringBuffer.append(TEXT_25);
+		stringBuffer.append(TEXT_25);
 		return stringBuffer.toString();
 	}
 
@@ -316,25 +314,25 @@ public class ClasseUnsetoverride {
 				stringBuffer.append(genFeature.getImportedType(genClass));
 				stringBuffer.append(TEXT_16);
 			} else if (genFeature.hasSettingDelegate()) {
-				stringBuffer.append(TEXT_17);
+				stringBuffer.append(TEXT_10);
 				stringBuffer.append(genFeature.getUpperName());
-				stringBuffer.append(TEXT_18);
+				stringBuffer.append(TEXT_17);
 			} else {
-				stringBuffer.append(TEXT_19);
+				stringBuffer.append(TEXT_14);
 				stringBuffer.append(genFeature.getAccessorName());
-				stringBuffer.append(TEXT_20);
+				stringBuffer.append(TEXT_18);
 				stringBuffer.append(genFeature.getEDefault());
-				stringBuffer.append(TEXT_21);
+				stringBuffer.append(TEXT_19);
 			}
-			stringBuffer.append(TEXT_22);
+			stringBuffer.append(TEXT_20);
 		}
-		stringBuffer.append(TEXT_23);
+		stringBuffer.append(TEXT_21);
 		if (genModel.isMinimalReflectiveMethods()) {
-			stringBuffer.append(TEXT_24);
+			stringBuffer.append(TEXT_22);
 		} else {
-			stringBuffer.append(TEXT_25);
+			stringBuffer.append(TEXT_23);
 		}
-		stringBuffer.append(TEXT_26);
+		stringBuffer.append(TEXT_24);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

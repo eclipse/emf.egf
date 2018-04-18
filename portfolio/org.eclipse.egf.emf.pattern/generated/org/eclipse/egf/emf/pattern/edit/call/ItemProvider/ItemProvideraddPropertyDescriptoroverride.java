@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -33,33 +34,24 @@ public class ItemProvideraddPropertyDescriptoroverride {
 	protected final String TEXT_3 = "_";
 	protected final String TEXT_4 = "_feature\"),";
 	protected final String TEXT_5 = NL + "\t\t\t\t getString(\"_UI_PropertyDescriptor_description\", \"_UI_";
-	protected final String TEXT_6 = "_";
-	protected final String TEXT_7 = "_feature\", \"_UI_";
-	protected final String TEXT_8 = "_type\"),";
-	protected final String TEXT_9 = NL + "\t\t\t\t getString(\"_UI_";
-	protected final String TEXT_10 = "_";
-	protected final String TEXT_11 = "_description\"),";
-	protected final String TEXT_12 = NL + "\t\t\t\t ";
-	protected final String TEXT_13 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_14 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_15 = "," + NL + "\t\t\t\t ";
-	protected final String TEXT_16 = ",";
-	protected final String TEXT_17 = NL + "\t\t\t\t null,";
-	protected final String TEXT_18 = NL + "\t\t\t\t ";
-	protected final String TEXT_19 = ".";
-	protected final String TEXT_20 = ",";
-	protected final String TEXT_21 = NL + "\t\t\t\t null,";
-	protected final String TEXT_22 = NL + "\t\t\t\t getString(\"";
-	protected final String TEXT_23 = "\"),";
-	protected final String TEXT_24 = NL + "\t\t\t\t null));";
-	protected final String TEXT_25 = NL + "\t\t\t\t new String[] {";
-	protected final String TEXT_26 = NL + "\t\t\t\t\t\"";
-	protected final String TEXT_27 = "\"";
-	protected final String TEXT_28 = ",";
-	protected final String TEXT_29 = NL + "\t\t\t\t }));";
-	protected final String TEXT_30 = NL;
-	protected final String TEXT_31 = NL;
-	protected final String TEXT_32 = NL;
+	protected final String TEXT_6 = "_feature\", \"_UI_";
+	protected final String TEXT_7 = "_type\"),";
+	protected final String TEXT_8 = NL + "\t\t\t\t getString(\"_UI_";
+	protected final String TEXT_9 = "_description\"),";
+	protected final String TEXT_10 = NL + "\t\t\t\t ";
+	protected final String TEXT_11 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_12 = ",";
+	protected final String TEXT_13 = NL + "\t\t\t\t null,";
+	protected final String TEXT_14 = ".";
+	protected final String TEXT_15 = NL + "\t\t\t\t getString(\"";
+	protected final String TEXT_16 = "\"),";
+	protected final String TEXT_17 = NL + "\t\t\t\t null));";
+	protected final String TEXT_18 = NL + "\t\t\t\t new String[] {";
+	protected final String TEXT_19 = NL + "\t\t\t\t\t\"";
+	protected final String TEXT_20 = "\"";
+	protected final String TEXT_21 = NL + "\t\t\t\t }));";
+	protected final String TEXT_22 = NL;
+	protected final String TEXT_23 = NL;
 
 	public ItemProvideraddPropertyDescriptoroverride() {
 		//Here is the constructor
@@ -85,6 +77,8 @@ public class ItemProvideraddPropertyDescriptoroverride {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _ListList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
@@ -92,19 +86,22 @@ public class ItemProvideraddPropertyDescriptoroverride {
 			for (Object genClassParameter : genClassList) {
 				for (Object genPackageParameter : genPackageList) {
 					for (Object genModelParameter : genModelList) {
-						for (Object _ListParameter : _ListList) {
+						for (Object isJDK50Parameter : isJDK50List) {
+							for (Object _ListParameter : _ListList) {
 
-							this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-							this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-							this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-							this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-							this._List = (java.lang.String) _ListParameter;
+								this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+								this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+								this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+								this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+								this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+								this._List = (java.lang.String) _ListParameter;
 
-							if (preCondition(ctx)) {
-								ctx.setNode(new Node.Container(currentNode, getClass()));
-								orchestration(ctx);
+								if (preCondition(ctx)) {
+									ctx.setNode(new Node.Container(currentNode, getClass()));
+									orchestration(ctx);
+								}
+
 							}
-
 						}
 					}
 				}
@@ -115,8 +112,8 @@ public class ItemProvideraddPropertyDescriptoroverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_31);
-		stringBuffer.append(TEXT_32);
+		stringBuffer.append(TEXT_23);
+		stringBuffer.append(TEXT_23);
 		return stringBuffer.toString();
 	}
 
@@ -131,6 +128,7 @@ public class ItemProvideraddPropertyDescriptoroverride {
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			parameterValues.put("_List", this._List);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
@@ -163,6 +161,12 @@ public class ItemProvideraddPropertyDescriptoroverride {
 		this.genModel = object;
 	}
 
+	protected java.lang.Boolean isJDK50 = null;
+
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
+	}
+
 	protected java.lang.String _List = null;
 
 	public void set__List(java.lang.String object) {
@@ -175,6 +179,7 @@ public class ItemProvideraddPropertyDescriptoroverride {
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		parameters.put("_List", this._List);
 		return parameters;
 	}
@@ -192,67 +197,67 @@ public class ItemProvideraddPropertyDescriptoroverride {
 		if (genFeature.getPropertyDescription() == null || genFeature.getPropertyDescription().length() == 0) {
 			stringBuffer.append(TEXT_5);
 			stringBuffer.append(genFeature.getGenClass().getName());
-			stringBuffer.append(TEXT_6);
+			stringBuffer.append(TEXT_3);
 			stringBuffer.append(genFeature.getName());
-			stringBuffer.append(TEXT_7);
+			stringBuffer.append(TEXT_6);
 			stringBuffer.append(genFeature.getGenClass().getName());
-			stringBuffer.append(TEXT_8);
+			stringBuffer.append(TEXT_7);
 			stringBuffer.append(genModel.getNonNLS());
 			stringBuffer.append(genModel.getNonNLS(2));
 			stringBuffer.append(genModel.getNonNLS(3));
 		} else {
-			stringBuffer.append(TEXT_9);
+			stringBuffer.append(TEXT_8);
 			stringBuffer.append(genFeature.getGenClass().getName());
-			stringBuffer.append(TEXT_10);
+			stringBuffer.append(TEXT_3);
 			stringBuffer.append(genFeature.getName());
-			stringBuffer.append(TEXT_11);
+			stringBuffer.append(TEXT_9);
 			stringBuffer.append(genModel.getNonNLS());
 		}
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_10);
 		stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_11);
 		stringBuffer.append(genFeature.getProperty() == GenPropertyKind.EDITABLE_LITERAL ? "true" : "false");
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_11);
 		stringBuffer.append(genFeature.isPropertyMultiLine() ? "true" : "false");
-		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_11);
 		stringBuffer.append(genFeature.isPropertySortChoices() ? "true" : "false");
-		stringBuffer.append(TEXT_16);
+		stringBuffer.append(TEXT_12);
 		if (genFeature.isReferenceType()) {
-			stringBuffer.append(TEXT_17);
+			stringBuffer.append(TEXT_13);
 		} else {
-			stringBuffer.append(TEXT_18);
+			stringBuffer.append(TEXT_10);
 			stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.ItemPropertyDescriptor"));
-			stringBuffer.append(TEXT_19);
+			stringBuffer.append(TEXT_14);
 			stringBuffer.append(genFeature.getPropertyImageName());
-			stringBuffer.append(TEXT_20);
+			stringBuffer.append(TEXT_12);
 		}
 		if (genFeature.getPropertyCategory() == null || genFeature.getPropertyCategory().length() == 0) {
-			stringBuffer.append(TEXT_21);
+			stringBuffer.append(TEXT_13);
 		} else {
-			stringBuffer.append(TEXT_22);
+			stringBuffer.append(TEXT_15);
 			stringBuffer.append(genModel.getPropertyCategoryKey(genFeature.getPropertyCategory()));
-			stringBuffer.append(TEXT_23);
+			stringBuffer.append(TEXT_16);
 			stringBuffer.append(genModel.getNonNLS());
 		}
 		if (genFeature.getPropertyFilterFlags().isEmpty()) {
-			stringBuffer.append(TEXT_24);
+			stringBuffer.append(TEXT_17);
 		} else {
-			stringBuffer.append(TEXT_25);
+			stringBuffer.append(TEXT_18);
 			for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) {
 				String filterFlag = j.next();
 				if (filterFlag != null && filterFlag.length() > 0) {
-					stringBuffer.append(TEXT_26);
+					stringBuffer.append(TEXT_19);
 					stringBuffer.append(filterFlag);
-					stringBuffer.append(TEXT_27);
+					stringBuffer.append(TEXT_20);
 					if (j.hasNext()) {
-						stringBuffer.append(TEXT_28);
+						stringBuffer.append(TEXT_12);
 					}
 					stringBuffer.append(genModel.getNonNLS());
 				}
 			}
-			stringBuffer.append(TEXT_29);
+			stringBuffer.append(TEXT_21);
 		}
-		stringBuffer.append(TEXT_30);
+		stringBuffer.append(TEXT_22);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

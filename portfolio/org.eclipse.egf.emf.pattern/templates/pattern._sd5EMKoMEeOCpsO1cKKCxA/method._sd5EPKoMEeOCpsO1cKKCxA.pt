@@ -37,7 +37,7 @@
 		String label = labelValue == null ? null : labelValue.toString();
     <%}%>
     	<%=genModel.getImportedName("org.eclipse.emf.edit.provider.StyledString")%> styledLabel = new <%=genModel.getImportedName("org.eclipse.emf.edit.provider.StyledString")%>();
-		if (label == null || label.length() == 0) 
+		if (label == null || label.length() == 0)
 		{
 			styledLabel.append(getString("_UI_<%=genClass.getName()%>_type"), <%=genModel.getImportedName("org.eclipse.emf.edit.provider.StyledString$Style")%>.QUALIFIER_STYLER); <%=genModel.getNonNLS()%>
 		} else {

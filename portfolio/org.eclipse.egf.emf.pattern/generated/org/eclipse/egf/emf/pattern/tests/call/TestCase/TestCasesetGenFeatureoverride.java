@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -32,16 +33,15 @@ public class TestCasesetGenFeatureoverride {
 	protected final String TEXT_4 = ") <em>";
 	protected final String TEXT_5 = "</em>}' feature setter." + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @see ";
-	protected final String TEXT_6 = "#set";
-	protected final String TEXT_7 = "(";
-	protected final String TEXT_8 = ")" + NL + "\t * @generated" + NL + "\t */";
+	protected final String TEXT_6 = ")";
+	protected final String TEXT_7 = NL + "\t * ";
+	protected final String TEXT_8 = NL + "\t * @generated" + NL + "\t */";
 	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL + "\tpublic void testSet";
-	protected final String TEXT_11 = "()" + NL + "\t{";
-	protected final String TEXT_12 = NL;
+	protected final String TEXT_10 = NL + "\t@Deprecated";
+	protected final String TEXT_11 = NL + "\tpublic void testSet";
+	protected final String TEXT_12 = "()" + NL + "\t{";
 	protected final String TEXT_13 = NL + "\t}" + NL;
 	protected final String TEXT_14 = NL;
-	protected final String TEXT_15 = NL;
 
 	public TestCasesetGenFeatureoverride() {
 		//Here is the constructor
@@ -67,22 +67,27 @@ public class TestCasesetGenFeatureoverride {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object genFeatureParameter : genFeatureList) {
 			for (Object genClassParameter : genClassList) {
 				for (Object genPackageParameter : genPackageList) {
 					for (Object genModelParameter : genModelList) {
+						for (Object isJDK50Parameter : isJDK50List) {
 
-						this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-						this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-						this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+							this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+							this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+							this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+							this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+							this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
 
-						if (preCondition(ctx)) {
-							ctx.setNode(new Node.Container(currentNode, getClass()));
-							orchestration(ctx);
+							if (preCondition(ctx)) {
+								ctx.setNode(new Node.Container(currentNode, getClass()));
+								orchestration(ctx);
+							}
+
 						}
-
 					}
 				}
 			}
@@ -93,7 +98,7 @@ public class TestCasesetGenFeatureoverride {
 		}
 
 		stringBuffer.append(TEXT_14);
-		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_14);
 		return stringBuffer.toString();
 	}
 
@@ -108,6 +113,7 @@ public class TestCasesetGenFeatureoverride {
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -139,19 +145,26 @@ public class TestCasesetGenFeatureoverride {
 		this.genModel = object;
 	}
 
+	protected java.lang.Boolean isJDK50 = null;
+
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
+	}
+
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("genFeature", this.genFeature);
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		return parameters;
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
-		stringBuffer.append(genFeature.getGenClass().getQualifiedInterfaceName());
+		stringBuffer.append(genFeature.getGenClass().getRawQualifiedInterfaceName());
 		stringBuffer.append(TEXT_2);
 		stringBuffer.append(genFeature.getAccessorName());
 		stringBuffer.append(TEXT_3);
@@ -159,16 +172,21 @@ public class TestCasesetGenFeatureoverride {
 		stringBuffer.append(TEXT_4);
 		stringBuffer.append(genFeature.getFormattedName());
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(genFeature.getGenClass().getQualifiedInterfaceName());
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(genFeature.getGenClass().getRawQualifiedInterfaceName());
+		stringBuffer.append(TEXT_2);
 		stringBuffer.append(genFeature.getAccessorName());
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_3);
 		stringBuffer.append(genFeature.getRawBoundType());
+		stringBuffer.append(TEXT_6);
+		if (genFeature.hasAPITags()) {
+			stringBuffer.append(TEXT_7);
+			stringBuffer.append(genFeature.getAPITags(genModel.getIndentation(stringBuffer)));
+		}
 		stringBuffer.append(TEXT_8);
 		if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/setGenFeature.annotations.insert.javajetinc
 			stringBuffer.append(TEXT_9);
 			{
-				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
 				new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
@@ -179,6 +197,7 @@ public class TestCasesetGenFeatureoverride {
 				callParameters.put("genClass", genClass);
 				callParameters.put("genPackage", genPackage);
 				callParameters.put("genModel", genModel);
+				callParameters.put("isJDK50", isJDK50);
 				CallHelper.executeWithParameterInjection(
 						"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-wU8GJ-Ed-FqczH3ESmRw",
 						new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -186,12 +205,15 @@ public class TestCasesetGenFeatureoverride {
 			}
 
 		}
-		stringBuffer.append(TEXT_10);
-		stringBuffer.append(genFeature.getAccessorName());
+		if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {
+			stringBuffer.append(TEXT_10);
+		}
 		stringBuffer.append(TEXT_11);
+		stringBuffer.append(genFeature.getAccessorName());
 		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_9);
 		{
-			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
 			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
@@ -202,6 +224,7 @@ public class TestCasesetGenFeatureoverride {
 			callParameters.put("genClass", genClass);
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
+			callParameters.put("isJDK50", isJDK50);
 			CallHelper.executeWithParameterInjection(
 					"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-6F8GJ-Ed-FqczH3ESmRw",
 					new ExecutionContext((InternalPatternContext) ctx), callParameters);

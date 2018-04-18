@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -29,24 +30,22 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + NL + "<?eclipse version=\"3.0\"?>"
 			+ NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL + "<plugin>";
-	protected final String TEXT_5 = NL + "<plugin" + NL + "      name=\"%pluginName\"" + NL + "      id=\"";
-	protected final String TEXT_6 = "\"" + NL + "      version=\"1.0.0\"" + NL
+	protected final String TEXT_3 = NL + "<plugin>";
+	protected final String TEXT_4 = NL + "<plugin" + NL + "      name=\"%pluginName\"" + NL + "      id=\"";
+	protected final String TEXT_5 = "\"" + NL + "      version=\"1.0.0\"" + NL
 			+ "      provider-name=\"%providerName\">" + NL + "" + NL + "   <requires>";
-	protected final String TEXT_7 = NL + "      <import plugin=\"";
-	protected final String TEXT_8 = "\"";
-	protected final String TEXT_9 = " export=\"true\"";
-	protected final String TEXT_10 = "/>";
-	protected final String TEXT_11 = NL + "   </requires>" + NL + "" + NL + "   <runtime>";
-	protected final String TEXT_12 = NL + "      <library name=\"";
-	protected final String TEXT_13 = ".jar\">";
-	protected final String TEXT_14 = NL + "      <library name=\".\">";
-	protected final String TEXT_15 = NL + "         <export name=\"*\"/>" + NL + "      </library>" + NL
+	protected final String TEXT_6 = NL + "      <import plugin=\"";
+	protected final String TEXT_7 = "\"";
+	protected final String TEXT_8 = " export=\"true\"";
+	protected final String TEXT_9 = "/>";
+	protected final String TEXT_10 = NL + "   </requires>" + NL + "" + NL + "   <runtime>";
+	protected final String TEXT_11 = NL + "      <library name=\"";
+	protected final String TEXT_12 = ".jar\">";
+	protected final String TEXT_13 = NL + "      <library name=\".\">";
+	protected final String TEXT_14 = NL + "         <export name=\"*\"/>" + NL + "      </library>" + NL
 			+ "   </runtime>" + NL;
-	protected final String TEXT_16 = NL + "</plugin>" + NL;
-	protected final String TEXT_17 = NL;
-	protected final String TEXT_18 = NL;
+	protected final String TEXT_15 = NL + "</plugin>" + NL;
+	protected final String TEXT_16 = NL;
 
 	public PluginXML() {
 		//Here is the constructor
@@ -82,8 +81,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_17);
-		stringBuffer.append(TEXT_18);
+		stringBuffer.append(TEXT_16);
+		stringBuffer.append(TEXT_16);
 		return stringBuffer.toString();
 	}
 
@@ -182,33 +181,33 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 			stringBuffer.setLength(0);
 		}
 
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		if (genModel.isBundleManifest()) {
-			stringBuffer.append(TEXT_4);
+			stringBuffer.append(TEXT_3);
 		} else {
-			stringBuffer.append(TEXT_5);
+			stringBuffer.append(TEXT_4);
 			stringBuffer.append(genModel.getTestsPluginID());
-			stringBuffer.append(TEXT_6);
+			stringBuffer.append(TEXT_5);
 			for (String pluginID : genModel.getTestsRequiredPlugins()) {
-				stringBuffer.append(TEXT_7);
+				stringBuffer.append(TEXT_6);
 				stringBuffer.append(pluginID);
-				stringBuffer.append(TEXT_8);
+				stringBuffer.append(TEXT_7);
 				if (!pluginID.startsWith("org.eclipse.core.runtime")) {
-					stringBuffer.append(TEXT_9);
+					stringBuffer.append(TEXT_8);
 				}
-				stringBuffer.append(TEXT_10);
+				stringBuffer.append(TEXT_9);
 			}
-			stringBuffer.append(TEXT_11);
+			stringBuffer.append(TEXT_10);
 			if (genModel.isRuntimeJar()) {
-				stringBuffer.append(TEXT_12);
+				stringBuffer.append(TEXT_11);
 				stringBuffer.append(genModel.getTestsPluginID());
-				stringBuffer.append(TEXT_13);
+				stringBuffer.append(TEXT_12);
 			} else {
-				stringBuffer.append(TEXT_14);
+				stringBuffer.append(TEXT_13);
 			}
-			stringBuffer.append(TEXT_15);
+			stringBuffer.append(TEXT_14);
 		}
-		stringBuffer.append(TEXT_16);
+		stringBuffer.append(TEXT_15);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

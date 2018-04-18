@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -39,17 +40,16 @@ public class Interfaceinterfacejavadocoverride {
 	protected final String TEXT_9 = " <em>";
 	protected final String TEXT_10 = "</em>}</li>";
 	protected final String TEXT_11 = NL + " * </ul>";
-	protected final String TEXT_12 = NL + " *";
-	protected final String TEXT_13 = NL + " * @see ";
-	protected final String TEXT_14 = "#get";
-	protected final String TEXT_15 = "()";
-	protected final String TEXT_16 = NL + " * @model ";
-	protected final String TEXT_17 = NL + " *        ";
-	protected final String TEXT_18 = NL + " * @model";
-	protected final String TEXT_19 = NL + " * @extends ";
+	protected final String TEXT_12 = NL + " * @see ";
+	protected final String TEXT_13 = "#get";
+	protected final String TEXT_14 = "()";
+	protected final String TEXT_15 = NL + " * @model ";
+	protected final String TEXT_16 = NL + " *        ";
+	protected final String TEXT_17 = NL + " * @model";
+	protected final String TEXT_18 = NL + " * @extends ";
+	protected final String TEXT_19 = NL + " * ";
 	protected final String TEXT_20 = NL + " * @generated" + NL + " */" + NL;
 	protected final String TEXT_21 = NL;
-	protected final String TEXT_22 = NL;
 
 	public Interfaceinterfacejavadocoverride() {
 		//Here is the constructor
@@ -147,7 +147,7 @@ public class Interfaceinterfacejavadocoverride {
 		}
 
 		stringBuffer.append(TEXT_21);
-		stringBuffer.append(TEXT_22);
+		stringBuffer.append(TEXT_21);
 		return stringBuffer.toString();
 	}
 
@@ -290,7 +290,7 @@ public class Interfaceinterfacejavadocoverride {
 			for (GenFeature genFeature : genClass.getGenFeatures()) {
 				if (!genFeature.isSuppressedGetVisibility()) {
 					stringBuffer.append(TEXT_7);
-					stringBuffer.append(genClass.getQualifiedInterfaceName());
+					stringBuffer.append(genClass.getRawQualifiedInterfaceName());
 					stringBuffer.append(TEXT_8);
 					stringBuffer.append(genFeature.getGetAccessor());
 					stringBuffer.append(TEXT_9);
@@ -300,13 +300,13 @@ public class Interfaceinterfacejavadocoverride {
 			}
 			stringBuffer.append(TEXT_11);
 		}
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_5);
 		if (!genModel.isSuppressEMFMetaData()) {
-			stringBuffer.append(TEXT_13);
+			stringBuffer.append(TEXT_12);
 			stringBuffer.append(genPackage.getQualifiedPackageInterfaceName());
-			stringBuffer.append(TEXT_14);
+			stringBuffer.append(TEXT_13);
 			stringBuffer.append(genClass.getClassifierAccessorName());
-			stringBuffer.append(TEXT_15);
+			stringBuffer.append(TEXT_14);
 		}
 		if (!genModel.isSuppressEMFModelTags()) {
 			boolean first = true;
@@ -315,20 +315,24 @@ public class Interfaceinterfacejavadocoverride {
 				String modelInfo = stringTokenizer.nextToken();
 				if (first) {
 					first = false;
-					stringBuffer.append(TEXT_16);
+					stringBuffer.append(TEXT_15);
 					stringBuffer.append(modelInfo);
 				} else {
-					stringBuffer.append(TEXT_17);
+					stringBuffer.append(TEXT_16);
 					stringBuffer.append(modelInfo);
 				}
 			}
 			if (first) {
-				stringBuffer.append(TEXT_18);
+				stringBuffer.append(TEXT_17);
 			}
 		}
 		if (genClass.needsRootExtendsInterfaceExtendsTag()) {
-			stringBuffer.append(TEXT_19);
+			stringBuffer.append(TEXT_18);
 			stringBuffer.append(genModel.getImportedName(genModel.getRootExtendsInterface()));
+		}
+		if (genClass.hasImplicitAPITags(true)) {
+			stringBuffer.append(TEXT_19);
+			stringBuffer.append(genClass.getImplicitAPITags(genModel.getIndentation(stringBuffer), true));
 		}
 		stringBuffer.append(TEXT_20);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

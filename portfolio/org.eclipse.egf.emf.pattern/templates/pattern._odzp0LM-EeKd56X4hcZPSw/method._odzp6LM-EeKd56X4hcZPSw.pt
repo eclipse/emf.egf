@@ -5,10 +5,17 @@
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific element type known in this context.
+	 * @see #<%=genFeature.getGetAccessor()%>()
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
     <%if (genModel.useGenerics() && CodeGenUtil.isUncheckedCast(arrayElementType)) {%>
 	@SuppressWarnings("unchecked")
+    <%}%>
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
     <%}%>
     <%if (classExtendsAllGenFeatures.contains(genFeature)) {%>
 	@Override
@@ -32,6 +39,9 @@
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific element type known in this context.
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
 <%if (isJDK50) { //Class/getGenFeature.annotations.insert.javajetinc%>
@@ -40,6 +50,9 @@
   <%if (genFeature.isListType() && genModel.isVirtualDelegation()) {%>
 	@SuppressWarnings("unchecked")
   <%}%>
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (classExtendsAllGenFeatures.contains(genFeature)) {%>
 	@Override
     <%}%>
@@ -66,11 +79,17 @@
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific type known in this context.
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
 <%if (isJDK50) { //Class/basicSetGenFeature.annotations.insert.javajetinc%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 <%}%>
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (classExtendsAllGenFeatures.contains(genFeature)) {%>
 	@Override
     <%}%>
@@ -85,12 +104,18 @@
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * This is specialized for the more specific type known in this context.
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
 <%if (isJDK50) { //Class/setGenFeature.annotations.insert.javajetinc%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 <%}%>
 <%{ GenOperation setAccessorOperation = genClass.getSetAccessorOperation(genFeature);%>
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (classExtendsAllGenFeatures.contains(genFeature)) {%>
 	@Override
     <%}%>

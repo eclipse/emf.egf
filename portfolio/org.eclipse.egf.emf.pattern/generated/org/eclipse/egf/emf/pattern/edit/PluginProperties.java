@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -43,21 +44,13 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 	protected final String TEXT_10 = "_type = ";
 	protected final String TEXT_11 = NL + "_UI_Unknown_type = Object" + NL + "" + NL + "_UI_Unknown_datatype= Value"
 			+ NL;
-	protected final String TEXT_12 = NL + "_UI_";
-	protected final String TEXT_13 = "_";
-	protected final String TEXT_14 = "_feature = ";
-	protected final String TEXT_15 = NL + "_UI_";
-	protected final String TEXT_16 = "_";
-	protected final String TEXT_17 = "_description = ";
-	protected final String TEXT_18 = NL + "_UI_Unknown_feature = Unspecified" + NL;
-	protected final String TEXT_19 = NL + "_UI_";
-	protected final String TEXT_20 = "_";
-	protected final String TEXT_21 = "_literal = ";
-	protected final String TEXT_22 = NL;
-	protected final String TEXT_23 = " = ";
-	protected final String TEXT_24 = NL;
-	protected final String TEXT_25 = NL;
-	protected final String TEXT_26 = NL;
+	protected final String TEXT_12 = "_";
+	protected final String TEXT_13 = "_feature = ";
+	protected final String TEXT_14 = "_description = ";
+	protected final String TEXT_15 = NL + "_UI_Unknown_feature = Unspecified" + NL;
+	protected final String TEXT_16 = "_literal = ";
+	protected final String TEXT_17 = " = ";
+	protected final String TEXT_18 = NL;
 
 	public PluginProperties() {
 		//Here is the constructor
@@ -93,8 +86,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_25);
-		stringBuffer.append(TEXT_26);
+		stringBuffer.append(TEXT_18);
+		stringBuffer.append(TEXT_18);
 		return stringBuffer.toString();
 	}
 
@@ -216,44 +209,44 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 			stringBuffer.append(TEXT_11);
 			for (GenFeature genFeature : genModel.getFilteredAllGenFeatures()) {
 				String description = genFeature.getPropertyDescription();
-				stringBuffer.append(TEXT_12);
+				stringBuffer.append(TEXT_9);
 				stringBuffer.append(genFeature.getGenClass().getName());
-				stringBuffer.append(TEXT_13);
+				stringBuffer.append(TEXT_12);
 				stringBuffer.append(genFeature.getName());
-				stringBuffer.append(TEXT_14);
+				stringBuffer.append(TEXT_13);
 				stringBuffer.append(genFeature.getFormattedName());
 				if (description != null && description.length() > 0) {
-					stringBuffer.append(TEXT_15);
+					stringBuffer.append(TEXT_9);
 					stringBuffer.append(genFeature.getGenClass().getName());
-					stringBuffer.append(TEXT_16);
+					stringBuffer.append(TEXT_12);
 					stringBuffer.append(genFeature.getName());
-					stringBuffer.append(TEXT_17);
+					stringBuffer.append(TEXT_14);
 					stringBuffer.append(description);
 				}
 			}
-			stringBuffer.append(TEXT_18);
+			stringBuffer.append(TEXT_15);
 			for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
 				if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
 					for (GenEnum genEnum : genPackage.getGenEnums()) {
 						for (GenEnumLiteral genEnumLiteral : genEnum.getGenEnumLiterals()) {
-							stringBuffer.append(TEXT_19);
+							stringBuffer.append(TEXT_9);
 							stringBuffer.append(genEnum.getName());
-							stringBuffer.append(TEXT_20);
+							stringBuffer.append(TEXT_12);
 							stringBuffer.append(genEnumLiteral.getName());
-							stringBuffer.append(TEXT_21);
+							stringBuffer.append(TEXT_16);
 							stringBuffer.append(genEnumLiteral.getLiteral());
 						}
 					}
 				}
 			}
 			for (String category : genModel.getPropertyCategories()) {
-				stringBuffer.append(TEXT_22);
+				stringBuffer.append(TEXT_4);
 				stringBuffer.append(genModel.getPropertyCategoryKey(category));
-				stringBuffer.append(TEXT_23);
+				stringBuffer.append(TEXT_17);
 				stringBuffer.append(category);
 			}
 		}
-		stringBuffer.append(TEXT_24);
+		stringBuffer.append(TEXT_4);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

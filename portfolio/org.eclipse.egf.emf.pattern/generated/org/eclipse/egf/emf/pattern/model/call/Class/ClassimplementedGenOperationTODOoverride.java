@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -30,7 +31,6 @@ public class ClassimplementedGenOperationTODOoverride {
 			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL
 			+ "\t\tthrow new UnsupportedOperationException();" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public ClassimplementedGenOperationTODOoverride() {
 		//Here is the constructor
@@ -133,7 +133,7 @@ public class ClassimplementedGenOperationTODOoverride {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

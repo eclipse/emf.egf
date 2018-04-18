@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -38,7 +39,6 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 	protected final String TEXT_10 = NL + "output.";
 	protected final String TEXT_11 = " = bin/" + NL;
 	protected final String TEXT_12 = NL;
-	protected final String TEXT_13 = NL;
 
 	public BuildProperties() {
 		//Here is the constructor
@@ -75,7 +75,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		}
 
 		stringBuffer.append(TEXT_12);
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_12);
 		return stringBuffer.toString();
 	}
 

@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -30,37 +31,40 @@ public class EntryPoint extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_2 = NL + "package ";
 	protected final String TEXT_3 = ";" + NL + "" + NL + "import org.eclipse.emf.edit.ui.EditorEntryPoint;";
 	protected final String TEXT_4 = NL + NL + "/**" + NL + " * This is the entry point." + NL
-			+ " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL
-			+ "public class ";
-	protected final String TEXT_5 = " extends EditorEntryPoint" + NL + "{";
-	protected final String TEXT_6 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+			+ " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->";
+	protected final String TEXT_5 = NL + " * ";
+	protected final String TEXT_6 = NL + " * @generated" + NL + " */";
+	protected final String TEXT_7 = NL + "@Deprecated";
+	protected final String TEXT_8 = NL + "@SuppressWarnings(\"deprecation\")";
+	protected final String TEXT_9 = NL + "public class ";
+	protected final String TEXT_10 = " extends EditorEntryPoint" + NL + "{";
+	protected final String TEXT_11 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
-	protected final String TEXT_7 = " copyright = ";
-	protected final String TEXT_8 = ";";
-	protected final String TEXT_9 = NL + "\t";
-	protected final String TEXT_10 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_12 = " copyright = ";
+	protected final String TEXT_13 = ";";
+	protected final String TEXT_14 = NL + "\t";
+	protected final String TEXT_15 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL
 			+ "\tpublic void onModuleLoad()" + NL + "\t{" + NL + "\t\tsuper.onModuleLoad();" + NL + "\t}" + NL + "" + NL
 			+ "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated"
 			+ NL + "\t */" + NL + "\t@Override" + NL + "\tprotected void registerPackages(";
-	protected final String TEXT_11 = ".Registry packageRegistry)" + NL + "\t{";
-	protected final String TEXT_12 = NL + "\t\tpackageRegistry.put(";
-	protected final String TEXT_13 = ".eNS_URI, ";
-	protected final String TEXT_14 = ".eINSTANCE);";
-	protected final String TEXT_15 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_16 = ".Registry packageRegistry)" + NL + "\t{";
+	protected final String TEXT_17 = NL + "\t\tpackageRegistry.put(";
+	protected final String TEXT_18 = ".eNS_URI, ";
+	protected final String TEXT_19 = ".eINSTANCE);";
+	protected final String TEXT_20 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL
 			+ "\tprotected void configureItemProviderAdapterFactories(";
-	protected final String TEXT_16 = " adapterFactory)" + NL + "\t{";
-	protected final String TEXT_17 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
-	protected final String TEXT_18 = "());";
-	protected final String TEXT_19 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_21 = " adapterFactory)" + NL + "\t{";
+	protected final String TEXT_22 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
+	protected final String TEXT_23 = "());";
+	protected final String TEXT_24 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL
 			+ "\tprotected String getApplicationTitle()" + NL + "\t{" + NL + "\t\treturn \"";
-	protected final String TEXT_20 = " Application\";";
-	protected final String TEXT_21 = NL + "\t}" + NL + "}";
-	protected final String TEXT_22 = NL;
-	protected final String TEXT_23 = NL;
-	protected final String TEXT_24 = NL;
+	protected final String TEXT_25 = " Application\";";
+	protected final String TEXT_26 = NL + "\t}" + NL + "}";
+	protected final String TEXT_27 = NL;
+	protected final String TEXT_28 = NL;
 
 	public EntryPoint() {
 		//Here is the constructor
@@ -96,8 +100,8 @@ public class EntryPoint extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_23);
-		stringBuffer.append(TEXT_24);
+		stringBuffer.append(TEXT_28);
+		stringBuffer.append(TEXT_28);
 		return stringBuffer.toString();
 	}
 
@@ -179,6 +183,7 @@ public class EntryPoint extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 
 		GenModel genModel = (GenModel) argument;
 		/* Trick to import java.util.* without warnings */Iterator.class.getName();
+		final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;
 		stringBuffer.append(TEXT_1);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -200,42 +205,53 @@ public class EntryPoint extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		stringBuffer.append(TEXT_3);
 		genModel.markImportLocation(stringBuffer);
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(genModel.getEditorEntryPointClassName());
-		stringBuffer.append(TEXT_5);
-		if (genModel.hasCopyrightField()) {
-			stringBuffer.append(TEXT_6);
-			stringBuffer.append(genModel.getImportedName("java.lang.String"));
-			stringBuffer.append(TEXT_7);
-			stringBuffer.append(genModel.getCopyrightFieldLiteral());
-			stringBuffer.append(TEXT_8);
-			stringBuffer.append(genModel.getNonNLS());
-			stringBuffer.append(TEXT_9);
+		if (genModel.hasAPITags()) {
+			stringBuffer.append(TEXT_5);
+			stringBuffer.append(genModel.getAPITags(genModel.getIndentation(stringBuffer)));
 		}
+		stringBuffer.append(TEXT_6);
+		if (isJDK50 && genModel.hasAPIDeprecatedTag()) {
+			stringBuffer.append(TEXT_7);
+		} else if (isJDK50 && GenModelUtil.hasAPIDeprecatedTag(genModel.getAllGenAndUsedGenPackagesWithClassifiers())) {
+			stringBuffer.append(TEXT_8);
+		}
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(genModel.getEditorEntryPointClassName());
 		stringBuffer.append(TEXT_10);
-		stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EPackage"));
-		stringBuffer.append(TEXT_11);
-		for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
+		if (genModel.hasCopyrightField()) {
+			stringBuffer.append(TEXT_11);
+			stringBuffer.append(genModel.getImportedName("java.lang.String"));
 			stringBuffer.append(TEXT_12);
-			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+			stringBuffer.append(genModel.getCopyrightFieldLiteral());
 			stringBuffer.append(TEXT_13);
-			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+			stringBuffer.append(genModel.getNonNLS());
 			stringBuffer.append(TEXT_14);
 		}
 		stringBuffer.append(TEXT_15);
-		stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.ComposedAdapterFactory"));
+		stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EPackage"));
 		stringBuffer.append(TEXT_16);
 		for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
 			stringBuffer.append(TEXT_17);
-			stringBuffer.append(genPackage.getImportedItemProviderAdapterFactoryClassName());
+			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
 			stringBuffer.append(TEXT_18);
+			stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+			stringBuffer.append(TEXT_19);
 		}
-		stringBuffer.append(TEXT_19);
-		stringBuffer.append(genModel.getModelName());
 		stringBuffer.append(TEXT_20);
-		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.ComposedAdapterFactory"));
 		stringBuffer.append(TEXT_21);
+		for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
+			stringBuffer.append(TEXT_22);
+			stringBuffer.append(genPackage.getImportedItemProviderAdapterFactoryClassName());
+			stringBuffer.append(TEXT_23);
+		}
+		stringBuffer.append(TEXT_24);
+		stringBuffer.append(genModel.getModelName());
+		stringBuffer.append(TEXT_25);
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(TEXT_26);
 		genModel.emitSortedImports();
-		stringBuffer.append(TEXT_22);
+		stringBuffer.append(TEXT_27);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

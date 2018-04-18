@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -51,20 +52,25 @@ public class TestCaseinsert {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object genClassParameter : genClassList) {
 			for (Object genPackageParameter : genPackageList) {
 				for (Object genModelParameter : genModelList) {
+					for (Object isJDK50Parameter : isJDK50List) {
 
-					this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-					this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-					this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+						this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+						this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+						this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
 
-					if (preCondition(ctx)) {
-						ctx.setNode(new Node.Container(currentNode, getClass()));
-						orchestration(ctx);
+						if (preCondition(ctx)) {
+							ctx.setNode(new Node.Container(currentNode, getClass()));
+							orchestration(ctx);
+						}
+
 					}
-
 				}
 			}
 		}
@@ -88,6 +94,7 @@ public class TestCaseinsert {
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -113,11 +120,18 @@ public class TestCaseinsert {
 		this.genModel = object;
 	}
 
+	protected java.lang.Boolean isJDK50 = null;
+
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
+	}
+
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		return parameters;
 	}
 

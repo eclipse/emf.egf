@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -35,12 +36,10 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 	protected final String TEXT_7 = NL + "source.";
 	protected final String TEXT_8 = " = ";
 	protected final String TEXT_9 = NL + "output.";
-	protected final String TEXT_10 = " = ";
-	protected final String TEXT_11 = "bin";
-	protected final String TEXT_12 = "war/WEB-INF/classes";
+	protected final String TEXT_10 = "bin";
+	protected final String TEXT_11 = "war/WEB-INF/classes";
+	protected final String TEXT_12 = NL;
 	protected final String TEXT_13 = NL;
-	protected final String TEXT_14 = NL;
-	protected final String TEXT_15 = NL;
 
 	public BuildProperties() {
 		//Here is the constructor
@@ -76,8 +75,8 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_14);
-		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_13);
 		return stringBuffer.toString();
 	}
 
@@ -207,13 +206,13 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		}
 		stringBuffer.append(TEXT_9);
 		stringBuffer.append(pluginClassesLocation);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_8);
 		if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {
-			stringBuffer.append(TEXT_11);
+			stringBuffer.append(TEXT_10);
 		} else {
-			stringBuffer.append(TEXT_12);
+			stringBuffer.append(TEXT_11);
 		}
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_12);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

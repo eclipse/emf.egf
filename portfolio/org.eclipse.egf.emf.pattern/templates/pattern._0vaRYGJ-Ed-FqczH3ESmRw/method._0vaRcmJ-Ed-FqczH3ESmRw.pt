@@ -4,6 +4,9 @@
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
     <%if (!isImplementation) {%>
@@ -12,6 +15,9 @@
     <%} else {%>
     <%if (genModel.useGenerics() && CodeGenUtil.isUncheckedCast(arrayElementType)) {%>
 	@SuppressWarnings("unchecked")
+    <%}%>
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
     <%}%>
 	public <%=arrayElementType%>[] <%=genFeature.getGetArrayAccessor()%>()
 	{
@@ -30,8 +36,14 @@
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (!isImplementation) {%>
 	<%=genFeature.getListItemType(genClass)%> get<%=genFeature.getAccessorName()%>(int index);
 
@@ -45,8 +57,14 @@
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (!isImplementation) {%>
 	int get<%=genFeature.getAccessorName()%>Length();
 
@@ -64,8 +82,14 @@
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (!isImplementation) {%>
 	void set<%=genFeature.getAccessorName()%>(<%=genFeature.getListItemType(genClass)%>[] new<%=genFeature.getCapName()%>);
 
@@ -79,8 +103,14 @@
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+    <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+    <%}%>
 	 * @generated
 	 */
+    <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+    <%}%>
     <%if (!isImplementation) {%>
 	void set<%=genFeature.getAccessorName()%>(int index, <%=genFeature.getListItemType(genClass)%> element);
 

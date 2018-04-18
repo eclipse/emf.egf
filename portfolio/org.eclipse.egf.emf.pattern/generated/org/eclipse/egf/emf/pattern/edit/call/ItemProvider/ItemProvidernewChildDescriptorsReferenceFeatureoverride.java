@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -32,13 +33,10 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 	protected final String TEXT_3 = NL + "\t\t\t\t ";
 	protected final String TEXT_4 = ".create(";
 	protected final String TEXT_5 = ")));";
-	protected final String TEXT_6 = NL + "\t\t\t\t ";
-	protected final String TEXT_7 = ".create";
-	protected final String TEXT_8 = "()));";
+	protected final String TEXT_6 = ".create";
+	protected final String TEXT_7 = "()));";
+	protected final String TEXT_8 = NL;
 	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
-	protected final String TEXT_12 = NL;
 
 	public ItemProvidernewChildDescriptorsReferenceFeatureoverride() {
 		//Here is the constructor
@@ -72,6 +70,8 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object createClassParameter : createClassList) {
 			for (Object createFeatureParameter : createFeatureList) {
@@ -81,21 +81,24 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 							for (Object genClassParameter : genClassList) {
 								for (Object genPackageParameter : genPackageList) {
 									for (Object genModelParameter : genModelList) {
+										for (Object isJDK50Parameter : isJDK50List) {
 
-										this.createClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) createClassParameter;
-										this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) createFeatureParameter;
-										this.delegatedFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) delegatedFeatureParameter;
-										this.createClassifier = (org.eclipse.emf.codegen.ecore.genmodel.GenClassifier) createClassifierParameter;
-										this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildCreationData) childCreationDataParameter;
-										this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+											this.createClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) createClassParameter;
+											this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) createFeatureParameter;
+											this.delegatedFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) delegatedFeatureParameter;
+											this.createClassifier = (org.eclipse.emf.codegen.ecore.genmodel.GenClassifier) createClassifierParameter;
+											this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildCreationData) childCreationDataParameter;
+											this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+											this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+											this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+											this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
 
-										if (preCondition(ctx)) {
-											ctx.setNode(new Node.Container(currentNode, getClass()));
-											orchestration(ctx);
+											if (preCondition(ctx)) {
+												ctx.setNode(new Node.Container(currentNode, getClass()));
+												orchestration(ctx);
+											}
+
 										}
-
 									}
 								}
 							}
@@ -109,8 +112,8 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_11);
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 
@@ -129,6 +132,7 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -184,6 +188,12 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 		this.genModel = object;
 	}
 
+	protected java.lang.Boolean isJDK50 = null;
+
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
+	}
+
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("createClass", this.createClass);
@@ -194,6 +204,7 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		return parameters;
 	}
 
@@ -209,15 +220,15 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 			stringBuffer.append(createClass.getQualifiedClassifierAccessor());
 			stringBuffer.append(TEXT_5);
 		} else {
-			stringBuffer.append(TEXT_6);
+			stringBuffer.append(TEXT_3);
 			stringBuffer.append(createClass.getGenPackage().getQualifiedFactoryInstanceAccessor());
-			stringBuffer.append(TEXT_7);
+			stringBuffer.append(TEXT_6);
 			stringBuffer.append(createClass.getName());
-			stringBuffer.append(TEXT_8);
+			stringBuffer.append(TEXT_7);
 		}
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_8);
 		{
-			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
 			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
@@ -232,13 +243,14 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 			callParameters.put("genClass", genClass);
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
+			callParameters.put("isJDK50", isJDK50);
 			CallHelper.executeWithParameterInjection(
 					"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw",
 					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_8);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

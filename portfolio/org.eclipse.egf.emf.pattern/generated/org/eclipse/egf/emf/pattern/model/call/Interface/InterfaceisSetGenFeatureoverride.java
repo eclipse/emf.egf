@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -29,53 +30,43 @@ public class InterfaceisSetGenFeatureoverride {
 	protected final String TEXT_1 = "";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
-			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL + "\tboolean isSet";
-	protected final String TEXT_6 = "();" + NL;
-	protected final String TEXT_7 = NL + "\tpublic boolean isSet";
-	protected final String TEXT_8 = "_";
-	protected final String TEXT_9 = "()" + NL + "\t{";
-	protected final String TEXT_10 = NL + "\t\treturn eDynamicIsSet(";
-	protected final String TEXT_11 = " - ESTATIC_FEATURE_COUNT";
-	protected final String TEXT_12 = ", ";
-	protected final String TEXT_13 = ");";
-	protected final String TEXT_14 = NL + "\t\treturn eIsSet(";
+			+ "\t * <!-- end-user-doc -->";
+	protected final String TEXT_4 = NL + "\t * ";
+	protected final String TEXT_5 = NL + "\t * @generated" + NL + "\t */";
+	protected final String TEXT_6 = NL + "\t@Deprecated";
+	protected final String TEXT_7 = NL + "\tboolean isSet";
+	protected final String TEXT_8 = "();" + NL;
+	protected final String TEXT_9 = NL + "\tpublic boolean isSet";
+	protected final String TEXT_10 = "_";
+	protected final String TEXT_11 = "()" + NL + "\t{";
+	protected final String TEXT_12 = NL + "\t\treturn eDynamicIsSet(";
+	protected final String TEXT_13 = " - ESTATIC_FEATURE_COUNT";
+	protected final String TEXT_14 = ", ";
 	protected final String TEXT_15 = ");";
-	protected final String TEXT_16 = NL + "\t\treturn ";
-	protected final String TEXT_17 = "__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);";
-	protected final String TEXT_18 = NL + "\t\t";
-	protected final String TEXT_19 = " ";
-	protected final String TEXT_20 = " = (";
-	protected final String TEXT_21 = ")eVirtualGet(";
-	protected final String TEXT_22 = ");";
-	protected final String TEXT_23 = NL + "\t\treturn ";
-	protected final String TEXT_24 = " != null && ((";
-	protected final String TEXT_25 = ".Unsettable";
-	protected final String TEXT_26 = ")";
-	protected final String TEXT_27 = ").isSet();";
-	protected final String TEXT_28 = NL + "\t\treturn eVirtualIsSet(";
-	protected final String TEXT_29 = ");";
-	protected final String TEXT_30 = NL + "\t\treturn (";
-	protected final String TEXT_31 = " & ";
-	protected final String TEXT_32 = "_ESETFLAG) != 0;";
-	protected final String TEXT_33 = NL + "\t\treturn ";
-	protected final String TEXT_34 = "ESet;";
-	protected final String TEXT_35 = NL + "\t\treturn !((";
-	protected final String TEXT_36 = ".Internal)((";
-	protected final String TEXT_37 = ".Internal.Wrapper)get";
-	protected final String TEXT_38 = "()).featureMap()).isEmpty(";
-	protected final String TEXT_39 = ");";
-	protected final String TEXT_40 = NL + "\t\treturn !((";
-	protected final String TEXT_41 = ".Internal)get";
-	protected final String TEXT_42 = "()).isEmpty(";
-	protected final String TEXT_43 = ");";
-	protected final String TEXT_44 = NL + "\t\t";
-	protected final String TEXT_45 = NL;
-	protected final String TEXT_46 = NL + "\t}" + NL;
-	protected final String TEXT_47 = NL;
-	protected final String TEXT_48 = NL;
-	protected final String TEXT_49 = NL;
+	protected final String TEXT_16 = NL + "\t\treturn eIsSet(";
+	protected final String TEXT_17 = NL + "\t\treturn ";
+	protected final String TEXT_18 = "__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);";
+	protected final String TEXT_19 = NL + "\t\t";
+	protected final String TEXT_20 = " ";
+	protected final String TEXT_21 = " = (";
+	protected final String TEXT_22 = ")eVirtualGet(";
+	protected final String TEXT_23 = " != null && ((";
+	protected final String TEXT_24 = ".Unsettable";
+	protected final String TEXT_25 = ")";
+	protected final String TEXT_26 = ").isSet();";
+	protected final String TEXT_27 = NL + "\t\treturn eVirtualIsSet(";
+	protected final String TEXT_28 = NL + "\t\treturn (";
+	protected final String TEXT_29 = " & ";
+	protected final String TEXT_30 = "_ESETFLAG) != 0;";
+	protected final String TEXT_31 = "ESet;";
+	protected final String TEXT_32 = NL + "\t\treturn !((";
+	protected final String TEXT_33 = ".Internal)((";
+	protected final String TEXT_34 = ".Internal.Wrapper)get";
+	protected final String TEXT_35 = "()).featureMap()).isEmpty(";
+	protected final String TEXT_36 = ".Internal)get";
+	protected final String TEXT_37 = "()).isEmpty(";
+	protected final String TEXT_38 = NL + "\t}" + NL;
+	protected final String TEXT_39 = NL;
 
 	public InterfaceisSetGenFeatureoverride() {
 		//Here is the constructor
@@ -177,8 +168,8 @@ public class InterfaceisSetGenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_48);
-		stringBuffer.append(TEXT_49);
+		stringBuffer.append(TEXT_39);
+		stringBuffer.append(TEXT_39);
 		return stringBuffer.toString();
 	}
 
@@ -349,8 +340,13 @@ public class InterfaceisSetGenFeatureoverride {
 			//Class/isSetGenFeature.javadoc.override.javajetinc
 		} else {
 			stringBuffer.append(TEXT_3);
-			if (isJDK50) { //Class/isSetGenFeature.annotations.insert.javajetinc
+			if (genFeature.hasAPITags()) {
 				stringBuffer.append(TEXT_4);
+				stringBuffer.append(genFeature.getAPITags(genModel.getIndentation(stringBuffer)));
+			}
+			stringBuffer.append(TEXT_5);
+			if (isJDK50) { //Class/isSetGenFeature.annotations.insert.javajetinc
+				stringBuffer.append(TEXT_2);
 				{
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
@@ -381,102 +377,105 @@ public class InterfaceisSetGenFeatureoverride {
 
 			}
 		}
-		if (!isImplementation) {
-			stringBuffer.append(TEXT_5);
-			stringBuffer.append(genFeature.getAccessorName());
+		if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {
 			stringBuffer.append(TEXT_6);
-		} else {
+		}
+		if (!isImplementation) {
 			stringBuffer.append(TEXT_7);
 			stringBuffer.append(genFeature.getAccessorName());
-			if (genClass.hasCollidingIsSetAccessorOperation(genFeature)) {
-				stringBuffer.append(TEXT_8);
-			}
+			stringBuffer.append(TEXT_8);
+		} else {
 			stringBuffer.append(TEXT_9);
-			if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
+			stringBuffer.append(genFeature.getAccessorName());
+			if (genClass.hasCollidingIsSetAccessorOperation(genFeature)) {
 				stringBuffer.append(TEXT_10);
+			}
+			stringBuffer.append(TEXT_11);
+			if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {
+				stringBuffer.append(TEXT_12);
 				stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
 				if (genClass.hasStaticFeatures()) {
-					stringBuffer.append(TEXT_11);
+					stringBuffer.append(TEXT_13);
 				}
-				stringBuffer.append(TEXT_12);
-				stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-				stringBuffer.append(TEXT_13);
-			} else if (genModel.isReflectiveDelegation()) {
 				stringBuffer.append(TEXT_14);
 				stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
 				stringBuffer.append(TEXT_15);
-			} else if (genFeature.hasSettingDelegate()) {
+			} else if (genModel.isReflectiveDelegation()) {
 				stringBuffer.append(TEXT_16);
-				stringBuffer.append(genFeature.getUpperName());
+				stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
+				stringBuffer.append(TEXT_15);
+			} else if (genFeature.hasSettingDelegate()) {
 				stringBuffer.append(TEXT_17);
+				stringBuffer.append(genFeature.getUpperName());
+				stringBuffer.append(TEXT_18);
 			} else if (!genFeature.isVolatile()) {
 				if (genFeature.isListType()) {
 					if (genModel.isVirtualDelegation()) {
-						stringBuffer.append(TEXT_18);
-						stringBuffer.append(genFeature.getImportedType(genClass));
 						stringBuffer.append(TEXT_19);
-						stringBuffer.append(genFeature.getSafeName());
-						stringBuffer.append(TEXT_20);
 						stringBuffer.append(genFeature.getImportedType(genClass));
+						stringBuffer.append(TEXT_20);
+						stringBuffer.append(genFeature.getSafeName());
 						stringBuffer.append(TEXT_21);
+						stringBuffer.append(genFeature.getImportedType(genClass));
+						stringBuffer.append(TEXT_22);
 						stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
 						stringBuffer.append(positiveOffsetCorrection);
-						stringBuffer.append(TEXT_22);
+						stringBuffer.append(TEXT_15);
 					}
+					stringBuffer.append(TEXT_17);
+					stringBuffer.append(genFeature.getSafeName());
 					stringBuffer.append(TEXT_23);
-					stringBuffer.append(genFeature.getSafeName());
-					stringBuffer.append(TEXT_24);
 					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.InternalEList"));
-					stringBuffer.append(TEXT_25);
+					stringBuffer.append(TEXT_24);
 					stringBuffer.append(singleWildcard);
-					stringBuffer.append(TEXT_26);
+					stringBuffer.append(TEXT_25);
 					stringBuffer.append(genFeature.getSafeName());
-					stringBuffer.append(TEXT_27);
+					stringBuffer.append(TEXT_26);
 				} else {
 					if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {
-						stringBuffer.append(TEXT_28);
+						stringBuffer.append(TEXT_27);
 						stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
 						stringBuffer.append(positiveOffsetCorrection);
-						stringBuffer.append(TEXT_29);
+						stringBuffer.append(TEXT_15);
 					} else if (genClass.isESetFlag(genFeature)) {
-						stringBuffer.append(TEXT_30);
+						stringBuffer.append(TEXT_28);
 						stringBuffer.append(genClass.getESetFlagsField(genFeature));
-						stringBuffer.append(TEXT_31);
+						stringBuffer.append(TEXT_29);
 						stringBuffer.append(genFeature.getUpperName());
-						stringBuffer.append(TEXT_32);
+						stringBuffer.append(TEXT_30);
 					} else {
-						stringBuffer.append(TEXT_33);
+						stringBuffer.append(TEXT_17);
 						stringBuffer.append(genFeature.getUncapName());
-						stringBuffer.append(TEXT_34);
+						stringBuffer.append(TEXT_31);
 					}
 				}
 			} else if (genFeature.hasDelegateFeature()) {
 				GenFeature delegateFeature = genFeature.getDelegateFeature();
 				if (delegateFeature.isWrappedFeatureMapType()) {
+					stringBuffer.append(TEXT_32);
+					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
+					stringBuffer.append(TEXT_33);
+					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
+					stringBuffer.append(TEXT_34);
+					stringBuffer.append(delegateFeature.getAccessorName());
 					stringBuffer.append(TEXT_35);
+					stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
+					stringBuffer.append(TEXT_15);
+				} else {
+					stringBuffer.append(TEXT_32);
 					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
 					stringBuffer.append(TEXT_36);
-					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
+					stringBuffer.append(delegateFeature.getAccessorName());
 					stringBuffer.append(TEXT_37);
-					stringBuffer.append(delegateFeature.getAccessorName());
-					stringBuffer.append(TEXT_38);
 					stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-					stringBuffer.append(TEXT_39);
-				} else {
-					stringBuffer.append(TEXT_40);
-					stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
-					stringBuffer.append(TEXT_41);
-					stringBuffer.append(delegateFeature.getAccessorName());
-					stringBuffer.append(TEXT_42);
-					stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-					stringBuffer.append(TEXT_43);
+					stringBuffer.append(TEXT_15);
 				}
 			} else if (genClass.getIsSetAccessorOperation(genFeature) != null) {
-				stringBuffer.append(TEXT_44);
+				stringBuffer.append(TEXT_19);
 				stringBuffer.append(
 						genClass.getIsSetAccessorOperation(genFeature).getBody(genModel.getIndentation(stringBuffer)));
 			} else {
-				stringBuffer.append(TEXT_45);
+				stringBuffer.append(TEXT_2);
 				{
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
@@ -507,9 +506,9 @@ public class InterfaceisSetGenFeatureoverride {
 
 				//Class/isSetGenFeature.todo.override.javajetinc
 			}
-			stringBuffer.append(TEXT_46);
+			stringBuffer.append(TEXT_38);
 		}
-		stringBuffer.append(TEXT_47);
+		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

@@ -2,6 +2,7 @@
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
@@ -41,7 +42,6 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_11 = NL + "}";
 	protected final String TEXT_12 = NL;
 	protected final String TEXT_13 = NL;
-	protected final String TEXT_14 = NL;
 
 	public Images() {
 		//Here is the constructor
@@ -78,7 +78,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		}
 
 		stringBuffer.append(TEXT_13);
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_13);
 		return stringBuffer.toString();
 	}
 
