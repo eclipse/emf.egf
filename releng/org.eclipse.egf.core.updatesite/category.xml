@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://www.eclipse.org/EGF">EGF</description>
+   <category-def name="EGF" label="EGF">
+      <description>Eclipse Generation Factories</description>
+   </category-def>
+   <feature id="org.eclipse.egf.sdk.feature" version="0.0.0">
+      <category name="Sirius"/>
+   </feature>
+   
+</site>
