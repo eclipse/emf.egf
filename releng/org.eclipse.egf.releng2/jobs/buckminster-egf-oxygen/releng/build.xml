@@ -605,11 +605,11 @@ proxyData/HTTPS/host=proxy.eclipse.org
 	</target>
 
 	<target name="TestStep_13" depends="init,install.buckminster">
-	  <echo message="Running Junit tests -> disabled" />
-	</target>
+	  <echo message="Running Junit tests " />
+ 	</target>
 
 	<target name="TestStep_14" depends="init,install.buckminster">
-	  <echo message="Running Junit tests  -> disabled" />
+	  <echo message="Running Junit tests " />
 	</target>
 
 
