@@ -1,0 +1,6 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getEditorProjectDirectory() + "/war/WEB-INF/web.xml";
+overwrite = false;
+encoding = "UTF-8";
+%>

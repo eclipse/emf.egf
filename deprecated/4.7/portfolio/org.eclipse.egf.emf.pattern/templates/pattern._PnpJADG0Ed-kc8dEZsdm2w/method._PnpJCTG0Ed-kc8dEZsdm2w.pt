@@ -1,0 +1,8 @@
+<%
+GenPackage genPackage = parameter;
+if (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard()) {
+new CodegenGeneratorAdapter(parameter).generateGIF("editor/NewModel.gif", genPackage.getModelWizardIconFileName(), genPackage.getPrefix(), null, false);
+}
+ else {
+}
+%>
