@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="core" sequenceNumber="1524055577">
+<target name="core" sequenceNumber="1524065420">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.common.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.edit.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.codegen.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.codegen.ecore.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecore.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecore.edit.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.edit.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.common.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecore.editor.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.codegen.ecore.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.databinding.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.databinding.edit.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.workspace.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.transaction.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.query.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.validation.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.converter.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.m2m.atl.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.uml2.uml.feature.group" version="0.0.0"/>
       <repository id="photon" location="http://download.eclipse.org/releases/photon"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.acceleo.sdk.feature.group" version="0.0.0"/>
+      <repository id="acceleo" location="http://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.sirius.doc.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.eef.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.acceleo.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.xtext.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ocl.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.specifier.ide.ui.acceleo.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.specifier.ide.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.acceleo.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.doc.feature.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.eef.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.acceleo.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.xtext.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ocl.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.specifier.ide.ui.acceleo.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.specifier.ide.ui.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.acceleo.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.aql.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.aql.source.feature.group" version="0.0.0"/>
+      <repository id="Sirus" location="http://download.eclipse.org/sirius/updates/milestones/6.0.0M6/photon"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.ecoretools.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecoretools.design.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecoretools.explorer.contextual.feature.group" version="0.0.0"/>
+      <repository id="EcoreTools" location="http://download.eclipse.org/ecoretools/updates/milestones/3.3.0RC4/oxygen"/>
     </location>
   </locations>
 </target>

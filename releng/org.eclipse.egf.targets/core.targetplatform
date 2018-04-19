@@ -3,4 +3,63 @@ target "core"  with source, requirements
 location photon "http://download.eclipse.org/releases/photon" {
 	org.eclipse.sdk.feature.group lazy
 	org.eclipse.emf.sdk.feature.group lazy
+	org.eclipse.emf.common.feature.group lazy
+	org.eclipse.emf.edit.feature.group lazy
+	org.eclipse.emf.codegen.feature.group lazy
+	org.eclipse.emf.codegen.ecore.feature.group lazy
+	org.eclipse.emf.ecore.feature.group lazy
+	org.eclipse.emf.ecore.edit.feature.group lazy
+	org.eclipse.emf.edit.ui.feature.group lazy
+	org.eclipse.emf.common.ui.feature.group lazy
+	org.eclipse.emf.ecore.editor.feature.group lazy
+	org.eclipse.emf.codegen.ecore.ui.feature.group lazy
+	org.eclipse.emf.databinding.feature.group lazy
+	org.eclipse.emf.databinding.edit.feature.group lazy
+	org.eclipse.emf.workspace.feature.group lazy
+	org.eclipse.emf.transaction.feature.group lazy
+	org.eclipse.emf.query.feature.group lazy
+	org.eclipse.emf.validation.feature.group lazy
+	org.eclipse.emf.converter.feature.group lazy
+	org.eclipse.jdt.feature.group lazy
+	org.eclipse.pde.feature.group lazy
+	org.eclipse.platform.feature.group lazy
+	org.eclipse.m2m.atl.feature.group lazy
+	org.eclipse.uml2.uml.feature.group lazy
 }
+
+location acceleo "http://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
+	org.eclipse.acceleo.sdk.feature.group lazy
+}
+
+location Sirus "http://download.eclipse.org/sirius/updates/milestones/6.0.0M6/photon" {
+	org.eclipse.sirius.doc.feature.feature.group lazy
+	org.eclipse.sirius.runtime.ide.eef.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.acceleo.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.feature.group lazy
+	org.eclipse.sirius.runtime.ide.xtext.feature.group lazy
+	org.eclipse.sirius.runtime.ocl.feature.group lazy
+	org.eclipse.sirius.runtime.feature.group lazy
+	org.eclipse.sirius.specifier.ide.ui.acceleo.feature.group lazy
+	org.eclipse.sirius.specifier.ide.ui.feature.group lazy
+	org.eclipse.sirius.runtime.acceleo.feature.group lazy
+	org.eclipse.sirius.doc.feature.source.feature.group lazy
+	org.eclipse.sirius.runtime.ide.eef.source.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.acceleo.source.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.source.feature.group lazy
+	org.eclipse.sirius.runtime.ide.xtext.source.feature.group lazy
+	org.eclipse.sirius.runtime.ocl.source.feature.group lazy
+	org.eclipse.sirius.runtime.source.feature.group lazy
+	org.eclipse.sirius.specifier.ide.ui.acceleo.source.feature.group lazy
+	org.eclipse.sirius.specifier.ide.ui.source.feature.group lazy
+	org.eclipse.sirius.runtime.acceleo.source.feature.group lazy
+	org.eclipse.sirius.runtime.aql.feature.group lazy
+	org.eclipse.sirius.runtime.aql.source.feature.group lazy
+}
+
+
+location EcoreTools "http://download.eclipse.org/ecoretools/updates/milestones/3.3.0RC4/oxygen" {
+	org.eclipse.emf.ecoretools.sdk.feature.group lazy
+	org.eclipse.emf.ecoretools.design.feature.group lazy
+	org.eclipse.emf.ecoretools.explorer.contextual.feature.group lazy
+}
+
