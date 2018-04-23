@@ -15,6 +15,7 @@ Require-Bundle:
  org.eclipse.emf.ecore.xmi
 Export-Package: 
  org.eclipse.egf.core.platform,
+ org.eclipse.egf.core.platform.internal.pde,
  org.eclipse.egf.core.platform.loader,
  org.eclipse.egf.core.platform.pde,
  org.eclipse.egf.core.platform.uri
