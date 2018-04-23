@@ -25,6 +25,8 @@ location photon "http://download.eclipse.org/releases/photon" {
 	org.eclipse.platform.feature.group lazy
 	org.eclipse.m2m.atl.feature.group lazy
 	org.eclipse.uml2.uml.feature.group lazy
+	
+	org.eclipse.equinox.executable.feature.group lazy
 }
 
 location acceleo "http://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
