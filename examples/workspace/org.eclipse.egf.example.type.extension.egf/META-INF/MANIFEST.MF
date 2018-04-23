@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Egf
 Bundle-SymbolicName: org.eclipse.egf.example.type.extension.egf;singleton:=true
-Bundle-Version: 1.5.0.qualifier
+Bundle-Version: 1.5.1.qualifier
 Require-Bundle: 
  org.eclipse.egf.domain;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
