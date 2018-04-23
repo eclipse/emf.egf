@@ -18,7 +18,7 @@
 	
 	<groupId>org.eclipse.egf</groupId>
 	<artifactId>egf_root</artifactId>
-	<version>1.6.0-SNAPSHOT</version>
+	<version>1.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<licenses>
@@ -67,6 +67,38 @@
       </activation>
       <modules>
 		<!-- plugins -->
+		<module>tests/org.eclipse.egf.core.test</module>
+		<module>tests/org.eclipse.egf.core.test.model</module>
+		<module>tests/org.eclipse.egf.core.test.model.edit</module>
+		<module>tests/org.eclipse.egf.core.test.model.editor</module>
+		<module>tests/org.eclipse.egf.core.test.pattern</module>
+		<module>tests/org.eclipse.egf.portfolio.task.ant.test</module>
+		<module>examples/workspace/org.eclipse.egf.example.emf.docgen.html</module>
+		<module>examples/workspace/org.eclipse.egf.example.fcs</module>
+		<module>examples/workspace/org.eclipse.egf.example.strategy.modeldriven</module>
+		<module>examples/workspace/org.eclipse.egf.example.task.ant</module>
+		<module>examples/workspace/org.eclipse.egf.example.task.h1</module>
+		<module>examples/workspace/org.eclipse.egf.example.task.h4</module>
+		<module>examples/workspace/org.eclipse.egf.examples.installer</module>
+		<module>examples/workspace/org.eclipse.egf.portfolio.acceleo3.examples.installer</module>
+		<module>examples/workspace/org.eclipse.egf.portfolio.atl.examples.installer</module>
+		<module>examples/workspace/org.eclipse.egf.portfolio.eclipse.build.examples</module>
+		<module>examples/workspace/org.eclipse.egf.portfolio.genchain.extension</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.acceleo3</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.activityworkflow.uc1</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.atl</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.emf.uc1</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.emf.uc2</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.emf.uc3</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.fc.uc1</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.generationchain.uc1</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.jet</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.pattern.uc1</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.pattern.uc2</module>
+		<module>examples/workspace/org.eclipse.egf.usecase.pattern.uc3.m2treporting</module>
+		<module>doc/org.eclipse.egf.doc.user</module>
+		<module>doc/org.eclipse.egf.engine.doc</module>
+		<module>doc/org.eclipse.egf.engine.doc.pattern</module>
 		<module>plugins/org.eclipse.egf.application</module>
 		<module>plugins/org.eclipse.egf.common</module>
 		<module>plugins/org.eclipse.egf.common.ui</module>
@@ -165,7 +197,7 @@
 		<module>features/org.eclipse.egf.portfolio.task.ant.test.feature</module>
 		<module>features/org.eclipse.egf.producer.feature</module>
 		<module>features/org.eclipse.egf.producer.ui.feature</module>
-		<module>features/org.eclipse.egf.releng.feature</module>
+		<!-->module>features/org.eclipse.egf.releng.feature</module-->
 		<module>features/org.eclipse.egf.sdk.feature</module>
 		<module>features/org.eclipse.egf.test.feature</module>
 		
@@ -204,7 +236,7 @@
 						<artifact>
 							<groupId>org.eclipse.egf</groupId>
 							<artifactId>egf_root</artifactId>
-							<version>1.6.0-SNAPSHOT</version>
+							<version>1.5.0-SNAPSHOT</version>
 							<classifier>releng/org.eclipse.egf.targets/core</classifier>
 						</artifact>
 					</target>
@@ -253,6 +285,12 @@
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
 					</archive>
+					<excludes>
+  						<feature id="org.eclipse.egf.doc.feature"/>
+  						<plugin id="org.eclipse.egf.doc.user"/>
+  						<plugin id="org.eclipse.egf.engine.doc"/>
+  						<plugin id="org.eclipse.egf.engine.doc.pattern"/>
+					</excludes>
 				</configuration>
 				<executions>
 					<execution>
@@ -317,7 +355,7 @@
 					<version>${tycho-version}</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
-						<useProjectSettings>false</useProjectSettings>
+						<useProjectSettings>true</useProjectSettings>
 					</configuration>
 				</plugin>
 				<plugin>
