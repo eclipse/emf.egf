@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009, 2018 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
 <feature
-      id="org.eclipse.egf.portfolio.genchain.ecoretools"
+      id="org.eclipse.egf.portfolio.genchain.ecoretools.feature"
       label="%featureName"
       version="1.5.0.qualifier"
       provider-name="%providerName"
@@ -11,7 +21,7 @@
    </description>
 
    <copyright>
-      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+      Copyright (c) 2009-2018 Thales Corporate Services S.A.S.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -28,25 +38,20 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
-   <includes
-         id="org.eclipse.egf.portfolio.genchain.ecoretools.source"
-         version="0.0.0"/>
-
    <requires>
-      <import feature="org.eclipse.egf.portfolio.genchain" version="1.1.0.v20140603-0743"/>
-      <import feature="org.eclipse.egf.portfolio.genchain" version="1.1.0.v20140603-0743"/>
-      <import feature="org.eclipse.emf.ecoretools.design" version="2.0.0.201405070841"/>
-      <import feature="org.eclipse.gmf" version="1.8.0.201405281701"/>
+      <import feature="org.eclipse.egf.portfolio.genchain.feature"/>
+      <import feature="org.eclipse.emf.ecoretools.design" />
+      <import feature="org.eclipse.gmf"/>
       <import plugin="org.eclipse.egf.portfolio.genchain.tools"/>
       <import plugin="org.eclipse.egf.portfolio.genchain.tools.ui"/>
       <import plugin="org.eclipse.sirius"/>
       <import plugin="org.eclipse.sirius.diagram"/>
       <import plugin="org.eclipse.sirius.diagram.ui"/>
       <import plugin="org.eclipse.sirius.common"/>
-      <import plugin="org.eclipse.sirius.ecore.extender" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.sirius.ext.base" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.sirius.ecore.extender"/>
+      <import plugin="org.eclipse.sirius.ext.base"/>
       <import plugin="org.eclipse.sirius.table"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui" version="1.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>

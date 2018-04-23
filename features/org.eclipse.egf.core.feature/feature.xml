@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009, 2018 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
 <feature
-      id="org.eclipse.egf.core"
+      id="org.eclipse.egf.core.feature"
       label="%featureName"
       version="1.5.0.qualifier"
       provider-name="%providerName"
@@ -12,7 +22,7 @@
    </description>
 
    <copyright>
-      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+      Copyright (c) 2009, 2018 Thales Corporate Services S.A.S.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -31,7 +41,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <requires>
       <import feature="org.eclipse.emf.workspace"/>
-      <import feature="org.eclipse.egf.common"/>
+      <import feature="org.eclipse.egf.common.feature"/>
    </requires>
 
    <plugin

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2009, 2018 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
 <feature
-      id="org.eclipse.egf.portfolio.task.ant.test"
+      id="org.eclipse.egf.portfolio.task.ant.test.feature"
       label="%featureName"
       version="1.5.0.qualifier"
       provider-name="%providerName"
@@ -12,7 +22,7 @@
    </description>
 
    <copyright>
-      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+      Copyright (c) 2009, 2018 Thales Corporate Services S.A.S.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -28,14 +38,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%EMFUpdateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
       <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
-
-   <includes
-         id="org.eclipse.egf.portfolio.task.ant.source"
-         version="0.0.0"/>
-
-   <requires>
-      <import feature="org.eclipse.egf.test"/>
-   </requires>
 
    <plugin
          id="org.eclipse.egf.portfolio.task.ant.test"
