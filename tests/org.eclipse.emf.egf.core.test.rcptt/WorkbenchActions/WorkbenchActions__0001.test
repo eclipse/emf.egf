@@ -17,7 +17,7 @@ Entry-Name: .content
 get-button "Opens an EGF Fcore" | click
 get-window "EGF Fcore Selection" | get-table | get-property itemCount | equals 0 | verify-true
 get-window "EGF Fcore Selection" | get-editbox -after [get-label "Select a registered EGF Fcore:"] | set-text "**"
-get-window "EGF Fcore Selection" | get-table | get-property itemCount | equals 29 | verify-true
+get-window "EGF Fcore Selection" | get-table | get-property itemCount | equals 28 | verify-true
 with [get-window "EGF Fcore Selection"] {
 // workaround: there is a weird behaviour 
     get-editbox -after [get-label "Select a registered EGF Fcore:"] | set-text d
