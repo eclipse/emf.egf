@@ -60,7 +60,7 @@
 						<args>
 							<arg>-consoleLog</arg>
 						</args>
-						<explicit>../../releng/org.eclipse.egf.product/target/products/EGF_product-win32.win32.x86_64.zip</explicit>
+						<explicit>../../releng/org.eclipse.egf.product/target/products/EGF_product-[platform].zip</explicit>
 					</aut>
 				</configuration>
 			</plugin>
