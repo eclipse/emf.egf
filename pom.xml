@@ -152,7 +152,7 @@
 								<groupId>org.eclipse.egf</groupId>
 								<artifactId>egf_root</artifactId>
 								<version>1.6.0-SNAPSHOT</version>
-								<classifier>releng/org.eclipse.egf.targets/core</classifier>
+								<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 							</artifact>
 						</target>
 						<environments>
@@ -257,7 +257,6 @@
 				<module>plugins/org.eclipse.egf.task.ui</module>
 				<module>portfolio/org.eclipse.egf.eclipse.resources.mgt</module>
 				<module>portfolio/org.eclipse.egf.emf.docgen.html</module>
-				<module>portfolio/org.eclipse.egf.emf.pattern</module>
 				<module>portfolio/org.eclipse.egf.emf.pattern.base</module>
 				<module>portfolio/org.eclipse.egf.emf.pattern.cdo</module>
 				<module>portfolio/org.eclipse.egf.emf.pattern.ui</module>
@@ -322,6 +321,8 @@
 				<module>features/org.eclipse.egf.sdk.feature</module>
 				<module>features/org.eclipse.egf.test.feature</module>
 
+				<!--  platform specific -->
+				<module>platform_specific/${platform-version-name}/org.eclipse.egf.emf.pattern</module>
 				<!-- update sites -->
 				<module>releng/org.eclipse.egf.core.updatesite</module>
 			</modules>
@@ -358,7 +359,7 @@
 							<groupId>org.eclipse.egf</groupId>
 							<artifactId>egf_root</artifactId>
 							<version>1.6.0-SNAPSHOT</version>
-							<classifier>releng/org.eclipse.egf.targets/core</classifier>
+							<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 						</artifact>
 					</target>
 				</configuration>
