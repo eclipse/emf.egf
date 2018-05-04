@@ -29,4 +29,24 @@
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
    <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF SDK"/>
+
+   <feature id="org.eclipse.egf.feature.source" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.source.category"/>
+   </feature>
+   <feature  id="org.eclipse.egf.doc.feature.source" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.source.category"/>
+   </feature>
+   <feature  id="org.eclipse.egf.portfolio.feature.source" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.source.category"/>
+   </feature>
+   <feature id="org.eclipse.egf.portfolio.emf.feature.source" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.source.category"/>
+   </feature>
+   <feature id="org.eclipse.egf.portfolio.genchain.feature.source" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.source.category"/>
+   </feature>
+   <feature id="org.eclipse.egf.sdk.feature.source" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.source.category"/>
+   </feature>
+   <category-def name="org.eclipse.egf.sdk.source.category" label="EMFT EGF SDK Source"/>
 </site>
