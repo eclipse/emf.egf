@@ -28,7 +28,10 @@
    <feature id="org.eclipse.egf.sdk.feature" version="0.0.0">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF SDK"/>
+   <feature id="org.eclipse.egf.examples.feature" version="0.0.0">
+      <category name="org.eclipse.egf.sdk.category"/>
+   </feature>
+   <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF"/>
 
    <feature id="org.eclipse.egf.feature.source" version="0.0.0">
       <category name="org.eclipse.egf.sdk.source.category"/>
@@ -48,5 +51,5 @@
    <feature id="org.eclipse.egf.sdk.feature.source" version="0.0.0">
       <category name="org.eclipse.egf.sdk.source.category"/>
    </feature>
-   <category-def name="org.eclipse.egf.sdk.source.category" label="EMFT EGF SDK Source"/>
+   <category-def name="org.eclipse.egf.sdk.source.category" label="EMFT EGF Source"/>
 </site>
