@@ -1,9 +1,11 @@
 /**
  *  Copyright (c) 2009-2010 Soyatec.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ *  This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v2.0
  *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ *  https://www.eclipse.org/legal/epl-v2.0
+ *
+ *  SPDX-License-Identifier: EPL-2.0
  * 
  *  Contributors:
  *      Soyatec - initial API and implementation
