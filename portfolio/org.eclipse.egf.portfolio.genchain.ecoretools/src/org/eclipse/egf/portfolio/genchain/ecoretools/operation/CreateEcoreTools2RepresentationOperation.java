@@ -324,7 +324,7 @@ public class CreateEcoreTools2RepresentationOperation extends WorkspaceModifyOpe
 		RecordingCommand command = new RecordingCommand(editingDomain) {
 			@Override
 			protected void doExecute() {
-				diagram.refresh();
+				//diagram.refresh();
 			}
 		};
 		editingDomain.getCommandStack().execute(command);

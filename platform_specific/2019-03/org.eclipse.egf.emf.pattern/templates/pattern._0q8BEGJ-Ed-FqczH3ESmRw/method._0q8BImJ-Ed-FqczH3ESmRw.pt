@@ -1,0 +1,148 @@
+
+
+<%if (isInterface) {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.javadoc.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/unsetGenFeature.javadoc.override.javajetinc%>
+<%} else {%>
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+  <%if (genFeature.hasAPITags()) {%>
+	 * <%=genFeature.getAPITags(genModel.getIndentation(stringBuffer))%>
+  <%}%>
+	 * @generated
+	 */
+<%if (isJDK50) { //Class/unsetGenFeature.annotations.insert.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+<%}%>
+<%}%>
+<%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
+	@Deprecated
+<%}%>
+<%if (!isImplementation) {%>
+	void unset<%=genFeature.getAccessorName()%>();
+
+<%} else {%>
+	public void unset<%=genFeature.getAccessorName()%><%if (genClass.hasCollidingUnsetAccessorOperation(genFeature)) {%>_<%}%>()
+	{
+    <%if (genModel.isDynamicDelegation() && !genFeature.isVolatile()) {%>
+		eDynamicUnset(<%=genClass.getQualifiedFeatureID(genFeature)%><%if (genClass.hasStaticFeatures()){%> - ESTATIC_FEATURE_COUNT<%}%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
+    <%} else if (genModel.isReflectiveDelegation()) {%>
+		eUnset(<%=genFeature.getQualifiedFeatureAccessor()%>);
+    <%} else if (genFeature.hasSettingDelegate()) {%>
+		<%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+    <%} else if (!genFeature.isVolatile()) {%>
+      <%if (genFeature.isListType()) {%>
+        <%if (genModel.isVirtualDelegation()) {%>
+		<%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%> = (<%=genFeature.getImportedType(genClass)%>)eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>);
+        <%}%>
+		if (<%=genFeature.getSafeName()%> != null) ((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.InternalEList")%>.Unsettable<%=singleWildcard%>)<%=genFeature.getSafeName()%>).unset();
+      <%} else if (genFeature.isBidirectional() || genFeature.isEffectiveContains()) {%>
+        <%if (genModel.isVirtualDelegation()) {%>
+		<%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%> = (<%=genFeature.getImportedType(genClass)%>)eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>);
+        <%}%>
+		if (<%=genFeature.getSafeName()%> != null)
+		{
+			<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs = null;
+        <%if (!genFeature.isBidirectional()) {%>
+			msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - <%=genClass.getQualifiedFeatureID(genFeature)%><%=negativeOffsetCorrection%>, null, msgs);
+        <%} else { GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(genFeature) : "";%>
+			msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, msgs);
+        <%}%>
+			msgs = basicUnset<%=genFeature.getAccessorName()%>(msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else
+		{
+        <%if (genModel.isVirtualDelegation()) {%>
+			boolean old<%=genFeature.getCapName()%>ESet = eVirtualIsSet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>);
+        <%} else if (genClass.isESetFlag(genFeature)) {%>
+          <%if (!genModel.isSuppressNotification()) {%>
+			boolean old<%=genFeature.getCapName()%>ESet = (<%=genClass.getESetFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_ESETFLAG) != 0;
+          <%}%>
+			<%=genClass.getESetFlagsField(genFeature)%> &= ~<%=genFeature.getUpperName()%>_ESETFLAG;
+        <%} else {%>
+          <%if (!genModel.isSuppressNotification()) {%>
+			boolean old<%=genFeature.getCapName()%>ESet = <%=genFeature.getUncapName()%>ESet;
+          <%}%>
+			<%=genFeature.getUncapName()%>ESet = false;
+        <%}%>
+        <%if (!genModel.isSuppressNotification()) {%>
+			if (eNotificationRequired())
+				eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, null, null, old<%=genFeature.getCapName()%>ESet));
+        <%}%>
+		}
+      <%} else {%>
+        <%if (genClass.isFlag(genFeature)) {%>
+          <%if (!genModel.isSuppressNotification()) {%>
+            <%if (genFeature.isBooleanType()) {%>
+		<%=genFeature.getImportedType(genClass)%> old<%=genFeature.getCapName()%> = (<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) != 0;
+            <%} else {%>
+		<%=genFeature.getImportedType(genClass)%> old<%=genFeature.getCapName()%> = <%=genFeature.getUpperName()%>_EFLAG_VALUES[(<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) >>> <%=genFeature.getUpperName()%>_EFLAG_OFFSET];
+            <%}%>
+          <%}%>
+        <%} else if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>
+		Object old<%=genFeature.getCapName()%> = eVirtualUnset(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>);
+        <%} else {%>
+          <%if (!genModel.isSuppressNotification()) {%>
+		<%=genFeature.getImportedType(genClass)%> old<%=genFeature.getCapName()%> = <%=genFeature.getSafeName()%>;
+          <%}%>
+        <%}%>
+       <%if (!genModel.isSuppressNotification()) {%>
+        <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>
+		boolean isSetChange = old<%=genFeature.getCapName()%> != EVIRTUAL_NO_VALUE;
+          <%} else if (genClass.isESetFlag(genFeature)) {%>
+		boolean old<%=genFeature.getCapName()%>ESet = (<%=genClass.getESetFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_ESETFLAG) != 0;
+          <%} else {%>
+		boolean old<%=genFeature.getCapName()%>ESet = <%=genFeature.getUncapName()%>ESet;
+          <%}%>
+        <%}%>
+        <%if (genFeature.isReferenceType()) {%>
+		<%=genFeature.getSafeName()%> = null;
+          <%if (!genModel.isVirtualDelegation()) {%>
+            <%if (genClass.isESetFlag(genFeature)) {%>
+		<%=genClass.getESetFlagsField(genFeature)%> &= ~<%=genFeature.getUpperName()%>_ESETFLAG;
+            <%} else {%>
+		<%=genFeature.getUncapName()%>ESet = false;
+            <%}%>
+          <%}%>
+          <%if (!genModel.isSuppressNotification()) {%>
+		if (eNotificationRequired())
+			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation()) {%>isSetChange ? old<%=genFeature.getCapName()%> : null<%} else {%>old<%=genFeature.getCapName()%><%}%>, null, <%if (genModel.isVirtualDelegation()) {%>isSetChange<%} else {%>old<%=genFeature.getCapName()%>ESet<%}%>));
+          <%}%>
+        <%} else {%>
+          <%if (genClass.isFlag(genFeature)) {%>
+            <%if (genFeature.isBooleanType()) {%>
+		if (<%=genFeature.getEDefault()%>) <%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG; else <%=genClass.getFlagsField(genFeature)%> &= ~<%=genFeature.getUpperName()%>_EFLAG;
+            <%} else {%>
+		<%=genClass.getFlagsField(genFeature)%> = <%=genClass.getFlagsField(genFeature)%> & ~<%=genFeature.getUpperName()%>_EFLAG | <%=genFeature.getUpperName()%>_EFLAG_DEFAULT;
+            <%}%>
+          <%} else if (!genModel.isVirtualDelegation() || genFeature.isPrimitiveType()) {%>
+		<%=genFeature.getSafeName()%> = <%=genFeature.getEDefault()%>;
+          <%}%>
+          <%if (!genModel.isVirtualDelegation() || genFeature.isPrimitiveType()) {%>
+            <%if (genClass.isESetFlag(genFeature)) {%>
+		<%=genClass.getESetFlagsField(genFeature)%> &= ~<%=genFeature.getUpperName()%>_ESETFLAG;
+            <%} else {%>
+		<%=genFeature.getUncapName()%>ESet = false;
+            <%}%>
+          <%}%>
+          <%if (!genModel.isSuppressNotification()) {%>
+		if (eNotificationRequired())
+			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>isSetChange ? old<%=genFeature.getCapName()%> : <%=genFeature.getEDefault()%><%} else {%>old<%=genFeature.getCapName()%><%}%>, <%=genFeature.getEDefault()%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>isSetChange<%} else {%>old<%=genFeature.getCapName()%>ESet<%}%>));
+          <%}%>
+        <%}%>
+      <%}%>
+    <%} else if (genFeature.hasDelegateFeature()) { GenFeature delegateFeature = genFeature.getDelegateFeature();%>
+      <%if (delegateFeature.isWrappedFeatureMapType()) {%>
+		((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal)((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal.Wrapper)get<%=delegateFeature.getAccessorName()%>()).featureMap()).clear(<%=genFeature.getQualifiedFeatureAccessor()%>);
+      <%} else {%>
+		((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal)get<%=delegateFeature.getAccessorName()%>()).clear(<%=genFeature.getQualifiedFeatureAccessor()%>);
+      <%}%>
+    <%} else if (genClass.getUnsetAccessorOperation(genFeature) != null) {%>
+		<%=genClass.getUnsetAccessorOperation(genFeature).getBody(genModel.getIndentation(stringBuffer))%>
+    <%} else {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/unsetGenFeature.todo.override.javajetinc%>
+    <%}%>
+	}
+
+<%}%>
