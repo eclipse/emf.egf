@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:11 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package linefeed;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class all {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "-----" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public all() {
 		//Here is the constructor
@@ -50,7 +49,7 @@ public class all {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -60,28 +59,36 @@ public class all {
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_fW0RcF3DEd-W5eBkkAoHaA", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_fW0RcF3DEd-W5eBkkAoHaA",
+					ctx_local, parameters);
 		}
 
 		method_separator(new StringBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_s8JesF3DEd-W5eBkkAoHaA", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_s8JesF3DEd-W5eBkkAoHaA",
+					ctx_local, parameters);
 		}
 
 		method_separator(new StringBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_5P020F3DEd-W5eBkkAoHaA", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_5P020F3DEd-W5eBkkAoHaA",
+					ctx_local, parameters);
 		}
 
 		method_separator(new StringBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_DAhtIF3KEd-mZb1ihLU3ug", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_DAhtIF3KEd-mZb1ihLU3ug",
+					ctx_local, parameters);
 		}
 
 		return null;

@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:06 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution_chain;
 
 import org.eclipse.egf.common.helper.*;

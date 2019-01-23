@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package jet_tags;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,8 +21,6 @@ public class Caller {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public Caller() {
 		//Here is the constructor
@@ -50,8 +48,8 @@ public class Caller {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -102,7 +100,9 @@ public class Caller {
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("parameter", variable);
 			callParameters.put("parameter2", variable2);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -119,7 +119,9 @@ public class Caller {
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}

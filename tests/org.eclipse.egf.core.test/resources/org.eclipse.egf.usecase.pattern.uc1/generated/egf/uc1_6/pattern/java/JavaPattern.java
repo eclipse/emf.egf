@@ -1,3 +1,4 @@
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_6.pattern.java;
 
 import java.util.*;
@@ -18,6 +19,7 @@ public class JavaPattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		IQuery.ParameterDescription paramDesc = null;
 		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
 		List<Object> aClassList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
@@ -25,31 +27,30 @@ public class JavaPattern {
 
 			this.aClass = (org.eclipse.emf.ecore.EClass) aClassParameter;
 
-			orchestration((PatternContext) argument);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration((PatternContext) argument);
 
+			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
-		method_body(ictx.getBuffer(), ictx);
-
-		String loop = ictx.getBuffer().toString();
+		Node.Container currentNode = ictx.getNode();
+		method_body(new StringBuffer(), ictx);
+		ictx.setNode(currentNode);
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("aClass", this.aClass);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
 		}
-		return loop;
+		return null;
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -60,6 +61,8 @@ public class JavaPattern {
 		// Message on the EGF console
 		EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());
 
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
 	protected org.eclipse.emf.ecore.EClass aClass;

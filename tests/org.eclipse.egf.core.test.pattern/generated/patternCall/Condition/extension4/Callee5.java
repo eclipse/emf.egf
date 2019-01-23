@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package patternCall.Condition.extension4;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class Callee5 {
 	protected final String TEXT_1 = "Callee has found the 'Test' EClass (on element ";
 	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public Callee5() {
 		//Here is the constructor
@@ -59,7 +58,7 @@ public class Callee5 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

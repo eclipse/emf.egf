@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:08 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution.another.call;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class myInjectedPattern extends substitution.another.call.InjectedPattern
 	protected final String TEXT_1 = "[Improved EReference ";
 	protected final String TEXT_2 = "]";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public myInjectedPattern() {
 		//Here is the constructor
@@ -42,7 +41,8 @@ public class myInjectedPattern extends substitution.another.call.InjectedPattern
 
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EReference");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -60,7 +60,7 @@ public class myInjectedPattern extends substitution.another.call.InjectedPattern
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:06 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution_patternCall;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,8 +21,6 @@ public class callee {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "  callee eAttribute : ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public callee() {
 		//Here is the constructor
@@ -42,7 +40,8 @@ public class callee {
 
 		paramDesc = new IQuery.ParameterDescription("eAttribute", "http://www.eclipse.org/emf/2002/Ecore#//EAttribute");
 		queryCtx = new HashMap<String, String>();
-		List<Object> eAttributeList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+		List<Object> eAttributeList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc,
+				queryCtx, ctx);
 
 		for (Object eAttributeParameter : eAttributeList) {
 
@@ -59,8 +58,8 @@ public class callee {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

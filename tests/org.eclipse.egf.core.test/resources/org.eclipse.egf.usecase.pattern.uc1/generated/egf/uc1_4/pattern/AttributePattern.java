@@ -1,3 +1,4 @@
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_4.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,7 +24,6 @@ public class AttributePattern {
 	protected final String TEXT_2 = "']  ";
 	protected final String TEXT_3 = NL + NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public AttributePattern() {
 		//Here is the constructor
@@ -39,6 +39,7 @@ public class AttributePattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> parameterList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -47,36 +48,35 @@ public class AttributePattern {
 
 			this.parameter = (org.eclipse.emf.ecore.EAttribute) parameterParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 
-		String loop = ictx.getBuffer().toString();
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.ecore.EAttribute parameter = null;
@@ -98,5 +98,7 @@ public class AttributePattern {
 		stringBuffer.append(TEXT_2);
 		MyHelper.incCounter(ctx);
 		stringBuffer.append(TEXT_3);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }

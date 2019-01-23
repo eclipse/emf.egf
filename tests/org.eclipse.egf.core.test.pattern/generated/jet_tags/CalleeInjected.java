@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package jet_tags;
 
 import java.util.*;
@@ -22,7 +22,8 @@ public class CalleeInjected {
 		Node.Container currentNode = ctx.getNode();
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 

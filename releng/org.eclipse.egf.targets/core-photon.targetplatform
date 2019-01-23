@@ -33,7 +33,7 @@ location acceleo "http://download.eclipse.org/acceleo/updates/releases/3.7/R2017
 	org.eclipse.acceleo.sdk.feature.group lazy
 }
 
-location Sirus "http://download.eclipse.org/sirius/updates/milestones/6.0.0M6/photon" {
+location Sirus "https://download.eclipse.org/sirius/updates/releases/6.1.1/photon" {
 	org.eclipse.sirius.doc.feature.feature.group lazy
 	org.eclipse.sirius.runtime.ide.eef.feature.group lazy
 	org.eclipse.sirius.runtime.ide.ui.acceleo.feature.group lazy

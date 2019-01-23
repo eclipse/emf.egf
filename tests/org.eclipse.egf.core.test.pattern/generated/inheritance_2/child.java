@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package inheritance_2;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class child extends inheritance_2.parent {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "fromChild : ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public child() {
 		//Here is the constructor
@@ -58,7 +57,7 @@ public class child extends inheritance_2.parent {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -71,7 +70,9 @@ public class child extends inheritance_2.parent {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_2.fcore#_nfk5LCH-Ed-CStHKuCL0dg", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_2.fcore#_nfk5LCH-Ed-CStHKuCL0dg",
+					ctx_local);
 		}
 
 		if (ictx.useReporter()) {

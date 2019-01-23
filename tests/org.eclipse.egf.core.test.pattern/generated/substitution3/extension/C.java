@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution3.extension;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class C {
 	protected final String TEXT_1 = "C on ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public C() {
 		//Here is the constructor
@@ -59,7 +58,7 @@ public class C {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

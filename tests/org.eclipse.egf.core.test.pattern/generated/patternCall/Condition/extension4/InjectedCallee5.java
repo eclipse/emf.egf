@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package patternCall.Condition.extension4;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class InjectedCallee5 {
 	protected final String TEXT_1 = "InjectedCallee has found the 'Test' EClass (on element ";
 	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public InjectedCallee5() {
 		//Here is the constructor
@@ -42,7 +41,8 @@ public class InjectedCallee5 {
 
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -60,7 +60,7 @@ public class InjectedCallee5 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

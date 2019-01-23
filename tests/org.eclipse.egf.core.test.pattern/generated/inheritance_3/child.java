@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package inheritance_3;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,7 +23,6 @@ public class child extends inheritance_3.parent {
 	protected final String TEXT_2 = "// child on ";
 	protected final String TEXT_3 = NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public child() {
 		//Here is the constructor
@@ -43,7 +42,8 @@ public class child extends inheritance_3.parent {
 
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc,
+				queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -61,7 +61,7 @@ public class child extends inheritance_3.parent {
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -75,7 +75,9 @@ public class child extends inheritance_3.parent {
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("parameter", this.parameter);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_3.fcore#_AHSpICIUEd-XdOucj2euiQ", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_3.fcore#_AHSpICIUEd-XdOucj2euiQ",
+					ctx_local, parameters);
 		}
 
 		if (ictx.useReporter()) {

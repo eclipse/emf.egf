@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution5;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class CCallee4 {
 	protected final String TEXT_1 = "Message from Callee pattern: ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public CCallee4() {
 		//Here is the constructor
@@ -59,7 +58,7 @@ public class CCallee4 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

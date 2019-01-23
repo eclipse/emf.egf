@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:11 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package linefeed2;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class all2 {
 	protected final String TEXT_1 = "c";
 	protected final String TEXT_2 = "d";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public all2() {
 		//Here is the constructor
@@ -51,7 +50,7 @@ public class all2 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -61,13 +60,17 @@ public class all2 {
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug",
+					ctx_local, parameters);
 		}
 
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug",
+					ctx_local, parameters);
 		}
 
 		method_d(new StringBuffer(), ictx);

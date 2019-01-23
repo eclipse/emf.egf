@@ -1,3 +1,4 @@
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_4.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -25,9 +26,7 @@ public class ClassPattern {
 	protected final String TEXT_4 = "]" + NL + NL;
 	protected final String TEXT_5 = "\t=> ";
 	protected final String TEXT_6 = " attribute(s)" + NL + "[End. ";
-	protected final String TEXT_7 = "]" + NL + NL;
-	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
+	protected final String TEXT_7 = NL;
 
 	public ClassPattern() {
 		//Here is the constructor
@@ -43,6 +42,7 @@ public class ClassPattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> parameterList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -51,45 +51,42 @@ public class ClassPattern {
 
 			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_7);
 		return stringBuffer.toString();
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
-		method_before(ictx.getBuffer(), ictx);
+		method_before(new StringBuffer(), ictx);
 		{
-			ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
-			ictx.getExecutionBuffer().append(ictx.getBuffer());
 			final Map<String, Object> parameters = getParameters();
 			CallbackContext ctx_callback = new CallbackContext(ictx);
 			CallHelper.callBack(ctx_callback, parameters);
 		}
 
-		method_after(ictx.getBuffer(), ictx);
+		method_after(new StringBuffer(), ictx);
 
-		String loop = ictx.getBuffer().toString();
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
 		}
-		return loop;
+		return null;
 	}
 
 	protected java.lang.String _separator = null;
@@ -113,6 +110,8 @@ public class ClassPattern {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -124,6 +123,8 @@ public class ClassPattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(_separator);
 		stringBuffer.append(TEXT_4);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "before", stringBuffer.toString());
 	}
 
 	protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -134,6 +135,8 @@ public class ClassPattern {
 		stringBuffer.append(_separator);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(_separator);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_4);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "after", stringBuffer.toString());
 	}
 }

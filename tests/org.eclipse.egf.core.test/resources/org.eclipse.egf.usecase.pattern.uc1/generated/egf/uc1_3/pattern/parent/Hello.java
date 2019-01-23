@@ -1,3 +1,4 @@
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_3.pattern.parent;
 
 import java.util.*;
@@ -21,7 +22,6 @@ public class Hello {
 	protected final String TEXT_2 = NL + "Hello";
 	protected final String TEXT_3 = "!";
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public Hello() {
 		//Here is the constructor
@@ -37,32 +37,29 @@ public class Hello {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-		orchestration(ctx);
+		{
+			ctx.setNode(new Node.Container(currentNode, getClass()));
+			orchestration(ctx);
+		}
 
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			ictx.clearBuffer();
-		}
-		return loop;
+		return null;
 	}
 
 	public Map<String, Object> getParameters() {
@@ -73,15 +70,21 @@ public class Hello {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_SayHello(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "SayHello", stringBuffer.toString());
 	}
 
 	protected void method_finish(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_3);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "finish", stringBuffer.toString());
 	}
 }

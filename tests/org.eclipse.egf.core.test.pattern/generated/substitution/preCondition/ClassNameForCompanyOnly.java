@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:08 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution.preCondition;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class ClassNameForCompanyOnly extends substitution.preCondition.ClassName
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "found ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public ClassNameForCompanyOnly() {
 		//Here is the constructor
@@ -58,7 +57,7 @@ public class ClassNameForCompanyOnly extends substitution.preCondition.ClassName
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

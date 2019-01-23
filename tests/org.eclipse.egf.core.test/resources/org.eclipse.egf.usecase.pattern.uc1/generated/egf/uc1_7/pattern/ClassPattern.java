@@ -1,3 +1,4 @@
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_7.pattern;
 
 import java.util.*;
@@ -18,10 +19,8 @@ public class ClassPattern {
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = NL;
-	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = " contains:" + NL;
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
+	protected final String TEXT_2 = " contains:" + NL;
+	protected final String TEXT_3 = NL;
 
 	public ClassPattern() {
 		//Here is the constructor
@@ -37,6 +36,7 @@ public class ClassPattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> parameterList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -45,43 +45,44 @@ public class ClassPattern {
 
 			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 
-		method_setupVariable(ictx.getBuffer(), ictx);
+		method_setupVariable(new StringBuffer(), ictx);
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, variable);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_7_Injection.fcore#_RdSMYBViEd-JoY-b5_Vpcw", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_7_Injection.fcore#_RdSMYBViEd-JoY-b5_Vpcw",
+					ctx_local);
 		}
 
-		String loop = ictx.getBuffer().toString();
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.ecore.EClass variable = null;
@@ -105,13 +106,17 @@ public class ClassPattern {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
-		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_setupVariable(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		variable = parameter;
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setupVariable", stringBuffer.toString());
 	}
 }

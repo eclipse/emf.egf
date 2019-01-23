@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:11 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package callbackAndReporter;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,7 +23,6 @@ public class AttributePattern {
 	protected final String TEXT_2 = "]";
 	protected final String TEXT_3 = "[end Attribute]";
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public AttributePattern() {
 		//Here is the constructor
@@ -60,7 +59,7 @@ public class AttributePattern {
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

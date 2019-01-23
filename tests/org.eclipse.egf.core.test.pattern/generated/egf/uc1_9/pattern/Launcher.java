@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:11 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_9.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -71,7 +71,9 @@ public class Launcher {
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("parameter", this.parameter);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/PatternCall_and_Callback.fcore#_sdGdsF6JEeCOmYMivg_FIg", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/PatternCall_and_Callback.fcore#_sdGdsF6JEeCOmYMivg_FIg",
+					ctx_local, parameters);
 		}
 
 		if (ictx.useReporter()) {

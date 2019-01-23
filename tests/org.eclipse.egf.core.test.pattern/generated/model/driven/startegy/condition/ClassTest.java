@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:07 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package model.driven.startegy.condition;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class ClassTest {
 	protected final String TEXT_1 = "found special Class Test !  (element name is ";
 	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public ClassTest() {
 		//Here is the constructor
@@ -59,7 +58,7 @@ public class ClassTest {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

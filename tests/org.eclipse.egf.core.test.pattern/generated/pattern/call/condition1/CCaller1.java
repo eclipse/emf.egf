@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package pattern.call.condition1;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class CCaller1 {
 	protected final String TEXT_1 = "Message from caller: found ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public CCaller1() {
 		//Here is the constructor
@@ -42,7 +41,8 @@ public class CCaller1 {
 
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc,
+				queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -60,7 +60,7 @@ public class CCaller1 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -71,7 +71,9 @@ public class CCaller1 {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, parameter);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition1.fcore#_1vJscHeNEd-eFrQyPU1i3Q", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition1.fcore#_1vJscHeNEd-eFrQyPU1i3Q",
+					ctx_local);
 		}
 
 		if (ictx.useReporter()) {

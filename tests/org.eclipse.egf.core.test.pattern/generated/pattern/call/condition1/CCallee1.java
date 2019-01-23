@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package pattern.call.condition1;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class CCallee1 {
 	protected final String TEXT_1 = "Callee has found the 'test' EClass (element name is ";
 	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public CCallee1() {
 		//Here is the constructor
@@ -42,7 +41,8 @@ public class CCallee1 {
 
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -60,7 +60,7 @@ public class CCallee1 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

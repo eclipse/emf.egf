@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package base;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class BasePattern {
 	protected final String TEXT_1 = "//default content";
 	protected final String TEXT_2 = "// Pipo from parent";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public BasePattern() {
 		//Here is the constructor
@@ -51,7 +50,7 @@ public class BasePattern {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

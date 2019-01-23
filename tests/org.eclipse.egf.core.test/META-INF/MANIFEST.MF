@@ -15,5 +15,13 @@ Require-Bundle:
  org.eclipse.egf.domain,
  org.eclipse.egf.model.fprod,
  org.eclipse.egf.producer.ftask,
- org.eclipse.egf.core.test.model
+ org.eclipse.egf.core.test.model,
+ org.eclipse.egf.example.fcs,
+ org.eclipse.egf.core.test.pattern,
+ org.eclipse.egf.example.fcs,
+ org.eclipse.egf.example.task.h1,
+ org.eclipse.egf.example.task.h4,
+ org.eclipse.egf.usecase.pattern.uc3.m2treporting,
+ org.eclipse.egf.usecase.pattern.uc1,
+ org.eclipse.egf.usecase.pattern.uc2
 Bundle-ActivationPolicy: lazy

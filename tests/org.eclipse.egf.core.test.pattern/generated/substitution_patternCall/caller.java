@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:06 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package substitution_patternCall;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,8 +21,6 @@ public class caller {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "caller eClass : ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public caller() {
 		//Here is the constructor
@@ -58,8 +56,8 @@ public class caller {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -70,7 +68,9 @@ public class caller {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, eClass);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_patternCall.fcore#_ZHxDMJAhEd-qRrvFxb1RDA", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_patternCall.fcore#_ZHxDMJAhEd-qRrvFxb1RDA",
+					ctx_local);
 		}
 
 		if (ictx.useReporter()) {

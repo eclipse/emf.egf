@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:07 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package pattern.call2;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class Caller2 {
 	protected final String TEXT_1 = "Caller on ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public Caller2() {
 		//Here is the constructor
@@ -42,7 +41,8 @@ public class Caller2 {
 
 		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc,
+				queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -60,7 +60,7 @@ public class Caller2 {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -72,7 +72,9 @@ public class Caller2 {
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("parameter", this.parameter);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_2.fcore#_VA72IFdJEd-TZKuCZ4UIfg", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_2.fcore#_VA72IFdJEd-TZKuCZ4UIfg",
+					ctx_local, parameters);
 		}
 
 		if (ictx.useReporter()) {

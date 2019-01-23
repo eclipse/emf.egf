@@ -1,3 +1,4 @@
+//Generated with EGF 1.6.0.201901231006
 package egf.uc1_6.pattern;
 
 import java.util.*;
@@ -19,8 +20,6 @@ public class JetClassPattern {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "- Jet: ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public JetClassPattern() {
 		//Here is the constructor
@@ -36,6 +35,7 @@ public class JetClassPattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> aClassList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -44,42 +44,43 @@ public class JetClassPattern {
 
 			this.aClass = (org.eclipse.emf.ecore.EClass) aClassParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("aClass", this.aClass);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_6_JetPatternCallsJavaPattern.fcore#_iXOsIBrgEd-cXtp4jDfJVg", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_6_JetPatternCallsJavaPattern.fcore#_iXOsIBrgEd-cXtp4jDfJVg",
+					ctx_local, parameters);
 		}
 
-		String loop = ictx.getBuffer().toString();
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("aClass", this.aClass);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.ecore.EClass aClass = null;
@@ -99,5 +100,7 @@ public class JetClassPattern {
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(aClass.getName());
 		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }

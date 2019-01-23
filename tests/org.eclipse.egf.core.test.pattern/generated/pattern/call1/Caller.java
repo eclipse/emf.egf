@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:08 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package pattern.call1;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class Caller {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "Message from caller";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public Caller() {
 		//Here is the constructor
@@ -50,7 +49,7 @@ public class Caller {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -61,7 +60,9 @@ public class Caller {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, variable);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_1.fcore#_F9NFkFa3Ed-upsLSxDR5IA", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_1.fcore#_F9NFkFa3Ed-upsLSxDR5IA",
+					ctx_local);
 		}
 
 		return null;

@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 17:28:07 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.0.201901231006
 package callback_1.strategy;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,7 +24,6 @@ public class ClassPattern {
 	protected final String TEXT_3 = "]" + NL;
 	protected final String TEXT_4 = "  [end class]" + NL;
 	protected final String TEXT_5 = NL;
-	protected final String TEXT_6 = NL;
 
 	public ClassPattern() {
 		//Here is the constructor
@@ -61,7 +60,7 @@ public class ClassPattern {
 		}
 
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 

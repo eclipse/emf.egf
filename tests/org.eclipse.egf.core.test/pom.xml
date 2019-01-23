@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2018, 2019 THALES GLOBAL SERVICES.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Thales - initial API and implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.eclipse.egf</groupId>
+		<artifactId>egf_root</artifactId>
+		<version>1.6.0-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
+
+  <artifactId>org.eclipse.egf.core.test</artifactId>
+  <packaging>eclipse-test-plugin</packaging>
+
+  <build>
+    <plugins>
+       <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-surefire-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <useUIHarness>true</useUIHarness>
+          <useUIThread>true</useUIThread>
+          <testFailureIgnore>true</testFailureIgnore>
+          <work>../../releng/org.eclipse.egf.product/target/products/org.eclipse.egf.product/${os}/${ws}/x86_64</work>
+          <includes>
+            <include>org/eclipse/egf/core/test/AllTests.java</include>
+          </includes>
+          <testRuntime>p2Installed</testRuntime>
+          
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
