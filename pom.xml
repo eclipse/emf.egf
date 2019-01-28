@@ -314,9 +314,7 @@
 				<module>features/org.eclipse.egf.portfolio.task.ant.feature</module>
 				<module>features/org.eclipse.egf.producer.feature</module>
 				<module>features/org.eclipse.egf.producer.ui.feature</module>
-				<!-->module>features/org.eclipse.egf.releng.feature</module -->
 				<module>features/org.eclipse.egf.sdk.feature</module>
-				<module>features/org.eclipse.egf.test.feature</module>
 
 				<!--  platform specific -->
 				<module>platform_specific/${platform-version-name}/org.eclipse.egf.emf.pattern</module>
