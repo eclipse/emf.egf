@@ -181,7 +181,7 @@
  				<module>tests/org.eclipse.emf.egf.core.test.rcptt</module> 
 				<module>tests/org.eclipse.egf.core.test</module>
 				<module>tests/org.eclipse.egf.core.test.model</module>
-
+				<module>tests/org.eclipse.egf.portfolio.task.ant.test</module>
 				<module>tests/org.eclipse.egf.core.test.pattern</module>
 			</modules>
 		</profile>
@@ -192,7 +192,6 @@
 			</activation>
 			<modules>
 				<!-- plugins -->
-				<module>tests/org.eclipse.egf.portfolio.task.ant.test</module>
 				<module>examples/workspace/org.eclipse.egf.examples.installer</module>
 				<module>examples/workspace/org.eclipse.egf.example.emf.docgen.html</module>
 				<module>examples/workspace/org.eclipse.egf.example.fcs</module>
@@ -313,7 +312,6 @@
 				<module>features/org.eclipse.egf.portfolio.genchain.ecoretools.feature</module>
 				<module>features/org.eclipse.egf.portfolio.genchain.feature</module>
 				<module>features/org.eclipse.egf.portfolio.task.ant.feature</module>
-				<module>features/org.eclipse.egf.portfolio.task.ant.test.feature</module>
 				<module>features/org.eclipse.egf.producer.feature</module>
 				<module>features/org.eclipse.egf.producer.ui.feature</module>
 				<!-->module>features/org.eclipse.egf.releng.feature</module -->
