@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2014, 2017 Thales Corporate Services S.A.S.
+ * Copyright (c) 2014, 2019 Thales Corporate Services S.A.S.
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
@@ -41,6 +41,7 @@ import org.eclipse.sirius.diagram.business.internal.componentization.mappings.Di
 import org.eclipse.sirius.diagram.business.internal.experimental.sync.DDiagramElementSynchronizer;
 import org.eclipse.sirius.diagram.business.internal.experimental.sync.DDiagramSynchronizer;
 import org.eclipse.sirius.diagram.business.internal.experimental.sync.DEdgeCandidate;
+import org.eclipse.sirius.diagram.business.internal.metamodel.operations.DDiagramSpecOperations;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.EdgeMapping;
@@ -202,7 +203,7 @@ public class CreateEdgeCommand extends RecordingCommand {
 		{
 			if (diagramElementMapping instanceof ContainerMapping)
 			{
-				EList<DDiagramElementContainer> containers = _diagram.getContainersFromMapping((ContainerMapping) diagramElementMapping);
+				EList<DDiagramElementContainer> containers = DDiagramSpecOperations.getContainersFromMapping(_diagram, (ContainerMapping) diagramElementMapping);
 				for (DDiagramElementContainer dDiagramElementContainer : containers) 
 				{
 					if (dDiagramElementContainer.getTarget().equals(semantic))
@@ -213,7 +214,7 @@ public class CreateEdgeCommand extends RecordingCommand {
 			
 			if (diagramElementMapping instanceof NodeMapping)
 			{
-				EList<DNode> nodes = _diagram.getNodesFromMapping((NodeMapping) diagramElementMapping);
+				EList<DNode> nodes = DDiagramSpecOperations.getNodesFromMapping(_diagram, (NodeMapping) diagramElementMapping);
 				for (DNode dNode : nodes) 
 				{
 					if (dNode.getTarget().equals(semantic))

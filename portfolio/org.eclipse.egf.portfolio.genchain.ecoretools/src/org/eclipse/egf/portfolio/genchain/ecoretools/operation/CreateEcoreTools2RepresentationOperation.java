@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2014 Thales Corporate Services S.A.S.
+ * Copyright (c) 2014, 2019 Thales Corporate Services S.A.S.
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@
  */
 
 package org.eclipse.egf.portfolio.genchain.ecoretools.operation;
-
+	
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,7 +45,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.util.ObjectAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -69,6 +68,7 @@ import org.eclipse.sirius.diagram.business.api.query.EdgeMappingQuery;
 import org.eclipse.sirius.diagram.business.api.refresh.CanonicalSynchronizer;
 import org.eclipse.sirius.diagram.business.api.refresh.CanonicalSynchronizerFactory;
 import org.eclipse.sirius.diagram.business.api.refresh.DiagramCreationUtil;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContentHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
@@ -363,12 +363,12 @@ public class CreateEcoreTools2RepresentationOperation extends WorkspaceModifyOpe
 		EList<AbstractNodeMapping> abstractNodeMappings = new BasicEList<AbstractNodeMapping>();
 		final DiagramDescription description = diagram.getDescription();
 		/** Handle description NodeMppings **/
-		EList<NodeMapping> nodeMappings = description.getAllNodeMappings();
+		EList<NodeMapping> nodeMappings = ContentHelper.getAllNodeMappings(description, true);
 		if (!nodeMappings.isEmpty())
 			abstractNodeMappings.addAll(nodeMappings);
 
 		/** Handle description ContainerMppings **/
-		EList<ContainerMapping> containerMappings = description.getAllContainerMappings();
+		EList<ContainerMapping> containerMappings = ContentHelper.getAllContainerMappings(description, true);
 		if (!containerMappings.isEmpty())
 			abstractNodeMappings.addAll(containerMappings);
 

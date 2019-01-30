@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2014 Thales Corporate Services S.A.S.
+ * Copyright (c) 2014, 2019 Thales Corporate Services S.A.S.
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
@@ -38,6 +38,8 @@ import org.eclipse.sirius.diagram.business.api.query.AbstractNodeMappingQuery;
 import org.eclipse.sirius.diagram.business.internal.componentization.mappings.DiagramMappingsManagerRegistryImpl;
 import org.eclipse.sirius.diagram.business.internal.experimental.sync.AbstractDNodeCandidate;
 import org.eclipse.sirius.diagram.business.internal.experimental.sync.DDiagramSynchronizer;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.MappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
@@ -126,7 +128,7 @@ public class CreateNodeCommand extends RecordingCommand {
 		
 		// create it sub nodes
 		EList<AbstractNodeMapping> childrenNodeMapping = new BasicEList<AbstractNodeMapping>();
-		for (DiagramElementMapping iDiagramElementMapping : nodeMapping.getAllMappings())
+		for (DiagramElementMapping iDiagramElementMapping : MappingHelper.getAllMappings(nodeMapping))
 		{
 			if (iDiagramElementMapping instanceof AbstractNodeMapping)
 				childrenNodeMapping.add((AbstractNodeMapping) iDiagramElementMapping);
