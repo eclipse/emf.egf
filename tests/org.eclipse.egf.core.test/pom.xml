@@ -39,7 +39,7 @@
             <include>org/eclipse/egf/core/test/AllTests.java</include>
           </includes>
           <testRuntime>p2Installed</testRuntime>
-          
+          <argLine>${failsafeArgline}</argLine>
         </configuration>
       </plugin>
     </plugins>
