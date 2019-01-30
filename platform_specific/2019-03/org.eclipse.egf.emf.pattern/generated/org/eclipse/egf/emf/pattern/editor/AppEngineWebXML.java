@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.qualifier
+//Generated with EGF 1.6.0.201901231418
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -32,7 +32,7 @@ public class AppEngineWebXML extends org.eclipse.egf.emf.pattern.base.GenModelTe
 	protected final String TEXT_3 = NL + "<appengine-web-app xmlns=\"http://appengine.google.com/ns/1.0\">" + NL
 			+ "\t<application>";
 	protected final String TEXT_4 = "-editor</application>" + NL + "\t<version>1</version>" + NL
-			+ "</appengine-web-app>" + NL;
+			+ "\t<threadsafe>true</threadsafe>" + NL + "</appengine-web-app>" + NL;
 	protected final String TEXT_5 = NL;
 
 	public AppEngineWebXML() {
@@ -142,9 +142,9 @@ public class AppEngineWebXML extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		/**
 		 * Copyright (c) 2010 Ed Merks and others.
 		 * All rights reserved.   This program and the accompanying materials
-		 * are made available under the terms of the Eclipse Public License v1.0
+		 * are made available under the terms of the Eclipse Public License v2.0
 		 * which accompanies this distribution, and is available at
-		 * http://www.eclipse.org/legal/epl-v10.html
+		 * http://www.eclipse.org/legal/epl-v20.html
 		 * 
 		 * Contributors: 
 		 *   Ed Merks - Initial API and implementation

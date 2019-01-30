@@ -3,9 +3,9 @@
 /**
  * Copyright (c) 2002-2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * http://www.eclipse.org/legal/epl-v20.html
  *
  * Contributors:
  *   IBM - Initial API and implementation
@@ -82,6 +82,9 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+		@Override
+<%}%>
 		public void run(<%=genModel.getImportedName("org.eclipse.jface.action.IAction")%> action)
 		{
 			<%=genPackage.getModelWizardClassName()%> wizard = new <%=genPackage.getModelWizardClassName()%>();
@@ -238,6 +241,18 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 		liveValidationAction = new <%=genModel.getImportedName("org.eclipse.emf.edit.ui.provider.DiagnosticDecorator")%>.LiveValidator.LiveValidationAction(<%=genPackage.getImportedEditorPluginClassName()%>.getPlugin().getDialogSettings());
 <%}%>
 		controlAction = new <%=genModel.getImportedName("org.eclipse.emf.edit.ui.action.ControlAction")%>();
+<%if (genModel.isFindAction()) {%>
+		findAction = <%=genModel.getImportedName("org.eclipse.emf.edit.ui.action.FindAction")%>.create();
+<%}%>
+<%if (genModel.isRevertAction()) {%>
+		revertAction = new <%=genModel.getImportedName("org.eclipse.emf.edit.ui.action.RevertAction")%>();
+<%}%>
+<%if (genModel.isExpandAllAction()) {%>
+		expandAllAction = new <%=genModel.getImportedName("org.eclipse.emf.edit.ui.action.ExpandAllAction")%>();
+<%}%>
+<%if (genModel.isCollapseAllAction()) {%>
+		collapseAllAction = new <%=genModel.getImportedName("org.eclipse.emf.edit.ui.action.CollapseAllAction")%>();
+<%}%>
 	}
 
 	/**
@@ -251,6 +266,7 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 <%}%>
 	public void contributeToToolBar(<%=genModel.getImportedName("org.eclipse.jface.action.IToolBarManager")%> toolBarManager)
 	{
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new <%=genModel.getImportedName("org.eclipse.jface.action.Separator")%>("<%=genPackage.getPrefix().toLowerCase(genModel.getLocale())%>-settings"));<%=genModel.getNonNLS()%>
 		toolBarManager.add(new <%=genModel.getImportedName("org.eclipse.jface.action.Separator")%>("<%=genPackage.getPrefix().toLowerCase(genModel.getLocale())%>-additions"));<%=genModel.getNonNLS()%>
 	}
@@ -292,6 +308,9 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 		submenuManager.addMenuListener
 			(new <%=genModel.getImportedName("org.eclipse.jface.action.IMenuListener")%>()
 			 {
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+				 @Override
+<%}%>
 				 public void menuAboutToShow(<%=genModel.getImportedName("org.eclipse.jface.action.IMenuManager")%> menuManager)
 				 {
 					 menuManager.updateAll(true);
@@ -352,6 +371,9 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+	@Override
+<%}%>
 	public void selectionChanged(<%=genModel.getImportedName("org.eclipse.jface.viewers.SelectionChangedEvent")%> event)
 	{
 <%if (genModel.isCreationCommands()) {%>
@@ -631,7 +653,7 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 					<%=genModel.getImportedName("org.eclipse.jface.action.MenuManager")%> submenuManager = (<%=genModel.getImportedName("org.eclipse.jface.action.MenuManager")%>)contributionItem;
 					if (submenuActions.containsKey(submenuManager.getMenuText()))
 					{
-						depopulateManager(submenuManager, <%if (!genModel.useGenerics()) {%>(<%=_CollectionOfIAction%>)<%}%>submenuActions.get(contributionItem));
+						depopulateManager(submenuManager, <%if (!genModel.useGenerics()) {%>(<%=_CollectionOfIAction%>)<%}%>submenuActions.get(submenuManager.getMenuText()));
 						manager.remove(contributionItem);
 					}
 				}

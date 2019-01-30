@@ -1,4 +1,4 @@
 <%
 GenModel genModel = parameter;
-targetPathName = genModel.getEditorProjectDirectory() + "/plugin.properties";
+targetPathName = genModel.getEditorProjectDirectory() + "/" + genModel.getEditorBundleLocalization()+ ".properties";
 %>

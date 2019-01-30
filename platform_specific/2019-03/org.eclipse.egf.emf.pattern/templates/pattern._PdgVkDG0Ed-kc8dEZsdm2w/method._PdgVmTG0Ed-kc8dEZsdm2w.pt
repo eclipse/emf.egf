@@ -3,9 +3,9 @@
 /**
  * Copyright (c) 2002-2004 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * http://www.eclipse.org/legal/epl-v20.html
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
@@ -14,8 +14,8 @@
 <%GenModel genModel = (GenModel)argument;%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
 
-pluginName = <%=genModel.getModelName()%> Model
-providerName = www.example.org
+pluginName = <%=genModel.getModelBundleName()%>
+providerName = <%=genModel.getModelBundleVendorName()%>
 <%boolean first = true; for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {%>
   <%if (genPackage.isContentType()) {%>
     <%if (first) { first = false;%>

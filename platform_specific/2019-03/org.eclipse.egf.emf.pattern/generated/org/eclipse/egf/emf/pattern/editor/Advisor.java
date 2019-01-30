@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.qualifier
+//Generated with EGF 1.6.0.201901231418
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -110,9 +110,11 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\tpublic static class Application implements IApplication" + NL + "\t{" + NL + "\t\t/**" + NL
 			+ "\t\t * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)" + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
-			+ "\t\t */" + NL + "\t\tpublic Object start(IApplicationContext context) throws Exception" + NL + "\t\t{"
-			+ NL + "\t\t\tWorkbenchAdvisor workbenchAdvisor = new ";
-	protected final String TEXT_41 = "();" + NL + "\t\t\tDisplay display = PlatformUI.createDisplay();" + NL
+			+ "\t\t */";
+	protected final String TEXT_41 = NL + "\t\t@Override";
+	protected final String TEXT_42 = NL + "\t\tpublic Object start(IApplicationContext context) throws Exception" + NL
+			+ "\t\t{" + NL + "\t\t\tWorkbenchAdvisor workbenchAdvisor = new ";
+	protected final String TEXT_43 = "();" + NL + "\t\t\tDisplay display = PlatformUI.createDisplay();" + NL
 			+ "\t\t\ttry" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tint returnCode = PlatformUI.createAndRunWorkbench(display, workbenchAdvisor);" + NL
 			+ "\t\t\t\tif (returnCode == PlatformUI.RETURN_RESTART)" + NL + "\t\t\t\t{" + NL
@@ -121,23 +123,25 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ NL + "\t\t\t{" + NL + "\t\t\t\tdisplay.dispose();" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "" + NL
 			+ "\t\t/**" + NL + "\t\t * @see org.eclipse.equinox.app.IApplication#stop()" + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
-			+ "\t\t */" + NL + "\t\tpublic void stop()" + NL + "\t\t{" + NL + "\t\t\t// Do nothing." + NL + "\t\t}" + NL
-			+ "\t}" + NL + "" + NL + "\t/**" + NL + "\t * RCP's perspective" + NL + "\t * <!-- begin-user-doc -->" + NL
-			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
-			+ "\tpublic static class Perspective implements IPerspectiveFactory" + NL + "\t{" + NL + "\t\t/**" + NL
+			+ "\t\t */";
+	protected final String TEXT_44 = NL + "\t\tpublic void stop()" + NL + "\t\t{" + NL + "\t\t\t// Do nothing." + NL
+			+ "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * RCP's perspective" + NL
+			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */"
+			+ NL + "\tpublic static class Perspective implements IPerspectiveFactory" + NL + "\t{" + NL + "\t\t/**" + NL
 			+ "\t\t * Perspective ID" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL
 			+ "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic static final String ID_PERSPECTIVE = \"";
-	protected final String TEXT_42 = "Perspective\";";
-	protected final String TEXT_43 = NL + NL + "\t\t/**" + NL
+	protected final String TEXT_45 = "Perspective\";";
+	protected final String TEXT_46 = NL + NL + "\t\t/**" + NL
 			+ "\t\t * @see org.eclipse.ui.IPerspectiveFactory#createInitialLayout(org.eclipse.ui.IPageLayout)" + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
-			+ "\t\t */" + NL + "\t\tpublic void createInitialLayout(IPageLayout layout)" + NL + "\t\t{" + NL
+			+ "\t\t */";
+	protected final String TEXT_47 = NL + "\t\tpublic void createInitialLayout(IPageLayout layout)" + NL + "\t\t{" + NL
 			+ "\t\t\tlayout.setEditorAreaVisible(true);" + NL + "\t\t\tlayout.addPerspectiveShortcut(ID_PERSPECTIVE);"
 			+ NL + "" + NL
 			+ "\t\t\tIFolderLayout right = layout.createFolder(\"right\", IPageLayout.RIGHT, (float)0.66, layout.getEditorArea());";
-	protected final String TEXT_44 = NL + "\t\t\tright.addView(IPageLayout.ID_OUTLINE);" + NL + "" + NL
+	protected final String TEXT_48 = NL + "\t\t\tright.addView(IPageLayout.ID_OUTLINE);" + NL + "" + NL
 			+ "\t\t\tIFolderLayout bottonRight = layout.createFolder(\"bottonRight\", IPageLayout.BOTTOM, (float)0.60, \"right\");";
-	protected final String TEXT_45 = NL + "\t\t\tbottonRight.addView(IPageLayout.ID_PROP_SHEET);" + NL + "\t\t}" + NL
+	protected final String TEXT_49 = NL + "\t\t\tbottonRight.addView(IPageLayout.ID_PROP_SHEET);" + NL + "\t\t}" + NL
 			+ "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * RCP's window advisor" + NL + "\t * <!-- begin-user-doc -->"
 			+ NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tpublic static class WindowAdvisor extends WorkbenchWindowAdvisor" + NL + "\t{" + NL + "\t\t/**" + NL
@@ -148,17 +152,16 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t * @see org.eclipse.ui.application.WorkbenchWindowAdvisor#preWindowOpen()" + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
 			+ "\t\t */";
-	protected final String TEXT_46 = NL + "\t\t@Override";
-	protected final String TEXT_47 = NL + "\t\tpublic void preWindowOpen()" + NL + "\t\t{" + NL
+	protected final String TEXT_50 = NL + "\t\tpublic void preWindowOpen()" + NL + "\t\t{" + NL
 			+ "\t\t\tIWorkbenchWindowConfigurer configurer = getWindowConfigurer();" + NL
 			+ "\t\t\tconfigurer.setInitialSize(new Point(600, 450));" + NL + "\t\t\tconfigurer.setShowCoolBar(false);"
 			+ NL + "\t\t\tconfigurer.setShowStatusLine(true);" + NL
 			+ "\t\t\tconfigurer.setTitle(getString(\"_UI_Application_title\"));";
-	protected final String TEXT_48 = NL + "\t\t}" + NL + "\t\t" + NL + "\t\t/**" + NL
+	protected final String TEXT_51 = NL + "\t\t}" + NL + "\t\t" + NL + "\t\t/**" + NL
 			+ "\t\t * @see org.eclipse.ui.application.WorkbenchWindowAdvisor#createActionBarAdvisor(org.eclipse.ui.application.IActionBarConfigurer)"
 			+ NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated"
 			+ NL + "\t\t */";
-	protected final String TEXT_49 = NL
+	protected final String TEXT_52 = NL
 			+ "\t\tpublic ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer)" + NL + "\t\t{" + NL
 			+ "\t\t\treturn new WindowActionBarAdvisor(configurer);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL
 			+ "\t/**" + NL + "\t * RCP's action bar advisor" + NL + "\t * <!-- begin-user-doc -->" + NL
@@ -171,7 +174,7 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t * @see org.eclipse.ui.application.ActionBarAdvisor#fillMenuBar(org.eclipse.jface.action.IMenuManager)"
 			+ NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated"
 			+ NL + "\t\t */";
-	protected final String TEXT_50 = NL + "\t\tprotected void fillMenuBar(IMenuManager menuBar)" + NL + "\t\t{" + NL
+	protected final String TEXT_53 = NL + "\t\tprotected void fillMenuBar(IMenuManager menuBar)" + NL + "\t\t{" + NL
 			+ "\t\t\tIWorkbenchWindow window = getActionBarConfigurer().getWindowConfigurer().getWindow();" + NL
 			+ "\t\t\tmenuBar.add(createFileMenu(window));" + NL + "\t\t\tmenuBar.add(createEditMenu(window));" + NL
 			+ "\t\t\tmenuBar.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));" + NL
@@ -181,10 +184,10 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL
 			+ "\t\tprotected IMenuManager createFileMenu(IWorkbenchWindow window)" + NL + "\t\t{" + NL
 			+ "\t\t\tIMenuManager menu = new MenuManager(getString(\"_UI_Menu_File_label\"),";
-	protected final String TEXT_51 = NL + "\t\t\tIWorkbenchActionConstants.M_FILE);    " + NL
+	protected final String TEXT_54 = NL + "\t\t\tIWorkbenchActionConstants.M_FILE);    " + NL
 			+ "\t\t\tmenu.add(new GroupMarker(IWorkbenchActionConstants.FILE_START));" + NL + "\t" + NL
 			+ "\t\t\tIMenuManager newMenu = new MenuManager(getString(\"_UI_Menu_New_label\"), \"new\");";
-	protected final String TEXT_52 = NL + "\t\t\tnewMenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));"
+	protected final String TEXT_55 = NL + "\t\t\tnewMenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));"
 			+ NL + "\t" + NL + "\t\t\tmenu.add(newMenu);" + NL + "\t\t\tmenu.add(new Separator());" + NL
 			+ "\t\t\tmenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));" + NL
 			+ "\t\t\tmenu.add(new Separator());" + NL
@@ -201,7 +204,7 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
 			+ "\t\t */" + NL + "\t\tprotected IMenuManager createEditMenu(IWorkbenchWindow window)" + NL + "\t\t{" + NL
 			+ "\t\t\tIMenuManager menu = new MenuManager(getString(\"_UI_Menu_Edit_label\"),";
-	protected final String TEXT_53 = NL + "\t\t\tIWorkbenchActionConstants.M_EDIT);" + NL
+	protected final String TEXT_56 = NL + "\t\t\tIWorkbenchActionConstants.M_EDIT);" + NL
 			+ "\t\t\tmenu.add(new GroupMarker(IWorkbenchActionConstants.EDIT_START));" + NL + "\t" + NL
 			+ "\t\t\taddToMenuAndRegister(menu, ActionFactory.UNDO.create(window));" + NL
 			+ "\t\t\taddToMenuAndRegister(menu, ActionFactory.REDO.create(window));" + NL
@@ -222,16 +225,16 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
 			+ "\t\t */" + NL + "\t\tprotected IMenuManager createWindowMenu(IWorkbenchWindow window)" + NL + "\t\t{"
 			+ NL + "\t\t\tIMenuManager menu = new MenuManager(getString(\"_UI_Menu_Window_label\"),";
-	protected final String TEXT_54 = NL + "\t\t\tIWorkbenchActionConstants.M_WINDOW);" + NL + "\t" + NL
+	protected final String TEXT_57 = NL + "\t\t\tIWorkbenchActionConstants.M_WINDOW);" + NL + "\t" + NL
 			+ "\t\t\taddToMenuAndRegister(menu, ActionFactory.OPEN_NEW_WINDOW.create(window));" + NL
 			+ "\t\t\tmenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));";
-	protected final String TEXT_55 = NL + "\t\t\tmenu.add(ContributionItemFactory.OPEN_WINDOWS.create(window));";
-	protected final String TEXT_56 = NL + "\t" + NL + "\t\t\treturn menu;" + NL + "\t\t}" + NL + "\t" + NL + "\t\t/**"
+	protected final String TEXT_58 = NL + "\t\t\tmenu.add(ContributionItemFactory.OPEN_WINDOWS.create(window));";
+	protected final String TEXT_59 = NL + "\t" + NL + "\t\t\treturn menu;" + NL + "\t\t}" + NL + "\t" + NL + "\t\t/**"
 			+ NL + "\t\t * Creates the 'Help' menu." + NL + "\t\t * <!-- begin-user-doc -->" + NL
 			+ "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL
 			+ "\t\tprotected IMenuManager createHelpMenu(IWorkbenchWindow window)" + NL + "\t\t{" + NL
 			+ "\t\t\tIMenuManager menu = new MenuManager(getString(\"_UI_Menu_Help_label\"), IWorkbenchActionConstants.M_HELP);";
-	protected final String TEXT_57 = NL + "\t\t\t// Welcome or intro page would go here" + NL
+	protected final String TEXT_60 = NL + "\t\t\t// Welcome or intro page would go here" + NL
 			+ "\t\t\t// Help contents would go here" + NL + "\t\t\t// Tips and tricks page would go here" + NL
 			+ "\t\t\tmenu.add(new GroupMarker(IWorkbenchActionConstants.HELP_START));" + NL
 			+ "\t\t\tmenu.add(new GroupMarker(IWorkbenchActionConstants.HELP_END));" + NL
@@ -248,37 +251,40 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\tpublic static class AboutAction extends WorkbenchWindowActionDelegate" + NL + "\t{" + NL + "\t\t/**"
 			+ NL + "\t\t * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)" + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
-			+ "\t\t */" + NL + "\t\tpublic void run(IAction action)" + NL + "\t\t{" + NL
+			+ "\t\t */";
+	protected final String TEXT_61 = NL + "\t\tpublic void run(IAction action)" + NL + "\t\t{" + NL
 			+ "\t\t\tMessageDialog.openInformation(getWindow().getShell(), getString(\"_UI_About_title\"),";
-	protected final String TEXT_58 = NL + "\t\t\tgetString(\"_UI_About_text\"));";
-	protected final String TEXT_59 = NL + "\t\t}" + NL + "\t}" + NL + "\t";
-	protected final String TEXT_60 = NL + "\t/**" + NL + "\t * Open action for the objects from the ";
-	protected final String TEXT_61 = " model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
+	protected final String TEXT_62 = NL + "\t\t\tgetString(\"_UI_About_text\"));";
+	protected final String TEXT_63 = NL + "\t\t}" + NL + "\t}" + NL + "\t";
+	protected final String TEXT_64 = NL + "\t/**" + NL + "\t * Open action for the objects from the ";
+	protected final String TEXT_65 = " model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
 			+ NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tpublic static class OpenAction extends WorkbenchWindowActionDelegate" + NL + "\t{" + NL + "\t\t/**"
 			+ NL + "\t\t * Opens the editors for the files selected using the file dialog." + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
-			+ "\t\t */" + NL + "\t\tpublic void run(IAction action)" + NL + "\t\t{" + NL
+			+ "\t\t */";
+	protected final String TEXT_66 = NL + "\t\tpublic void run(IAction action)" + NL + "\t\t{" + NL
 			+ "\t\t\tString[] filePaths = openFilePathDialog(getWindow().getShell(), SWT.OPEN, null);" + NL
 			+ "\t\t\tif (filePaths.length > 0)" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\topenEditor(getWindow().getWorkbench(), URI.createFileURI(filePaths[0]));" + NL + "\t\t\t}" + NL
 			+ "\t\t}" + NL + "\t}";
-	protected final String TEXT_62 = NL + "\t" + NL + "\t/**" + NL + "\t * Open URI action for the objects from the ";
-	protected final String TEXT_63 = " model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
+	protected final String TEXT_67 = NL + "\t" + NL + "\t/**" + NL + "\t * Open URI action for the objects from the ";
+	protected final String TEXT_68 = " model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
 			+ NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tpublic static class OpenURIAction extends WorkbenchWindowActionDelegate" + NL + "\t{" + NL + "\t\t/**"
 			+ NL + "\t\t * Opens the editors for the files selected using the LoadResourceDialog." + NL
 			+ "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL
-			+ "\t\t */" + NL + "\t\tpublic void run(IAction action)" + NL + "\t\t{" + NL
+			+ "\t\t */";
+	protected final String TEXT_69 = NL + "\t\tpublic void run(IAction action)" + NL + "\t\t{" + NL
 			+ "\t\t\tLoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(getWindow().getShell());"
 			+ NL + "\t\t\tif (Window.OK == loadResourceDialog.open())" + NL + "\t\t\t{";
-	protected final String TEXT_64 = NL + "\t\t\t\tfor (URI uri : loadResourceDialog.getURIs())" + NL + "\t\t\t\t{" + NL
+	protected final String TEXT_70 = NL + "\t\t\t\tfor (URI uri : loadResourceDialog.getURIs())" + NL + "\t\t\t\t{" + NL
 			+ "\t\t\t\t\topenEditor(getWindow().getWorkbench(), uri);" + NL + "\t\t\t\t}";
-	protected final String TEXT_65 = NL
+	protected final String TEXT_71 = NL
 			+ "\t\t\t\tfor (Iterator i = loadResourceDialog.getURIs().iterator(); i.hasNext();)" + NL + "\t\t\t\t{" + NL
 			+ "\t\t\t\t\topenEditor(getWindow().getWorkbench(), (URI)i.next());" + NL + "\t\t\t\t}";
-	protected final String TEXT_66 = NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t}" + NL + "\t";
-	protected final String TEXT_67 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_72 = NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t}" + NL + "\t";
+	protected final String TEXT_73 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tpublic static String[] openFilePathDialog(Shell shell, int style, String[] fileExtensionFilters)" + NL
 			+ "\t{" + NL
@@ -296,8 +302,8 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\tif (includeGroupFilter || includeAllFilter)" + NL + "\t\t{" + NL
 			+ "\t\t\tint size = fileExtensionFilters.length + offset + (includeAllFilter ? 1 : 0);" + NL
 			+ "\t\t\tString[] allFilters = new String[size];" + NL + "\t\t\t";
-	protected final String TEXT_68 = " group = includeGroupFilter ? new ";
-	protected final String TEXT_69 = "() : null;" + NL + "\t\t\t" + NL
+	protected final String TEXT_74 = " group = includeGroupFilter ? new ";
+	protected final String TEXT_75 = "() : null;" + NL + "\t\t\t" + NL
 			+ "\t\t\tfor (int i = 0; i < fileExtensionFilters.length; i++)" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tif (includeGroupFilter)" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\tif (i != 0)" + NL + "\t\t\t\t\t{"
 			+ NL + "\t\t\t\t\t\tgroup.append(';');" + NL + "\t\t\t\t\t}" + NL
@@ -306,7 +312,7 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t\tif (includeGroupFilter)" + NL + "\t\t\t{" + NL + "\t\t\t\tallFilters[0] = group.toString();" + NL
 			+ "\t\t\t}" + NL + "\t\t\tif (includeAllFilter)" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tallFilters[allFilters.length - 1] = \"*.*\";";
-	protected final String TEXT_70 = NL + "\t\t\t}" + NL + "\t\t\t" + NL
+	protected final String TEXT_76 = NL + "\t\t\t}" + NL + "\t\t\t" + NL
 			+ "\t\t\tfileDialog.setFilterExtensions(allFilters);" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{" + NL
 			+ "\t\t\tfileDialog.setFilterExtensions(fileExtensionFilters);" + NL + "\t\t}" + NL
 			+ "\t\tfileDialog.open();" + NL + "\t\t" + NL + "\t\tString[] filenames = fileDialog.getFileNames();" + NL
@@ -327,9 +333,9 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\t\tString filename = path + filenames[i];" + NL + "\t\t\tif (extension != null)" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tint dot = filename.lastIndexOf('.');" + NL
 			+ "\t\t\t\tif (dot == -1 || !Arrays.asList(fileExtensionFilters).contains(\"*\" + filename.substring(dot)))";
-	protected final String TEXT_71 = NL + "\t\t\t\t{" + NL + "\t\t\t\t\tfilename += extension;" + NL + "\t\t\t\t}" + NL
+	protected final String TEXT_77 = NL + "\t\t\t\t{" + NL + "\t\t\t\t\tfilename += extension;" + NL + "\t\t\t\t}" + NL
 			+ "\t\t\t}" + NL + "\t\t\tresult[i] = filename;" + NL + "\t\t}" + NL + "\t\treturn result;" + NL + "\t}";
-	protected final String TEXT_72 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
+	protected final String TEXT_78 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL
 			+ "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
 			+ "\tpublic static boolean openEditor(IWorkbench workbench, URI uri)" + NL + "\t{" + NL
 			+ "\t\tIWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();" + NL
@@ -337,32 +343,32 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			+ "\t\tIEditorDescriptor editorDescriptor = EditUIUtil.getDefaultEditor(uri, null);" + NL
 			+ "\t\tif (editorDescriptor == null)" + NL + "\t\t{" + NL + "\t\t\tMessageDialog.openError(" + NL
 			+ "\t\t\t\tworkbenchWindow.getShell()," + NL + "\t\t\t\tgetString(\"_UI_Error_title\"),";
-	protected final String TEXT_73 = NL + "\t\t\t\tgetString(\"_WARN_No_Editor\", uri.lastSegment()));";
-	protected final String TEXT_74 = NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{" + NL
+	protected final String TEXT_79 = NL + "\t\t\t\tgetString(\"_WARN_No_Editor\", uri.lastSegment()));";
+	protected final String TEXT_80 = NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{" + NL
 			+ "\t\t\ttry" + NL + "\t\t\t{" + NL
 			+ "\t\t\t\tpage.openEditor(new URIEditorInput(uri), editorDescriptor.getId());" + NL + "\t\t\t}" + NL
 			+ "\t\t\tcatch (PartInitException exception)" + NL + "\t\t\t{" + NL + "\t\t\t\tMessageDialog.openError("
 			+ NL + "\t\t\t\t\tworkbenchWindow.getShell()," + NL + "\t\t\t\t\tgetString(\"_UI_OpenEditorError_label\"),";
-	protected final String TEXT_75 = NL + "\t\t\t\t\texception.getMessage());" + NL + "\t\t\t\treturn false;" + NL
+	protected final String TEXT_81 = NL + "\t\t\t\t\texception.getMessage());" + NL + "\t\t\t\treturn false;" + NL
 			+ "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn true;" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL
 			+ "\t * @see org.eclipse.ui.application.WorkbenchAdvisor#getInitialWindowPerspectiveId()" + NL
 			+ "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */";
-	protected final String TEXT_76 = NL + "\tpublic String getInitialWindowPerspectiveId()" + NL + "\t{" + NL
+	protected final String TEXT_82 = NL + "\tpublic String getInitialWindowPerspectiveId()" + NL + "\t{" + NL
 			+ "\t\treturn Perspective.ID_PERSPECTIVE;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
 			+ "\t * @see org.eclipse.ui.application.WorkbenchAdvisor#initialize(org.eclipse.ui.application.IWorkbenchConfigurer)"
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */";
-	protected final String TEXT_77 = NL + "\tpublic void initialize(IWorkbenchConfigurer configurer)" + NL + "\t{" + NL
+	protected final String TEXT_83 = NL + "\tpublic void initialize(IWorkbenchConfigurer configurer)" + NL + "\t{" + NL
 			+ "\t\tsuper.initialize(configurer);" + NL + "\t\tconfigurer.setSaveAndRestore(true);" + NL + "\t}" + NL
 			+ "\t" + NL + "\t/**" + NL
 			+ "\t * @see org.eclipse.ui.application.WorkbenchAdvisor#createWorkbenchWindowAdvisor(org.eclipse.ui.application.IWorkbenchWindowConfigurer)"
 			+ NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
 			+ "\t */";
-	protected final String TEXT_78 = NL
+	protected final String TEXT_84 = NL
 			+ "\tpublic WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer)" + NL
 			+ "\t{" + NL + "\t\treturn new WindowAdvisor(configurer);" + NL + "\t}" + NL + "}";
-	protected final String TEXT_79 = NL;
+	protected final String TEXT_85 = NL;
 
 	public Advisor() {
 		//Here is the constructor
@@ -398,8 +404,8 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_79);
-		stringBuffer.append(TEXT_79);
+		stringBuffer.append(TEXT_85);
+		stringBuffer.append(TEXT_85);
 		return stringBuffer.toString();
 	}
 
@@ -471,9 +477,9 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		/**
 		 * Copyright (c) 2004-2010 IBM Corporation and others.
 		 * All rights reserved.   This program and the accompanying materials
-		 * are made available under the terms of the Eclipse Public License v1.0
+		 * are made available under the terms of the Eclipse Public License v2.0
 		 * which accompanies this distribution, and is available at
-		 * http://www.eclipse.org/legal/epl-v10.html
+		 * http://www.eclipse.org/legal/epl-v20.html
 		 *
 		 * Contributors:
 		 *   IBM - Initial API and implementation
@@ -588,94 +594,118 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		stringBuffer.append(TEXT_39);
 		stringBuffer.append(genModel.getQualifiedEditorPluginClassName());
 		stringBuffer.append(TEXT_40);
-		stringBuffer.append(genModel.getEditorAdvisorClassName());
-		stringBuffer.append(TEXT_41);
-		stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+		if (genModel.useInterfaceOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
 		stringBuffer.append(TEXT_42);
-		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(genModel.getEditorAdvisorClassName());
 		stringBuffer.append(TEXT_43);
-		stringBuffer.append(genModel.getNonNLS());
+		if (genModel.useInterfaceOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
 		stringBuffer.append(TEXT_44);
-		stringBuffer.append(genModel.getNonNLS());
-		stringBuffer.append(genModel.getNonNLS(2));
+		stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
 		stringBuffer.append(TEXT_45);
-		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_46);
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(TEXT_46);
+		if (genModel.useInterfaceOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
 		}
 		stringBuffer.append(TEXT_47);
 		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_48);
-		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_46);
-		}
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(genModel.getNonNLS(2));
 		stringBuffer.append(TEXT_49);
 		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_46);
+			stringBuffer.append(TEXT_41);
 		}
 		stringBuffer.append(TEXT_50);
 		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_51);
-		stringBuffer.append(genModel.getNonNLS());
-		stringBuffer.append(genModel.getNonNLS(2));
+		if (genModel.useClassOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
 		stringBuffer.append(TEXT_52);
-		stringBuffer.append(genModel.getNonNLS());
+		if (genModel.useClassOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
 		stringBuffer.append(TEXT_53);
 		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_54);
-		if (!genModel.isRichAjaxPlatform()) {
-			stringBuffer.append(TEXT_55);
-		}
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(genModel.getNonNLS(2));
+		stringBuffer.append(TEXT_55);
+		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_56);
 		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_57);
-		stringBuffer.append(genModel.getNonNLS());
-		stringBuffer.append(TEXT_58);
-		stringBuffer.append(genModel.getNonNLS());
+		if (!genModel.isRichAjaxPlatform()) {
+			stringBuffer.append(TEXT_58);
+		}
 		stringBuffer.append(TEXT_59);
-		if (!genModel.isRichAjaxPlatform()) {
-			stringBuffer.append(TEXT_60);
-			stringBuffer.append(genModel.getModelName());
-			stringBuffer.append(TEXT_61);
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(TEXT_60);
+		if (genModel.useInterfaceOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
 		}
+		stringBuffer.append(TEXT_61);
+		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_62);
-		stringBuffer.append(genModel.getModelName());
+		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_63);
-		if (genModel.useGenerics()) {
-			stringBuffer.append(TEXT_64);
-		} else {
-			stringBuffer.append(TEXT_65);
-		}
-		stringBuffer.append(TEXT_66);
 		if (!genModel.isRichAjaxPlatform()) {
-			stringBuffer.append(TEXT_67);
-			stringBuffer.append(_StringBuilder);
-			stringBuffer.append(TEXT_68);
-			stringBuffer.append(_StringBuilder);
-			stringBuffer.append(TEXT_69);
-			stringBuffer.append(genModel.getNonNLS());
+			stringBuffer.append(TEXT_64);
+			stringBuffer.append(genModel.getModelName());
+			stringBuffer.append(TEXT_65);
+			if (genModel.useInterfaceOverrideAnnotation()) {
+				stringBuffer.append(TEXT_41);
+			}
+			stringBuffer.append(TEXT_66);
+		}
+		stringBuffer.append(TEXT_67);
+		stringBuffer.append(genModel.getModelName());
+		stringBuffer.append(TEXT_68);
+		if (genModel.useInterfaceOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
+		stringBuffer.append(TEXT_69);
+		if (genModel.useGenerics()) {
 			stringBuffer.append(TEXT_70);
-			stringBuffer.append(genModel.getNonNLS());
+		} else {
 			stringBuffer.append(TEXT_71);
 		}
 		stringBuffer.append(TEXT_72);
-		stringBuffer.append(genModel.getNonNLS());
-		stringBuffer.append(TEXT_73);
-		stringBuffer.append(genModel.getNonNLS());
-		stringBuffer.append(TEXT_74);
-		stringBuffer.append(genModel.getNonNLS());
-		stringBuffer.append(TEXT_75);
-		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_46);
-		}
-		stringBuffer.append(TEXT_76);
-		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_46);
-		}
-		stringBuffer.append(TEXT_77);
-		if (genModel.useClassOverrideAnnotation()) {
-			stringBuffer.append(TEXT_46);
+		if (!genModel.isRichAjaxPlatform()) {
+			stringBuffer.append(TEXT_73);
+			stringBuffer.append(_StringBuilder);
+			stringBuffer.append(TEXT_74);
+			stringBuffer.append(_StringBuilder);
+			stringBuffer.append(TEXT_75);
+			stringBuffer.append(genModel.getNonNLS());
+			stringBuffer.append(TEXT_76);
+			stringBuffer.append(genModel.getNonNLS());
+			stringBuffer.append(TEXT_77);
 		}
 		stringBuffer.append(TEXT_78);
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(TEXT_79);
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(TEXT_80);
+		stringBuffer.append(genModel.getNonNLS());
+		stringBuffer.append(TEXT_81);
+		if (genModel.useClassOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
+		stringBuffer.append(TEXT_82);
+		if (genModel.useClassOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
+		stringBuffer.append(TEXT_83);
+		if (genModel.useClassOverrideAnnotation()) {
+			stringBuffer.append(TEXT_41);
+		}
+		stringBuffer.append(TEXT_84);
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_25);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

@@ -1,4 +1,4 @@
 <%
 GenModel genModel = parameter;
-targetPathName = genModel.getTestsProjectDirectory() + "/plugin.properties";
+targetPathName = genModel.getTestsProjectDirectory() + "/" + genModel.getTestsBundleLocalization()+ ".properties";
 %>

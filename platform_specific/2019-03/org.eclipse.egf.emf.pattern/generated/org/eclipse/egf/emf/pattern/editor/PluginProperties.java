@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.qualifier
+//Generated with EGF 1.6.0.201901231418
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -29,7 +29,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "";
 	protected final String TEXT_2 = NL + NL + "pluginName = ";
-	protected final String TEXT_3 = " Editor" + NL + "providerName = www.example.org";
+	protected final String TEXT_3 = NL + "providerName = ";
 	protected final String TEXT_4 = NL;
 	protected final String TEXT_5 = NL + "_UI_";
 	protected final String TEXT_6 = "_menu = &";
@@ -159,7 +159,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 			throws Exception {
 
 		GenModel genModel = parameter;
-		targetPathName = genModel.getEditorProjectDirectory() + "/plugin.properties";
+		targetPathName = genModel.getEditorProjectDirectory() + "/" + genModel.getEditorBundleLocalization()
+				+ ".properties";
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
@@ -189,9 +190,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 		/**
 		 * Copyright (c) 2002-2006 IBM Corporation and others.
 		 * All rights reserved.   This program and the accompanying materials
-		 * are made available under the terms of the Eclipse Public License v1.0
+		 * are made available under the terms of the Eclipse Public License v2.0
 		 * which accompanies this distribution, and is available at
-		 * http://www.eclipse.org/legal/epl-v10.html
+		 * http://www.eclipse.org/legal/epl-v20.html
 		 * 
 		 * Contributors: 
 		 *   IBM - Initial API and implementation
@@ -216,8 +217,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(genModel.getModelName());
+		stringBuffer.append(genModel.getEditorBundleName());
 		stringBuffer.append(TEXT_3);
+		stringBuffer.append(genModel.getEditorBundleVendorName());
 		if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {
 			stringBuffer.append(TEXT_4);
 			boolean hasMultiPageEditor = false;

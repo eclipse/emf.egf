@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.qualifier
+//Generated with EGF 1.6.0.201901231418
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -29,8 +29,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "";
 	protected final String TEXT_2 = NL + NL + "pluginName = ";
-	protected final String TEXT_3 = " Tests" + NL + "providerName = www.example.org" + NL;
+	protected final String TEXT_3 = NL + "providerName = ";
 	protected final String TEXT_4 = NL;
+	protected final String TEXT_5 = NL;
 
 	public PluginProperties() {
 		//Here is the constructor
@@ -66,8 +67,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 
@@ -107,7 +108,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 			throws Exception {
 
 		GenModel genModel = parameter;
-		targetPathName = genModel.getTestsProjectDirectory() + "/plugin.properties";
+		targetPathName = genModel.getTestsProjectDirectory() + "/" + genModel.getTestsBundleLocalization()
+				+ ".properties";
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
@@ -137,9 +139,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 		/**
 		 * Copyright (c) 2005 IBM Corporation and others.
 		 * All rights reserved.   This program and the accompanying materials
-		 * are made available under the terms of the Eclipse Public License v1.0
+		 * are made available under the terms of the Eclipse Public License v2.0
 		 * which accompanies this distribution, and is available at
-		 * http://www.eclipse.org/legal/epl-v10.html
+		 * http://www.eclipse.org/legal/epl-v20.html
 		 * 
 		 * Contributors: 
 		 *   IBM - Initial API and implementation
@@ -163,8 +165,10 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(genModel.getModelName());
+		stringBuffer.append(genModel.getTestsBundleName());
 		stringBuffer.append(TEXT_3);
+		stringBuffer.append(genModel.getTestsBundleVendorName());
+		stringBuffer.append(TEXT_4);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

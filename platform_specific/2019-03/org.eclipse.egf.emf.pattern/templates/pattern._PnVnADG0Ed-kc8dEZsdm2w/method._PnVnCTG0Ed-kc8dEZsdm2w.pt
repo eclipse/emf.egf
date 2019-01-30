@@ -3,9 +3,9 @@
 /**
  * Copyright (c) 2004-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * http://www.eclipse.org/legal/epl-v20.html
  *
  * Contributors:
  *   IBM - Initial API and implementation
@@ -173,6 +173,9 @@ public final class <%=genModel.getEditorAdvisorClassName()%> extends WorkbenchAd
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()){%>
+		@Override
+<%}%>
 		public Object start(IApplicationContext context) throws Exception
 		{
 			WorkbenchAdvisor workbenchAdvisor = new <%=genModel.getEditorAdvisorClassName()%>();
@@ -201,6 +204,9 @@ public final class <%=genModel.getEditorAdvisorClassName()%> extends WorkbenchAd
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()){%>
+		@Override
+<%}%>
 		public void stop()
 		{
 			// Do nothing.
@@ -229,6 +235,9 @@ public final class <%=genModel.getEditorAdvisorClassName()%> extends WorkbenchAd
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()){%>
+		@Override
+<%}%>
 		public void createInitialLayout(IPageLayout layout)
 		{
 			layout.setEditorAreaVisible(true);
@@ -463,6 +472,9 @@ public final class <%=genModel.getEditorAdvisorClassName()%> extends WorkbenchAd
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()){%>
+		@Override
+<%}%>
 		public void run(IAction action)
 		{
 			MessageDialog.openInformation(getWindow().getShell(), getString("_UI_About_title"),<%=genModel.getNonNLS()%>
@@ -485,6 +497,9 @@ public final class <%=genModel.getEditorAdvisorClassName()%> extends WorkbenchAd
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()){%>
+		@Override
+<%}%>
 		public void run(IAction action)
 		{
 			String[] filePaths = openFilePathDialog(getWindow().getShell(), SWT.OPEN, null);
@@ -510,6 +525,9 @@ public final class <%=genModel.getEditorAdvisorClassName()%> extends WorkbenchAd
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()){%>
+		@Override
+<%}%>
 		public void run(IAction action)
 		{
 			LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(getWindow().getShell());

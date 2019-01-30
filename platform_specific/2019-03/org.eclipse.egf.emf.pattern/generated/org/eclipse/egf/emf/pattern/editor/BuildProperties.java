@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.qualifier
+//Generated with EGF 1.6.0.201901231418
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -32,14 +32,16 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 	protected final String TEXT_3 = ",\\" + NL + "               icons/,\\";
 	protected final String TEXT_4 = NL + "               META-INF/,\\";
 	protected final String TEXT_5 = NL + "               plugin.xml,\\";
-	protected final String TEXT_6 = NL + "               plugin.properties" + NL + "jars.compile.order = ";
-	protected final String TEXT_7 = NL + "source.";
-	protected final String TEXT_8 = " = ";
-	protected final String TEXT_9 = NL + "output.";
-	protected final String TEXT_10 = "bin";
-	protected final String TEXT_11 = "war/WEB-INF/classes";
-	protected final String TEXT_12 = NL;
-	protected final String TEXT_13 = NL;
+	protected final String TEXT_6 = NL + "               ";
+	protected final String TEXT_7 = ".properties";
+	protected final String TEXT_8 = NL + "jars.compile.order = ";
+	protected final String TEXT_9 = NL + "source.";
+	protected final String TEXT_10 = " = ";
+	protected final String TEXT_11 = NL + "output.";
+	protected final String TEXT_12 = "bin";
+	protected final String TEXT_13 = "war/WEB-INF/classes";
+	protected final String TEXT_14 = NL;
+	protected final String TEXT_15 = NL;
 
 	public BuildProperties() {
 		//Here is the constructor
@@ -75,8 +77,8 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_13);
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_15);
 		return stringBuffer.toString();
 	}
 
@@ -150,9 +152,9 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		/**
 		 * Copyright (c) 2002-2008 IBM Corporation and others.
 		 * All rights reserved.   This program and the accompanying materials
-		 * are made available under the terms of the Eclipse Public License v1.0
+		 * are made available under the terms of the Eclipse Public License v2.0
 		 * which accompanies this distribution, and is available at
-		 * http://www.eclipse.org/legal/epl-v10.html
+		 * http://www.eclipse.org/legal/epl-v20.html
 		 * 
 		 * Contributors: 
 		 *   IBM - Initial API and implementation
@@ -186,7 +188,17 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {
 			stringBuffer.append(TEXT_5);
 		}
-		stringBuffer.append(TEXT_6);
+		String editorBundleLocalization = genModel.getEditorBundleLocalization();
+		int index = editorBundleLocalization.indexOf("/");
+		if (index == -1) {
+			stringBuffer.append(TEXT_6);
+			stringBuffer.append(editorBundleLocalization);
+			stringBuffer.append(TEXT_7);
+		} else {
+			stringBuffer.append(TEXT_6);
+			stringBuffer.append(editorBundleLocalization.substring(0, index + 1));
+		}
+		stringBuffer.append(TEXT_8);
 		stringBuffer.append(pluginClassesLocation);
 		boolean first = true;
 		for (Iterator<String> i = sourceFolders.iterator(); i.hasNext();) {
@@ -195,24 +207,24 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 				sourceFolder += ",\\";
 			}
 			if (first) {
-				stringBuffer.append(TEXT_7);
+				stringBuffer.append(TEXT_9);
 				stringBuffer.append(pluginClassesLocation);
-				stringBuffer.append(TEXT_8);
+				stringBuffer.append(TEXT_10);
 				stringBuffer.append(sourceFolder);
 				first = false;
 			} else {
 				stringBuffer.append(sourceFolder);
 			}
 		}
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_11);
 		stringBuffer.append(pluginClassesLocation);
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_10);
 		if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {
-			stringBuffer.append(TEXT_10);
+			stringBuffer.append(TEXT_12);
 		} else {
-			stringBuffer.append(TEXT_11);
+			stringBuffer.append(TEXT_13);
 		}
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_14);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

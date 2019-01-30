@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.qualifier
+//Generated with EGF 1.6.0.201901231418
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -45,13 +45,17 @@ public class ItemProvideraddPropertyDescriptoroverride {
 	protected final String TEXT_14 = ".";
 	protected final String TEXT_15 = NL + "\t\t\t\t getString(\"";
 	protected final String TEXT_16 = "\"),";
-	protected final String TEXT_17 = NL + "\t\t\t\t null));";
-	protected final String TEXT_18 = NL + "\t\t\t\t new String[] {";
-	protected final String TEXT_19 = NL + "\t\t\t\t\t\"";
-	protected final String TEXT_20 = "\"";
-	protected final String TEXT_21 = NL + "\t\t\t\t }));";
-	protected final String TEXT_22 = NL;
-	protected final String TEXT_23 = NL;
+	protected final String TEXT_17 = NL + "\t\t\t\t null," + NL + "\t\t\t\t ";
+	protected final String TEXT_18 = ".createURI(";
+	protected final String TEXT_19 = ")));";
+	protected final String TEXT_20 = NL + "\t\t\t\t null));";
+	protected final String TEXT_21 = NL + "\t\t\t\t new String[] {";
+	protected final String TEXT_22 = NL + "\t\t\t\t\t\"";
+	protected final String TEXT_23 = "\"";
+	protected final String TEXT_24 = NL + "\t\t\t\t }," + NL + "\t\t\t\t ";
+	protected final String TEXT_25 = NL + "\t\t\t\t }));";
+	protected final String TEXT_26 = NL;
+	protected final String TEXT_27 = NL;
 
 	public ItemProvideraddPropertyDescriptoroverride() {
 		//Here is the constructor
@@ -112,8 +116,8 @@ public class ItemProvideraddPropertyDescriptoroverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_23);
-		stringBuffer.append(TEXT_23);
+		stringBuffer.append(TEXT_27);
+		stringBuffer.append(TEXT_27);
 		return stringBuffer.toString();
 	}
 
@@ -240,24 +244,46 @@ public class ItemProvideraddPropertyDescriptoroverride {
 			stringBuffer.append(genModel.getNonNLS());
 		}
 		if (genFeature.getPropertyFilterFlags().isEmpty()) {
-			stringBuffer.append(TEXT_17);
+			if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF214_VALUE
+					&& genFeature.getPropertyEditorFactory() != null
+					&& genFeature.getPropertyEditorFactory().trim().length() != 0) {
+				stringBuffer.append(TEXT_17);
+				stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.URI"));
+				stringBuffer.append(TEXT_18);
+				stringBuffer.append(org.eclipse.emf.codegen.ecore.genmodel.impl.Literals
+						.toStringLiteral(genFeature.getPropertyEditorFactory().trim(), genModel));
+				stringBuffer.append(TEXT_19);
+			} else {
+				stringBuffer.append(TEXT_20);
+			}
 		} else {
-			stringBuffer.append(TEXT_18);
-			for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) {
+			stringBuffer.append(TEXT_21);
+			/*}*/for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) {
 				String filterFlag = j.next();
 				if (filterFlag != null && filterFlag.length() > 0) {
-					stringBuffer.append(TEXT_19);
+					stringBuffer.append(TEXT_22);
 					stringBuffer.append(filterFlag);
-					stringBuffer.append(TEXT_20);
+					stringBuffer.append(TEXT_23);
 					if (j.hasNext()) {
 						stringBuffer.append(TEXT_12);
 					}
 					stringBuffer.append(genModel.getNonNLS());
 				}
 			}
-			stringBuffer.append(TEXT_21);
+			if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF214_VALUE
+					&& genFeature.getPropertyEditorFactory() != null
+					&& genFeature.getPropertyEditorFactory().trim().length() != 0) { // {
+				stringBuffer.append(TEXT_24);
+				stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.URI"));
+				stringBuffer.append(TEXT_18);
+				stringBuffer.append(org.eclipse.emf.codegen.ecore.genmodel.impl.Literals
+						.toStringLiteral(genFeature.getPropertyEditorFactory().trim(), genModel));
+				stringBuffer.append(TEXT_19);
+			} else { // {
+				stringBuffer.append(TEXT_25);
+			}
 		}
-		stringBuffer.append(TEXT_22);
+		stringBuffer.append(TEXT_26);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

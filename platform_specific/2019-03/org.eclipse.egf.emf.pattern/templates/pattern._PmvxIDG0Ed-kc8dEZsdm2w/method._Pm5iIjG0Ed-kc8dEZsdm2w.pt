@@ -3,9 +3,9 @@
 /**
  * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * http://www.eclipse.org/legal/epl-v20.html
  *
  * Contributors:
  *   IBM - Initial API and implementation
@@ -216,6 +216,9 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+	@Override
+<%}%>
 	public void init(IWorkbench workbench, IStructuredSelection selection)
 	{
 		this.workbench = workbench;
@@ -340,6 +343,9 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 			//
 			<%=genModel.getImportedName("org.eclipse.jface.operation.IRunnableWithProgress")%> operation = new <%=genModel.getImportedName("org.eclipse.jface.operation.IRunnableWithProgress")%>()
 			{
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+				@Override
+<%}%>
 				public void run(IProgressMonitor progressMonitor)
 <%} else {%>
 			// Remember the file.
@@ -414,6 +420,9 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 				getShell().getDisplay().asyncExec
 					(new Runnable()
 					 {
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+						 @Override
+<%}%>
 						 public void run()
 						 {
 							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
@@ -559,6 +568,9 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+		@Override
+<%}%>
 		public void createControl(Composite parent)
 		{
 			Composite composite = new Composite(parent, SWT.NONE);
@@ -710,6 +722,9 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 		protected ModifyListener validator =
 			new ModifyListener()
 			{
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
+				@Override
+<%}%>
 				public void modifyText(ModifyEvent e)
 				{
 					setPageComplete(validatePage());
