@@ -49,7 +49,7 @@
 		<sonar.java.source>8</sonar.java.source>
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.release>0.7.4.201502262128</sonar.jacoco.release>
+		<sonar.jacoco.release>0.8.3</sonar.jacoco.release>
 		<sonar.jacoco.reportPath>${coverage.destFile}</sonar.jacoco.reportPath>
 	  	<sonar.exclusions>**/generated/**/*.java,**/src-gen/**/*.java</sonar.exclusions>
 	  	<sonar.test.exclusions>**/tests/**/*.java,**/test/**/*.java</sonar.test.exclusions>
