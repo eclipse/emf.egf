@@ -13,7 +13,7 @@
 -->
 
 
-<product name="org.eclipse.egf.product" uid="org.eclipse.egf.product" id="org.eclipse.sdk.ide" version="1.6.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="org.eclipse.egf.product" uid="org.eclipse.egf.product" id="org.eclipse.sdk.ide" version="1.6.1.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
