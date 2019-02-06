@@ -36,10 +36,10 @@ import org.eclipse.sirius.diagram.DragAndDropTarget;
 import org.eclipse.sirius.diagram.business.api.componentization.DiagramMappingsManager;
 import org.eclipse.sirius.diagram.business.api.query.AbstractNodeMappingQuery;
 import org.eclipse.sirius.diagram.business.internal.componentization.mappings.DiagramMappingsManagerRegistryImpl;
-import org.eclipse.sirius.diagram.business.internal.experimental.sync.AbstractDNodeCandidate;
-import org.eclipse.sirius.diagram.business.internal.experimental.sync.DDiagramSynchronizer;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.MappingHelper;
+import org.eclipse.sirius.diagram.business.internal.sync.DDiagramSynchronizer;
+import org.eclipse.sirius.diagram.business.internal.sync.DNodeCandidate;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
@@ -159,7 +159,7 @@ public class CreateNodeCommand extends RecordingCommand {
 	 */
 	private AbstractDNode createOneNode(EObject target, AbstractNodeMapping mapping, DragAndDropTarget parent){
 		RefreshIdsHolder refreshIdsHolder = new RefreshIdsHolder();
-		final AbstractDNodeCandidate abstractDNodeCandidate = new AbstractDNodeCandidate(mapping, target, parent, refreshIdsHolder); 
+		final DNodeCandidate abstractDNodeCandidate = new DNodeCandidate(mapping, target, parent, refreshIdsHolder); 
 		return diagramSynchronizer.getElementSynchronizer().createNewNode(diagramMappingsManager, abstractDNodeCandidate, false);
 	}
 
