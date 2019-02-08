@@ -1,7 +1,7 @@
 target "core"  with source, requirements
 
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S201901300518/" {
+location eclipse "http://download.eclipse.org/releases/2019-03/" {
 	org.eclipse.emf.sdk.feature.group lazy
 	org.eclipse.emf.common.feature.group lazy
 	org.eclipse.emf.edit.feature.group lazy
@@ -16,9 +16,6 @@ location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S20
 	org.eclipse.emf.databinding.feature.group lazy
 	org.eclipse.emf.databinding.edit.feature.group lazy
 	org.eclipse.emf.converter.feature.group lazy
-}
-
-location eclipse "http://download.eclipse.org/releases/2018-12/" {	
 	org.eclipse.emf.workspace.feature.group lazy
 	org.eclipse.emf.transaction.feature.group lazy
 	org.eclipse.emf.query.feature.group lazy
