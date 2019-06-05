@@ -379,7 +379,6 @@
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<strictVersions>false</strictVersions>
 					<sourceReferences>
 						<generate>true</generate>
 					</sourceReferences>
