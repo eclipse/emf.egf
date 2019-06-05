@@ -37,7 +37,7 @@
 	<properties>
 		<tycho-version>1.1.0</tycho-version>
 		<tycho-extras-version>1.1.0</tycho-extras-version>
-		<platform-version-name>2019-03</platform-version-name>
+		<platform-version-name>2019-06</platform-version-name>
 		
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/egf/org.eclipse.emf.egf</tycho.scmUrl>
 		
@@ -314,7 +314,7 @@
 				<module>features/org.eclipse.egf.sdk.feature</module>
 
 				<!--  platform specific -->
-				<module>platform_specific/${platform-version-name}/org.eclipse.egf.emf.pattern</module>
+				<module>platform_specific/2019-03/org.eclipse.egf.emf.pattern</module>
 				<!-- update sites -->
 				<module>releng/org.eclipse.egf.core.updatesite</module>
 			</modules>
