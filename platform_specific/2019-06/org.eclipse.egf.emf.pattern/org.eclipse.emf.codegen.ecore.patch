@@ -1,0 +1,24 @@
+diff --git a/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet b/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
+index 48d03c8..b578b58 100644
+--- a/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
++++ b/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
+@@ -16,7 +16,7 @@
+ <%final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;%>
+ <%final boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); final boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]); final boolean useInterfaceOverrideAnnotation = genModel.useInterfaceOverrideAnnotation() && !(isInterface && isImplementation);%>
+ <%final boolean isGWT = genModel.getRuntimePlatform() == GenRuntimePlatform.GWT;%>
+-<%final boolean forceDefaultCase = genModel.isSwitchMissingDefaultCase();String indentDefaultCase = forceDefaultCase ? "\t\t" : "";%>
++<%final boolean forceDefaultCase = genModel.isSwitchMissingDefaultCase();final String indentDefaultCase = forceDefaultCase ? "\t\t" : "";%>
+ <%final String publicStaticFinalFlag = isImplementation ? "public static final " : "";%>
+ <%final String singleWildcard = isJDK50 ? "<?>" : "";%>
+ <%final String negativeOffsetCorrection = genClass.hasOffsetCorrection() ? " - " + genClass.getOffsetCorrectionField(null) : "";%>
+@@ -502,7 +502,10 @@
+ 	 */
+ 	<%if (genModel.isPublicConstructors()) {%>public<%} else {%>protected<%}%> <%=genClass.getClassName()%>()
+ 	{
++<%@ include file="Class/egfCustom.constructor.override.javajetinc" fail="alternative" %>
++<%@ start %>
+ 		super();
++<%@ end %>
+   <%for (GenFeature genFeature : genClass.getFlagGenFeaturesWithDefault()) {%>
+ 		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG<%if (!genFeature.isBooleanType()) {%>_DEFAULT<%}%>;
+   <%}%>

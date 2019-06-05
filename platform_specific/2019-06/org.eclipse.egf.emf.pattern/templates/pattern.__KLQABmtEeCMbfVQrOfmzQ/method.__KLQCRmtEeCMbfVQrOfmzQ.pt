@@ -1,0 +1,4 @@
+<%
+GenModel genModel = parameter;
+argument = parameter;
+%>

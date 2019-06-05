@@ -2,24 +2,13 @@ target "core"  with source, requirements
 
 
 location eclipse "http://download.eclipse.org/releases/2019-06/" {
-	org.eclipse.emf.sdk.feature.group lazy
-	org.eclipse.emf.common.feature.group lazy
-	org.eclipse.emf.edit.feature.group lazy
-	org.eclipse.emf.codegen.feature.group lazy
-	org.eclipse.emf.codegen.ecore.feature.group lazy
-	org.eclipse.emf.ecore.feature.group lazy
-	org.eclipse.emf.ecore.edit.feature.group lazy
-	org.eclipse.emf.edit.ui.feature.group lazy
-	org.eclipse.emf.common.ui.feature.group lazy
-	org.eclipse.emf.ecore.editor.feature.group lazy
-	org.eclipse.emf.codegen.ecore.ui.feature.group lazy
-	org.eclipse.emf.databinding.feature.group lazy
-	org.eclipse.emf.databinding.edit.feature.group lazy
-	org.eclipse.emf.converter.feature.group lazy
 	org.eclipse.emf.workspace.feature.group lazy
 	org.eclipse.emf.transaction.feature.group lazy
 	org.eclipse.emf.query.feature.group lazy
 	org.eclipse.emf.validation.feature.group lazy
+
+
+
 	org.eclipse.sdk.feature.group lazy
 	org.eclipse.jdt.feature.group lazy
 	org.eclipse.pde.feature.group lazy
@@ -34,6 +23,24 @@ location eclipse "http://download.eclipse.org/releases/2019-06/" {
 	org.eclipse.sirius.runtime.aql.feature.group lazy
 	org.eclipse.emf.ecoretools.sdk.feature.group lazy
 	org.eclipse.emf.ecoretools.design.feature.group lazy
+	
+}
+
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201905280646" {
+	org.eclipse.emf.sdk.feature.group lazy
+	org.eclipse.emf.common.feature.group lazy
+	org.eclipse.emf.edit.feature.group lazy
+	org.eclipse.emf.codegen.feature.group lazy
+	org.eclipse.emf.codegen.ecore.feature.group lazy
+	org.eclipse.emf.ecore.feature.group lazy
+	org.eclipse.emf.ecore.edit.feature.group lazy
+	org.eclipse.emf.edit.ui.feature.group lazy
+	org.eclipse.emf.common.ui.feature.group lazy
+	org.eclipse.emf.ecore.editor.feature.group lazy
+	org.eclipse.emf.codegen.ecore.ui.feature.group lazy
+	org.eclipse.emf.databinding.feature.group lazy
+	org.eclipse.emf.databinding.edit.feature.group lazy
+	org.eclipse.emf.converter.feature.group lazy
 	
 }
 

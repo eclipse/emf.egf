@@ -314,7 +314,7 @@
 				<module>features/org.eclipse.egf.sdk.feature</module>
 
 				<!--  platform specific -->
-				<module>platform_specific/2019-03/org.eclipse.egf.emf.pattern</module>
+				<module>platform_specific/${platform-version-name}/org.eclipse.egf.emf.pattern</module>
 				<!-- update sites -->
 				<module>releng/org.eclipse.egf.core.updatesite</module>
 			</modules>
@@ -379,6 +379,7 @@
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
+					<strictVersions>false</strictVersions>
 					<sourceReferences>
 						<generate>true</generate>
 					</sourceReferences>
