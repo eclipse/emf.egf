@@ -15,6 +15,8 @@
     id="org.eclipse.egf.model.ftask.edit.feature"
     label="%featureName"
     version="1.6.1.qualifier"
+	license-feature="org.eclipse.license"
+	license-feature-version="0.0.0"
     provider-name="%providerName"
     plugin="org.eclipse.egf.model.ftask.edit"
     image="eclipse_update_120.jpg"

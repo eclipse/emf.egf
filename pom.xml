@@ -35,8 +35,8 @@
 	</licenses>
 	
 	<properties>
-		<tycho-version>1.1.0</tycho-version>
-		<tycho-extras-version>1.1.0</tycho-extras-version>
+		<tycho-version>1.4.0</tycho-version>
+		<tycho-extras-version>${tycho-version}</tycho-extras-version>
 		<platform-version-name>2019-06</platform-version-name>
 		
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/egf/org.eclipse.emf.egf</tycho.scmUrl>
@@ -109,6 +109,29 @@
 						</execution>
 					</executions>
 				</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>default-p2-metadata-default</id>
+						<configuration>
+							<attachP2Metadata>false</attachP2Metadata>
+						</configuration>
+					</execution>
+					<execution>
+						<id>attach-p2-metadata</id>
+						<phase>package</phase>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<defaultP2Metadata>false</defaultP2Metadata>
+				</configuration>
+			</plugin>
 			</plugins>
 		</build>
 
@@ -354,6 +377,7 @@
 							<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 						</artifact>
 					</target>
+					<includePackedArtifacts>true</includePackedArtifacts>
 				</configuration>
 			</plugin>
 			<plugin>

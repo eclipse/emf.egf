@@ -1,14 +1,11 @@
 target "core"  with source, requirements
 
 
-location eclipse "http://download.eclipse.org/releases/2019-06/" {
+location eclipse "https://download.eclipse.org/releases/2019-06/" {
 	org.eclipse.emf.workspace.feature.group lazy
 	org.eclipse.emf.transaction.feature.group lazy
 	org.eclipse.emf.query.feature.group lazy
 	org.eclipse.emf.validation.feature.group lazy
-
-
-
 	org.eclipse.sdk.feature.group lazy
 	org.eclipse.jdt.feature.group lazy
 	org.eclipse.pde.feature.group lazy
@@ -24,14 +21,17 @@ location eclipse "http://download.eclipse.org/releases/2019-06/" {
 	org.eclipse.emf.ecoretools.sdk.feature.group lazy
 	org.eclipse.emf.ecoretools.design.feature.group lazy
 	org.eclipse.emf.sdk.feature.group lazy
-	
 }
 
-location acceleo "http://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
+location "https://download.eclipse.org/cbi/updates/license/" {
+	org.eclipse.license.feature.group lazy
+}
+
+location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
 	org.eclipse.acceleo.sdk.feature.group lazy
 }
 
-location amalgam "http://download.eclipse.org/modeling/amalgam/staging/nightly/1.11.0-N133/capella" {
+location amalgam "https://download.eclipse.org/modeling/amalgam/staging/nightly/1.11.0-N133/capella" {
 	org.eclipse.amalgam.explorer.activity.feature.group lazy
 	org.eclipse.amalgam.explorer.activity.source.feature.group lazy
 	org.eclipse.amalgam.explorer.contextual.feature.group lazy

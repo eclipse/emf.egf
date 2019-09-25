@@ -16,6 +16,8 @@
       label="%featureName"
       version="1.6.1.qualifier"
       provider-name="%providerName"
+	  license-feature="org.eclipse.license"
+	  license-feature-version="0.0.0"
       plugin="org.eclipse.egf.portfolio.task.ant.test"
       image="eclipse_update_120.jpg">
 
