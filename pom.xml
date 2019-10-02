@@ -37,7 +37,7 @@
 	<properties>
 		<tycho-version>1.4.0</tycho-version>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
-		<platform-version-name>2019-06</platform-version-name>
+		<platform-version-name>2019-09</platform-version-name>
 		
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/egf/org.eclipse.emf.egf</tycho.scmUrl>
 		
