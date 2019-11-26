@@ -20,7 +20,7 @@
 	
 	<groupId>org.eclipse.egf</groupId>
 	<artifactId>egf_root</artifactId>
-	<version>1.6.1-SNAPSHOT</version>
+	<version>1.6.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<licenses>
@@ -37,7 +37,7 @@
 	<properties>
 		<tycho-version>1.4.0</tycho-version>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
-		<platform-version-name>2019-09</platform-version-name>
+		<platform-version-name>2019-12</platform-version-name>
 		
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/egf/org.eclipse.emf.egf</tycho.scmUrl>
 		
@@ -171,7 +171,7 @@
 							<artifact>
 								<groupId>org.eclipse.egf</groupId>
 								<artifactId>egf_root</artifactId>
-								<version>1.6.1-SNAPSHOT</version>
+								<version>1.6.2-SNAPSHOT</version>
 								<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 							</artifact>
 						</target>
@@ -373,7 +373,7 @@
 						<artifact>
 							<groupId>org.eclipse.egf</groupId>
 							<artifactId>egf_root</artifactId>
-							<version>1.6.1-SNAPSHOT</version>
+							<version>1.6.2-SNAPSHOT</version>
 							<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 						</artifact>
 					</target>

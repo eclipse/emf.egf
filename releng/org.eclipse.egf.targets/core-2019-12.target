@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="core" sequenceNumber="1574682820">
+  <locations>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.workspace.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.transaction.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.query.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.validation.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.m2m.atl.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.uml2.uml.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.eef.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.xtext.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.aql.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecoretools.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.ecoretools.design.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+      <repository id="eclipse" location="https://download.eclipse.org/releases/2019-12/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
+      <repository location="https://download.eclipse.org/cbi/updates/license/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.acceleo.sdk.feature.group" version="0.0.0"/>
+      <repository id="acceleo" location="https://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.amalgam.explorer.activity.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.activity.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.contextual.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.contextual.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.contextual.sirius.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.contextual.sirius.source.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.contextual.core.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.amalgam.explorer.contextual.core.source.feature.group" version="0.0.0"/>
+      <repository id="amalgam" location="https://download.eclipse.org/modeling/amalgam/staging/nightly/1.11.0-N133/capella"/>
+    </location>
+  </locations>
+</target>

@@ -13,7 +13,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.provider
 Bundle-Name: %pluginName
-Bundle-Version: 1.6.1.qualifier
+Bundle-Version: 1.6.2.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.provider.CdoExtensionEditPlugin$Implementation

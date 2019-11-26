@@ -37,7 +37,7 @@ Export-Package: base,
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.egf.core.test.pattern;singleton:=true
 Bundle-Name: Pattern
-Bundle-Version: 1.6.1.qualifier
+Bundle-Version: 1.6.2.qualifier
 Require-Bundle: org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.pattern.ftask;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
