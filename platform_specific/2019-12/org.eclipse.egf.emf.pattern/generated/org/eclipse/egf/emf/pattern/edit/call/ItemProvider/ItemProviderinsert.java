@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.2.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -60,6 +60,8 @@ public class ItemProviderinsert {
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _ListList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> hasSwitchList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object genClassParameter : genClassList) {
 			for (Object genPackageParameter : genPackageList) {
@@ -68,20 +70,23 @@ public class ItemProviderinsert {
 						for (Object forceDefaultCaseParameter : forceDefaultCaseList) {
 							for (Object indentDefaultCaseParameter : indentDefaultCaseList) {
 								for (Object _ListParameter : _ListList) {
+									for (Object hasSwitchParameter : hasSwitchList) {
 
-									this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-									this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-									this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-									this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-									this.forceDefaultCase = (java.lang.Boolean) forceDefaultCaseParameter;
-									this.indentDefaultCase = (java.lang.String) indentDefaultCaseParameter;
-									this._List = (java.lang.String) _ListParameter;
+										this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+										this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+										this.forceDefaultCase = (java.lang.Boolean) forceDefaultCaseParameter;
+										this.indentDefaultCase = (java.lang.String) indentDefaultCaseParameter;
+										this._List = (java.lang.String) _ListParameter;
+										this.hasSwitch = (java.lang.Boolean) hasSwitchParameter;
 
-									if (preCondition(ctx)) {
-										ctx.setNode(new Node.Container(currentNode, getClass()));
-										orchestration(ctx);
+										if (preCondition(ctx)) {
+											ctx.setNode(new Node.Container(currentNode, getClass()));
+											orchestration(ctx);
+										}
+
 									}
-
 								}
 							}
 						}
@@ -113,6 +118,7 @@ public class ItemProviderinsert {
 			parameterValues.put("forceDefaultCase", this.forceDefaultCase);
 			parameterValues.put("indentDefaultCase", this.indentDefaultCase);
 			parameterValues.put("_List", this._List);
+			parameterValues.put("hasSwitch", this.hasSwitch);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -162,6 +168,12 @@ public class ItemProviderinsert {
 		this._List = object;
 	}
 
+	protected java.lang.Boolean hasSwitch = null;
+
+	public void set_hasSwitch(java.lang.Boolean object) {
+		this.hasSwitch = object;
+	}
+
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("genClass", this.genClass);
@@ -171,6 +183,7 @@ public class ItemProviderinsert {
 		parameters.put("forceDefaultCase", this.forceDefaultCase);
 		parameters.put("indentDefaultCase", this.indentDefaultCase);
 		parameters.put("_List", this._List);
+		parameters.put("hasSwitch", this.hasSwitch);
 		return parameters;
 	}
 

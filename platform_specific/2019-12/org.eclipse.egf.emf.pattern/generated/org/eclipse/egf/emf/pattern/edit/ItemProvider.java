@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.2.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -573,8 +573,10 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 			stringBuffer.append(TEXT_23);
 		}
 		stringBuffer.append(TEXT_62);
-		if (!genClass.getLabelNotifyFeatures().isEmpty() || !genClass.getContentNotifyFeatures().isEmpty()
-				|| !genClass.getLabelAndContentNotifyFeatures().isEmpty()) {
+		boolean hasSwitch = !genClass.getLabelNotifyFeatures().isEmpty()
+				|| !genClass.getContentNotifyFeatures().isEmpty()
+				|| !genClass.getLabelAndContentNotifyFeatures().isEmpty();
+		if (hasSwitch) {
 			stringBuffer.append(TEXT_63);
 			stringBuffer.append(genClass.getRawImportedInterfaceName());
 			stringBuffer.append(TEXT_64);
@@ -612,15 +614,15 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 				stringBuffer.append(TEXT_71);
 			} else { // {
 				stringBuffer.append(TEXT_72);
-			}
+			} // }
+		}
+		stringBuffer.append(TEXT_20);
+		stringBuffer.append(hasSwitch ? indentDefaultCase : "");
+		stringBuffer.append(TEXT_73);
+		if (hasSwitch && forceDefaultCase) { // {
 			stringBuffer.append(TEXT_20);
 			stringBuffer.append(indentDefaultCase);
-			stringBuffer.append(TEXT_73);
-			if (forceDefaultCase) { // {
-				stringBuffer.append(TEXT_20);
-				stringBuffer.append(indentDefaultCase);
-				stringBuffer.append(TEXT_74);
-			} // }
+			stringBuffer.append(TEXT_74);
 		}
 		stringBuffer.append(TEXT_36);
 		if (genModel.isCreationCommands()) {
@@ -803,7 +805,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		}
 		stringBuffer.append(TEXT_20);
 		{
-			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,forceDefaultCase:forceDefaultCase,indentDefaultCase:indentDefaultCase,_List:_List"%>
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,forceDefaultCase:forceDefaultCase,indentDefaultCase:indentDefaultCase,_List:_List,hasSwitch:hasSwitch"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
 			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
@@ -817,6 +819,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 			callParameters.put("forceDefaultCase", forceDefaultCase);
 			callParameters.put("indentDefaultCase", indentDefaultCase);
 			callParameters.put("_List", _List);
+			callParameters.put("hasSwitch", hasSwitch);
 			CallHelper.executeWithParameterInjection(
 					"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_051_wGJ-Ed-FqczH3ESmRw",
 					new ExecutionContext((InternalPatternContext) ctx), callParameters);

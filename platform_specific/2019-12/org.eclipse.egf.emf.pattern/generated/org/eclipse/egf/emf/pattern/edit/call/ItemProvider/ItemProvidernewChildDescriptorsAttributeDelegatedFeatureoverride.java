@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.2.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -28,12 +28,12 @@ public class ItemProvidernewChildDescriptorsAttributeDelegatedFeatureoverride {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter" + NL
-			+ "\t\t\t\t\t\t(";
-	protected final String TEXT_2 = "," + NL + "\t\t\t\t\t\t ";
-	protected final String TEXT_3 = ".createEntry" + NL + "\t\t\t\t\t\t\t(";
+	protected final String TEXT_1 = NL + NL + "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL
+			+ "\t\t\t\t(";
+	protected final String TEXT_2 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_3 = ".createEntry" + NL + "\t\t\t\t\t(";
 	protected final String TEXT_4 = ",";
-	protected final String TEXT_5 = NL + "\t\t\t\t\t\t\t ";
+	protected final String TEXT_5 = NL + "\t\t\t\t\t ";
 	protected final String TEXT_6 = ")));";
 	protected final String TEXT_7 = ".createFromString(";
 	protected final String TEXT_8 = ", ";
