@@ -31,7 +31,7 @@ location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R201
 	org.eclipse.acceleo.sdk.feature.group lazy
 }
 
-location amalgam "https://download.eclipse.org/modeling/amalgam/staging/nightly/1.11.0-N133/capella" {
+location amalgam "https://download.eclipse.org/modeling/amalgam/updates/stable/1.11.0-S20190729/capella/" {
 	org.eclipse.amalgam.explorer.activity.feature.group lazy
 	org.eclipse.amalgam.explorer.activity.source.feature.group lazy
 	org.eclipse.amalgam.explorer.contextual.feature.group lazy
