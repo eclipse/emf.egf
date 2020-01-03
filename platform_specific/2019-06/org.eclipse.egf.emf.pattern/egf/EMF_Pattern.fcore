@@ -5467,6 +5467,7 @@
             <parameters xmi:id="_q6QPkId1EemTGPCEQmMGWg" name="indentDefaultCase"
                 type="java.lang.String"/>
             <parameters xmi:id="_q6jKgId1EemTGPCEQmMGWg" name="_List" type="java.lang.String"/>
+            <parameters xmi:id="_y4yXsC4OEeqcu-Qis7pW9g" name="hasSwitch" type="java.lang.Boolean"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_q4Z1cId1EemTGPCEQmMGWg"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_q7MDsId1EemTGPCEQmMGWg"
                 called="#_051_y2J-Ed-FqczH3ESmRw"/>
