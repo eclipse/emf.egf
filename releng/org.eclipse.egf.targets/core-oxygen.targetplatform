@@ -59,7 +59,7 @@ location Sirus "http://download.eclipse.org/sirius/updates/releases/5.1.1/oxygen
 }
 
 
-location EcoreTools "http://download.eclipse.org/ecoretools/updates/milestones/3.3.0RC4/oxygen" {
+location EcoreTools "http://download.eclipse.org/ecoretools/updates/releases/3.3.0/oxygen" {
 	org.eclipse.emf.ecoretools.sdk.feature.group lazy
 	org.eclipse.emf.ecoretools.design.feature.group lazy
 	org.eclipse.emf.ecoretools.explorer.contextual.feature.group lazy
