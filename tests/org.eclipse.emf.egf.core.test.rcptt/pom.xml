@@ -35,7 +35,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<properties>
-		<rcptt-maven-version>2.3.0</rcptt-maven-version>
+		<rcptt-maven-version>2.5.2-SNAPSHOT</rcptt-maven-version>
 	</properties>
 
 	<build>

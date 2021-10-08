@@ -2,7 +2,7 @@ pipeline {
   agent { label 'migration' }
   tools {
     maven 'apache-maven-latest'
-    jdk 'oracle-jdk8-latest'
+    jdk 'openjdk-jdk14-latest'
   }
   environment {
     FROM_PR = "${BRANCH_NAME}".contains("PR-");
@@ -19,7 +19,7 @@ pipeline {
     stage('Package') {
       steps {
         sh 'env'
-        sh 'mvn -Dplatform-version-name=2019-06 clean install -P core -P sign'
+        sh 'mvn -Dplatform-version-name=2021-06 clean install -P core -P sign'
       }
     }
     stage('Publish artifacts') {

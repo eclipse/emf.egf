@@ -1,0 +1,56 @@
+target "core"  with source, requirements
+
+include "https://download.eclipse.org/sirius/updates/stable/7.0.0-S20210908-102403/2021-06/targets/modules/gmf-runtime-1.14.tpd"
+
+location eclipse "https://download.eclipse.org/releases/2021-06/" {
+	org.eclipse.emf.workspace.feature.group lazy
+	org.eclipse.emf.transaction.feature.group lazy
+	org.eclipse.emf.query.feature.group lazy
+	org.eclipse.emf.validation.feature.group lazy
+	org.eclipse.sdk.feature.group lazy
+	org.eclipse.jdt.feature.group lazy
+	org.eclipse.pde.feature.group lazy
+	org.eclipse.platform.feature.group lazy
+	org.eclipse.m2m.atl.feature.group lazy
+	org.eclipse.uml2.uml.feature.group lazy
+	org.eclipse.equinox.executable.feature.group lazy
+	org.eclipse.emf.ecoretools.sdk.feature.group lazy
+	org.eclipse.emf.ecoretools.design.feature.group lazy
+	org.eclipse.emf.sdk.feature.group lazy
+}
+
+location jet "https://download.eclipse.org/modeling/m2t/updates/" {
+	org.eclipse.jet.sdk.feature.group lazy
+}
+
+location sirius "https://download.eclipse.org/sirius/updates/stable/7.0.0-S20210908-102403/2021-06/" {
+	org.eclipse.sirius.runtime.aql.feature.group lazy
+	org.eclipse.sirius.runtime.ide.eef.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.feature.group lazy
+	org.eclipse.sirius.runtime.ide.xtext.feature.group lazy
+	org.eclipse.sirius.runtime.feature.group lazy
+}
+
+location Orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20210602031627/repository" {
+	org.apache.batik.bridge.source lazy
+	org.apache.batik.script.source lazy
+}
+
+location "https://download.eclipse.org/cbi/updates/license/" {
+	org.eclipse.license.feature.group lazy
+}
+
+location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
+	org.eclipse.acceleo.sdk.feature.group lazy
+}
+
+location amalgam "https://download.eclipse.org/modeling/amalgam/updates/stable/1.13.0-S20210909/capella/" {
+	org.eclipse.amalgam.explorer.activity.feature.group lazy
+	org.eclipse.amalgam.explorer.activity.source.feature.group lazy
+	org.eclipse.amalgam.explorer.contextual.feature.group lazy
+	org.eclipse.amalgam.explorer.contextual.source.feature.group lazy
+	org.eclipse.amalgam.explorer.contextual.sirius.feature.group lazy
+	org.eclipse.amalgam.explorer.contextual.sirius.source.feature.group lazy
+	org.eclipse.amalgam.explorer.contextual.core.feature.group lazy
+	org.eclipse.amalgam.explorer.contextual.core.source.feature.group lazy
+}
