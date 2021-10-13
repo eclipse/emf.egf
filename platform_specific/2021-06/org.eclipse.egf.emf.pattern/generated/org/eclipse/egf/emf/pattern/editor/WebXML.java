@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -38,7 +38,6 @@ public class WebXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	protected final String TEXT_4 = "/uriService</url-pattern>" + NL + "  </servlet-mapping>" + NL + "" + NL
 			+ "  <welcome-file-list>" + NL + "    <welcome-file>";
 	protected final String TEXT_5 = ".html</welcome-file>" + NL + "  </welcome-file-list>" + NL + "</web-app>" + NL;
-	protected final String TEXT_6 = NL;
 
 	public WebXML() {
 		//Here is the constructor
@@ -74,8 +73,8 @@ public class WebXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

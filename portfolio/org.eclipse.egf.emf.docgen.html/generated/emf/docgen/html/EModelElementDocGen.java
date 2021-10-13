@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package emf.docgen.html;
 
 import org.eclipse.egf.emf.docgen.html.util.*;
@@ -24,8 +24,6 @@ public class EModelElementDocGen extends emf.docgen.html.EObjectDocGen {
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL + "\t<p>";
 	protected final String TEXT_4 = "</p>";
-	protected final String TEXT_5 = NL;
-	protected final String TEXT_6 = NL;
 
 	public EModelElementDocGen() {
 		//Here is the constructor
@@ -53,8 +51,8 @@ public class EModelElementDocGen extends emf.docgen.html.EObjectDocGen {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -78,13 +76,15 @@ public class EModelElementDocGen extends emf.docgen.html.EObjectDocGen {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
-	protected void method_writeEAnnotations(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_writeEAnnotations(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		String result = new String();
 
 		for (EAnnotation annotation : ((EModelElement) _element).getEAnnotations()) {
 
-			if (annotation.getSource() == "http://www.eclipse.org/emf/2002/GenModel" || annotation.getSource() == "http://www.eclipse.org/egf/2010/GenDoc") {
+			if (annotation.getSource() == "http://www.eclipse.org/emf/2002/GenModel"
+					|| annotation.getSource() == "http://www.eclipse.org/egf/2010/GenDoc") {
 				for (Map.Entry<String, String> detail : annotation.getDetails().entrySet()) {
 					if (detail.getKey() == "documentation" && detail.getValue() != "") {
 						result = result + detail.getValue();

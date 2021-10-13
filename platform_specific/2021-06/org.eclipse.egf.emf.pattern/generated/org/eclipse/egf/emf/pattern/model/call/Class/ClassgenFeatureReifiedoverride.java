@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -80,7 +80,6 @@ public class ClassgenFeatureReifiedoverride {
 	protected final String TEXT_45 = NL + "\tpublic void set";
 	protected final String TEXT_46 = ")" + NL + "\t{" + NL + "\t\tsuper.set";
 	protected final String TEXT_47 = ");" + NL + "\t}" + NL;
-	protected final String TEXT_48 = NL;
 
 	public ClassgenFeatureReifiedoverride() {
 		//Here is the constructor
@@ -208,8 +207,8 @@ public class ClassgenFeatureReifiedoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_48);
-		stringBuffer.append(TEXT_48);
+		stringBuffer.append(TEXT_25);
+		stringBuffer.append(TEXT_25);
 		return stringBuffer.toString();
 	}
 

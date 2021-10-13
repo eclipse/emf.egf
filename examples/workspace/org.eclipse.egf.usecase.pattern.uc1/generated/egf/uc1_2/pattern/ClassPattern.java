@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:23 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_2.pattern;
 
 import java.util.*;
@@ -20,7 +20,6 @@ public class ClassPattern extends egf.uc1_2.pattern.parent.ParentPattern {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = " and me: ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public ClassPattern() {
 		//Here is the constructor
@@ -57,7 +56,7 @@ public class ClassPattern extends egf.uc1_2.pattern.parent.ParentPattern {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

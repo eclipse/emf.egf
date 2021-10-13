@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -66,7 +66,6 @@ public class ItemProvidergetTextoverride {
 	protected final String TEXT_36 = NL + "\t\treturn getString(\"_UI_";
 	protected final String TEXT_37 = "_type\");";
 	protected final String TEXT_38 = NL;
-	protected final String TEXT_39 = NL;
 
 	public ItemProvidergetTextoverride() {
 		//Here is the constructor
@@ -132,8 +131,8 @@ public class ItemProvidergetTextoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_39);
-		stringBuffer.append(TEXT_39);
+		stringBuffer.append(TEXT_38);
+		stringBuffer.append(TEXT_38);
 		return stringBuffer.toString();
 	}
 

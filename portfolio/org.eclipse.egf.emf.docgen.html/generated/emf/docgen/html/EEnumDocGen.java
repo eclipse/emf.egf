@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package emf.docgen.html;
 
 import org.eclipse.egf.emf.docgen.html.util.*;
@@ -22,14 +22,13 @@ public class EEnumDocGen extends emf.docgen.html.EDataTypeDocGen {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "//default content";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL + "\t<h2>Enum Literals</h2>" + NL + "\t\t<table border=1 cellspacing=\"0\" width=\"100%\">" + NL + "\t\t<tr>" + NL + "\t\t\t<th align=left>Name</th>" + NL + "\t\t\t<th>Value</th>" + NL + "\t\t</tr>" + NL + "\t";
+	protected final String TEXT_3 = NL + "\t<h2>Enum Literals</h2>" + NL
+			+ "\t\t<table border=1 cellspacing=\"0\" width=\"100%\">" + NL + "\t\t<tr>" + NL
+			+ "\t\t\t<th align=left>Name</th>" + NL + "\t\t\t<th>Value</th>" + NL + "\t\t</tr>" + NL + "\t";
 	protected final String TEXT_4 = NL + "\t\t<tr>" + NL + "   \t\t\t<td align=left><b>";
 	protected final String TEXT_5 = "</b></td>" + NL + "   \t\t\t<td align=center>";
 	protected final String TEXT_6 = "</td>" + NL + "   \t\t</tr>" + NL + "\t";
 	protected final String TEXT_7 = NL + "\t</table>";
-	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
 
 	public EEnumDocGen() {
 		//Here is the constructor
@@ -57,8 +56,8 @@ public class EEnumDocGen extends emf.docgen.html.EDataTypeDocGen {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -82,7 +81,8 @@ public class EEnumDocGen extends emf.docgen.html.EDataTypeDocGen {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
-	protected void method_writeEEnumLiteral(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_writeEEnumLiteral(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		EList<EEnumLiteral> enumLiterals = ((EEnum) _element).getELiterals();
 		stringBuffer.append(TEXT_2);
@@ -97,7 +97,7 @@ public class EEnumDocGen extends emf.docgen.html.EDataTypeDocGen {
 			} // end for
 			stringBuffer.append(TEXT_7);
 		} // end if 
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "writeEEnumLiteral", stringBuffer.toString());
 	}

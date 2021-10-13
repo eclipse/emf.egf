@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -228,7 +228,6 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 	protected final String TEXT_128 = NL + "\t\t\tthis.";
 	protected final String TEXT_129 = "Value;" + NL + "\t\t}" + NL;
 	protected final String TEXT_130 = NL + "} //";
-	protected final String TEXT_131 = NL;
 
 	public ResourceClass() {
 		//Here is the constructor
@@ -264,8 +263,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_131);
-		stringBuffer.append(TEXT_131);
+		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_14);
 		return stringBuffer.toString();
 	}
 

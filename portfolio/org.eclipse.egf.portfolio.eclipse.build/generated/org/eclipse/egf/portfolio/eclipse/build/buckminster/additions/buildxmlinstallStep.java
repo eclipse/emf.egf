@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,40 +22,30 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t<target name=\"";
-	protected final String TEXT_2 = "\" depends=\"init,install.director\" >" + NL + "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL
+	protected final String TEXT_2 = "\" depends=\"init,install.director\" >" + NL
+			+ "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL
 			+ "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL + NL + "            \t<arg value=\"-roaming\" />" + NL + "            \t<arg value=\"-profileProperties\" />" + NL
-			+ "                <arg value=\"org.eclipse.update.install.features=true \" />" + NL + "" + NL + "                <arg value=\"-d\" />" + NL
-			+ "                <arg value=\"${publish}/";
-	protected final String TEXT_5 = "\" />" + NL + "                " + NL + "                <arg value=\"-p\" />" + NL + "                <arg value=\"";
+	protected final String TEXT_4 = NL + NL + "            \t<arg value=\"-roaming\" />" + NL
+			+ "            \t<arg value=\"-profileProperties\" />" + NL
+			+ "                <arg value=\"org.eclipse.update.install.features=true \" />" + NL + "" + NL
+			+ "                <arg value=\"-d\" />" + NL + "                <arg value=\"${publish}/";
+	protected final String TEXT_5 = "\" />" + NL + "                " + NL + "                <arg value=\"-p\" />" + NL
+			+ "                <arg value=\"";
 	protected final String TEXT_6 = "\" />" + NL;
 	protected final String TEXT_7 = NL + "                <arg value=\"-r\" />" + NL + "                <arg value=\"";
 	protected final String TEXT_8 = "\" />";
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL + "                <arg value=\"-r\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_11 = "\" />";
-	protected final String TEXT_12 = NL;
-	protected final String TEXT_13 = NL + "                <arg value=\"-i\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_14 = ".feature.group\" />";
-	protected final String TEXT_15 = "                " + NL;
-	protected final String TEXT_16 = NL + "                <arg value=\"-i\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_17 = "\" />";
-	protected final String TEXT_18 = NL;
-	protected final String TEXT_19 = NL + "                <arg value=\"-i\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_20 = ".feature.group\" />";
-	protected final String TEXT_21 = NL + "                <arg value=\"-i\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_22 = ".feature.group\" />";
-	protected final String TEXT_23 = NL;
-	protected final String TEXT_24 = NL + "                <arg value=\"-p2.os\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_25 = "\" />";
-	protected final String TEXT_26 = NL + "                <arg value=\"-p2.ws\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_27 = "\" />";
-	protected final String TEXT_28 = NL + "                <arg value=\"-p2.arch\" />" + NL + "                <arg value=\"";
-	protected final String TEXT_29 = "\" />";
-	protected final String TEXT_30 = NL + "            </args>" + NL + "        </eclipse.launch>" + NL + "\t</target>\t" + NL;
-	protected final String TEXT_31 = NL;
-	protected final String TEXT_32 = NL;
+	protected final String TEXT_9 = NL + "                <arg value=\"-i\" />" + NL + "                <arg value=\"";
+	protected final String TEXT_10 = ".feature.group\" />";
+	protected final String TEXT_11 = "                " + NL;
+	protected final String TEXT_12 = NL + "                <arg value=\"-p2.os\" />" + NL
+			+ "                <arg value=\"";
+	protected final String TEXT_13 = NL + "                <arg value=\"-p2.ws\" />" + NL
+			+ "                <arg value=\"";
+	protected final String TEXT_14 = NL + "                <arg value=\"-p2.arch\" />" + NL
+			+ "                <arg value=\"";
+	protected final String TEXT_15 = NL + "            </args>" + NL + "        </eclipse.launch>" + NL
+			+ "\t</target>\t" + NL;
 
 	public buildxmlinstallStep() {
 		//Here is the constructor
@@ -73,9 +63,12 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("installStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStep");
+		paramDesc = new IQuery.ParameterDescription("installStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> installStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> installStepList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object installStepParameter : installStepList) {
 
@@ -92,8 +85,8 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_31);
-		stringBuffer.append(TEXT_32);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -147,8 +140,9 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -162,53 +156,54 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 			stringBuffer.append(updateSiteUrl);
 			stringBuffer.append(TEXT_8);
 		}
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_3);
 		for (PublishStep publishStep : publishSteps) {
-			String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";
-			stringBuffer.append(TEXT_10);
+			String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep)
+					+ publishStep.getComponent().getId() + "/site.p2";
+			stringBuffer.append(TEXT_7);
 			stringBuffer.append(location);
-			stringBuffer.append(TEXT_11);
+			stringBuffer.append(TEXT_8);
 		}
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_3);
 		for (String featureName : installStep.getFeatureNames()) {
-			stringBuffer.append(TEXT_13);
+			stringBuffer.append(TEXT_9);
 			stringBuffer.append(featureName);
-			stringBuffer.append(TEXT_14);
+			stringBuffer.append(TEXT_10);
 		}
-		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_11);
 		for (String productName : installStep.getProductNames()) {
-			stringBuffer.append(TEXT_16);
+			stringBuffer.append(TEXT_9);
 			stringBuffer.append(productName);
-			stringBuffer.append(TEXT_17);
+			stringBuffer.append(TEXT_8);
 		}
-		stringBuffer.append(TEXT_18);
+		stringBuffer.append(TEXT_3);
 		for (PublishStep publishStep : publishSteps) {
-			stringBuffer.append(TEXT_19);
+			stringBuffer.append(TEXT_9);
 			stringBuffer.append(publishStep.getComponent().getId());
-			stringBuffer.append(TEXT_20);
+			stringBuffer.append(TEXT_10);
 			if (installStep.isInstallResultStepsSourceFeatures() && publishStep.isGenerateSources()) {
-				stringBuffer.append(TEXT_21);
+				stringBuffer.append(TEXT_9);
 				stringBuffer.append(new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getId()));
-				stringBuffer.append(TEXT_22);
+				stringBuffer.append(TEXT_10);
 			}
 		}
-		stringBuffer.append(TEXT_23);
+		stringBuffer.append(TEXT_3);
 		if (installStep.getP2_os() != null && installStep.getP2_os().trim().length() > 0) {
-			stringBuffer.append(TEXT_24);
+			stringBuffer.append(TEXT_12);
 			stringBuffer.append(installStep.getP2_os());
-			stringBuffer.append(TEXT_25);
+			stringBuffer.append(TEXT_8);
 		}
 		if (installStep.getP2_ws() != null && installStep.getP2_ws().trim().length() > 0) {
-			stringBuffer.append(TEXT_26);
+			stringBuffer.append(TEXT_13);
 			stringBuffer.append(installStep.getP2_ws());
-			stringBuffer.append(TEXT_27);
+			stringBuffer.append(TEXT_8);
 		}
 		if (installStep.getP2_arch() != null && installStep.getP2_arch().trim().length() > 0) {
-			stringBuffer.append(TEXT_28);
+			stringBuffer.append(TEXT_14);
 			stringBuffer.append(installStep.getP2_arch());
-			stringBuffer.append(TEXT_29);
+			stringBuffer.append(TEXT_8);
 		}
-		stringBuffer.append(TEXT_30);
+		stringBuffer.append(TEXT_15);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

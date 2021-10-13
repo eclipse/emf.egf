@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -26,8 +26,6 @@ public class buildxmldeleteStep extends org.eclipse.egf.portfolio.eclipse.build.
 	protected final String TEXT_3 = " >";
 	protected final String TEXT_4 = NL;
 	protected final String TEXT_5 = NL + "\t\t</delete>" + NL + "\t</target>" + NL + NL;
-	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildxmldeleteStep() {
 		//Here is the constructor
@@ -45,9 +43,11 @@ public class buildxmldeleteStep extends org.eclipse.egf.portfolio.eclipse.build.
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("deleteStep", "http://www.eclipse.org/egf/1.0.0/buildfile#//DeleteStep");
+		paramDesc = new IQuery.ParameterDescription("deleteStep",
+				"http://www.eclipse.org/egf/1.0.0/buildfile#//DeleteStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> deleteStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> deleteStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object deleteStepParameter : deleteStepList) {
 
@@ -64,8 +64,8 @@ public class buildxmldeleteStep extends org.eclipse.egf.portfolio.eclipse.build.
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -116,8 +116,9 @@ public class buildxmldeleteStep extends org.eclipse.egf.portfolio.eclipse.build.
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("filesetProvider", deleteStep);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_p-drcEwzEeG-l60d03D_Og", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_p-drcEwzEeG-l60d03D_Og",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

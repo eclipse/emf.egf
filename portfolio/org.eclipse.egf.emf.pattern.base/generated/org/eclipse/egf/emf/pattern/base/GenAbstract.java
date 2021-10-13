@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:26 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -98,7 +98,8 @@ public class GenAbstract {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setGenModel", stringBuffer.toString());
 	}
 
-	protected void method_putGenModelInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putGenModelInContext(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		ctx.setValue("genModel", genModel);
 
@@ -106,25 +107,29 @@ public class GenAbstract {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "putGenModelInContext", stringBuffer.toString());
 	}
 
-	protected void method_setChildVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_setChildVariables(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setChildVariables", stringBuffer.toString());
 	}
 
-	protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
 	}
 
-	protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "putReporterVariablesInContext", stringBuffer.toString());
 	}
 
-	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		ctx.setValue("contentType", ContentType.Undefined);
 
@@ -138,7 +143,8 @@ public class GenAbstract {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setArgument", stringBuffer.toString());
 	}
 
-	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "ensureProjectExists", stringBuffer.toString());

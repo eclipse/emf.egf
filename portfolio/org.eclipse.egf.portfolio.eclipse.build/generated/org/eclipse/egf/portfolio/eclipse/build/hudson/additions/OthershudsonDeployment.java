@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -29,10 +29,7 @@ public class OthershudsonDeployment extends org.eclipse.egf.portfolio.eclipse.bu
 	protected final String TEXT_6 = NL + "  <!--userDeployServerUrl=";
 	protected final String TEXT_7 = "-->";
 	protected final String TEXT_8 = NL + "  <!--userDeployJobName=";
-	protected final String TEXT_9 = "-->";
-	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
-	protected final String TEXT_12 = NL;
+	protected final String TEXT_9 = NL;
 
 	public OthershudsonDeployment() {
 		//Here is the constructor
@@ -50,9 +47,11 @@ public class OthershudsonDeployment extends org.eclipse.egf.portfolio.eclipse.bu
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("deployment", "http://www.eclipse.org/egf/1.0.0/builddeploy#//HudsonDeployment");
+		paramDesc = new IQuery.ParameterDescription("deployment",
+				"http://www.eclipse.org/egf/1.0.0/builddeploy#//HudsonDeployment");
 		queryCtx = new HashMap<String, String>();
-		List<Object> deploymentList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> deploymentList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object deploymentParameter : deploymentList) {
 
@@ -69,8 +68,8 @@ public class OthershudsonDeployment extends org.eclipse.egf.portfolio.eclipse.bu
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_11);
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 
@@ -124,9 +123,9 @@ public class OthershudsonDeployment extends org.eclipse.egf.portfolio.eclipse.bu
 		if (deployment.getUserDeployJobName() != null && deployment.getUserDeployJobName().length() > 0) {
 			stringBuffer.append(TEXT_8);
 			stringBuffer.append(deployment.getUserDeployJobName());
-			stringBuffer.append(TEXT_9);
+			stringBuffer.append(TEXT_7);
 		}
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_9);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

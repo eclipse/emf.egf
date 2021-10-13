@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:24 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.pattern.validation;
 
 import java.util.*;
@@ -14,6 +14,7 @@ public class AbstractValidationPattern {
 	public AbstractValidationPattern() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -38,7 +39,8 @@ public class AbstractValidationPattern {
 		return null;
 	}
 
-	protected void method_getDiagnosticChainFromContext(final StringBuffer out, final PatternContext ctx) throws Exception {
+	protected void method_getDiagnosticChainFromContext(final StringBuffer out, final PatternContext ctx)
+			throws Exception {
 		diagnosticChain = (DiagnosticChain) ctx.getValue("diagnostic");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

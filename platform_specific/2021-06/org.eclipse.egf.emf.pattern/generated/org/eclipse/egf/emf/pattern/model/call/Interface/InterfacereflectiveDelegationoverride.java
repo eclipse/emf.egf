@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -38,7 +38,6 @@ public class InterfacereflectiveDelegationoverride {
 	protected final String TEXT_6 = NL + "\tprotected int eStaticFeatureCount()" + NL + "\t{" + NL + "\t\treturn ";
 	protected final String TEXT_7 = ";" + NL + "\t}" + NL;
 	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
 
 	public InterfacereflectiveDelegationoverride() {
 		//Here is the constructor
@@ -150,8 +149,8 @@ public class InterfacereflectiveDelegationoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 

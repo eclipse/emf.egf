@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -69,7 +69,6 @@ public class XMLProcessorClass extends org.eclipse.egf.emf.pattern.base.GenPacka
 	protected final String TEXT_32 = "());" + NL + "\t\t\tregistrations.put(STAR_EXTENSION, new ";
 	protected final String TEXT_33 = "());" + NL + "\t\t}" + NL + "\t\treturn registrations;" + NL + "\t}" + NL + ""
 			+ NL + "} //";
-	protected final String TEXT_34 = NL;
 
 	public XMLProcessorClass() {
 		//Here is the constructor
@@ -105,8 +104,8 @@ public class XMLProcessorClass extends org.eclipse.egf.emf.pattern.base.GenPacka
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_34);
-		stringBuffer.append(TEXT_34);
+		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_14);
 		return stringBuffer.toString();
 	}
 

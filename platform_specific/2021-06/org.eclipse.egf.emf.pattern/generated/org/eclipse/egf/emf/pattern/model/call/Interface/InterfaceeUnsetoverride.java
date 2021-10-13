@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -55,7 +55,6 @@ public class InterfaceeUnsetoverride {
 	protected final String TEXT_24 = "\t\tsuper.eUnset(featureID);";
 	protected final String TEXT_25 = "\t\teDynamicUnset(featureID);";
 	protected final String TEXT_26 = NL + "\t}" + NL + NL;
-	protected final String TEXT_27 = NL;
 
 	public InterfaceeUnsetoverride() {
 		//Here is the constructor
@@ -167,8 +166,8 @@ public class InterfaceeUnsetoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_27);
-		stringBuffer.append(TEXT_27);
+		stringBuffer.append(TEXT_23);
+		stringBuffer.append(TEXT_23);
 		return stringBuffer.toString();
 	}
 

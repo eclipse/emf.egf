@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:24 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc2_3.substitution.level2;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class uc2_3_AttributePatternSubstitution3 {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "+Sub3 ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public uc2_3_AttributePatternSubstitution3() {
 		//Here is the constructor
@@ -58,7 +57,7 @@ public class uc2_3_AttributePatternSubstitution3 {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

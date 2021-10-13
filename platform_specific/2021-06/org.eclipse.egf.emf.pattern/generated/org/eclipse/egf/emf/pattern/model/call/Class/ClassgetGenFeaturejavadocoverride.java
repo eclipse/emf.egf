@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -63,7 +63,6 @@ public class ClassgetGenFeaturejavadocoverride {
 	protected final String TEXT_34 = NL + "\t *        ";
 	protected final String TEXT_35 = NL + "\t * @model";
 	protected final String TEXT_36 = NL + "\t * @generated" + NL + "\t */" + NL;
-	protected final String TEXT_37 = NL;
 
 	public ClassgetGenFeaturejavadocoverride() {
 		//Here is the constructor
@@ -180,8 +179,8 @@ public class ClassgetGenFeaturejavadocoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_37);
-		stringBuffer.append(TEXT_37);
+		stringBuffer.append(TEXT_19);
+		stringBuffer.append(TEXT_19);
 		return stringBuffer.toString();
 	}
 

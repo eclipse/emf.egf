@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -27,10 +27,7 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 	protected final String TEXT_5 = "\">" + NL + "\t\t<antcall target=\"";
 	protected final String TEXT_6 = "\"/>" + NL + "\t</target>";
 	protected final String TEXT_7 = NL;
-	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL + NL;
-	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
+	protected final String TEXT_8 = NL + NL;
 
 	public buildxmlantStep() {
 		//Here is the constructor
@@ -50,7 +47,8 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 		paramDesc = new IQuery.ParameterDescription("antStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//AntStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> antStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> antStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object antStepParameter : antStepList) {
 
@@ -67,8 +65,8 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_10);
-		stringBuffer.append(TEXT_11);
+		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_7);
 		return stringBuffer.toString();
 	}
 
@@ -115,9 +113,9 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 			stringBuffer.append(TEXT_6);
 		}
 		stringBuffer.append(TEXT_7);
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_7);
 		stringBuffer.append(antStep.getXml() == null ? "" : antStep.getXml());
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_8);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

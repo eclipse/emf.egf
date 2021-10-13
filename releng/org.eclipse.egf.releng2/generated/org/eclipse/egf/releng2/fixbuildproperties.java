@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.releng2;
 
 import org.eclipse.egf.common.helper.*;
@@ -39,7 +39,6 @@ public class fixbuildproperties extends org.eclipse.egf.portfolio.eclipse.build.
 			+ "#buckminster : do not generate version range in manifest.mf and content.jar" + NL
 			+ "pde.bundle.range.generation=false" + NL + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public fixbuildproperties() {
 		//Here is the constructor
@@ -76,7 +75,7 @@ public class fixbuildproperties extends org.eclipse.egf.portfolio.eclipse.build.
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

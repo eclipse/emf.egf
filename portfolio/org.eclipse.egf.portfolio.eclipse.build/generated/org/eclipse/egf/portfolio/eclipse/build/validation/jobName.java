@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.validation;
 
 import java.util.*;
@@ -14,6 +14,7 @@ public class jobName extends org.eclipse.egf.pattern.validation.AbstractValidati
 	public jobName() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -57,7 +58,8 @@ public class jobName extends org.eclipse.egf.pattern.validation.AbstractValidati
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		if (job.getName() == null || job.getName().trim().length() == 0) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "Jobs must have a name ", new Object[] { job });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0,
+					"Jobs must have a name ", new Object[] { job });
 			diagnosticChain.add(diagnostic);
 		}
 

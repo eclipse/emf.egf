@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -79,7 +79,6 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	protected final String TEXT_43 = NL + "      <extender" + NL + "            uri=\"";
 	protected final String TEXT_44 = "$";
 	protected final String TEXT_45 = NL + NL + "</plugin>" + NL;
-	protected final String TEXT_46 = NL;
 
 	public PluginXML() {
 		//Here is the constructor
@@ -115,8 +114,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_46);
-		stringBuffer.append(TEXT_46);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

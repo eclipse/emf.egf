@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -25,11 +25,12 @@ public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 	protected final String TEXT_2 = NL + "      <hudson.scm.SubversionSCM_-ModuleLocation>" + NL + "        <remote>";
 	protected final String TEXT_3 = "</remote>" + NL + "        <local>svn/";
 	protected final String TEXT_4 = "</local>" + NL + "      </hudson.scm.SubversionSCM_-ModuleLocation>";
-	protected final String TEXT_5 = NL + "    </locations>" + NL + "    <useUpdate>true</useUpdate>" + NL + "    <doRevert>true</doRevert>" + NL
-			+ "    <excludedRegions></excludedRegions>" + NL + "    <includedRegions></includedRegions>" + NL + "    <excludedUsers></excludedUsers>" + NL
-			+ "    <excludedRevprop></excludedRevprop>" + NL + "    <excludedCommitMessages></excludedCommitMessages>" + NL + "  </scm>" + NL;
+	protected final String TEXT_5 = NL + "    </locations>" + NL + "    <useUpdate>true</useUpdate>" + NL
+			+ "    <doRevert>true</doRevert>" + NL + "    <excludedRegions></excludedRegions>" + NL
+			+ "    <includedRegions></includedRegions>" + NL + "    <excludedUsers></excludedUsers>" + NL
+			+ "    <excludedRevprop></excludedRevprop>" + NL + "    <excludedCommitMessages></excludedCommitMessages>"
+			+ NL + "  </scm>" + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public Otherssvn() {
 		//Here is the constructor
@@ -49,7 +50,8 @@ public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 
 		paramDesc = new IQuery.ParameterDescription("svn", "http://www.eclipse.org/egf/1.0.0/buildscm#//SVN");
 		queryCtx = new HashMap<String, String>();
-		List<Object> svnList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> svnList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object svnParameter : svnList) {
 
@@ -67,7 +69,7 @@ public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 

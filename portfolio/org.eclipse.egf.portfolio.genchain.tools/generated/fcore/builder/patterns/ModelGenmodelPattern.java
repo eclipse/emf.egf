@@ -1,4 +1,4 @@
-//Generated with EGF 1.4.1.v20161010-1511
+//Generated with EGF 1.6.3.202110181143
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -41,6 +41,7 @@ public class ModelGenmodelPattern {
 	public ModelGenmodelPattern() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {

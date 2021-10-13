@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -19,15 +19,18 @@ public class PublishertestStep extends org.eclipse.egf.portfolio.eclipse.build.h
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "    <hudson.tasks.junit.JUnitResultArchiver>" + NL + "      <testResults>result/testReport*.xml</testResults>" + NL
-			+ "      <keepLongStdio>false</keepLongStdio>" + NL + "      <testDataPublishers/>" + NL + "    </hudson.tasks.junit.JUnitResultArchiver>";
-	protected final String TEXT_2 = NL + "    <hudson.plugins.emma.EmmaPublisher>" + NL + "      <includes>result/coverageReport*.xml</includes>" + NL + "      <healthReports>"
-			+ NL + "        <minClass>0</minClass>" + NL + "        <maxClass>0</maxClass>" + NL + "        <minMethod>0</minMethod>" + NL + "        <maxMethod>0</maxMethod>"
-			+ NL + "        <minBlock>0</minBlock>" + NL + "        <maxBlock>0</maxBlock>" + NL + "        <minLine>0</minLine>" + NL + "        <maxLine>0</maxLine>" + NL
-			+ "      </healthReports>" + NL + "    </hudson.plugins.emma.EmmaPublisher>";
+	protected final String TEXT_1 = "    <hudson.tasks.junit.JUnitResultArchiver>" + NL
+			+ "      <testResults>result/testReport*.xml</testResults>" + NL
+			+ "      <keepLongStdio>false</keepLongStdio>" + NL + "      <testDataPublishers/>" + NL
+			+ "    </hudson.tasks.junit.JUnitResultArchiver>";
+	protected final String TEXT_2 = NL + "    <hudson.plugins.emma.EmmaPublisher>" + NL
+			+ "      <includes>result/coverageReport*.xml</includes>" + NL + "      <healthReports>" + NL
+			+ "        <minClass>0</minClass>" + NL + "        <maxClass>0</maxClass>" + NL
+			+ "        <minMethod>0</minMethod>" + NL + "        <maxMethod>0</maxMethod>" + NL
+			+ "        <minBlock>0</minBlock>" + NL + "        <maxBlock>0</maxBlock>" + NL
+			+ "        <minLine>0</minLine>" + NL + "        <maxLine>0</maxLine>" + NL + "      </healthReports>" + NL
+			+ "    </hudson.plugins.emma.EmmaPublisher>";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public PublishertestStep() {
 		//Here is the constructor
@@ -45,9 +48,11 @@ public class PublishertestStep extends org.eclipse.egf.portfolio.eclipse.build.h
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("testStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//TestStep");
+		paramDesc = new IQuery.ParameterDescription("testStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//TestStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> testStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> testStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object testStepParameter : testStepList) {
 
@@ -64,8 +69,8 @@ public class PublishertestStep extends org.eclipse.egf.portfolio.eclipse.build.h
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

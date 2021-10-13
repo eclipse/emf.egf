@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -40,7 +40,6 @@ public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText 
 	protected final String TEXT_8 = NL + "  <source path=\"";
 	protected final String TEXT_9 = "\"/>";
 	protected final String TEXT_10 = NL + "</module>" + NL;
-	protected final String TEXT_11 = NL;
 
 	public ModuleGWTXML() {
 		//Here is the constructor
@@ -76,8 +75,8 @@ public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText 
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_11);
-		stringBuffer.append(TEXT_11);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

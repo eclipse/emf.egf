@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -8,7 +8,8 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildpropertiesadd {
+public class buildpropertiesitemProperty
+		extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildpropertiesadd {
 	protected static String nl;
 
 	public static synchronized buildpropertiesitemProperty create(String lineSeparator) {
@@ -21,8 +22,6 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "=";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public buildpropertiesitemProperty() {
 		//Here is the constructor
@@ -40,9 +39,12 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("propertyWrapper", "org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper");
+		paramDesc = new IQuery.ParameterDescription("propertyWrapper",
+				"org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper");
 		queryCtx = new HashMap<String, String>();
-		List<Object> propertyWrapperList = QueryHelper.load(ctx, "org.eclipse.egf.portfolio.eclipse.build.ItemPropertiesQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> propertyWrapperList = QueryHelper
+				.load(ctx, "org.eclipse.egf.portfolio.eclipse.build.ItemPropertiesQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object propertyWrapperParameter : propertyWrapperList) {
 
@@ -59,8 +61,8 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

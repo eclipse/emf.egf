@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:50 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.example.strategy.modeldriven.validation;
 
 import java.util.*;
@@ -14,6 +14,7 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 	public classWithoutAttributes() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -57,7 +58,9 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 
 	protected void method_checkAttributes(final StringBuffer out, final PatternContext ctx) throws Exception {
 		if (eClass.getEAllAttributes().isEmpty()) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.example.strategy.modeldriven", 0, "eClass " + eClass.getName() + " doesn't have any attribute", new Object[] { eClass });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR,
+					"org.eclipse.egf.example.strategy.modeldriven", 0,
+					"eClass " + eClass.getName() + " doesn't have any attribute", new Object[] { eClass });
 			diagnosticChain.add(diagnostic);
 		}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -11,7 +11,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 import org.eclipse.egf.emf.pattern.base.*;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 
-public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceFeatureoverride {
+public class newChildDescriptorscreateJavadocStep extends
+		org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 	protected static String nl;
 
 	public static synchronized newChildDescriptorscreateJavadocStep create(String lineSeparator) {
@@ -23,9 +24,9 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "        newChildDescriptors.add" + NL + "            (createChildParameter" + NL
-			+ "                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS," + NL + "                 BuildstepFactory.eINSTANCE.createJavadocStepFilled()));" + NL;
+			+ "                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS," + NL
+			+ "                 BuildstepFactory.eINSTANCE.createJavadocStepFilled()));" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public newChildDescriptorscreateJavadocStep() {
 		//Here is the constructor
@@ -59,6 +60,8 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object createClassParameter : createClassList) {
 			for (Object createFeatureParameter : createFeatureList) {
@@ -68,21 +71,24 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 							for (Object genClassParameter : genClassList) {
 								for (Object genPackageParameter : genPackageList) {
 									for (Object genModelParameter : genModelList) {
+										for (Object isJDK50Parameter : isJDK50List) {
 
-										this.createClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) createClassParameter;
-										this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) createFeatureParameter;
-										this.delegatedFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) delegatedFeatureParameter;
-										this.createClassifier = (org.eclipse.emf.codegen.ecore.genmodel.GenClassifier) createClassifierParameter;
-										this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildCreationData) childCreationDataParameter;
-										this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+											this.createClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) createClassParameter;
+											this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) createFeatureParameter;
+											this.delegatedFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) delegatedFeatureParameter;
+											this.createClassifier = (org.eclipse.emf.codegen.ecore.genmodel.GenClassifier) createClassifierParameter;
+											this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildCreationData) childCreationDataParameter;
+											this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+											this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+											this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+											this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
 
-										if (preCondition(ctx)) {
-											ctx.setNode(new Node.Container(currentNode, getClass()));
-											orchestration(ctx);
+											if (preCondition(ctx)) {
+												ctx.setNode(new Node.Container(currentNode, getClass()));
+												orchestration(ctx);
+											}
+
 										}
-
 									}
 								}
 							}
@@ -97,7 +103,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -116,6 +122,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -133,6 +140,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		return parameters;
 	}
 
@@ -147,7 +155,8 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		//workaroud : usage of reflection instead of this.createClass (to keep compatibility with emf 2.3)
 		try {
 			GenClass createClass = (GenClass) getParameters().get("createClass");
-			return EMFPatternHelper.isSameEClass(BuildstepPackage.eINSTANCE.getJavadocStep(), createClass.getEcoreClass());
+			return EMFPatternHelper.isSameEClass(BuildstepPackage.eINSTANCE.getJavadocStep(),
+					createClass.getEcoreClass());
 		} catch (Exception e) {
 			return false;
 		}

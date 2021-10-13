@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -147,7 +147,6 @@ public class PackageExample extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 			+ NL + "\t\t{" + NL + "\t\t\tprintDiagnostic((Diagnostic)i.next(), indent + \"  \");";
 	protected final String TEXT_80 = NL + "\t}" + NL + "" + NL + "} //";
 	protected final String TEXT_81 = NL;
-	protected final String TEXT_82 = NL;
 
 	public PackageExample() {
 		//Here is the constructor
@@ -183,8 +182,8 @@ public class PackageExample extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_82);
-		stringBuffer.append(TEXT_82);
+		stringBuffer.append(TEXT_81);
+		stringBuffer.append(TEXT_81);
 		return stringBuffer.toString();
 	}
 

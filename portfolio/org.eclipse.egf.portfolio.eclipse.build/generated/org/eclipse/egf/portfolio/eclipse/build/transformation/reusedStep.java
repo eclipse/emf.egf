@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.transformation;
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class reusedStep {
 	public reusedStep() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -87,7 +88,8 @@ public class reusedStep {
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer stepContainer;
 
-	public void set_stepContainer(org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer stepContainer) {
+	public void set_stepContainer(
+			org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer stepContainer) {
 		this.stepContainer = stepContainer;
 	}
 

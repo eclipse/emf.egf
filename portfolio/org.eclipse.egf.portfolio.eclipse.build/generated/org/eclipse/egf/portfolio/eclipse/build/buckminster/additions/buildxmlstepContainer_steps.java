@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -25,7 +25,6 @@ public class buildxmlstepContainer_steps extends org.eclipse.egf.portfolio.eclip
 	protected final String TEXT_2 = "\" depends=\"";
 	protected final String TEXT_3 = "\" />" + NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public buildxmlstepContainer_steps() {
 		//Here is the constructor
@@ -43,9 +42,12 @@ public class buildxmlstepContainer_steps extends org.eclipse.egf.portfolio.eclip
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("stepContainer", "http://www.eclipse.org/egf/1.0.1/buildcore#//StepContainer");
+		paramDesc = new IQuery.ParameterDescription("stepContainer",
+				"http://www.eclipse.org/egf/1.0.1/buildcore#//StepContainer");
 		queryCtx = new HashMap<String, String>();
-		List<Object> stepContainerList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> stepContainerList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object stepContainerParameter : stepContainerList) {
 
@@ -63,7 +65,7 @@ public class buildxmlstepContainer_steps extends org.eclipse.egf.portfolio.eclip
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

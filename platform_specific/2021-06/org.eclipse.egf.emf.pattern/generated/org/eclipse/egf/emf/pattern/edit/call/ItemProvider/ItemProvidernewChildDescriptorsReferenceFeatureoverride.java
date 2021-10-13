@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -36,7 +36,6 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 	protected final String TEXT_6 = ".create";
 	protected final String TEXT_7 = "()));";
 	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
 
 	public ItemProvidernewChildDescriptorsReferenceFeatureoverride() {
 		//Here is the constructor
@@ -112,8 +111,8 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 

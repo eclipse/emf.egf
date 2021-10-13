@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,32 +23,25 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t<target name=\"";
-	protected final String TEXT_2 = "\">" + NL + "\t\t<delete dir=\"${build.root}/../javadoc\" />" + NL + "\t\t<javadoc" + NL + "\t\t\tdestdir=\"${build.root}/../javadoc\"" + NL
-			+ "\t\t\tmaxmemory=\"1024m\"" + NL + "\t\t\tsource=\"1.5\"" + NL + "\t\t\tuseexternalfile=\"true\"" + NL + "\t\t\tauthor=\"true\"" + NL + "\t\t\tversion=\"true\"" + NL
-			+ "\t\t\tuse=\"true\"" + NL + "\t\t\twindowtitle=\"Javadoc\">" + NL;
+	protected final String TEXT_2 = "\">" + NL + "\t\t<delete dir=\"${build.root}/../javadoc\" />" + NL + "\t\t<javadoc"
+			+ NL + "\t\t\tdestdir=\"${build.root}/../javadoc\"" + NL + "\t\t\tmaxmemory=\"1024m\"" + NL
+			+ "\t\t\tsource=\"1.5\"" + NL + "\t\t\tuseexternalfile=\"true\"" + NL + "\t\t\tauthor=\"true\"" + NL
+			+ "\t\t\tversion=\"true\"" + NL + "\t\t\tuse=\"true\"" + NL + "\t\t\twindowtitle=\"Javadoc\">" + NL;
 	protected final String TEXT_3 = " " + NL + "\t\t<link offline=\"false\" href=\"";
 	protected final String TEXT_4 = "\"/>";
-	protected final String TEXT_5 = NL + NL + "<!-- TODO better handling of dir parameter -->" + NL + "<!-- TODO better handling of SourceBuildLocation model extension -->";
+	protected final String TEXT_5 = NL + NL + "<!-- TODO better handling of dir parameter -->" + NL
+			+ "<!-- TODO better handling of SourceBuildLocation model extension -->";
 	protected final String TEXT_6 = NL;
 	protected final String TEXT_7 = NL + "\t\t<fileset dir=\"";
 	protected final String TEXT_8 = "\" defaultexcludes=\"true\">";
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL + "\t\t<fileset dir=\"${build.root}/svn/";
-	protected final String TEXT_11 = "/";
-	protected final String TEXT_12 = "\" defaultexcludes=\"true\">";
-	protected final String TEXT_13 = NL + "\t\t<fileset dir=\"${build.root}/git/";
-	protected final String TEXT_14 = "/";
-	protected final String TEXT_15 = "\" defaultexcludes=\"true\">";
-	protected final String TEXT_16 = NL;
-	protected final String TEXT_17 = " " + NL + "\t\t\t<include name=\"";
-	protected final String TEXT_18 = "\"/>";
-	protected final String TEXT_19 = " " + NL + "\t\t\t<exclude name=\"";
-	protected final String TEXT_20 = "\"/>";
-	protected final String TEXT_21 = NL + "\t\t</fileset>";
-	protected final String TEXT_22 = NL + NL + "<!-- TODO better handling of copyright (escape chars) -->" + NL + "<!-- <bottom>copyright</bottom> -->" + NL + "\t</javadoc>" + NL
-			+ "</target>" + NL + NL;
-	protected final String TEXT_23 = NL;
-	protected final String TEXT_24 = NL;
+	protected final String TEXT_9 = NL + "\t\t<fileset dir=\"${build.root}/svn/";
+	protected final String TEXT_10 = "/";
+	protected final String TEXT_11 = NL + "\t\t<fileset dir=\"${build.root}/git/";
+	protected final String TEXT_12 = " " + NL + "\t\t\t<include name=\"";
+	protected final String TEXT_13 = " " + NL + "\t\t\t<exclude name=\"";
+	protected final String TEXT_14 = NL + "\t\t</fileset>";
+	protected final String TEXT_15 = NL + NL + "<!-- TODO better handling of copyright (escape chars) -->" + NL
+			+ "<!-- <bottom>copyright</bottom> -->" + NL + "\t</javadoc>" + NL + "</target>" + NL + NL;
 
 	public buildxmljavadocStep() {
 		//Here is the constructor
@@ -66,9 +59,12 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("javadocStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//JavadocStep");
+		paramDesc = new IQuery.ParameterDescription("javadocStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//JavadocStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> javadocStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> javadocStepList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object javadocStepParameter : javadocStepList) {
 
@@ -85,8 +81,8 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_23);
-		stringBuffer.append(TEXT_24);
+		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 
@@ -135,39 +131,39 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
 				stringBuffer.append(((LocalBuildLocation) sourceLocation).getPath());
 				stringBuffer.append(TEXT_8);
 			}
-			stringBuffer.append(TEXT_9);
+			stringBuffer.append(TEXT_6);
 			if (sourceLocation instanceof SVNBuildLocation) {
 				SVNBuildLocation svnBuildLocation = (SVNBuildLocation) sourceLocation;
 				SVNLocation svnLocation = (SVNLocation) svnBuildLocation.getSvnLocation();
-				stringBuffer.append(TEXT_10);
+				stringBuffer.append(TEXT_9);
 				stringBuffer.append(svnLocation.getLocalPath());
-				stringBuffer.append(TEXT_11);
+				stringBuffer.append(TEXT_10);
 				stringBuffer.append(svnBuildLocation.getFolderName());
-				stringBuffer.append(TEXT_12);
+				stringBuffer.append(TEXT_8);
 			}
 			if (sourceLocation instanceof GITBuildLocation) {
 				GITBuildLocation gitBuildLocation = (GITBuildLocation) sourceLocation;
 				GITLocation gitLocation = (GITLocation) gitBuildLocation.getGitLocation();
-				stringBuffer.append(TEXT_13);
+				stringBuffer.append(TEXT_11);
 				stringBuffer.append(gitLocation.getLocalPath());
-				stringBuffer.append(TEXT_14);
+				stringBuffer.append(TEXT_10);
 				stringBuffer.append(gitBuildLocation.getFolderName());
-				stringBuffer.append(TEXT_15);
+				stringBuffer.append(TEXT_8);
 			}
-			stringBuffer.append(TEXT_16);
+			stringBuffer.append(TEXT_6);
 			for (String includeString : javadocStep.getIncludes()) {
-				stringBuffer.append(TEXT_17);
+				stringBuffer.append(TEXT_12);
 				stringBuffer.append(includeString);
-				stringBuffer.append(TEXT_18);
+				stringBuffer.append(TEXT_4);
 			}
 			for (String excludeString : javadocStep.getExcludes()) {
-				stringBuffer.append(TEXT_19);
+				stringBuffer.append(TEXT_13);
 				stringBuffer.append(excludeString);
-				stringBuffer.append(TEXT_20);
+				stringBuffer.append(TEXT_4);
 			}
-			stringBuffer.append(TEXT_21);
+			stringBuffer.append(TEXT_14);
 		}
-		stringBuffer.append(TEXT_22);
+		stringBuffer.append(TEXT_15);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

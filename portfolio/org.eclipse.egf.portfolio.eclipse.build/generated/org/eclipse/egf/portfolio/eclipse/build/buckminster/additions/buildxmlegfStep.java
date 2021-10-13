@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,7 +23,8 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t<target name=\"";
-	protected final String TEXT_2 = "\" depends=\"init,install.egf\">" + NL + "\t\t<egf>" + NL + "            <globargs>";
+	protected final String TEXT_2 = "\" depends=\"init,install.egf\">" + NL + "\t\t<egf>" + NL
+			+ "            <globargs>";
 	protected final String TEXT_3 = NL + "\t\t\t\t<jvmarg value=\"-D";
 	protected final String TEXT_4 = "=";
 	protected final String TEXT_5 = "\" />";
@@ -32,7 +33,6 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 	protected final String TEXT_8 = "\"/>";
 	protected final String TEXT_9 = NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "\t</target>" + NL;
 	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
 
 	public buildxmlegfStep() {
 		//Here is the constructor
@@ -52,7 +52,8 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 		paramDesc = new IQuery.ParameterDescription("egfStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//EgfStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> egfStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> egfStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object egfStepParameter : egfStepList) {
 
@@ -70,7 +71,7 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 		}
 
 		stringBuffer.append(TEXT_10);
-		stringBuffer.append(TEXT_11);
+		stringBuffer.append(TEXT_10);
 		return stringBuffer.toString();
 	}
 

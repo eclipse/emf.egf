@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -20,10 +20,9 @@ public class buckminstercspectargetPlatform_installStep {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "        <cs:dependency name=\"org.eclipse.equinox.executable\" componentType=\"eclipse.feature\"/>" + NL
-			+ "        <cs:dependency name=\"org.eclipse.rcp\" componentType=\"eclipse.feature\"/>" + NL;
+	protected final String TEXT_1 = "        <cs:dependency name=\"org.eclipse.equinox.executable\" componentType=\"eclipse.feature\"/>"
+			+ NL + "        <cs:dependency name=\"org.eclipse.rcp\" componentType=\"eclipse.feature\"/>" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public buckminstercspectargetPlatform_installStep() {
 		//Here is the constructor
@@ -41,9 +40,11 @@ public class buckminstercspectargetPlatform_installStep {
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("buildStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//BuildStep");
+		paramDesc = new IQuery.ParameterDescription("buildStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//BuildStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> buildStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> buildStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object buildStepParameter : buildStepList) {
 
@@ -61,7 +62,7 @@ public class buckminstercspectargetPlatform_installStep {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -100,7 +101,8 @@ public class buckminstercspectargetPlatform_installStep {
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
-		return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep)) && !(new GenerationHelper().hasRunningPlatformBuildLocation(buildStep))
+		return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep))
+				&& !(new GenerationHelper().hasRunningPlatformBuildLocation(buildStep))
 				&& !(new GenerationHelper().hasInstallStepBuildLocation(buildStep));
 	}
 }

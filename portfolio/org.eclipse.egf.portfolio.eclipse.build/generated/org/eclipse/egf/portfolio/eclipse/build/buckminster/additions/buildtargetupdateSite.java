@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class buildtargetupdateSite extends org.eclipse.egf.portfolio.eclipse.bui
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t\t<location path=\"${workspace_loc}/../tp\" type=\"Directory\"/>" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public buildtargetupdateSite() {
 		//Here is the constructor
@@ -40,9 +39,12 @@ public class buildtargetupdateSite extends org.eclipse.egf.portfolio.eclipse.bui
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("updateSiteBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//UpdateSiteBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("updateSiteBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//UpdateSiteBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> updateSiteBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> updateSiteBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object updateSiteBuildLocationParameter : updateSiteBuildLocationList) {
 
@@ -60,7 +62,7 @@ public class buildtargetupdateSite extends org.eclipse.egf.portfolio.eclipse.bui
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -81,7 +83,8 @@ public class buildtargetupdateSite extends org.eclipse.egf.portfolio.eclipse.bui
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation updateSiteBuildLocation = null;
 
-	public void set_updateSiteBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation object) {
+	public void set_updateSiteBuildLocation(
+			org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation object) {
 		this.updateSiteBuildLocation = object;
 	}
 

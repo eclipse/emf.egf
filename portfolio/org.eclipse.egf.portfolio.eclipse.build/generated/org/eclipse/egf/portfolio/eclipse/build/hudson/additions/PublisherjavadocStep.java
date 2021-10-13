@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -20,10 +20,10 @@ public class PublisherjavadocStep extends org.eclipse.egf.portfolio.eclipse.buil
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "    <hudson.tasks.JavadocArchiver>" + NL + "      <javadocDir>../javadoc</javadocDir>" + NL + "      <keepAll>false</keepAll>" + NL
+	protected final String TEXT_1 = "    <hudson.tasks.JavadocArchiver>" + NL
+			+ "      <javadocDir>../javadoc</javadocDir>" + NL + "      <keepAll>false</keepAll>" + NL
 			+ "    </hudson.tasks.JavadocArchiver>" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public PublisherjavadocStep() {
 		//Here is the constructor
@@ -43,7 +43,8 @@ public class PublisherjavadocStep extends org.eclipse.egf.portfolio.eclipse.buil
 
 		paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.1/buildcore#//Job");
 		queryCtx = new HashMap<String, String>();
-		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object jobParameter : jobList) {
 
@@ -61,7 +62,7 @@ public class PublisherjavadocStep extends org.eclipse.egf.portfolio.eclipse.buil
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

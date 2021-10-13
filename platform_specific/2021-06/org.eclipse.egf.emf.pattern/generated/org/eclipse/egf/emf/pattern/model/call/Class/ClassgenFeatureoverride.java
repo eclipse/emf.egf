@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -79,7 +79,6 @@ public class ClassgenFeatureoverride {
 	protected final String TEXT_49 = " element)" + NL + "\t{" + NL + "\t\t";
 	protected final String TEXT_50 = "().set(index, element);" + NL + "\t}" + NL;
 	protected final String TEXT_51 = NL;
-	protected final String TEXT_52 = NL;
 
 	public ClassgenFeatureoverride() {
 		//Here is the constructor
@@ -196,8 +195,8 @@ public class ClassgenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_52);
-		stringBuffer.append(TEXT_52);
+		stringBuffer.append(TEXT_51);
+		stringBuffer.append(TEXT_51);
 		return stringBuffer.toString();
 	}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -75,7 +75,6 @@ public class ClassbasicUnsetGenFeatureoverride {
 			+ "\t\t\tif (msgs == null) msgs = notification; else msgs.add(notification);" + NL + "\t\t}" + NL
 			+ "\t\treturn msgs;";
 	protected final String TEXT_45 = NL + "\t}" + NL + NL;
-	protected final String TEXT_46 = NL;
 
 	public ClassbasicUnsetGenFeatureoverride() {
 		//Here is the constructor
@@ -192,8 +191,8 @@ public class ClassbasicUnsetGenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_46);
-		stringBuffer.append(TEXT_46);
+		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

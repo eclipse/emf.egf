@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:27 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -27,7 +27,6 @@ public class HeaderJava extends org.eclipse.egf.emf.pattern.base.HeaderAbstract 
 	protected final String TEXT_5 = "Id";
 	protected final String TEXT_6 = NL + " */" + NL;
 	protected final String TEXT_7 = NL;
-	protected final String TEXT_8 = NL;
 
 	public HeaderJava() {
 		//Here is the constructor
@@ -64,7 +63,7 @@ public class HeaderJava extends org.eclipse.egf.emf.pattern.base.HeaderAbstract 
 		}
 
 		stringBuffer.append(TEXT_7);
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_7);
 		return stringBuffer.toString();
 	}
 
@@ -93,10 +92,14 @@ public class HeaderJava extends org.eclipse.egf.emf.pattern.base.HeaderAbstract 
 
 		stringBuffer.append(TEXT_1);
 		{
-			GenBase copyrightHolder = argument instanceof GenBase ? (GenBase) argument : argument instanceof Object[] && ((Object[]) argument)[0] instanceof GenBase ? (GenBase) ((Object[]) argument)[0] : null;
+			GenBase copyrightHolder = argument instanceof GenBase ? (GenBase) argument
+					: argument instanceof Object[] && ((Object[]) argument)[0] instanceof GenBase
+							? (GenBase) ((Object[]) argument)[0]
+							: null;
 			if (copyrightHolder != null && copyrightHolder.hasCopyright()) {
 				stringBuffer.append(TEXT_2);
-				stringBuffer.append(copyrightHolder.getCopyright(copyrightHolder.getGenModel().getIndentation(stringBuffer)));
+				stringBuffer.append(
+						copyrightHolder.getCopyright(copyrightHolder.getGenModel().getIndentation(stringBuffer)));
 			} else {
 				stringBuffer.append(TEXT_3);
 			}

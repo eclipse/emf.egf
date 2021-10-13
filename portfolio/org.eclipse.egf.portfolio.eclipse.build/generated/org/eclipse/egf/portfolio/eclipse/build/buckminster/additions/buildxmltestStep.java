@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,16 +21,21 @@ public class buildxmltestStep extends org.eclipse.egf.portfolio.eclipse.build.bu
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t<target name=\"";
-	protected final String TEXT_2 = "\" depends=\"init,install.buckminster\">" + NL + "\t  <echo message=\"Running Junit tests ";
+	protected final String TEXT_2 = "\" depends=\"init,install.buckminster\">" + NL
+			+ "\t  <echo message=\"Running Junit tests ";
 	protected final String TEXT_3 = "\" />" + NL + "      <buckminster command=\"";
-	protected final String TEXT_4 = "\">" + NL + "        <cmdargs>" + NL + "          <arg value=\"-l\" />" + NL + "          <arg value=\"";
-	protected final String TEXT_5 = "\" />" + NL + "          <arg value=\"-o\" />" + NL + "          <arg value=\"${result}/testReport";
-	protected final String TEXT_6 = ".xml\" />" + NL + "          <arg value=\"--terseXML\" />" + NL + "          <arg value=\"--flatXML\"/>";
-	protected final String TEXT_7 = NL + "          <arg value=\"--xml\" />" + NL + "          <arg value=\"${result}/coverageReport";
+	protected final String TEXT_4 = "\">" + NL + "        <cmdargs>" + NL + "          <arg value=\"-l\" />" + NL
+			+ "          <arg value=\"";
+	protected final String TEXT_5 = "\" />" + NL + "          <arg value=\"-o\" />" + NL
+			+ "          <arg value=\"${result}/testReport";
+	protected final String TEXT_6 = ".xml\" />" + NL + "          <arg value=\"--terseXML\" />" + NL
+			+ "          <arg value=\"--flatXML\"/>";
+	protected final String TEXT_7 = NL + "          <arg value=\"--xml\" />" + NL
+			+ "          <arg value=\"${result}/coverageReport";
 	protected final String TEXT_8 = ".xml\" />";
-	protected final String TEXT_9 = NL + "        </cmdargs>" + NL + "      </buckminster>" + NL + "\t</target>" + NL + NL;
+	protected final String TEXT_9 = NL + "        </cmdargs>" + NL + "      </buckminster>" + NL + "\t</target>" + NL
+			+ NL;
 	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
 
 	public buildxmltestStep() {
 		//Here is the constructor
@@ -48,9 +53,11 @@ public class buildxmltestStep extends org.eclipse.egf.portfolio.eclipse.build.bu
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("testStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//TestStep");
+		paramDesc = new IQuery.ParameterDescription("testStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//TestStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> testStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> testStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object testStepParameter : testStepList) {
 
@@ -68,7 +75,7 @@ public class buildxmltestStep extends org.eclipse.egf.portfolio.eclipse.build.bu
 		}
 
 		stringBuffer.append(TEXT_10);
-		stringBuffer.append(TEXT_11);
+		stringBuffer.append(TEXT_10);
 		return stringBuffer.toString();
 	}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -81,7 +81,6 @@ public class InterfaceeIsSetoverride {
 	protected final String TEXT_50 = "\t\treturn super.eIsSet(featureID);";
 	protected final String TEXT_51 = "\t\treturn eDynamicIsSet(featureID);";
 	protected final String TEXT_52 = NL + "\t}" + NL + NL;
-	protected final String TEXT_53 = NL;
 
 	public InterfaceeIsSetoverride() {
 		//Here is the constructor
@@ -193,8 +192,8 @@ public class InterfaceeIsSetoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_53);
-		stringBuffer.append(TEXT_53);
+		stringBuffer.append(TEXT_49);
+		stringBuffer.append(TEXT_49);
 		return stringBuffer.toString();
 	}
 

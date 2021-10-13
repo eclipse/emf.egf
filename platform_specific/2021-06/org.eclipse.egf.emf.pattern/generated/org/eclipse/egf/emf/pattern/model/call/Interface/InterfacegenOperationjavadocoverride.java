@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -40,7 +40,6 @@ public class InterfacegenOperationjavadocoverride {
 	protected final String TEXT_11 = NL + "\t *        ";
 	protected final String TEXT_12 = NL + "\t * @model";
 	protected final String TEXT_13 = NL + "\t * @generated" + NL + "\t */" + NL;
-	protected final String TEXT_14 = NL;
 
 	public InterfacegenOperationjavadocoverride() {
 		//Here is the constructor
@@ -157,8 +156,8 @@ public class InterfacegenOperationjavadocoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_14);
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

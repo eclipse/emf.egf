@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -511,7 +511,6 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			+ NL + "\tpublic IFile getModelFile()" + NL + "\t{" + NL + "\t\treturn newFileCreationPage.getModelFile();"
 			+ NL + "\t}" + NL;
 	protected final String TEXT_227 = NL + "}";
-	protected final String TEXT_228 = NL;
 
 	public ModelWizard() {
 		//Here is the constructor
@@ -547,8 +546,8 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_228);
-		stringBuffer.append(TEXT_228);
+		stringBuffer.append(TEXT_23);
+		stringBuffer.append(TEXT_23);
 		return stringBuffer.toString();
 	}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -8,7 +8,8 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class itemEnablementImageDecorator extends org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProviderinsert {
+public class itemEnablementImageDecorator
+		extends org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProviderinsert {
 	protected static String nl;
 
 	public static synchronized itemEnablementImageDecorator create(String lineSeparator) {
@@ -20,16 +21,20 @@ public class itemEnablementImageDecorator extends org.eclipse.egf.emf.pattern.ed
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "    /**" + NL + "     * @generated" + NL + "     */" + NL + "    @Override" + NL
-			+ "    protected Object overlayImage(Object object, Object image) {" + NL + "        " + NL + "        if (object instanceof Item && !((Item) object).isEnabled())"
-			+ NL + "        {" + NL + "          List<Object> images = new java.util.ArrayList<Object>(2);" + NL + "          images.add(image);" + NL
-			+ "          images.add(org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildCoreEditorPlugin.INSTANCE.getImage(\"disabled\"));" + NL
-			+ "          image = new org.eclipse.emf.edit.provider.ComposedImage(images) {" + NL + "" + NL + "                @Override" + NL
-			+ "                public List<Point> getDrawPoints(Size size) {" + NL + "                    List<Point> results = new java.util.ArrayList<Point>();" + NL
-			+ "                    results.add(new Point());" + NL + "                    Point overlay = new Point();" + NL + "                    overlay.x = 0;" + NL
-			+ "                    overlay.y = 9;" + NL + "                    results.add(overlay);" + NL + "                    return results;" + NL + "                }" + NL
-			+ "            };" + NL + "        }" + NL + "" + NL + "        return super.overlayImage(object, image);" + NL + "    }";
+			+ "    protected Object overlayImage(Object object, Object image) {" + NL + "        " + NL
+			+ "        if (object instanceof Item && !((Item) object).isEnabled())" + NL + "        {" + NL
+			+ "          List<Object> images = new java.util.ArrayList<Object>(2);" + NL
+			+ "          images.add(image);" + NL
+			+ "          images.add(org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildCoreEditorPlugin.INSTANCE.getImage(\"disabled\"));"
+			+ NL + "          image = new org.eclipse.emf.edit.provider.ComposedImage(images) {" + NL + "" + NL
+			+ "                @Override" + NL + "                public List<Point> getDrawPoints(Size size) {" + NL
+			+ "                    List<Point> results = new java.util.ArrayList<Point>();" + NL
+			+ "                    results.add(new Point());" + NL + "                    Point overlay = new Point();"
+			+ NL + "                    overlay.x = 0;" + NL + "                    overlay.y = 9;" + NL
+			+ "                    results.add(overlay);" + NL + "                    return results;" + NL
+			+ "                }" + NL + "            };" + NL + "        }" + NL + "" + NL
+			+ "        return super.overlayImage(object, image);" + NL + "    }";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public itemEnablementImageDecorator() {
 		//Here is the constructor
@@ -53,24 +58,44 @@ public class itemEnablementImageDecorator extends org.eclipse.egf.emf.pattern.ed
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> forceDefaultCaseList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> indentDefaultCaseList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _ListList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> hasSwitchList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object genClassParameter : genClassList) {
 			for (Object genPackageParameter : genPackageList) {
 				for (Object genModelParameter : genModelList) {
-					for (Object _ListParameter : _ListList) {
+					for (Object isJDK50Parameter : isJDK50List) {
+						for (Object forceDefaultCaseParameter : forceDefaultCaseList) {
+							for (Object indentDefaultCaseParameter : indentDefaultCaseList) {
+								for (Object _ListParameter : _ListList) {
+									for (Object hasSwitchParameter : hasSwitchList) {
 
-						this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-						this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-						this._List = (java.lang.String) _ListParameter;
+										this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+										this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+										this.forceDefaultCase = (java.lang.Boolean) forceDefaultCaseParameter;
+										this.indentDefaultCase = (java.lang.String) indentDefaultCaseParameter;
+										this._List = (java.lang.String) _ListParameter;
+										this.hasSwitch = (java.lang.Boolean) hasSwitchParameter;
 
-						if (preCondition(ctx)) {
-							ctx.setNode(new Node.Container(currentNode, getClass()));
-							orchestration(ctx);
+										if (preCondition(ctx)) {
+											ctx.setNode(new Node.Container(currentNode, getClass()));
+											orchestration(ctx);
+										}
+
+									}
+								}
+							}
 						}
-
 					}
 				}
 			}
@@ -81,7 +106,7 @@ public class itemEnablementImageDecorator extends org.eclipse.egf.emf.pattern.ed
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -95,7 +120,11 @@ public class itemEnablementImageDecorator extends org.eclipse.egf.emf.pattern.ed
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
+			parameterValues.put("forceDefaultCase", this.forceDefaultCase);
+			parameterValues.put("indentDefaultCase", this.indentDefaultCase);
 			parameterValues.put("_List", this._List);
+			parameterValues.put("hasSwitch", this.hasSwitch);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -108,7 +137,11 @@ public class itemEnablementImageDecorator extends org.eclipse.egf.emf.pattern.ed
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
+		parameters.put("forceDefaultCase", this.forceDefaultCase);
+		parameters.put("indentDefaultCase", this.indentDefaultCase);
 		parameters.put("_List", this._List);
+		parameters.put("hasSwitch", this.hasSwitch);
 		return parameters;
 	}
 

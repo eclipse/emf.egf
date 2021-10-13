@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:26 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,11 +24,8 @@ public class HeaderXml extends org.eclipse.egf.emf.pattern.base.HeaderAbstract {
 	protected final String TEXT_2 = NL + " ";
 	protected final String TEXT_3 = NL + " <copyright>" + NL + " </copyright>";
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL + " ";
-	protected final String TEXT_6 = "Id";
-	protected final String TEXT_7 = NL + "-->" + NL;
-	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
+	protected final String TEXT_5 = "Id";
+	protected final String TEXT_6 = NL + "-->" + NL;
 
 	public HeaderXml() {
 		//Here is the constructor
@@ -64,8 +61,8 @@ public class HeaderXml extends org.eclipse.egf.emf.pattern.base.HeaderAbstract {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -94,20 +91,24 @@ public class HeaderXml extends org.eclipse.egf.emf.pattern.base.HeaderAbstract {
 
 		stringBuffer.append(TEXT_1);
 		{
-			GenBase copyrightHolder = argument instanceof GenBase ? (GenBase) argument : argument instanceof Object[] && ((Object[]) argument)[0] instanceof GenBase ? (GenBase) ((Object[]) argument)[0] : null;
+			GenBase copyrightHolder = argument instanceof GenBase ? (GenBase) argument
+					: argument instanceof Object[] && ((Object[]) argument)[0] instanceof GenBase
+							? (GenBase) ((Object[]) argument)[0]
+							: null;
 			if (copyrightHolder != null && copyrightHolder.hasCopyright()) {
 				stringBuffer.append(TEXT_2);
-				stringBuffer.append(copyrightHolder.getCopyright(copyrightHolder.getGenModel().getIndentation(stringBuffer)));
+				stringBuffer.append(
+						copyrightHolder.getCopyright(copyrightHolder.getGenModel().getIndentation(stringBuffer)));
 			} else {
 				stringBuffer.append(TEXT_3);
 			}
 		}
 		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append("$");
 		stringBuffer.append(TEXT_5);
 		stringBuffer.append("$");
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append("$");
-		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}

@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.0.201901231006
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_9.pattern;
 
 import java.util.*;
@@ -13,6 +13,7 @@ public class myPattern {
 	public myPattern() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {

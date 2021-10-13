@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -416,7 +416,6 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			+ "\t */";
 	protected final String TEXT_209 = NL + "\tprotected boolean removeAllReferencesOnDelete()" + NL + "\t{" + NL
 			+ "\t\treturn true;" + NL + "\t}" + NL + "" + NL + "}";
-	protected final String TEXT_210 = NL;
 
 	public ActionBarContributor() {
 		//Here is the constructor
@@ -452,8 +451,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_210);
-		stringBuffer.append(TEXT_210);
+		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_15);
 		return stringBuffer.toString();
 	}
 

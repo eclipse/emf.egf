@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,12 +24,14 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 	protected final String TEXT_1 = "\t<locator searchPathRef=\"";
 	protected final String TEXT_2 = "\" ";
 	protected final String TEXT_3 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"";
-	protected final String TEXT_4 = "\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"p2\" source=\"false\" mutable=\"false\">" + NL
-			+ "\t\t\t<uri format=\"{0}\">" + NL + "\t\t\t\t<bc:replace>" + NL + "\t\t\t\t\t<bc:constant value=\"file:/";
-	protected final String TEXT_5 = "\" />" + NL + "\t\t\t\t\t<bc:match pattern=\"\\\\\" replacement=\"/\" /> " + NL + "\t\t\t\t</bc:replace>" + NL + "\t\t\t</uri>" + NL
-			+ "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL + NL;
+	protected final String TEXT_4 = "\">" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"p2\" source=\"false\" mutable=\"false\">"
+			+ NL + "\t\t\t<uri format=\"{0}\">" + NL + "\t\t\t\t<bc:replace>" + NL
+			+ "\t\t\t\t\t<bc:constant value=\"file:/";
+	protected final String TEXT_5 = "\" />" + NL + "\t\t\t\t\t<bc:match pattern=\"\\\\\" replacement=\"/\" /> " + NL
+			+ "\t\t\t\t</bc:replace>" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL
+			+ NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildrmapresultStep() {
 		//Here is the constructor
@@ -47,9 +49,12 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("resultStepBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//ResultStepBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("resultStepBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//ResultStepBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> resultStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> resultStepBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object resultStepBuildLocationParameter : resultStepBuildLocationList) {
 
@@ -67,7 +72,7 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 
@@ -88,7 +93,8 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation resultStepBuildLocation = null;
 
-	public void set_resultStepBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation object) {
+	public void set_resultStepBuildLocation(
+			org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation object) {
 		this.resultStepBuildLocation = object;
 	}
 
@@ -105,7 +111,8 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 			name = ((PublishStep) resultStepBuildLocation.getResultStep()).getComponent().getId();
 		else if (resultStepBuildLocation.getResultStep() instanceof AggregateStep)
 			name = ((AggregateStep) resultStepBuildLocation.getResultStep()).getId();
-		String location = new GenerationHelper().getPublishPath(ctx, resultStepBuildLocation.getResultStep(), resultStepBuildLocation) + name + "/site.p2/";
+		String location = new GenerationHelper().getPublishPath(ctx, resultStepBuildLocation.getResultStep(),
+				resultStepBuildLocation) + name + "/site.p2/";
 		String id = new GenerationHelper().getNameOrGeneratedIdString(resultStepBuildLocation);
 
 		stringBuffer.append(TEXT_1);

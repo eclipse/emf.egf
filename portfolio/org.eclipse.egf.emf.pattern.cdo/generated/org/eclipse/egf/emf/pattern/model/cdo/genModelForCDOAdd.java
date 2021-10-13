@@ -1,4 +1,4 @@
-//Generated on Fri Nov 30 18:17:37 CET 2012 with EGF 1.0.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.ArrayList;
@@ -23,103 +23,110 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.genModelForCDO {
 
-    public genModelForCDOAdd() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
-    }
+	public genModelForCDOAdd() {
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    public void generate(Object argument) throws Exception {
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        IQuery.ParameterDescription paramDesc = null;
-        Map<String, String> queryCtx = null;
-        Node.Container currentNode = ctx.getNode();
-        List<Object> genModelList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+	}
 
-        for (Object genModelParameter : genModelList) {
+	public void generate(Object argument) throws Exception {
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		IQuery.ParameterDescription paramDesc = null;
+		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
+		List<Object> genModelList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-            this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+		for (Object genModelParameter : genModelList) {
 
-            if (preCondition(ctx)) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration((PatternContext) argument);
+			this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-            }
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-        }
-    }
+			if (preCondition(ctx)) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration((PatternContext) argument);
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        Node.Container currentNode = ictx.getNode();
-        super.orchestration(new SuperOrchestrationContext(ictx));
-        ictx.setNode(currentNode);
-        if (ictx.useReporter()) {
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("genModel", this.genModel);
-            String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-            String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-        }
-        return null;
-    }
+			}
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+		}
+	}
 
-    protected void method_customizeGenModel(final StringBuffer out, final PatternContext ctx) throws Exception {
-        String cdoSuffix = (String) ctx.getValue("cdoSuffix");
-        newGenModel.setModelPluginID(newGenModel.getModelPluginID() + "." + cdoSuffix);
-        newGenModel.setModelDirectory(newGenModel.getModelDirectory().replace(genModel.getModelPluginID(), newGenModel.getModelPluginID()));
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		Node.Container currentNode = ictx.getNode();
+		super.orchestration(new SuperOrchestrationContext(ictx));
+		ictx.setNode(currentNode);
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("genModel", this.genModel);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+		}
+		return null;
+	}
 
-        //replace usedGenPackages by cdo usedGenPackages
-        List<GenPackage> usedGenPackages = new ArrayList<GenPackage>();
-        for (GenPackage genPackage : genModel.getUsedGenPackages()) {
-            URI uri = EcoreUtil.getURI(genPackage);
+	protected void method_customizeGenModel(final StringBuffer out, final PatternContext ctx) throws Exception {
+		String cdoSuffix = (String) ctx.getValue("cdoSuffix");
+		newGenModel.setModelPluginID(newGenModel.getModelPluginID() + "." + cdoSuffix);
+		newGenModel.setModelDirectory(
+				newGenModel.getModelDirectory().replace(genModel.getModelPluginID(), newGenModel.getModelPluginID()));
 
-            URI newURI = null;
-            if (uri.toString().contains(genPackage.getGenModel().getModelPluginID())) {
-                newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix));
-            } else {
-                newURI = URI.createPlatformResourceURI(genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix + "/model/" + uri.lastSegment(), true).appendFragment(uri.fragment());
-            }
+		//replace usedGenPackages by cdo usedGenPackages
+		List<GenPackage> usedGenPackages = new ArrayList<GenPackage>();
+		for (GenPackage genPackage : genModel.getUsedGenPackages()) {
+			URI uri = EcoreUtil.getURI(genPackage);
 
-            try {
-                Resource resource = genPackage.eResource().getResourceSet().getResource(newURI.trimFragment(), true);
-                GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
-                if (newGenPackage != null)
-                    usedGenPackages.add(newGenPackage);
-                else
-                    usedGenPackages.add(genPackage);
-            } catch (Exception exception) {
-                usedGenPackages.add(genPackage);
-            }
-        }
+			URI newURI = null;
+			if (uri.toString().contains(genPackage.getGenModel().getModelPluginID())) {
+				newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(),
+						genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix));
+			} else {
+				newURI = URI.createPlatformResourceURI(
+						genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix + "/model/" + uri.lastSegment(),
+						true).appendFragment(uri.fragment());
+			}
 
-        newGenModel.getUsedGenPackages().clear();
-        newGenModel.getUsedGenPackages().addAll(usedGenPackages);
+			try {
+				Resource resource = genPackage.eResource().getResourceSet().getResource(newURI.trimFragment(), true);
+				GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
+				if (newGenPackage != null)
+					usedGenPackages.add(newGenPackage);
+				else
+					usedGenPackages.add(genPackage);
+			} catch (Exception exception) {
+				usedGenPackages.add(genPackage);
+			}
+		}
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "customizeGenModel", out.toString());
-    }
+		newGenModel.getUsedGenPackages().clear();
+		newGenModel.getUsedGenPackages().addAll(usedGenPackages);
 
-    protected void method_genModelResourceURI(final StringBuffer out, final PatternContext ctx) throws Exception {
-        String genModelResourceURIString = genModel.eResource().getURI().toString();
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "customizeGenModel", out.toString());
+	}
 
-        if (genModelResourceURIString.contains(genModel.getModelPluginID())) {
-            genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(), newGenModel.getModelPluginID());
-            newGenModelResourceURI = URI.createURI(genModelResourceURIString);
-        } else {
-            newGenModelResourceURI = URI.createPlatformResourceURI(newGenModel.getModelPluginID() + "/model/" + genModel.eResource().getURI().lastSegment(), true);
-        }
+	protected void method_genModelResourceURI(final StringBuffer out, final PatternContext ctx) throws Exception {
+		String genModelResourceURIString = genModel.eResource().getURI().toString();
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "genModelResourceURI", out.toString());
-    }
+		if (genModelResourceURIString.contains(genModel.getModelPluginID())) {
+			genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(),
+					newGenModel.getModelPluginID());
+			newGenModelResourceURI = URI.createURI(genModelResourceURIString);
+		} else {
+			newGenModelResourceURI = URI.createPlatformResourceURI(
+					newGenModel.getModelPluginID() + "/model/" + genModel.eResource().getURI().lastSegment(), true);
+		}
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("genModel", this.genModel);
-        return parameters;
-    }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "genModelResourceURI", out.toString());
+	}
+
+	public Map<String, Object> getParameters() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("genModel", this.genModel);
+		return parameters;
+	}
 
 }

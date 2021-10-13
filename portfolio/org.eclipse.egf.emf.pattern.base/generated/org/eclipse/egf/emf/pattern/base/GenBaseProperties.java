@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:27 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -72,7 +72,8 @@ public class GenBaseProperties extends org.eclipse.egf.emf.pattern.base.GenAbstr
 		return parameters;
 	}
 
-	protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		ctx.setValue("targetPathName", targetPathName);
 
@@ -80,7 +81,8 @@ public class GenBaseProperties extends org.eclipse.egf.emf.pattern.base.GenAbstr
 		new Node.DataLeaf(ictx.getNode(), getClass(), "putReporterVariablesInContext", stringBuffer.toString());
 	}
 
-	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		ctx.setValue("contentType", ContentType.Properties);
 

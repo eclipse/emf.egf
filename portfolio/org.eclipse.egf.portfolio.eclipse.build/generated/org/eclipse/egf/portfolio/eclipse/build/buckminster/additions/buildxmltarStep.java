@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -28,8 +28,6 @@ public class buildxmltarStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 	protected final String TEXT_6 = " >";
 	protected final String TEXT_7 = NL;
 	protected final String TEXT_8 = NL + "\t\t</tar>" + NL + "\t</target>" + NL + NL;
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
 
 	public buildxmltarStep() {
 		//Here is the constructor
@@ -49,7 +47,8 @@ public class buildxmltarStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 		paramDesc = new IQuery.ParameterDescription("tarStep", "http://www.eclipse.org/egf/1.0.0/buildfile#//TarStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> tarStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> tarStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object tarStepParameter : tarStepList) {
 
@@ -66,8 +65,8 @@ public class buildxmltarStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_7);
 		return stringBuffer.toString();
 	}
 
@@ -124,8 +123,9 @@ public class buildxmltarStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("filesetProvider", tarStep);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_p-drcEwzEeG-l60d03D_Og", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_p-drcEwzEeG-l60d03D_Og",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

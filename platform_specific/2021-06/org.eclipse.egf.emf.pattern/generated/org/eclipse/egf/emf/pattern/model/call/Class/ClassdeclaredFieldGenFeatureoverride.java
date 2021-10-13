@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.2.201911290829
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -101,7 +101,6 @@ public class ClassdeclaredFieldGenFeatureoverride {
 	protected final String TEXT_63 = NL + "\t/**" + NL + "\t * This is true if the ";
 	protected final String TEXT_64 = NL + "\tprotected boolean ";
 	protected final String TEXT_65 = "ESet;" + NL;
-	protected final String TEXT_66 = NL;
 
 	public ClassdeclaredFieldGenFeatureoverride() {
 		//Here is the constructor
@@ -218,8 +217,8 @@ public class ClassdeclaredFieldGenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_66);
-		stringBuffer.append(TEXT_66);
+		stringBuffer.append(TEXT_32);
+		stringBuffer.append(TEXT_32);
 		return stringBuffer.toString();
 	}
 

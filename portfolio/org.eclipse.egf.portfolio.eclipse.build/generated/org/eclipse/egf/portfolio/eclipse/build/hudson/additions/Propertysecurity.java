@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -28,20 +28,13 @@ public class Propertysecurity extends org.eclipse.egf.portfolio.eclipse.build.hu
 	protected final String TEXT_5 = "</permission>" + NL + "      <permission>hudson.model.Run.Delete:";
 	protected final String TEXT_6 = "</permission>" + NL + "      <permission>hudson.model.Item.Build:";
 	protected final String TEXT_7 = "</permission>" + NL + "      <permission>hudson.model.Item.Workspace:";
-	protected final String TEXT_8 = "</permission>" + NL + "\t\t\t";
-	protected final String TEXT_9 = NL + "      <permission>hudson.model.Item.Cancel:";
-	protected final String TEXT_10 = "</permission>" + NL + "      <permission>hudson.model.Item.Read:";
-	protected final String TEXT_11 = "</permission>" + NL + "      <permission>hudson.model.Item.Delete:";
-	protected final String TEXT_12 = "</permission>" + NL + "      <permission>hudson.model.Item.Workspace:";
-	protected final String TEXT_13 = "</permission>" + NL + "      <permission>hudson.model.Item.Build:";
-	protected final String TEXT_14 = "</permission>" + NL + "      <permission>hudson.model.Item.Configure:";
-	protected final String TEXT_15 = "</permission>" + NL + "      <permission>hudson.model.Run.Update:";
-	protected final String TEXT_16 = "</permission>" + NL + "      <permission>hudson.model.Run.Delete:";
-	protected final String TEXT_17 = "</permission>" + NL + "\t\t\t";
-	protected final String TEXT_18 = NL + "    </hudson.security.AuthorizationMatrixProperty>";
-	protected final String TEXT_19 = NL;
-	protected final String TEXT_20 = NL;
-	protected final String TEXT_21 = NL;
+	protected final String TEXT_8 = NL + "      <permission>hudson.model.Item.Cancel:";
+	protected final String TEXT_9 = "</permission>" + NL + "      <permission>hudson.model.Item.Read:";
+	protected final String TEXT_10 = "</permission>" + NL + "      <permission>hudson.model.Item.Delete:";
+	protected final String TEXT_11 = "</permission>" + NL + "      <permission>hudson.model.Item.Configure:";
+	protected final String TEXT_12 = "</permission>" + NL + "      <permission>hudson.model.Run.Update:";
+	protected final String TEXT_13 = NL + "    </hudson.security.AuthorizationMatrixProperty>";
+	protected final String TEXT_14 = NL;
 
 	public Propertysecurity() {
 		//Here is the constructor
@@ -61,7 +54,8 @@ public class Propertysecurity extends org.eclipse.egf.portfolio.eclipse.build.hu
 
 		paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.1/buildcore#//Job");
 		queryCtx = new HashMap<String, String>();
-		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object jobParameter : jobList) {
 
@@ -78,8 +72,8 @@ public class Propertysecurity extends org.eclipse.egf.portfolio.eclipse.build.hu
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_20);
-		stringBuffer.append(TEXT_21);
+		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_14);
 		return stringBuffer.toString();
 	}
 
@@ -136,38 +130,38 @@ public class Propertysecurity extends org.eclipse.egf.portfolio.eclipse.build.hu
 						stringBuffer.append(user.getLogin());
 						stringBuffer.append(TEXT_7);
 						stringBuffer.append(user.getLogin());
-						stringBuffer.append(TEXT_8);
+						stringBuffer.append(TEXT_3);
 
 					}
 					if (user.getPermission() == PermissionType.WRITE) {
 
+						stringBuffer.append(TEXT_8);
+						stringBuffer.append(user.getLogin());
 						stringBuffer.append(TEXT_9);
 						stringBuffer.append(user.getLogin());
 						stringBuffer.append(TEXT_10);
+						stringBuffer.append(user.getLogin());
+						stringBuffer.append(TEXT_7);
+						stringBuffer.append(user.getLogin());
+						stringBuffer.append(TEXT_6);
 						stringBuffer.append(user.getLogin());
 						stringBuffer.append(TEXT_11);
 						stringBuffer.append(user.getLogin());
 						stringBuffer.append(TEXT_12);
 						stringBuffer.append(user.getLogin());
-						stringBuffer.append(TEXT_13);
+						stringBuffer.append(TEXT_5);
 						stringBuffer.append(user.getLogin());
-						stringBuffer.append(TEXT_14);
-						stringBuffer.append(user.getLogin());
-						stringBuffer.append(TEXT_15);
-						stringBuffer.append(user.getLogin());
-						stringBuffer.append(TEXT_16);
-						stringBuffer.append(user.getLogin());
-						stringBuffer.append(TEXT_17);
+						stringBuffer.append(TEXT_3);
 
 					}
 				}
 
-				stringBuffer.append(TEXT_18);
+				stringBuffer.append(TEXT_13);
 
 			}
 		}
 
-		stringBuffer.append(TEXT_19);
+		stringBuffer.append(TEXT_14);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,11 +21,10 @@ public class PropertybuildId extends org.eclipse.egf.portfolio.eclipse.build.hud
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "    <hudson.plugins.zentimestamp.ZenTimestampJobProperty>" + NL + "      <changeBUILDID>true</changeBUILDID>" + NL + "      <pattern>";
+	protected final String TEXT_1 = "    <hudson.plugins.zentimestamp.ZenTimestampJobProperty>" + NL
+			+ "      <changeBUILDID>true</changeBUILDID>" + NL + "      <pattern>";
 	protected final String TEXT_2 = "</pattern>" + NL + "    </hudson.plugins.zentimestamp.ZenTimestampJobProperty>";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public PropertybuildId() {
 		//Here is the constructor
@@ -45,7 +44,8 @@ public class PropertybuildId extends org.eclipse.egf.portfolio.eclipse.build.hud
 
 		paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.1/buildcore#//Job");
 		queryCtx = new HashMap<String, String>();
-		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object jobParameter : jobList) {
 
@@ -62,8 +62,8 @@ public class PropertybuildId extends org.eclipse.egf.portfolio.eclipse.build.hud
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

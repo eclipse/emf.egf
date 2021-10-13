@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package object.docgen.html;
 
 import java.util.*;
@@ -19,13 +19,14 @@ public class ObjectDocGen {
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "//default content";
-	protected final String TEXT_2 = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">" + NL + "<html>" + NL + "<head>" + NL + "<title>";
-	protected final String TEXT_3 = "</title>" + NL + "</HEAD>" + NL + "" + NL + "<BODY BGCOLOR=\"#ffffff\">" + NL + "" + NL + "<h1 class=\"Head\">";
+	protected final String TEXT_2 = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">" + NL + "<html>"
+			+ NL + "<head>" + NL + "<title>";
+	protected final String TEXT_3 = "</title>" + NL + "</HEAD>" + NL + "" + NL + "<BODY BGCOLOR=\"#ffffff\">" + NL + ""
+			+ NL + "<h1 class=\"Head\">";
 	protected final String TEXT_4 = "</h1>" + NL;
 	protected final String TEXT_5 = "\t<br/>" + NL + "\t<p><i>";
 	protected final String TEXT_6 = "</i></p>" + NL + "</body>" + NL + "</html>" + NL;
 	protected final String TEXT_7 = NL;
-	protected final String TEXT_8 = NL;
 
 	public ObjectDocGen() {
 		//Here is the constructor
@@ -54,7 +55,7 @@ public class ObjectDocGen {
 		}
 
 		stringBuffer.append(TEXT_7);
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_7);
 		return stringBuffer.toString();
 	}
 
@@ -110,7 +111,8 @@ public class ObjectDocGen {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "fileFooter", stringBuffer.toString());
 	}
 
-	protected void method_setSpecificVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_setSpecificVariables(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		_copyright = "";
 

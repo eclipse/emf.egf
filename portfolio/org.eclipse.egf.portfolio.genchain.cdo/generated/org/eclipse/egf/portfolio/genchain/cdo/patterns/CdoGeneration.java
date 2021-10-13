@@ -1,4 +1,4 @@
-//Generated with EGF 1.5.0.v20180105-1651
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.genchain.cdo.patterns;
 
 import java.util.HashMap;

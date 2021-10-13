@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.ant.javadoc;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,19 +21,24 @@ public class ant {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "<?xml version=\"1.0\"?>" + NL + "" + NL + "<project name=\"Javadoc Generation\" default=\"main\">" + NL + "\t<target name=\"main\">" + NL;
+	protected final String TEXT_1 = "<?xml version=\"1.0\"?>" + NL + "" + NL
+			+ "<project name=\"Javadoc Generation\" default=\"main\">" + NL + "\t<target name=\"main\">" + NL;
 	protected final String TEXT_2 = "\t\t<delete dir=\"";
 	protected final String TEXT_3 = "\" />";
 	protected final String TEXT_4 = "\t\t<javadoc" + NL + "\t\t\tdestdir=\"";
-	protected final String TEXT_5 = "\"" + NL + "\t\t\tmaxmemory=\"1024m\"" + NL + "\t\t\tsource=\"1.5\"" + NL + "\t\t\tuseexternalfile=\"true\"" + NL + "\t\t\tauthor=\"true\"" + NL + "\t\t\tversion=\"true\"" + NL + "\t\t\tuse=\"true\"" + NL + "\t\t\twindowtitle=\"Javadoc\">";
-	protected final String TEXT_6 = "\t\t<link offline=\"false\" href=\"http://download.oracle.com/javase/1.5.0/docs/api/\"/> " + NL + "\t\t<link offline=\"false\" href=\"http://www.osgi.org/javadoc/r4v42/\"/> " + NL + "\t\t<link offline=\"false\" href=\"http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/\"/> " + NL + "\t\t<link offline=\"false\" href=\"http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/\"/>";
+	protected final String TEXT_5 = "\"" + NL + "\t\t\tmaxmemory=\"1024m\"" + NL + "\t\t\tsource=\"1.5\"" + NL
+			+ "\t\t\tuseexternalfile=\"true\"" + NL + "\t\t\tauthor=\"true\"" + NL + "\t\t\tversion=\"true\"" + NL
+			+ "\t\t\tuse=\"true\"" + NL + "\t\t\twindowtitle=\"Javadoc\">";
+	protected final String TEXT_6 = "\t\t<link offline=\"false\" href=\"http://download.oracle.com/javase/1.5.0/docs/api/\"/> "
+			+ NL + "\t\t<link offline=\"false\" href=\"http://www.osgi.org/javadoc/r4v42/\"/> " + NL
+			+ "\t\t<link offline=\"false\" href=\"http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/\"/> " + NL
+			+ "\t\t<link offline=\"false\" href=\"http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/\"/>";
 	protected final String TEXT_7 = NL + "\t\t<fileset dir=\"";
-	protected final String TEXT_8 = "\" defaultexcludes=\"true\">" + NL + "\t\t\t<include name=\"**/*.java\"/>" + NL + "\t\t</fileset>";
+	protected final String TEXT_8 = "\" defaultexcludes=\"true\">" + NL + "\t\t\t<include name=\"**/*.java\"/>" + NL
+			+ "\t\t</fileset>";
 	protected final String TEXT_9 = NL;
 	protected final String TEXT_10 = "\t</javadoc>";
 	protected final String TEXT_11 = "\t</target>" + NL + "</project>" + NL + "\t";
-	protected final String TEXT_12 = NL;
-	protected final String TEXT_13 = NL;
 
 	public ant() {
 		//Here is the constructor
@@ -61,8 +66,8 @@ public class ant {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_12);
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 
@@ -141,7 +146,8 @@ public class ant {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "begin", stringBuffer.toString());
 	}
 
-	protected void method_additionalBeginXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_additionalBeginXml(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "additionalBeginXml", stringBuffer.toString());
@@ -186,7 +192,8 @@ public class ant {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "javadocInput", stringBuffer.toString());
 	}
 
-	protected void method_additionalJavadocXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_additionalJavadocXml(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "additionalJavadocXml", stringBuffer.toString());
