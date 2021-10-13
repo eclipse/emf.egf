@@ -136,6 +136,8 @@
 					<artifactId>target-platform-configuration</artifactId>
 					<version>${tycho-version}</version>
 					<configuration>
+						<targetDefinitionIncludeSource>honor</targetDefinitionIncludeSource>
+						<executionEnvironment>JavaSE-14</executionEnvironment>
 						<dependency-resolution>
 							<optionalDependencies>ignore</optionalDependencies>
 						</dependency-resolution>
@@ -165,7 +167,7 @@
      		</build>
 		</profile>
 		<profile>
-			<id>rcptt</id>
+			<id>tests</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
@@ -338,7 +340,6 @@
   			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
 				<configuration>
 					<targetDefinitionIncludeSource>honor</targetDefinitionIncludeSource>
 					<target>
@@ -373,7 +374,6 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>${tycho-version}</version>
 				<configuration>
 					<sourceReferences>
 						<generate>true</generate>

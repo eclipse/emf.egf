@@ -14,12 +14,15 @@ pipeline {
     
     NIGHTLY_KEY = "${BRANCH_NAME}".replaceFirst(/^v/, "").replaceAll('/','-');
     NIGHTLY_DIR = "/home/data/httpd/download.eclipse.org/egf/nightly/${NIGHTLY_KEY}"
+    
+    JACOCO_VERSION = "0.8.6"
+	JACOCO_EXEC_FILE_PATH = '${WORKSPACE}/jacoco.exec'
   }
   stages {
     stage('Package') {
       steps {
         sh 'env'
-        sh 'mvn -Dplatform-version-name=2021-06 clean install -P core -P sign'
+        sh 'mvn -Dplatform-version-name=2021-06 clean install -P core -P product -P sign'
       }
     }
     stage('Publish artifacts') {
@@ -46,5 +49,27 @@ pipeline {
         }
       }
     }
+    stage('Test') {
+      steps {
+        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+		  script {
+		    def jacocoPrepareAgent = "-Djacoco.destFile=$JACOCO_EXEC_FILE_PATH -Djacoco.append=true org.jacoco:jacoco-maven-plugin:$JACOCO_VERSION:prepare-agent"
+		    def ignoreTestFailure = "-Dmaven.test.failure.ignore=true"
+		    sh "mvn -Dplatform-version-name=2021-06 ${jacocoPrepareAgent} ${ignoreTestFailure} verify -P tests"
+		  }
+        }
+      }
+    }
+    stage('Publish tests results') {
+	  steps {
+		junit allowEmptyResults: true, testResults: '*.xml,**/target/surefire-reports/*.xml'
+		sh "mvn -Djacoco.dataFile=$JACOCO_EXEC_FILE_PATH org.jacoco:jacoco-maven-plugin:$JACOCO_VERSION:report -P tests"
+	  }
+	}
+  }
+  post {
+	always {
+	  archiveArtifacts artifacts: '**/*.log, **/*.layout'
+	}
   }
 }
