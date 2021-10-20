@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -28,18 +28,19 @@ public class ItemProvidernewChildDescriptorsAttributeDelegatedFeatureoverride {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter" + NL
-			+ "\t\t\t\t\t\t(";
-	protected final String TEXT_2 = "," + NL + "\t\t\t\t\t\t ";
-	protected final String TEXT_3 = ".createEntry" + NL + "\t\t\t\t\t\t\t(";
+	protected final String TEXT_1 = NL + NL + "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL
+			+ "\t\t\t\t(";
+	protected final String TEXT_2 = "," + NL + "\t\t\t\t ";
+	protected final String TEXT_3 = ".createEntry" + NL + "\t\t\t\t\t(";
 	protected final String TEXT_4 = ",";
-	protected final String TEXT_5 = NL + "\t\t\t\t\t\t\t ";
+	protected final String TEXT_5 = NL + "\t\t\t\t\t ";
 	protected final String TEXT_6 = ")));";
 	protected final String TEXT_7 = ".createFromString(";
 	protected final String TEXT_8 = ", ";
 	protected final String TEXT_9 = "))));";
 	protected final String TEXT_10 = " // TODO: ensure this is a valid literal value";
 	protected final String TEXT_11 = NL;
+	protected final String TEXT_12 = NL;
 
 	public ItemProvidernewChildDescriptorsAttributeDelegatedFeatureoverride() {
 		//Here is the constructor
@@ -115,8 +116,8 @@ public class ItemProvidernewChildDescriptorsAttributeDelegatedFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_11);
-		stringBuffer.append(TEXT_11);
+		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_12);
 		return stringBuffer.toString();
 	}
 

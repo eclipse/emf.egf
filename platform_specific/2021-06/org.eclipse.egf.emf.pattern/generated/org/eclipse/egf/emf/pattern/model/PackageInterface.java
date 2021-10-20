@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -468,6 +468,7 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 	protected final String TEXT_333 = "</b></em>' operation." + NL + "\t\t * <!-- begin-user-doc -->" + NL
 			+ "\t\t * <!-- end-user-doc -->";
 	protected final String TEXT_334 = NL + "} //";
+	protected final String TEXT_335 = NL;
 
 	public PackageInterface() {
 		//Here is the constructor
@@ -503,8 +504,8 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_335);
+		stringBuffer.append(TEXT_335);
 		return stringBuffer.toString();
 	}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -34,6 +34,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 	protected final String TEXT_5 = NL + "_UI_";
 	protected final String TEXT_6 = "_content_type = ";
 	protected final String TEXT_7 = " File";
+	protected final String TEXT_8 = NL;
 
 	public PluginProperties() {
 		//Here is the constructor
@@ -69,8 +70,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 

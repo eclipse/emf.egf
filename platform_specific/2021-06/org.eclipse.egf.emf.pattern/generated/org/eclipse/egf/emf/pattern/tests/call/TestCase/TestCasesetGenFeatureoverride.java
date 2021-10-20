@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,6 +41,7 @@ public class TestCasesetGenFeatureoverride {
 	protected final String TEXT_11 = NL + "\tpublic void testSet";
 	protected final String TEXT_12 = "()" + NL + "\t{";
 	protected final String TEXT_13 = NL + "\t}" + NL;
+	protected final String TEXT_14 = NL;
 
 	public TestCasesetGenFeatureoverride() {
 		//Here is the constructor
@@ -96,8 +97,8 @@ public class TestCasesetGenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_14);
 		return stringBuffer.toString();
 	}
 

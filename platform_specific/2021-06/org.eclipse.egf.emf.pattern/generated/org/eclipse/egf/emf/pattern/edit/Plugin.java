@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -147,6 +147,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_70 = "\".equals(key)) return IMAGES.";
 	protected final String TEXT_71 = "return key;" + NL + "\t}" + NL;
 	protected final String TEXT_72 = NL + "}";
+	protected final String TEXT_73 = NL;
 
 	public Plugin() {
 		//Here is the constructor
@@ -182,8 +183,8 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_14);
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_73);
+		stringBuffer.append(TEXT_73);
 		return stringBuffer.toString();
 	}
 

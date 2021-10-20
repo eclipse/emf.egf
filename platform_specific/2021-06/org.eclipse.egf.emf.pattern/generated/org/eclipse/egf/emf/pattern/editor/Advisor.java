@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -368,6 +368,7 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_84 = NL
 			+ "\tpublic WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer)" + NL
 			+ "\t{" + NL + "\t\treturn new WindowAdvisor(configurer);" + NL + "\t}" + NL + "}";
+	protected final String TEXT_85 = NL;
 
 	public Advisor() {
 		//Here is the constructor
@@ -403,8 +404,8 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_25);
-		stringBuffer.append(TEXT_25);
+		stringBuffer.append(TEXT_85);
+		stringBuffer.append(TEXT_85);
 		return stringBuffer.toString();
 	}
 

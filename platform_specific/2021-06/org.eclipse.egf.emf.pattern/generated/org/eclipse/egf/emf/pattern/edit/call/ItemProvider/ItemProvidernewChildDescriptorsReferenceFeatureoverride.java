@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -27,15 +27,16 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter" + NL
-			+ "\t\t\t\t\t\t(";
+	protected final String TEXT_1 = NL + NL + "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL
+			+ "\t\t\t\t(";
 	protected final String TEXT_2 = ",";
-	protected final String TEXT_3 = NL + "\t\t\t\t\t\t ";
+	protected final String TEXT_3 = NL + "\t\t\t\t ";
 	protected final String TEXT_4 = ".create(";
 	protected final String TEXT_5 = ")));";
 	protected final String TEXT_6 = ".create";
 	protected final String TEXT_7 = "()));";
 	protected final String TEXT_8 = NL;
+	protected final String TEXT_9 = NL;
 
 	public ItemProvidernewChildDescriptorsReferenceFeatureoverride() {
 		//Here is the constructor
@@ -111,8 +112,8 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 

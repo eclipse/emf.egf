@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -65,6 +65,7 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 	protected final String TEXT_28 = NL + "\t@Override";
 	protected final String TEXT_29 = NL + "\tpublic Resource createResource(URI uri)" + NL + "\t{";
 	protected final String TEXT_30 = NL + "\t}" + NL + "" + NL + "} //";
+	protected final String TEXT_31 = NL;
 
 	public ResourceFactoryClass() {
 		//Here is the constructor
@@ -100,8 +101,8 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_14);
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_31);
+		stringBuffer.append(TEXT_31);
 		return stringBuffer.toString();
 	}
 

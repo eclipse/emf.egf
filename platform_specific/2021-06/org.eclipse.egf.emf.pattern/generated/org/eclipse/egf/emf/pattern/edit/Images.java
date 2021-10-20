@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,6 +41,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 	protected final String TEXT_10 = "();" + NL;
 	protected final String TEXT_11 = NL + "}";
 	protected final String TEXT_12 = NL;
+	protected final String TEXT_13 = NL;
 
 	public Images() {
 		//Here is the constructor
@@ -76,8 +77,8 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_12);
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_13);
 		return stringBuffer.toString();
 	}
 

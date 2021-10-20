@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -142,6 +142,7 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			+ "\t * @see #doSwitch(org.eclipse.emf.ecore.EObject)" + NL + "\t * @generated" + NL + "\t */";
 	protected final String TEXT_69 = " defaultCase(EObject object)" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}"
 			+ NL + "" + NL + "} //";
+	protected final String TEXT_70 = NL;
 
 	public SwitchClass() {
 		//Here is the constructor
@@ -177,8 +178,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_15);
-		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_70);
+		stringBuffer.append(TEXT_70);
 		return stringBuffer.toString();
 	}
 

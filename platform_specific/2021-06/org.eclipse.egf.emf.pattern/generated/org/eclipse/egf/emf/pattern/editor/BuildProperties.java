@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,6 +41,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 	protected final String TEXT_12 = "bin";
 	protected final String TEXT_13 = "war/WEB-INF/classes";
 	protected final String TEXT_14 = NL;
+	protected final String TEXT_15 = NL;
 
 	public BuildProperties() {
 		//Here is the constructor
@@ -76,8 +77,8 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_14);
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_15);
 		return stringBuffer.toString();
 	}
 

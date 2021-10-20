@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -190,6 +190,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 	protected final String TEXT_93 = NL + "\t\treturn ";
 	protected final String TEXT_94 = ".INSTANCE;";
 	protected final String TEXT_95 = NL + "}";
+	protected final String TEXT_96 = NL;
 
 	public ItemProvider() {
 		//Here is the constructor
@@ -225,8 +226,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_20);
-		stringBuffer.append(TEXT_20);
+		stringBuffer.append(TEXT_96);
+		stringBuffer.append(TEXT_96);
 		return stringBuffer.toString();
 	}
 

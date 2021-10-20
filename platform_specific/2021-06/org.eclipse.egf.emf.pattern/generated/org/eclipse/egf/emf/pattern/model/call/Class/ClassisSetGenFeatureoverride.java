@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -67,6 +67,7 @@ public class ClassisSetGenFeatureoverride {
 	protected final String TEXT_37 = ".Internal)get";
 	protected final String TEXT_38 = "()).isEmpty(";
 	protected final String TEXT_39 = NL + "\t}" + NL;
+	protected final String TEXT_40 = NL;
 
 	public ClassisSetGenFeatureoverride() {
 		//Here is the constructor
@@ -183,8 +184,8 @@ public class ClassisSetGenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_40);
+		stringBuffer.append(TEXT_40);
 		return stringBuffer.toString();
 	}
 

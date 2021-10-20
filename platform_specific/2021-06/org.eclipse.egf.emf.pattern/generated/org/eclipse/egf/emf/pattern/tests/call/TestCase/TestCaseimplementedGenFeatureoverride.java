@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -29,6 +29,7 @@ public class TestCaseimplementedGenFeatureoverride {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "";
 	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
 	public TestCaseimplementedGenFeatureoverride() {
 		//Here is the constructor
@@ -84,8 +85,8 @@ public class TestCaseimplementedGenFeatureoverride {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

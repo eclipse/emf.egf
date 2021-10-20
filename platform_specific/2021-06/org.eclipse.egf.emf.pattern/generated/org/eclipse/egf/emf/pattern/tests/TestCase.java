@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110201414
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -106,6 +106,7 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			+ "\t\tsetFixture(null);" + NL + "\t}";
 	protected final String TEXT_64 = NL;
 	protected final String TEXT_65 = NL + "} //";
+	protected final String TEXT_66 = NL;
 
 	public TestCase() {
 		//Here is the constructor
@@ -141,8 +142,8 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_64);
-		stringBuffer.append(TEXT_64);
+		stringBuffer.append(TEXT_66);
+		stringBuffer.append(TEXT_66);
 		return stringBuffer.toString();
 	}
 
