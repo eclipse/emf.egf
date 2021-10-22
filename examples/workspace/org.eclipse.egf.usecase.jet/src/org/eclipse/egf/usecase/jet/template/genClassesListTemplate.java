@@ -22,7 +22,6 @@ public class genClassesListTemplate
   protected final String TEXT_2 = " package Classes :" + NL + "-------------------------------";
   protected final String TEXT_3 = "\t\t\t";
   protected final String TEXT_4 = NL;
-  protected final String TEXT_5 = NL;
 
   public String generate(Object argument)
   {
@@ -48,7 +47,7 @@ if(eObject instanceof EPackage) {
 	}
 }
 
-    stringBuffer.append(TEXT_5);
+    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 }

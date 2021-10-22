@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:16 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.egf.type.edit.call.ItemProvider;
 
 import org.eclipse.egf.common.helper.*;
@@ -8,10 +8,12 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride extends org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceFeatureoverride {
+public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride extends
+		org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 	protected static String nl;
 
-	public static synchronized ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride create(String lineSeparator) {
+	public static synchronized ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride create(
+			String lineSeparator) {
 		nl = lineSeparator;
 		ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride result = new ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride();
 		nl = null;
@@ -19,18 +21,16 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + NL + "        {" + NL + "            if (object.getInvokedContract() != null && object.getInvokedContract().getType() != null) {";
+	protected final String TEXT_1 = NL + NL + "        {" + NL
+			+ "            if (object.getInvokedContract() != null && object.getInvokedContract().getType() != null) {";
 	protected final String TEXT_2 = NL + "                ";
 	protected final String TEXT_3 = " invokedContractType = object.getInvokedContract().getType();";
-	protected final String TEXT_4 = NL + "                ";
-	protected final String TEXT_5 = " type = ";
-	protected final String TEXT_6 = ".create";
-	protected final String TEXT_7 = "();" + NL + "                if (invokedContractType.isCompatible(type)) {" + NL + "                    newChildDescriptors.add(createChildParameter(";
-	protected final String TEXT_8 = ", type));" + NL + "                }" + NL + "            }" + NL + "        }";
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL;
-	protected final String TEXT_12 = NL;
+	protected final String TEXT_4 = " type = ";
+	protected final String TEXT_5 = ".create";
+	protected final String TEXT_6 = "();" + NL + "                if (invokedContractType.isCompatible(type)) {" + NL
+			+ "                    newChildDescriptors.add(createChildParameter(";
+	protected final String TEXT_7 = ", type));" + NL + "                }" + NL + "            }" + NL + "        }";
+	protected final String TEXT_8 = NL;
 
 	public ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureoverride() {
 		//Here is the constructor
@@ -64,6 +64,8 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genModelList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object createClassParameter : createClassList) {
 			for (Object createFeatureParameter : createFeatureList) {
@@ -73,21 +75,24 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 							for (Object genClassParameter : genClassList) {
 								for (Object genPackageParameter : genPackageList) {
 									for (Object genModelParameter : genModelList) {
+										for (Object isJDK50Parameter : isJDK50List) {
 
-										this.createClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) createClassParameter;
-										this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) createFeatureParameter;
-										this.delegatedFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) delegatedFeatureParameter;
-										this.createClassifier = (org.eclipse.emf.codegen.ecore.genmodel.GenClassifier) createClassifierParameter;
-										this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildCreationData) childCreationDataParameter;
-										this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+											this.createClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) createClassParameter;
+											this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) createFeatureParameter;
+											this.delegatedFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) delegatedFeatureParameter;
+											this.createClassifier = (org.eclipse.emf.codegen.ecore.genmodel.GenClassifier) createClassifierParameter;
+											this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildCreationData) childCreationDataParameter;
+											this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+											this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+											this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+											this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
 
-										if (preCondition(ctx)) {
-											ctx.setNode(new Node.Container(currentNode, getClass()));
-											orchestration(ctx);
+											if (preCondition(ctx)) {
+												ctx.setNode(new Node.Container(currentNode, getClass()));
+												orchestration(ctx);
+											}
+
 										}
-
 									}
 								}
 							}
@@ -101,8 +106,8 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_11);
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 
@@ -121,6 +126,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -138,6 +144,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
 		return parameters;
 	}
 
@@ -147,16 +154,16 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 		stringBuffer.append(TEXT_2);
 		stringBuffer.append(genModel.getImportedName("org.eclipse.egf.model.types.Type"));
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_2);
 		stringBuffer.append(genModel.getImportedName(createClass.getImportedInstanceClassName()));
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		stringBuffer.append(createClass.getGenPackage().getQualifiedFactoryInstanceAccessor());
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_5);
 		stringBuffer.append(createClass.getName());
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		stringBuffer.append(createFeature.getQualifiedFeatureAccessor());
+		stringBuffer.append(TEXT_7);
 		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_9);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
@@ -173,17 +180,20 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 			callParameters.put("genClass", genClass);
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_8);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
-		if (createClass.isMapEntry() == false && FcorePackage.Literals.INVOCATION_CONTRACT == EMFHelper.solveAgainstStaticPackage(genClass.getEcoreClass())) {
+		if (createClass.isMapEntry() == false && FcorePackage.Literals.INVOCATION_CONTRACT == EMFHelper
+				.solveAgainstStaticPackage(genClass.getEcoreClass())) {
 			return true;
 		}
 		return false;

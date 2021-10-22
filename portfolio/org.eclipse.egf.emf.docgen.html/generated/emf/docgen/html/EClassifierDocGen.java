@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package emf.docgen.html;
 
 import org.eclipse.egf.emf.docgen.html.util.*;
@@ -25,7 +25,6 @@ public class EClassifierDocGen extends emf.docgen.html.ENamedElementDocGen {
 	protected final String TEXT_3 = "\">";
 	protected final String TEXT_4 = "</a> </p>";
 	protected final String TEXT_5 = NL;
-	protected final String TEXT_6 = NL;
 
 	public EClassifierDocGen() {
 		//Here is the constructor
@@ -54,7 +53,7 @@ public class EClassifierDocGen extends emf.docgen.html.ENamedElementDocGen {
 		}
 
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 
@@ -78,7 +77,8 @@ public class EClassifierDocGen extends emf.docgen.html.ENamedElementDocGen {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
-	protected void method_writeEPackageReference(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_writeEPackageReference(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		EPackage pOwner = ((EClassifier) _element).getEPackage();
 		stringBuffer.append(TEXT_2);

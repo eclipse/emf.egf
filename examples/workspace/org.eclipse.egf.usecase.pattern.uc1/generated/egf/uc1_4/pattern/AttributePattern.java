@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_4.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,7 +24,6 @@ public class AttributePattern {
 	protected final String TEXT_2 = "']  ";
 	protected final String TEXT_3 = NL + NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public AttributePattern() {
 		//Here is the constructor
@@ -61,7 +60,7 @@ public class AttributePattern {
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

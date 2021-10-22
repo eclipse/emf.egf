@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.0.201805040915
+//Generated with EGF 1.6.3.202110181143
 package substitution_chain;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class replace1 {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "replace1" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public replace1() {
 		//Here is the constructor
@@ -50,7 +49,7 @@ public class replace1 {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

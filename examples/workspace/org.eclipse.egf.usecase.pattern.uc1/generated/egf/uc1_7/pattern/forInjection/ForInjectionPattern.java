@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_7.pattern.forInjection;
 
 import java.util.*;
@@ -21,7 +21,6 @@ public class ForInjectionPattern {
 	protected final String TEXT_1 = NL + "    - \"";
 	protected final String TEXT_2 = "\" ";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public ForInjectionPattern() {
 		//Here is the constructor
@@ -39,9 +38,11 @@ public class ForInjectionPattern {
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//ENamedElement");
+		paramDesc = new IQuery.ParameterDescription("parameter",
+				"http://www.eclipse.org/emf/2002/Ecore#//ENamedElement");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -59,7 +60,7 @@ public class ForInjectionPattern {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

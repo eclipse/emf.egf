@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:23 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_2.pattern.parent;
 
 import java.util.*;
@@ -22,7 +22,6 @@ public class ParentPattern {
 	protected final String TEXT_2 = NL + "Hello ";
 	protected final String TEXT_3 = " from my parent";
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public ParentPattern() {
 		//Here is the constructor
@@ -51,7 +50,7 @@ public class ParentPattern {
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

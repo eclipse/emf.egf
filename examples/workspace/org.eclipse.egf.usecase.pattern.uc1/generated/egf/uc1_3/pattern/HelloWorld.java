@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_3.pattern;
 
 import java.util.*;
@@ -20,7 +20,6 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = " ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public HelloWorld() {
 		//Here is the constructor
@@ -57,7 +56,7 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -71,7 +70,9 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("element", this.aClass);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw", ctx_local, parameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw",
+					ctx_local, parameters);
 		}
 
 		method_finish(new StringBuffer(), ictx);

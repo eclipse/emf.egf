@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,10 +23,10 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t";
 	protected final String TEXT_2 = NL + "    <hudson.tasks.BuildTrigger>" + NL + "      <childProjects>";
-	protected final String TEXT_3 = "</childProjects>" + NL + "      <threshold>" + NL + "        <name>UNSTABLE</name>" + NL + "        <ordinal>1</ordinal>" + NL
-			+ "        <color>YELLOW</color>" + NL + "      </threshold>" + NL + "    </hudson.tasks.BuildTrigger>";
+	protected final String TEXT_3 = "</childProjects>" + NL + "      <threshold>" + NL + "        <name>UNSTABLE</name>"
+			+ NL + "        <ordinal>1</ordinal>" + NL + "        <color>YELLOW</color>" + NL + "      </threshold>"
+			+ NL + "    </hudson.tasks.BuildTrigger>";
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public Publisherchain() {
 		//Here is the constructor
@@ -46,7 +46,8 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 
 		paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.1/buildcore#//Job");
 		queryCtx = new HashMap<String, String>();
-		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object jobParameter : jobList) {
 
@@ -64,7 +65,7 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 

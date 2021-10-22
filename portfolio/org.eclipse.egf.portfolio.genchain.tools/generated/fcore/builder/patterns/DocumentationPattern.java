@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:18 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -19,6 +19,7 @@ public class DocumentationPattern {
 	public DocumentationPattern() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -60,12 +61,14 @@ public class DocumentationPattern {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
+				.getValue(FcoreBuilderConstants.CURRENT_FCORE);
 
 		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 
 		// add invocation to documentation generation FC
-		DocumentationHelper.addDocumentationInvocation(fc, parameter.getModelPath(), parameter.getOutputDirectoryPath(), parameter.getPluginName());
+		DocumentationHelper.addDocumentationInvocation(fc, parameter.getModelPath(), parameter.getOutputDirectoryPath(),
+				parameter.getPluginName());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());

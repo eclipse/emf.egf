@@ -67,7 +67,7 @@ public class MethodCompareItem implements IStreamContentAccessor, ITypedElement,
 			
 			return new ByteArrayInputStream(stringBuilder.toString().getBytes());
 		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR, null, e.getMessage(), e));
+			throw new CoreException(new Status(IStatus.ERROR, this.getClass(), e.getMessage(), e));
 		} finally {
 			if (bufferedReader != null) {
 				try {
@@ -109,7 +109,7 @@ public class MethodCompareItem implements IStreamContentAccessor, ITypedElement,
 		try {
 			TemplateFileHelper.setContent(getFile(), new String(newContent));
 		} catch (CoreException e) {
-			Activator.getDefault().log(new Status(IStatus.ERROR, null, e.getMessage(), e));
+			Activator.getDefault().log(new Status(IStatus.ERROR, this.getClass(), e.getMessage(), e));
 		}
 	}
 

@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.eclipse.egf</groupId>
 		<artifactId>egf_root</artifactId>
-		<version>1.6.2-SNAPSHOT</version>
+		<version>1.6.3-SNAPSHOT</version>
 		<relativePath>../..</relativePath>
 	</parent>
 
@@ -35,7 +35,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<properties>
-		<rcptt-maven-version>2.3.0</rcptt-maven-version>
+		<rcptt-maven-version>2.5.2-SNAPSHOT</rcptt-maven-version>
 	</properties>
 
 	<build>
@@ -47,9 +47,8 @@
 				<extensions>true</extensions>
 				<configuration>
 					<runner>
-						<version>2.3.0</version>
+						<version>${rcptt-maven-version}</version>
 						<vmArgs>
-							<vmArg>-Xms256m</vmArg>
 							<vmArg>-Xmx2g</vmArg>
 						</vmArgs>
 					</runner>
@@ -57,13 +56,12 @@
 						<suite>all</suite>
 					</suites>
 					<aut>
+						<groupId>org.eclipse.egf</groupId>
+						<artifactId>egf_product</artifactId>
+						<version>${project.version}</version>
 						<args>
-							<arg>-consoleLog</arg>
+							<arg>-autArgs</arg>
 						</args>
-						<vmArgs>
-							<vmArg>${failsafeArgline}</vmArg>
-						</vmArgs>
-						<explicit>../../releng/org.eclipse.egf.product/target/products/EGF_product-[platform].zip</explicit>
 					</aut>
 				</configuration>
 			</plugin>

@@ -13,7 +13,7 @@ Export-Package: org.eclipse.egf.portfolio.genchain.cdo.cdoExtension,
  org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.impl,
  org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.util
 Bundle-Name: %pluginName
-Bundle-Version: 1.6.2.qualifier
+Bundle-Version: 1.6.3.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.CdoExtensionModelPlugin$Implementation

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -25,25 +25,28 @@ public class buildrmapgit extends org.eclipse.egf.portfolio.eclipse.build.buckmi
 	protected final String TEXT_2 = "\" ";
 	protected final String TEXT_3 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"";
 	protected final String TEXT_4 = "\">" + NL + "\t    <!-- provider for windows if checkouted with Hudson -->" + NL
-			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file:/{0}/git/";
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL
+			+ "\t\t\t<uri format=\"file:/{0}/git/";
 	protected final String TEXT_5 = "/";
 	protected final String TEXT_6 = "/{1}";
-	protected final String TEXT_7 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL
-			+ "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t    <!-- provider for unix if checkouted with Hudson -->" + NL
-			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file://{0}/git/";
-	protected final String TEXT_8 = "/";
-	protected final String TEXT_9 = "/{1}";
-	protected final String TEXT_10 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL
-			+ "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t    <!-- standalone provider -->" + NL
-			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"git\" source=\"true\">" + NL + "\t\t\t<property key=\"git.remote.uri\" value=\"";
-	protected final String TEXT_11 = ":";
-	protected final String TEXT_12 = "@";
-	protected final String TEXT_13 = "\"/>" + NL + "      \t\t<property key=\"git.auto.fetch\" value=\"true\"/>" + NL + "  \t\t\t<uri format=\"{0}/git,";
-	protected final String TEXT_14 = "/{1}";
-	protected final String TEXT_15 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL
-			+ "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
-	protected final String TEXT_16 = NL;
-	protected final String TEXT_17 = NL;
+	protected final String TEXT_7 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL
+			+ "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>"
+			+ NL + "\t    <!-- provider for unix if checkouted with Hudson -->" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL
+			+ "\t\t\t<uri format=\"file://{0}/git/";
+	protected final String TEXT_8 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL
+			+ "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>"
+			+ NL + "\t    <!-- standalone provider -->" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"git\" source=\"true\">" + NL
+			+ "\t\t\t<property key=\"git.remote.uri\" value=\"";
+	protected final String TEXT_9 = ":";
+	protected final String TEXT_10 = "@";
+	protected final String TEXT_11 = "\"/>" + NL + "      \t\t<property key=\"git.auto.fetch\" value=\"true\"/>" + NL
+			+ "  \t\t\t<uri format=\"{0}/git,";
+	protected final String TEXT_12 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL
+			+ "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>"
+			+ NL + "\t</searchPath>" + NL + NL;
+	protected final String TEXT_13 = NL;
 
 	public buildrmapgit() {
 		//Here is the constructor
@@ -61,9 +64,12 @@ public class buildrmapgit extends org.eclipse.egf.portfolio.eclipse.build.buckmi
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("gitBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildscm#//GITBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("gitBuildLocation",
+				"http://www.eclipse.org/egf/1.0.0/buildscm#//GITBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> gitBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> gitBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object gitBuildLocationParameter : gitBuildLocationList) {
 
@@ -80,8 +86,8 @@ public class buildrmapgit extends org.eclipse.egf.portfolio.eclipse.build.buckmi
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_16);
-		stringBuffer.append(TEXT_17);
+		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_13);
 		return stringBuffer.toString();
 	}
 
@@ -130,24 +136,24 @@ public class buildrmapgit extends org.eclipse.egf.portfolio.eclipse.build.buckmi
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix()));
 		stringBuffer.append(TEXT_7);
 		stringBuffer.append(gitLocation.getLocalPath());
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_5);
 		stringBuffer.append(gitBuildLocation.getFolderName());
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_6);
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix()));
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_8);
 		stringBuffer.append(gitLocation.getProtocol().getLiteral());
 		if (gitLocation.getUsername() != null) {
 			stringBuffer.append(gitLocation.getUsername());
-			stringBuffer.append(TEXT_11);
+			stringBuffer.append(TEXT_9);
 			stringBuffer.append(gitLocation.getPassword());
-			stringBuffer.append(TEXT_12);
+			stringBuffer.append(TEXT_10);
 		}
 		stringBuffer.append(gitLocation.getUrl());
-		stringBuffer.append(TEXT_13);
+		stringBuffer.append(TEXT_11);
 		stringBuffer.append(gitBuildLocation.getFolderName());
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_6);
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix()));
-		stringBuffer.append(TEXT_15);
+		stringBuffer.append(TEXT_12);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

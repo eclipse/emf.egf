@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -9,7 +9,8 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
-public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildrmaplocationadd {
+public class buildrmapinstallStep
+		extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildrmaplocationadd {
 	protected static String nl;
 
 	public static synchronized buildrmapinstallStep create(String lineSeparator) {
@@ -24,12 +25,14 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
 	protected final String TEXT_2 = NL + "\t<locator searchPathRef=\"targetPlatform";
 	protected final String TEXT_3 = "\" ";
 	protected final String TEXT_4 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"targetPlatform";
-	protected final String TEXT_5 = "\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL
-			+ "\t\t\t<uri format=\"plugin/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL
-			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL + "\t\t\t<uri format=\"feature/{0}\">" + NL
-			+ "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
+	protected final String TEXT_5 = "\">" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL
+			+ "\t\t\t<uri format=\"plugin/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL
+			+ "\t\t\t</uri>" + NL + "\t\t</provider>" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL
+			+ "\t\t\t<uri format=\"feature/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />"
+			+ NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildrmapinstallStep() {
 		//Here is the constructor
@@ -47,9 +50,12 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("installStepBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStepBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("installStepBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStepBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> installStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> installStepBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object installStepBuildLocationParameter : installStepBuildLocationList) {
 
@@ -67,7 +73,7 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 
@@ -88,7 +94,8 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation installStepBuildLocation = null;
 
-	public void set_installStepBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation object) {
+	public void set_installStepBuildLocation(
+			org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation object) {
 		this.installStepBuildLocation = object;
 	}
 

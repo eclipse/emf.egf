@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -29,7 +29,6 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 	protected final String TEXT_6 = NL + "\t\t<antcall target=\"clean.all\" />";
 	protected final String TEXT_7 = NL + "\t</target>" + NL;
 	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
 
 	public buildxmlcleanStep() {
 		//Here is the constructor
@@ -47,9 +46,11 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("cleanStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//CleanStep");
+		paramDesc = new IQuery.ParameterDescription("cleanStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//CleanStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object cleanStepParameter : cleanStepList) {
 
@@ -67,7 +68,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 		}
 
 		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 

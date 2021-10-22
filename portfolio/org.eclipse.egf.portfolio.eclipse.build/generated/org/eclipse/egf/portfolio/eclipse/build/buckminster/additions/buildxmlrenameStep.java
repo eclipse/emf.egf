@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -26,7 +26,6 @@ public class buildxmlrenameStep extends org.eclipse.egf.portfolio.eclipse.build.
 	protected final String TEXT_4 = "\" ";
 	protected final String TEXT_5 = " >" + NL + "\t\t</move>" + NL + "\t</target>" + NL + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildxmlrenameStep() {
 		//Here is the constructor
@@ -44,9 +43,11 @@ public class buildxmlrenameStep extends org.eclipse.egf.portfolio.eclipse.build.
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("renameStep", "http://www.eclipse.org/egf/1.0.0/buildfile#//RenameStep");
+		paramDesc = new IQuery.ParameterDescription("renameStep",
+				"http://www.eclipse.org/egf/1.0.0/buildfile#//RenameStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> renameStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> renameStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object renameStepParameter : renameStepList) {
 
@@ -64,7 +65,7 @@ public class buildxmlrenameStep extends org.eclipse.egf.portfolio.eclipse.build.
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 

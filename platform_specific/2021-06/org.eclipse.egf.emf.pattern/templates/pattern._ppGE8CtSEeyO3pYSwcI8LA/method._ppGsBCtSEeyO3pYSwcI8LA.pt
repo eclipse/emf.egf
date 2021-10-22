@@ -1,0 +1,4 @@
+<%
+GenPackage genPackage = parameter;
+argument = parameter;
+%>

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson;
 
 import org.eclipse.egf.common.helper.*;
@@ -25,21 +25,12 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 	protected final String TEXT_3 = "</description>" + NL + "  <actions>";
 	protected final String TEXT_4 = NL;
 	protected final String TEXT_5 = NL + "  </actions>" + NL + "  <builders>";
-	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL + "  </builders>" + NL + "  <buildWrappers>";
-	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL + "  </buildWrappers>" + NL + "  <properties>";
-	protected final String TEXT_10 = NL;
-	protected final String TEXT_11 = NL + "  </properties>" + NL + "  <publishers>";
-	protected final String TEXT_12 = NL;
-	protected final String TEXT_13 = NL + "  </publishers>" + NL + "  <triggers class=\"vector\">";
-	protected final String TEXT_14 = NL;
-	protected final String TEXT_15 = NL + "  </triggers>";
-	protected final String TEXT_16 = NL;
-	protected final String TEXT_17 = NL;
-	protected final String TEXT_18 = "</project>";
-	protected final String TEXT_19 = NL;
-	protected final String TEXT_20 = NL;
+	protected final String TEXT_6 = NL + "  </builders>" + NL + "  <buildWrappers>";
+	protected final String TEXT_7 = NL + "  </buildWrappers>" + NL + "  <properties>";
+	protected final String TEXT_8 = NL + "  </properties>" + NL + "  <publishers>";
+	protected final String TEXT_9 = NL + "  </publishers>" + NL + "  <triggers class=\"vector\">";
+	protected final String TEXT_10 = NL + "  </triggers>";
+	protected final String TEXT_11 = "</project>";
 
 	public configxml() {
 		//Here is the constructor
@@ -75,8 +66,8 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_19);
-		stringBuffer.append(TEXT_20);
+		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -131,8 +122,9 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -158,13 +150,15 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_6L_TEJAWEd-LOqbFhvvp0A", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_6L_TEJAWEd-LOqbFhvvp0A",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_4);
 		{
 			//<%@ egf:patternInjectedCall toInject="job"
 			//	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Builder.add"
@@ -176,13 +170,15 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AQWCMJAXEd-LOqbFhvvp0A", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AQWCMJAXEd-LOqbFhvvp0A",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
-		stringBuffer.append(TEXT_7);
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_4);
 		{
 			//<%@ egf:patternInjectedCall toInject="job"
 			//	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.BuildWrapper.add"
@@ -194,13 +190,15 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_EBBegJAXEd-LOqbFhvvp0A", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_EBBegJAXEd-LOqbFhvvp0A",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_4);
 		{
 			//<%@ egf:patternInjectedCall toInject="job"
 			//	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Property.add"
@@ -212,13 +210,15 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_H6o0YJAXEd-LOqbFhvvp0A", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_H6o0YJAXEd-LOqbFhvvp0A",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
-		stringBuffer.append(TEXT_11);
-		stringBuffer.append(TEXT_12);
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_4);
 		{
 			//<%@ egf:patternInjectedCall toInject="job"
 			//	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Publisher.add"
@@ -230,13 +230,15 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LaUnUJAXEd-LOqbFhvvp0A", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LaUnUJAXEd-LOqbFhvvp0A",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
-		stringBuffer.append(TEXT_13);
-		stringBuffer.append(TEXT_14);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_4);
 		{
 			//<%@ egf:patternInjectedCall toInject="job"
 			//	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Trigger.add"
@@ -248,13 +250,15 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N0HwQJAXEd-LOqbFhvvp0A", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N0HwQJAXEd-LOqbFhvvp0A",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
-		stringBuffer.append(TEXT_15);
-		stringBuffer.append(TEXT_16);
+		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_4);
 		{
 			//<%@ egf:patternInjectedCall toInject="job"
 			//	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Others.add"
@@ -266,19 +270,21 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ZjWVULv6Ed-8jux89nECug", callCtx);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ZjWVULv6Ed-8jux89nECug",
+					callCtx);
 			stringBuffer.setLength(0);
 
 		}
 
-		stringBuffer.append(TEXT_17);
+		stringBuffer.append(TEXT_4);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		stringBuffer.append(TEXT_18);
+		stringBuffer.append(TEXT_11);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
 	}

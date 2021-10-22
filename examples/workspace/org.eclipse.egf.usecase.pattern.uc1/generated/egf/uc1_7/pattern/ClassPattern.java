@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_7.pattern;
 
 import java.util.*;
@@ -19,10 +19,7 @@ public class ClassPattern {
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = NL;
-	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = " contains:" + NL;
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
+	protected final String TEXT_2 = " contains:" + NL;
 
 	public ClassPattern() {
 		//Here is the constructor
@@ -58,8 +55,8 @@ public class ClassPattern {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(TEXT_1);
 		return stringBuffer.toString();
 	}
 
@@ -72,7 +69,9 @@ public class ClassPattern {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, variable);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_7_Injection.fcore#_RdSMYBViEd-JoY-b5_Vpcw", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_7_Injection.fcore#_RdSMYBViEd-JoY-b5_Vpcw",
+					ctx_local);
 		}
 
 		if (ictx.useReporter()) {
@@ -106,9 +105,9 @@ public class ClassPattern {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
-		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

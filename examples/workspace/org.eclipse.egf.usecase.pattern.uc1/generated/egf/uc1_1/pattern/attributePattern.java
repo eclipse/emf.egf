@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:23 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package egf.uc1_1.pattern;
 
 import java.util.*;
@@ -21,7 +21,6 @@ public class attributePattern {
 	protected final String TEXT_1 = NL + "  - ";
 	protected final String TEXT_2 = " attribute";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public attributePattern() {
 		//Here is the constructor
@@ -58,7 +57,7 @@ public class attributePattern {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

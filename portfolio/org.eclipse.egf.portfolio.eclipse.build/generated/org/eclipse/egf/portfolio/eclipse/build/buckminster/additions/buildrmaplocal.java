@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,16 +24,16 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 	protected final String TEXT_2 = "\" ";
 	protected final String TEXT_3 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"";
 	protected final String TEXT_4 = "\">" + NL + "\t    <!-- provider for windows -->" + NL
-			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file:/";
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL
+			+ "\t\t\t<uri format=\"file:/";
 	protected final String TEXT_5 = "/{0}";
-	protected final String TEXT_6 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL
-			+ "\t    <!-- provider for unix -->" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL
+	protected final String TEXT_6 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL
+			+ "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t    <!-- provider for unix -->" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL
 			+ "\t\t\t<uri format=\"file://";
-	protected final String TEXT_7 = "/{0}";
-	protected final String TEXT_8 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>"
-			+ NL + NL;
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
+	protected final String TEXT_7 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL
+			+ "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
+	protected final String TEXT_8 = NL;
 
 	public buildrmaplocal() {
 		//Here is the constructor
@@ -51,9 +51,12 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("localBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//LocalBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("localBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//LocalBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> localBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> localBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object localBuildLocationParameter : localBuildLocationList) {
 
@@ -70,8 +73,8 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 
@@ -117,9 +120,9 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(localBuildLocation.getSuffix()));
 		stringBuffer.append(TEXT_6);
 		stringBuffer.append(localBuildLocation.getPath());
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_5);
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(localBuildLocation.getSuffix()));
-		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

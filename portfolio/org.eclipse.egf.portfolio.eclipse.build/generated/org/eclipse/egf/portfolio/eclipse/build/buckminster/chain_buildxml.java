@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -29,7 +29,6 @@ public class chain_buildxml extends org.eclipse.egf.portfolio.eclipse.build.File
 	protected final String TEXT_6 = "\"/>" + NL;
 	protected final String TEXT_7 = NL + NL + "</project>";
 	protected final String TEXT_8 = NL;
-	protected final String TEXT_9 = NL;
 
 	public chain_buildxml() {
 		//Here is the constructor
@@ -66,7 +65,7 @@ public class chain_buildxml extends org.eclipse.egf.portfolio.eclipse.build.File
 		}
 
 		stringBuffer.append(TEXT_8);
-		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_8);
 		return stringBuffer.toString();
 	}
 

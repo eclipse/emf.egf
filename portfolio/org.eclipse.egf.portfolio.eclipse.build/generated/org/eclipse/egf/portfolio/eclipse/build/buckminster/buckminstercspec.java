@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,13 +21,15 @@ public class buckminstercspec extends org.eclipse.egf.portfolio.eclipse.build.Bu
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "<cs:cspec xmlns:cs=\"http://www.eclipse.org/buckminster/CSpec-1.0\" name=\"";
-	protected final String TEXT_2 = "\" componentType=\"buckminster\" version=\"1.0.0\">" + NL + "    <cs:dependencies>" + NL;
-	protected final String TEXT_3 = "    </cs:dependencies>" + NL + "    " + NL + "\t<cs:actions>" + NL + "\t\t<cs:public name=\"convertSiteToRuntime\" actor=\"ant\">" + NL
-			+ "\t\t\t<cs:actorProperties>" + NL + "\t\t\t\t<cs:property key=\"buildFile\" value=\"buckminster.ant\"/>" + NL
-			+ "\t\t\t\t<cs:property key=\"targets\" value=\"convertSiteToRuntime\"/>" + NL + "\t\t\t</cs:actorProperties>" + NL + "\t\t</cs:public>" + NL + "\t</cs:actions>" + NL
-			+ "</cs:cspec>" + NL;
+	protected final String TEXT_2 = "\" componentType=\"buckminster\" version=\"1.0.0\">" + NL + "    <cs:dependencies>"
+			+ NL;
+	protected final String TEXT_3 = "    </cs:dependencies>" + NL + "    " + NL + "\t<cs:actions>" + NL
+			+ "\t\t<cs:public name=\"convertSiteToRuntime\" actor=\"ant\">" + NL + "\t\t\t<cs:actorProperties>" + NL
+			+ "\t\t\t\t<cs:property key=\"buildFile\" value=\"buckminster.ant\"/>" + NL
+			+ "\t\t\t\t<cs:property key=\"targets\" value=\"convertSiteToRuntime\"/>" + NL
+			+ "\t\t\t</cs:actorProperties>" + NL + "\t\t</cs:public>" + NL + "\t</cs:actions>" + NL + "</cs:cspec>"
+			+ NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public buckminstercspec() {
 		//Here is the constructor
@@ -64,7 +66,7 @@ public class buckminstercspec extends org.eclipse.egf.portfolio.eclipse.build.Bu
 		}
 
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -77,7 +79,9 @@ public class buckminstercspec extends org.eclipse.egf.portfolio.eclipse.build.Bu
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, buildStep);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_yCPiUJMXEd-pjLQZUcJ3fw", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_yCPiUJMXEd-pjLQZUcJ3fw",
+					ctx_local);
 		}
 
 		method_end(new StringBuffer(), ictx);
@@ -117,8 +121,9 @@ public class buckminstercspec extends org.eclipse.egf.portfolio.eclipse.build.Bu
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 

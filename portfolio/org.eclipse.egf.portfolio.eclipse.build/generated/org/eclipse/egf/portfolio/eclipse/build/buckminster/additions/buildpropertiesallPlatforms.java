@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -8,7 +8,8 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildpropertiesadd {
+public class buildpropertiesallPlatforms
+		extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildpropertiesadd {
 	protected static String nl;
 
 	public static synchronized buildpropertiesallPlatforms create(String lineSeparator) {
@@ -19,10 +20,9 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "#allPlatforms" + NL + "buckminster.handle.incomplete.platform.features=true" + NL + "target.os=*" + NL + "target.ws=*" + NL + "target.arch=*"
-			+ NL + NL;
+	protected final String TEXT_1 = "#allPlatforms" + NL + "buckminster.handle.incomplete.platform.features=true" + NL
+			+ "target.os=*" + NL + "target.ws=*" + NL + "target.arch=*" + NL + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public buildpropertiesallPlatforms() {
 		//Here is the constructor
@@ -40,9 +40,11 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("buildStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//BuildStep");
+		paramDesc = new IQuery.ParameterDescription("buildStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//BuildStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> buildStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> buildStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object buildStepParameter : buildStepList) {
 
@@ -60,7 +62,7 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

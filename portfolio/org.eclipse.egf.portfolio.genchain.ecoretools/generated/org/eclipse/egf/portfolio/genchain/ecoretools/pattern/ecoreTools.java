@@ -1,4 +1,4 @@
-//Generated on Thu May 15 17:58:57 CEST 2014 with EGF 1.1.0.v20140514-0645
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.genchain.ecoretools.pattern;
 
 import java.util.*;
@@ -26,6 +26,7 @@ public class ecoreTools {
 	public ecoreTools() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -47,8 +48,7 @@ public class ecoreTools {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(
-					OutputManager.computeExecutionOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -62,31 +62,26 @@ public class ecoreTools {
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx)
-			throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
 				.getValue(FcoreBuilderConstants.CURRENT_FCORE);
-		FactoryComponent fc = fcs.get((GenerationElement) (parameter
-				.eContainer()));
+		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 		ResourceSet resourceSet = fc.eResource().getResourceSet();
 		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
-		URI uri = URI
-				.createURI(
-						"platform:/plugin/org.eclipse.egf.portfolio.genchain.ecoretools/egf/ecoreToolsExtension.fcore#_wQgLIHS0EeC3aZAQAbtFJA",
-						false);
+		URI uri = URI.createURI(
+				"platform:/plugin/org.eclipse.egf.portfolio.genchain.ecoretools/egf/ecoreToolsExtension.fcore#_wQgLIHS0EeC3aZAQAbtFJA",
+				false);
 		Activity activity = (Activity) resourceSet.getEObject(uri, true);
 
 		Map<String, Type> contract2type = new HashMap<String, Type>();
 
 		TypeURI typeURI = TypesFactory.eINSTANCE.createTypeURI();
-		typeURI.setValue(URI.createPlatformResourceURI(
-				parameter.getModelPath(), true));
+		typeURI.setValue(URI.createPlatformResourceURI(parameter.getModelPath(), true));
 
 		TypeString typeString = TypesFactory.eINSTANCE.createTypeString();
 		typeString.setValue(parameter.getFileName());

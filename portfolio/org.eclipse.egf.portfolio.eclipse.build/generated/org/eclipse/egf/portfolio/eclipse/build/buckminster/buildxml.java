@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,116 +21,168 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "<project name=\"project\" default=\"all\">" + NL;
-	protected final String TEXT_2 = "    <property environment=\"env\" />" + NL + "" + NL + "\t<property name=\"relengDir\" value=\"${basedir}\"/>" + NL + "\t<tstamp>" + NL
+	protected final String TEXT_2 = "    <property environment=\"env\" />" + NL + "" + NL
+			+ "\t<property name=\"relengDir\" value=\"${basedir}\"/>" + NL + "\t<tstamp>" + NL
 			+ "\t\t<format property=\"myTimestamp\" pattern=\"yyyyMMdd-HHmm\"/>" + NL + "\t</tstamp>" + NL;
 	protected final String TEXT_3 = NL + "    <condition property=\"";
 	protected final String TEXT_4 = "\" value=\"${";
 	protected final String TEXT_5 = "}\">" + NL + "        <isset property=\"";
 	protected final String TEXT_6 = "\" />" + NL + "    </condition>";
 	protected final String TEXT_7 = NL + NL + "    <property file=\"build.properties\" />" + NL + NL;
-	protected final String TEXT_8 = "    <!-- This macro executes the default application of an eclipse installation that resides" + NL
-			+ "         in the folder ${buildtools}/@app" + NL + "      -->" + NL + "    <macrodef name=\"eclipse.launch\">" + NL + "        <attribute name=\"app\" />" + NL
-			+ "        <attribute name=\"workspace\" default=\"${workspace}\" />" + NL + "        <element name=\"args\" optional=\"true\" />" + NL + "        <sequential>" + NL
+	protected final String TEXT_8 = "    <!-- This macro executes the default application of an eclipse installation that resides"
+			+ NL + "         in the folder ${buildtools}/@app" + NL + "      -->" + NL
+			+ "    <macrodef name=\"eclipse.launch\">" + NL + "        <attribute name=\"app\" />" + NL
+			+ "        <attribute name=\"workspace\" default=\"${workspace}\" />" + NL
+			+ "        <element name=\"args\" optional=\"true\" />" + NL + "        <sequential>" + NL
 			+ "            <!-- We assume that the eclipse installation is beneath ${tools} -->" + NL
 			+ "            <property name=\"@{app}.deploy.dir\" value=\"${tools}/@{app}\" />" + NL + "" + NL
-			+ "            <!-- Find the Eclipse launcher and assing its location to the @{app}.launcher property -->" + NL
-			+ "            <pathconvert property=\"@{app}.launcher\">" + NL + "                <first count=\"1\">" + NL + "                    <sort>" + NL
-			+ "                        <fileset dir=\"${@{app}.deploy.dir}/plugins\" includes=\"**/org.eclipse.equinox.launcher_*.jar\" />" + NL
-			+ "                        <reverse xmlns=\"antlib:org.apache.tools.ant.types.resources.comparators\">" + NL + "                            <date />" + NL
-			+ "                        </reverse>" + NL + "                    </sort>" + NL + "                </first>" + NL + "            </pathconvert>" + NL + "" + NL
-			+ "\t\t\t<!-- Copy Eclipse Variables preferences -->" + NL + "\t\t\t<copy file=\"${relengDir}/templates/org.eclipse.core.variables.prefs\"" + NL
-			+ "\t\t\t\ttoFile=\"@{workspace}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.variables.prefs\"/>" + NL + "" + NL
-			+ "            <!-- Launch the eclipse application -->" + NL
+			+ "            <!-- Find the Eclipse launcher and assing its location to the @{app}.launcher property -->"
+			+ NL + "            <pathconvert property=\"@{app}.launcher\">" + NL + "                <first count=\"1\">"
+			+ NL + "                    <sort>" + NL
+			+ "                        <fileset dir=\"${@{app}.deploy.dir}/plugins\" includes=\"**/org.eclipse.equinox.launcher_*.jar\" />"
+			+ NL + "                        <reverse xmlns=\"antlib:org.apache.tools.ant.types.resources.comparators\">"
+			+ NL + "                            <date />" + NL + "                        </reverse>" + NL
+			+ "                    </sort>" + NL + "                </first>" + NL + "            </pathconvert>" + NL
+			+ "" + NL + "\t\t\t<!-- Copy Eclipse Variables preferences -->" + NL
+			+ "\t\t\t<copy file=\"${relengDir}/templates/org.eclipse.core.variables.prefs\"" + NL
+			+ "\t\t\t\ttoFile=\"@{workspace}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.variables.prefs\"/>"
+			+ NL + "" + NL + "            <!-- Launch the eclipse application -->" + NL
 			+ "            <java fork=\"true\" jar=\"${@{app}.launcher}\" dir=\"${@{app}.deploy.dir}\" failonerror=\"true\">";
 	protected final String TEXT_9 = NL;
 	protected final String TEXT_10 = NL + "\t                <jvmarg value=\"-DrelengDir=relengDir\"/>";
 	protected final String TEXT_11 = NL + "\t                <jvmarg value=\"-D";
 	protected final String TEXT_12 = "=${";
 	protected final String TEXT_13 = "}\"/>";
-	protected final String TEXT_14 = NL + "                    <arg value=\"-data\" />" + NL + "                    <arg value=\"@{workspace}\" />" + NL
-			+ "                <args />" + NL + "            </java>" + NL + "        </sequential>" + NL + "    </macrodef>" + NL;
-	protected final String TEXT_15 = "    <target name=\"install.director\">" + NL + "        <available file=\"${tools}/director/director\" property=\"director.exists\" />" + NL
+	protected final String TEXT_14 = NL + "                    <arg value=\"-data\" />" + NL
+			+ "                    <arg value=\"@{workspace}\" />" + NL + "                <args />" + NL
+			+ "            </java>" + NL + "        </sequential>" + NL + "    </macrodef>" + NL;
+	protected final String TEXT_15 = "    <target name=\"install.director\">" + NL
+			+ "        <available file=\"${tools}/director/director\" property=\"director.exists\" />" + NL
 			+ "        <antcall target=\"do.install.director\" />" + NL + "    </target>" + NL + "    " + NL
-			+ "    <target name=\"do.install.director\" unless=\"director.exists\">" + NL + "        <echo message=\"Fetching headless director application\" />" + NL
-			+ "        <tempfile destdir=\"${java.io.tmpdir}\" prefix=\"director-\" suffix=\".zip\" property=\"director.zip\" deleteonexit=\"true\" />" + NL
-			+ "        <get src=\"${director.url}\" dest=\"${director.zip}\" />" + NL + "        <mkdir dir=\"${tools}\" />" + NL
-			+ "        <unzip src=\"${director.zip}\" dest=\"${tools}\" />" + NL + "        <delete file=\"${director.zip}\" />" + NL + "    </target>" + NL;
+			+ "    <target name=\"do.install.director\" unless=\"director.exists\">" + NL
+			+ "        <echo message=\"Fetching headless director application\" />" + NL
+			+ "        <tempfile destdir=\"${java.io.tmpdir}\" prefix=\"director-\" suffix=\".zip\" property=\"director.zip\" deleteonexit=\"true\" />"
+			+ NL + "        <get src=\"${director.url}\" dest=\"${director.zip}\" />" + NL
+			+ "        <mkdir dir=\"${tools}\" />" + NL + "        <unzip src=\"${director.zip}\" dest=\"${tools}\" />"
+			+ NL + "        <delete file=\"${director.zip}\" />" + NL + "    </target>" + NL;
 	protected final String TEXT_16 = "    <target name=\"install.buckminster\">" + NL
-			+ "        <available file=\"${tools}/buckminster/buckminster\" property=\"buckminster.exists\" />" + NL + "        <antcall target=\"do.install.buckminster\" />" + NL
-			+ "\t</target>" + NL + "\t" + NL + "    <target name=\"do.install.buckminster\" unless=\"buckminster.exists\" depends=\"install.director\">" + NL
-			+ "        <echo message=\"Configuring headless buckminster with needed features\" />" + NL + "        <echo message=\"Headless site: ${bm.headless.site}\" />" + NL
-			+ "        <echo message=\"External site: ${bm.external.site}\" />" + NL + "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL
-			+ "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />" + NL + "                <arg value=\"-r\" />" + NL
-			+ "                <arg value=\"${bm.headless.site}\" />" + NL + "                <arg value=\"-r\" />" + NL + "                <arg value=\"${bm.external.site}\" />"
-			+ NL + "                <arg value=\"-r\" />" + NL + "                <arg value=\"${polarion.site}\" />" + NL + "                <arg value=\"-d\" />" + NL
-			+ "                <arg value=\"${tools}/buckminster\" />" + NL + "                <arg value=\"-p\" />" + NL + "                <arg value=\"Buckminster\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.cmdline.product\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.core.headless.feature.feature.group\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.pde.headless.feature.feature.group\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.cvs.headless.feature.feature.group\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.subversive.headless.feature.feature.group\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.git.headless.feature.feature.group\" />" + NL
-			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.buckminster.emma.headless.feature.feature.group\" />" + NL
+			+ "        <available file=\"${tools}/buckminster/buckminster\" property=\"buckminster.exists\" />" + NL
+			+ "        <antcall target=\"do.install.buckminster\" />" + NL + "\t</target>" + NL + "\t" + NL
+			+ "    <target name=\"do.install.buckminster\" unless=\"buckminster.exists\" depends=\"install.director\">"
+			+ NL + "        <echo message=\"Configuring headless buckminster with needed features\" />" + NL
+			+ "        <echo message=\"Headless site: ${bm.headless.site}\" />" + NL
+			+ "        <echo message=\"External site: ${bm.external.site}\" />" + NL
+			+ "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL
+			+ "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />" + NL
+			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${bm.headless.site}\" />" + NL
+			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${bm.external.site}\" />" + NL
+			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${polarion.site}\" />" + NL
+			+ "                <arg value=\"-d\" />" + NL + "                <arg value=\"${tools}/buckminster\" />"
+			+ NL + "                <arg value=\"-p\" />" + NL + "                <arg value=\"Buckminster\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.cmdline.product\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.core.headless.feature.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.pde.headless.feature.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.cvs.headless.feature.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.subversive.headless.feature.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.git.headless.feature.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.buckminster.emma.headless.feature.feature.group\" />" + NL
 			+ "            </args>" + NL + "        </eclipse.launch>" + NL + "    </target>" + NL;
-	protected final String TEXT_17 = "    <target name=\"install.egf\">" + NL + "        <available file=\"${tools}/egf/eclipse.ini\" property=\"egf.exists\" />" + NL
+	protected final String TEXT_17 = "    <target name=\"install.egf\">" + NL
+			+ "        <available file=\"${tools}/egf/eclipse.ini\" property=\"egf.exists\" />" + NL
 			+ "        <antcall target=\"do.install.egf\" />" + NL + "\t</target>" + NL + "" + NL
-			+ "\t<target name=\"do.install.egf\" unless=\"egf.exists\" depends=\"install.director\">" + NL + "        <echo message=\"Configuring EGF with needed features\" />"
-			+ NL + "        <echo message=\"EGF site: ${egf.site}\" />" + NL + "        <echo message=\"EGF eclipse site: ${egf.eclipse.site}\" />" + NL
-			+ "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL + "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />" + NL
-			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${egf.site}\" />" + NL + "                <arg value=\"-r\" />" + NL
-			+ "                <arg value=\"${egf.eclipse.site}\" />" + NL + "                <arg value=\"-d\" />" + NL + "                <arg value=\"${tools}/egf\" />" + NL
-			+ "                <arg value=\"-p\" />" + NL + "                <arg value=\"EGF\" />" + NL + "                <arg value=\"-i\" />" + NL
-			+ "                <arg value=\"org.eclipse.platform.ide\" />" + NL + "                <arg value=\"-i\" />" + NL
-			+ "                <arg value=\"org.eclipse.egf.feature.group\" />" + NL + "                <arg value=\"-i\" />" + NL
-			+ "                <arg value=\"org.eclipse.egf.portfolio.feature.group\" />" + NL + "                <arg value=\"-i\" />" + NL
-			+ "                <arg value=\"org.eclipse.egf.portfolio.emf.feature.group\" />" + NL + "                <arg value=\"-i\" />" + NL
-			+ "                <arg value=\"org.eclipse.egf.portfolio.genchain.feature.group\" />" + NL + "            </args>" + NL + "        </eclipse.launch>" + NL
+			+ "\t<target name=\"do.install.egf\" unless=\"egf.exists\" depends=\"install.director\">" + NL
+			+ "        <echo message=\"Configuring EGF with needed features\" />" + NL
+			+ "        <echo message=\"EGF site: ${egf.site}\" />" + NL
+			+ "        <echo message=\"EGF eclipse site: ${egf.eclipse.site}\" />" + NL
+			+ "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL
+			+ "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />" + NL
+			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${egf.site}\" />" + NL
+			+ "                <arg value=\"-r\" />" + NL + "                <arg value=\"${egf.eclipse.site}\" />" + NL
+			+ "                <arg value=\"-d\" />" + NL + "                <arg value=\"${tools}/egf\" />" + NL
+			+ "                <arg value=\"-p\" />" + NL + "                <arg value=\"EGF\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL + "                <arg value=\"org.eclipse.platform.ide\" />"
+			+ NL + "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.egf.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.egf.portfolio.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.egf.portfolio.emf.feature.group\" />" + NL
+			+ "                <arg value=\"-i\" />" + NL
+			+ "                <arg value=\"org.eclipse.egf.portfolio.genchain.feature.group\" />" + NL
+			+ "            </args>" + NL + "        </eclipse.launch>" + NL + "    </target>" + NL;
+	protected final String TEXT_18 = "    <macrodef name=\"buckminster\">" + NL
+			+ "        <attribute name=\"command\" />" + NL + "        <element name=\"globargs\" optional=\"true\" />"
+			+ NL + "        <element name=\"cmdargs\" optional=\"true\" />" + NL + "        <sequential>" + NL
+			+ "            <eclipse.launch app=\"buckminster\">" + NL + "                <args>" + NL
+			+ "                    <jvmarg value=\"-Dbugfix.288796=true\"/>" + NL
+			+ "                    <arg value=\"--loglevel\" />" + NL
+			+ "                    <arg value=\"${buckminster.loglevel}\" />" + NL
+			+ "                    <arg value=\"--displaystacktrace\" />" + NL + "                    <globargs />" + NL
+			+ "                    <arg value=\"@{command}\" />" + NL + "                    <arg value=\"-P\" />" + NL
+			+ "                    <arg value=\"${properties.tmp}\" />" + NL + "                    <cmdargs />" + NL
+			+ "                </args>" + NL + "            </eclipse.launch>" + NL + "        </sequential>" + NL
+			+ "    </macrodef>" + NL;
+	protected final String TEXT_19 = "\t<macrodef name=\"egf\">" + NL + "        <element name=\"activities\" />" + NL
+			+ "        <element name=\"globargs\" optional=\"true\" />" + NL
+			+ "        <element name=\"cmdargs\" optional=\"true\" />" + NL + "        <sequential>" + NL
+			+ "            <eclipse.launch app=\"egf\">" + NL + "                <args>" + NL
+			+ "                    <arg value=\"-application\" />" + NL
+			+ "                    <arg value=\"org.eclipse.egf.application.activity\" />" + NL
+			+ "                    <arg value=\"-consoleLog\" />" + NL + "                    <globargs />" + NL
+			+ "                    <arg value=\"-activities\" />" + NL + "                    <activities />" + NL
+			+ "                    <cmdargs />" + NL + "                </args>" + NL + "            </eclipse.launch>"
+			+ NL + "        </sequential>" + NL + "    </macrodef>" + NL;
+	protected final String TEXT_20 = "\t<macrodef name=\"anteclipse\">" + NL
+			+ "        <attribute name=\"buildfile\" default=\"${relengDir}/build.xml\" />" + NL
+			+ "        <attribute name=\"target\" />" + NL + "        <element name=\"globargs\" optional=\"true\" />"
+			+ NL + "        <sequential>" + NL + "            <eclipse.launch app=\"egf\">" + NL
+			+ "                <args>" + NL + "\t\t\t\t\t<arg value=\"-application\" />" + NL
+			+ "\t\t\t\t\t<arg value=\"org.eclipse.ant.core.antRunner\" />" + NL
+			+ "\t\t\t\t\t<arg value=\"-consoleLog\" />" + NL + "                    <globargs />" + NL
+			+ "\t\t\t\t\t<arg value=\"-buildfile\" />" + NL + "\t\t\t\t\t<arg value=\"@{buildfile}\" />" + NL
+			+ "\t\t\t\t\t<arg value=\"@{target}\" />" + NL + "                </args>" + NL
+			+ "            </eclipse.launch>" + NL + "        </sequential>" + NL + "    </macrodef>" + NL;
+	protected final String TEXT_21 = "    <target name=\"clean.result\">" + NL
+			+ "        <delete dir=\"${result}\" failonerror=\"true\" quiet=\"true\" />" + NL + "    </target>" + NL
+			+ "" + NL + "    <target name=\"clean.workspace\">" + NL
+			+ "        <delete dir=\"${workspace}\" failonerror=\"true\" quiet=\"true\" />" + NL + "    </target>" + NL
+			+ "" + NL + "    <target name=\"clean.tools\">" + NL
+			+ "        <delete dir=\"${tools}\" failonerror=\"true\" quiet=\"true\" />" + NL + "    </target>" + NL + ""
+			+ NL + "    <target name=\"clean.all\">" + NL + "\t\t<antcall target=\"clean.workspace\" />" + NL
+			+ "\t\t<antcall target=\"clean.result\" />" + NL + "\t\t<antcall target=\"clean.tools\" />" + NL
 			+ "    </target>" + NL;
-	protected final String TEXT_18 = "    <macrodef name=\"buckminster\">" + NL + "        <attribute name=\"command\" />" + NL
-			+ "        <element name=\"globargs\" optional=\"true\" />" + NL + "        <element name=\"cmdargs\" optional=\"true\" />" + NL + "        <sequential>" + NL
-			+ "            <eclipse.launch app=\"buckminster\">" + NL + "                <args>" + NL + "                    <jvmarg value=\"-Dbugfix.288796=true\"/>" + NL
-			+ "                    <arg value=\"--loglevel\" />" + NL + "                    <arg value=\"${buckminster.loglevel}\" />" + NL
-			+ "                    <arg value=\"--displaystacktrace\" />" + NL + "                    <globargs />" + NL + "                    <arg value=\"@{command}\" />" + NL
-			+ "                    <arg value=\"-P\" />" + NL + "                    <arg value=\"${properties.tmp}\" />" + NL + "                    <cmdargs />" + NL
-			+ "                </args>" + NL + "            </eclipse.launch>" + NL + "        </sequential>" + NL + "    </macrodef>" + NL;
-	protected final String TEXT_19 = "\t<macrodef name=\"egf\">" + NL + "        <element name=\"activities\" />" + NL + "        <element name=\"globargs\" optional=\"true\" />"
-			+ NL + "        <element name=\"cmdargs\" optional=\"true\" />" + NL + "        <sequential>" + NL + "            <eclipse.launch app=\"egf\">" + NL
-			+ "                <args>" + NL + "                    <arg value=\"-application\" />" + NL
-			+ "                    <arg value=\"org.eclipse.egf.application.activity\" />" + NL + "                    <arg value=\"-consoleLog\" />" + NL
-			+ "                    <globargs />" + NL + "                    <arg value=\"-activities\" />" + NL + "                    <activities />" + NL
-			+ "                    <cmdargs />" + NL + "                </args>" + NL + "            </eclipse.launch>" + NL + "        </sequential>" + NL + "    </macrodef>"
-			+ NL;
-	protected final String TEXT_20 = "\t<macrodef name=\"anteclipse\">" + NL + "        <attribute name=\"buildfile\" default=\"${relengDir}/build.xml\" />" + NL
-			+ "        <attribute name=\"target\" />" + NL + "        <element name=\"globargs\" optional=\"true\" />" + NL + "        <sequential>" + NL
-			+ "            <eclipse.launch app=\"egf\">" + NL + "                <args>" + NL + "\t\t\t\t\t<arg value=\"-application\" />" + NL
-			+ "\t\t\t\t\t<arg value=\"org.eclipse.ant.core.antRunner\" />" + NL + "\t\t\t\t\t<arg value=\"-consoleLog\" />" + NL + "                    <globargs />" + NL
-			+ "\t\t\t\t\t<arg value=\"-buildfile\" />" + NL + "\t\t\t\t\t<arg value=\"@{buildfile}\" />" + NL + "\t\t\t\t\t<arg value=\"@{target}\" />" + NL
-			+ "                </args>" + NL + "            </eclipse.launch>" + NL + "        </sequential>" + NL + "    </macrodef>" + NL;
-	protected final String TEXT_21 = "    <target name=\"clean.result\">" + NL + "        <delete dir=\"${result}\" failonerror=\"true\" quiet=\"true\" />" + NL + "    </target>"
-			+ NL + "" + NL + "    <target name=\"clean.workspace\">" + NL + "        <delete dir=\"${workspace}\" failonerror=\"true\" quiet=\"true\" />" + NL + "    </target>"
-			+ NL + "" + NL + "    <target name=\"clean.tools\">" + NL + "        <delete dir=\"${tools}\" failonerror=\"true\" quiet=\"true\" />" + NL + "    </target>" + NL + ""
-			+ NL + "    <target name=\"clean.all\">" + NL + "\t\t<antcall target=\"clean.workspace\" />" + NL + "\t\t<antcall target=\"clean.result\" />" + NL
-			+ "\t\t<antcall target=\"clean.tools\" />" + NL + "    </target>" + NL;
-	protected final String TEXT_22 = "\t<target name=\"init\" depends=\"init.build.properties\" >" + NL + "\t\t<echo message=\"Available variables are : \"/>" + NL
+	protected final String TEXT_22 = "\t<target name=\"init\" depends=\"init.build.properties\" >" + NL
+			+ "\t\t<echo message=\"Available variables are : \"/>" + NL
 			+ "\t\t<echo message=\"Builtin $${relengDir} : ${relengDir}\" />";
 	protected final String TEXT_23 = NL + "\t\t<echo message=\"";
 	protected final String TEXT_24 = " $${";
 	protected final String TEXT_25 = "} : ${";
 	protected final String TEXT_26 = "}\" />";
-	protected final String TEXT_27 = NL + "\t</target>" + NL + "" + NL + "    <target name=\"init.build.properties\">" + NL
-			+ "        <!-- Echo relevant properties to a temporary file so that Buckminster can read them -->" + NL
-			+ "        <tempfile destdir=\"${java.io.tmpdir}\" prefix=\"build-\" suffix=\".properties\" deleteonexit=\"true\" property=\"properties.tmp\" />" + NL
-			+ "        <echoproperties destfile=\"${properties.tmp}\">" + NL
-			+ "            <!-- We don't want these. basedir in particular will cause problems if passed explicitly -->" + NL + "            <propertyset negate=\"true\">" + NL
-			+ "                <propertyref name=\"basedir\" />" + NL + "                <propertyref name=\"eclipse.home\" />" + NL
-			+ "                <propertyref name=\"properties.tmp\" />" + NL + "                <propertyref name=\"line.separator\" />" + NL
-			+ "                <propertyref name=\"path.separator\" />" + NL + "                <propertyref prefix=\"ant.\" />" + NL
-			+ "                <propertyref prefix=\"file.\" />" + NL + "                <propertyref prefix=\"java.\" />" + NL + "                <propertyref prefix=\"sun.\" />"
-			+ NL + "                <propertyref prefix=\"user.\" />" + NL + "            </propertyset>" + NL + "        </echoproperties>" + NL + "    </target>" + NL + "\t"
-			+ NL;
+	protected final String TEXT_27 = NL + "\t</target>" + NL + "" + NL + "    <target name=\"init.build.properties\">"
+			+ NL + "        <!-- Echo relevant properties to a temporary file so that Buckminster can read them -->"
+			+ NL
+			+ "        <tempfile destdir=\"${java.io.tmpdir}\" prefix=\"build-\" suffix=\".properties\" deleteonexit=\"true\" property=\"properties.tmp\" />"
+			+ NL + "        <echoproperties destfile=\"${properties.tmp}\">" + NL
+			+ "            <!-- We don't want these. basedir in particular will cause problems if passed explicitly -->"
+			+ NL + "            <propertyset negate=\"true\">" + NL + "                <propertyref name=\"basedir\" />"
+			+ NL + "                <propertyref name=\"eclipse.home\" />" + NL
+			+ "                <propertyref name=\"properties.tmp\" />" + NL
+			+ "                <propertyref name=\"line.separator\" />" + NL
+			+ "                <propertyref name=\"path.separator\" />" + NL
+			+ "                <propertyref prefix=\"ant.\" />" + NL
+			+ "                <propertyref prefix=\"file.\" />" + NL
+			+ "                <propertyref prefix=\"java.\" />" + NL
+			+ "                <propertyref prefix=\"sun.\" />" + NL
+			+ "                <propertyref prefix=\"user.\" />" + NL + "            </propertyset>" + NL
+			+ "        </echoproperties>" + NL + "    </target>" + NL + "\t" + NL;
 	protected final String TEXT_28 = "</project>";
-	protected final String TEXT_29 = NL;
-	protected final String TEXT_30 = NL;
 
 	public buildxml() {
 		//Here is the constructor
@@ -166,8 +218,8 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_29);
-		stringBuffer.append(TEXT_30);
+		stringBuffer.append(TEXT_9);
+		stringBuffer.append(TEXT_9);
 		return stringBuffer.toString();
 	}
 
@@ -200,7 +252,9 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, job);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_C_qLIJTYEd-fvPvNnKEvJg", ctx_local);
+			CallHelper.executeWithContextInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_C_qLIJTYEd-fvPvNnKEvJg",
+					ctx_local);
 		}
 
 		method_end(new StringBuffer(), ictx);
@@ -247,8 +301,9 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -288,8 +343,9 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_VCSRcJ5MEd-3wvN5SnesGA",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -313,7 +369,8 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
 		new Node.DataLeaf(ictx.getNode(), getClass(), "install_director", stringBuffer.toString());
 	}
 
-	protected void method_install_buckminster(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_install_buckminster(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		stringBuffer.append(TEXT_16);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

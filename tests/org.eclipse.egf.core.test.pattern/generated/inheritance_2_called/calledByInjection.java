@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.0.201901231006
+//Generated with EGF 1.6.3.202110181143
 package inheritance_2_called;
 
 import org.eclipse.egf.common.helper.*;

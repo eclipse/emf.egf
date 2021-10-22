@@ -32,6 +32,9 @@
       <fcore
             id="egf/EMF_UC2_5_DomainIndependent_PluginProperties.fcore">
       </fcore>
+      <fcore
+            id="egf/EMF_UC2_6_Library_ClassConstructorOverride.fcore">
+      </fcore>
    </extension>
 
 </plugin>

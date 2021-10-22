@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:20 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.usecase.emf.library.edit.pluginproperties;
 
 import org.eclipse.egf.common.helper.*;
@@ -19,9 +19,9 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "#--  Customization - Start" + NL + "providerName = www.library.org" + NL + "#--  Customization - End" + NL;
+	protected final String TEXT_1 = NL + "#--  Customization - Start" + NL + "providerName = www.library.org" + NL
+			+ "#--  Customization - End" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public EditPluginPropertiesExtensionAppendSolution() {
 		//Here is the constructor
@@ -58,7 +58,7 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -85,7 +85,8 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
 		return parameters;
 	}
 
-	protected void method_doGenerateAppendPart(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_doGenerateAppendPart(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

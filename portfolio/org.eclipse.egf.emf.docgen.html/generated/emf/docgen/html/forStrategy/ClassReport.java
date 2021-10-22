@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package emf.docgen.html.forStrategy;
 
 import java.util.*;
@@ -24,7 +24,6 @@ public class ClassReport extends emf.docgen.html.EClassDocGen {
 	protected final String TEXT_1 = "<p>Description of ";
 	protected final String TEXT_2 = "</p>";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public ClassReport() {
 		//Here is the constructor
@@ -61,7 +60,7 @@ public class ClassReport extends emf.docgen.html.EClassDocGen {
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

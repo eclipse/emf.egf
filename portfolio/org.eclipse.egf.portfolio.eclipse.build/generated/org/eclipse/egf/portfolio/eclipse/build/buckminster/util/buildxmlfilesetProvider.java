@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.util;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,13 +24,7 @@ public class buildxmlfilesetProvider {
 	protected final String TEXT_1 = "\t\t\t<fileset file=\"";
 	protected final String TEXT_2 = "\"/>";
 	protected final String TEXT_3 = NL + "\t\t\t<fileset dir=\"";
-	protected final String TEXT_4 = "\"/>";
-	protected final String TEXT_5 = NL + "\t\t\t<fileset dir=\"";
-	protected final String TEXT_6 = "\"/>";
-	protected final String TEXT_7 = NL + "\t\t\t<fileset dir=\"";
-	protected final String TEXT_8 = "\"/>";
-	protected final String TEXT_9 = NL;
-	protected final String TEXT_10 = NL;
+	protected final String TEXT_4 = NL;
 
 	public buildxmlfilesetProvider() {
 		//Here is the constructor
@@ -66,8 +60,8 @@ public class buildxmlfilesetProvider {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_9);
-		stringBuffer.append(TEXT_10);
+		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -108,13 +102,14 @@ public class buildxmlfilesetProvider {
 		for (String dirPath : filesetProvider.getDirPaths()) {
 			stringBuffer.append(TEXT_3);
 			stringBuffer.append(dirPath);
-			stringBuffer.append(TEXT_4);
+			stringBuffer.append(TEXT_2);
 		}
 		for (InstallStep installStep : filesetProvider.getInstallSteps()) {
-			String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep) + installStep.getId();
-			stringBuffer.append(TEXT_5);
+			String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep)
+					+ installStep.getId();
+			stringBuffer.append(TEXT_3);
 			stringBuffer.append(location);
-			stringBuffer.append(TEXT_6);
+			stringBuffer.append(TEXT_2);
 		}
 		for (ResultStep resultStep : filesetProvider.getResultSteps()) {
 			ArrayList<PublishStep> publishSteps = new ArrayList<PublishStep>();
@@ -123,10 +118,11 @@ public class buildxmlfilesetProvider {
 			else if (resultStep instanceof AggregateStep)
 				publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
 			for (PublishStep publishStep : publishSteps) {
-				String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId();
-				stringBuffer.append(TEXT_7);
+				String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep)
+						+ publishStep.getComponent().getId();
+				stringBuffer.append(TEXT_3);
 				stringBuffer.append(location);
-				stringBuffer.append(TEXT_8);
+				stringBuffer.append(TEXT_2);
 			}
 		}
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

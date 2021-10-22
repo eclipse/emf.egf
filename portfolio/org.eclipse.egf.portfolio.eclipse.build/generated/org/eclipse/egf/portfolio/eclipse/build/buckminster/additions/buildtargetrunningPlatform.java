@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -9,7 +9,8 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
-public class buildtargetrunningPlatform extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildtargetadd {
+public class buildtargetrunningPlatform
+		extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildtargetadd {
 	protected static String nl;
 
 	public static synchronized buildtargetrunningPlatform create(String lineSeparator) {
@@ -22,7 +23,6 @@ public class buildtargetrunningPlatform extends org.eclipse.egf.portfolio.eclips
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "\t\t<location path=\"${eclipse_home}\" type=\"Profile\"/>" + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public buildtargetrunningPlatform() {
 		//Here is the constructor
@@ -40,9 +40,12 @@ public class buildtargetrunningPlatform extends org.eclipse.egf.portfolio.eclips
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("runningPlatformBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//RunningPlatformBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("runningPlatformBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//RunningPlatformBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> runningPlatformBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> runningPlatformBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object runningPlatformBuildLocationParameter : runningPlatformBuildLocationList) {
 
@@ -60,7 +63,7 @@ public class buildtargetrunningPlatform extends org.eclipse.egf.portfolio.eclips
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
@@ -81,7 +84,8 @@ public class buildtargetrunningPlatform extends org.eclipse.egf.portfolio.eclips
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation runningPlatformBuildLocation = null;
 
-	public void set_runningPlatformBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation object) {
+	public void set_runningPlatformBuildLocation(
+			org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation object) {
 		this.runningPlatformBuildLocation = object;
 	}
 

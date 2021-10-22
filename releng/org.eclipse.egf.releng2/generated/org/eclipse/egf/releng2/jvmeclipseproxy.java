@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.releng2;
 
 import org.eclipse.egf.common.helper.*;
@@ -31,7 +31,6 @@ public class jvmeclipseproxy extends org.eclipse.egf.portfolio.eclipse.build.buc
 			+ "                    <jvmarg value=\"-Dftp.proxyPort=9898\"/>" + NL
 			+ "                    <jvmarg value=\"-Dftp.nonProxyHosts=*.eclipse.org\"/>" + NL + NL;
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public jvmeclipseproxy() {
 		//Here is the constructor
@@ -60,7 +59,7 @@ public class jvmeclipseproxy extends org.eclipse.egf.portfolio.eclipse.build.buc
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.validation;
 
 import java.util.*;
@@ -15,6 +15,7 @@ public class atLeastAStep extends org.eclipse.egf.pattern.validation.AbstractVal
 	public atLeastAStep() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -58,7 +59,8 @@ public class atLeastAStep extends org.eclipse.egf.pattern.validation.AbstractVal
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		if (new GenerationHelper().getAllSteps(job).isEmpty()) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.WARNING, "org.eclipse.egf.portfolio.build", 0, "a job should have at least a step", new Object[] { job });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.WARNING, "org.eclipse.egf.portfolio.build", 0,
+					"a job should have at least a step", new Object[] { job });
 			diagnosticChain.add(diagnostic);
 		}
 

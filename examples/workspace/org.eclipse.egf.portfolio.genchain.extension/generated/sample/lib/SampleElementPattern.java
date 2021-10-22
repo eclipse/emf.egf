@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:15 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package sample.lib;
 
 import java.util.*;
@@ -20,6 +20,7 @@ public class SampleElementPattern {
 	public SampleElementPattern() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -51,21 +52,24 @@ public class SampleElementPattern {
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
+				.getValue(FcoreBuilderConstants.CURRENT_FCORE);
 		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 		ResourceSet resourceSet = fc.eResource().getResourceSet();
 		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
-		URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.extension/egf/sampleExtension.fcore#_ZPAkkaYjEd-c68Bv_MO43Q", false);
+		URI uri = URI.createURI(
+				"platform:/plugin/org.eclipse.egf.portfolio.genchain.extension/egf/sampleExtension.fcore#_ZPAkkaYjEd-c68Bv_MO43Q",
+				false);
 		ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(uri, true));
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;

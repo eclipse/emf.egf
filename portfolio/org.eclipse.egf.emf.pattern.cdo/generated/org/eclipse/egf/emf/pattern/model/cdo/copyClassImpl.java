@@ -1,4 +1,4 @@
-//Generated on Wed Aug 08 13:35:48 CEST 2012 with EGF 1.0.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.*;
@@ -10,66 +10,67 @@ import org.eclipse.egf.common.helper.*;
 
 public class copyClassImpl extends org.eclipse.egf.emf.pattern.model.cdo.abstractCopy {
 
-    public copyClassImpl() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
-    }
+	public copyClassImpl() {
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    public void generate(Object argument) throws Exception {
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        IQuery.ParameterDescription paramDesc = null;
-        Map<String, String> queryCtx = null;
-        Node.Container currentNode = ctx.getNode();
-        List<Object> genClassList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+	}
 
-        for (Object genClassParameter : genClassList) {
+	public void generate(Object argument) throws Exception {
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		IQuery.ParameterDescription paramDesc = null;
+		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
+		List<Object> genClassList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-            this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+		for (Object genClassParameter : genClassList) {
 
-            if (preCondition(ctx)) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration((PatternContext) argument);
+			this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
 
-            }
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-        }
-    }
+			if (preCondition(ctx)) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration((PatternContext) argument);
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        Node.Container currentNode = ictx.getNode();
-        super.orchestration(new SuperOrchestrationContext(ictx));
-        ictx.setNode(currentNode);
-        if (ictx.useReporter()) {
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("genClass", this.genClass);
-            String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-            String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-        }
-        return null;
-    }
+			}
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+		}
+	}
 
-    protected void method_setQualifiedName(final StringBuffer out, final PatternContext ctx) throws Exception {
-        qualifiedName = genClass.getQualifiedClassName();
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		Node.Container currentNode = ictx.getNode();
+		super.orchestration(new SuperOrchestrationContext(ictx));
+		ictx.setNode(currentNode);
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("genClass", this.genClass);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+		}
+		return null;
+	}
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "setQualifiedName", out.toString());
-    }
+	protected void method_setQualifiedName(final StringBuffer out, final PatternContext ctx) throws Exception {
+		qualifiedName = genClass.getQualifiedClassName();
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass;
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setQualifiedName", out.toString());
+	}
 
-    public void set_genClass(org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass) {
-        this.genClass = genClass;
-    }
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass;
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("genClass", this.genClass);
-        return parameters;
-    }
+	public void set_genClass(org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass) {
+		this.genClass = genClass;
+	}
+
+	public Map<String, Object> getParameters() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("genClass", this.genClass);
+		return parameters;
+	}
 
 }

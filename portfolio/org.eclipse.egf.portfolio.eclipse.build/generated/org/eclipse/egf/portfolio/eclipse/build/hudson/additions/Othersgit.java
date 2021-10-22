@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,21 +21,29 @@ public class Othersgit extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "  <scm class=\"hudson.plugins.git.GitSCM\">" + NL + "    <configVersion>2</configVersion>" + NL + "    <userRemoteConfigs>" + NL
-			+ "      <hudson.plugins.git.UserRemoteConfig>" + NL + "        <name></name>" + NL + "        <refspec></refspec>" + NL + "        <url>";
+	protected final String TEXT_1 = "  <scm class=\"hudson.plugins.git.GitSCM\">" + NL
+			+ "    <configVersion>2</configVersion>" + NL + "    <userRemoteConfigs>" + NL
+			+ "      <hudson.plugins.git.UserRemoteConfig>" + NL + "        <name></name>" + NL
+			+ "        <refspec></refspec>" + NL + "        <url>";
 	protected final String TEXT_2 = "</url>" + NL + "        <relativeTargetDir>git/";
-	protected final String TEXT_3 = "</relativeTargetDir>" + NL + "        </hudson.plugins.git.UserRemoteConfig>" + NL + "    </userRemoteConfigs>" + NL + "    <branches>" + NL
-			+ "      <hudson.plugins.git.BranchSpec>" + NL + "        <name>";
-	protected final String TEXT_4 = "</name>" + NL + "      </hudson.plugins.git.BranchSpec>" + NL + "    </branches>" + NL + "    <disableSubmodules>false</disableSubmodules>"
-			+ NL + "    <recursiveSubmodules>false</recursiveSubmodules>" + NL + "    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>" + NL
-			+ "    <authorOrCommitter>false</authorOrCommitter>" + NL + "    <clean>false</clean>" + NL + "    <wipeOutWorkspace>false</wipeOutWorkspace>" + NL
-			+ "    <pruneBranches>false</pruneBranches>" + NL + "    <remotePoll>false</remotePoll>" + NL + "    <ignoreNotifyCommit>false</ignoreNotifyCommit>" + NL
-			+ "    <buildChooser class=\"hudson.plugins.git.util.DefaultBuildChooser\"/>" + NL + "    <gitTool>Default</gitTool>" + NL + "    <submoduleCfg class=\"list\"/>" + NL
-			+ "    <relativeTargetDir>git</relativeTargetDir>" + NL + "    <reference></reference>" + NL + "    <excludedRegions></excludedRegions>" + NL
-			+ "    <excludedUsers></excludedUsers>" + NL + "    <gitConfigName></gitConfigName>" + NL + "    <gitConfigEmail></gitConfigEmail>" + NL
-			+ "    <skipTag>false</skipTag>" + NL + "    <includedRegions></includedRegions>" + NL + "    <scmName></scmName>" + NL + "  </scm>" + NL + "  ";
+	protected final String TEXT_3 = "</relativeTargetDir>" + NL + "        </hudson.plugins.git.UserRemoteConfig>" + NL
+			+ "    </userRemoteConfigs>" + NL + "    <branches>" + NL + "      <hudson.plugins.git.BranchSpec>" + NL
+			+ "        <name>";
+	protected final String TEXT_4 = "</name>" + NL + "      </hudson.plugins.git.BranchSpec>" + NL + "    </branches>"
+			+ NL + "    <disableSubmodules>false</disableSubmodules>" + NL
+			+ "    <recursiveSubmodules>false</recursiveSubmodules>" + NL
+			+ "    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>" + NL
+			+ "    <authorOrCommitter>false</authorOrCommitter>" + NL + "    <clean>false</clean>" + NL
+			+ "    <wipeOutWorkspace>false</wipeOutWorkspace>" + NL + "    <pruneBranches>false</pruneBranches>" + NL
+			+ "    <remotePoll>false</remotePoll>" + NL + "    <ignoreNotifyCommit>false</ignoreNotifyCommit>" + NL
+			+ "    <buildChooser class=\"hudson.plugins.git.util.DefaultBuildChooser\"/>" + NL
+			+ "    <gitTool>Default</gitTool>" + NL + "    <submoduleCfg class=\"list\"/>" + NL
+			+ "    <relativeTargetDir>git</relativeTargetDir>" + NL + "    <reference></reference>" + NL
+			+ "    <excludedRegions></excludedRegions>" + NL + "    <excludedUsers></excludedUsers>" + NL
+			+ "    <gitConfigName></gitConfigName>" + NL + "    <gitConfigEmail></gitConfigEmail>" + NL
+			+ "    <skipTag>false</skipTag>" + NL + "    <includedRegions></includedRegions>" + NL
+			+ "    <scmName></scmName>" + NL + "  </scm>" + NL + "  ";
 	protected final String TEXT_5 = NL;
-	protected final String TEXT_6 = NL;
 
 	public Othersgit() {
 		//Here is the constructor
@@ -55,7 +63,8 @@ public class Othersgit extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 
 		paramDesc = new IQuery.ParameterDescription("git", "http://www.eclipse.org/egf/1.0.0/buildscm#//GIT");
 		queryCtx = new HashMap<String, String>();
-		List<Object> gitList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> gitList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object gitParameter : gitList) {
 
@@ -73,7 +82,7 @@ public class Othersgit extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 		}
 
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(TEXT_6);
+		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 

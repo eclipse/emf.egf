@@ -1,4 +1,4 @@
-//Generated with EGF 1.3.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.releng2;
 
 import org.eclipse.egf.common.helper.*;
@@ -56,7 +56,6 @@ public class directoreclipseproxy extends org.eclipse.egf.portfolio.eclipse.buil
 			+ "                <arg value=\"org.eclipse.buckminster.pde.headless.feature.feature.group\" />" + NL
 			+ "            </args>" + NL + "        </eclipse.launch>" + NL + "    </target>" + NL + "    " + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public directoreclipseproxy() {
 		//Here is the constructor
@@ -93,7 +92,7 @@ public class directoreclipseproxy extends org.eclipse.egf.portfolio.eclipse.buil
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

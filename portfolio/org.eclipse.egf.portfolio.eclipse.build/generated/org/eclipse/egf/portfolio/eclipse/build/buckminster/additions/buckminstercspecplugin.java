@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -8,7 +8,8 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buckminstercspecdepsadd {
+public class buckminstercspecplugin
+		extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buckminstercspecdepsadd {
 	protected static String nl;
 
 	public static synchronized buckminstercspecplugin create(String lineSeparator) {
@@ -22,7 +23,6 @@ public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.bu
 	protected final String TEXT_1 = "        <cs:dependency name=\"";
 	protected final String TEXT_2 = "\" componentType=\"osgi.bundle\"/>" + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public buckminstercspecplugin() {
 		//Here is the constructor
@@ -42,7 +42,8 @@ public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.bu
 
 		paramDesc = new IQuery.ParameterDescription("plugin", "http://www.eclipse.org/egf/1.0.2/buildstep#//Plugin");
 		queryCtx = new HashMap<String, String>();
-		List<Object> pluginList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> pluginList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object pluginParameter : pluginList) {
 
@@ -60,7 +61,7 @@ public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.bu
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

@@ -70,338 +70,360 @@ import org.eclipse.jdt.internal.corext.refactoring.structure.ASTNodeSearchUtil;
 @SuppressWarnings("restriction")
 public class CodegenASTHelper {
 
-    protected static final String GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME = "org.eclipse.emf.codegen.ecore.generator.AbstractGeneratorAdapter"; //$NON-NLS-1$
+	protected static final String GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME = "org.eclipse.emf.codegen.ecore.generator.AbstractGeneratorAdapter"; //$NON-NLS-1$
 
-    protected static final String JET_EMITTER_DESCRIPTORS = "JET_EMITTER_DESCRIPTORS"; //$NON-NLS-1$
+	protected static final String JET_EMITTER_DESCRIPTORS = "JET_EMITTER_DESCRIPTORS"; //$NON-NLS-1$
 
-    protected static final String INPUT_PATH_NAMES = "INPUT_PATH_NAMES"; //$NON-NLS-1$
+	protected static final String INPUT_PATH_NAMES = "INPUT_PATH_NAMES"; //$NON-NLS-1$
 
-    protected static final String GENERATE = "generate"; //$NON-NLS-1$
+	protected static final String GENERATE = "generate"; //$NON-NLS-1$
 
-    protected static final String TYPE_GIF_EMITTER = "QGIFEmitter;"; //$NON-NLS-1$
+	protected static final String TYPE_GIF_EMITTER = "QGIFEmitter;"; //$NON-NLS-1$
 
-    protected static final String TYPE_JET_EMITTER = "QJETEmitter;"; //$NON-NLS-1$
+	protected static final String TYPE_JET_EMITTER = "QJETEmitter;"; //$NON-NLS-1$
 
-    protected static final String TYPE_MONITOR = "QMonitor;"; //$NON-NLS-1$
+	protected static final String TYPE_MONITOR = "QMonitor;"; //$NON-NLS-1$
 
-    protected static final String CONDITION_BEGIN = "("; //$NON-NLS-1$
+	protected static final String CONDITION_BEGIN = "("; //$NON-NLS-1$
 
-    protected static final String CONDITION_END = ")"; //$NON-NLS-1$
+	protected static final String CONDITION_END = ")"; //$NON-NLS-1$
 
-    protected static final String CONDITION_NOT_BEGIN = "(!("; //$NON-NLS-1$
+	protected static final String CONDITION_NOT_BEGIN = "(!("; //$NON-NLS-1$
 
-    protected static final String CONDITION_NOT_END = "))"; //$NON-NLS-1$
+	protected static final String CONDITION_NOT_END = "))"; //$NON-NLS-1$
 
-    protected static final String CONDITION_AND = " && "; //$NON-NLS-1$
+	protected static final String CONDITION_AND = " && "; //$NON-NLS-1$
 
-    protected CodegenCompilationUnitHelper compilationUnitHelper = new CodegenCompilationUnitHelper();
+	protected CodegenCompilationUnitHelper compilationUnitHelper = new CodegenCompilationUnitHelper();
 
-    public List<PatternInfo> createPatternInfo(IProject codegenProject, IProgressMonitor monitor) throws Exception {
-        List<PatternInfo> result = new ArrayList<PatternInfo>();
+	public List<PatternInfo> createPatternInfo(IProject codegenProject, IProgressMonitor monitor) throws Exception {
+		List<PatternInfo> result = new ArrayList<PatternInfo>();
 
-        IJavaProject javaProject = JavaCore.create(codegenProject);
-        Collection<IMethod> contentMethods = computeContentMethods(javaProject);
-        for (final IMethod contentMethod : contentMethods) {
+		IJavaProject javaProject = JavaCore.create(codegenProject);
+		Collection<IMethod> contentMethods = computeContentMethods(javaProject);
+		for (final IMethod contentMethod : contentMethods) {
 
-            final Map<SearchMatch, IMethod> patternMethods = computeCallingMethods(contentMethod);
-            for (final SearchMatch patternMethodSearchMatch : patternMethods.keySet()) {
-                IMethod patternMethod = patternMethods.get(patternMethodSearchMatch);
-                MethodInvocation contentMethodInvocation = getMethodInvocation(codegenProject, patternMethod, patternMethodSearchMatch);
-                MethodDeclaration patternMethodDeclaration = getMethodDeclaration(codegenProject, patternMethod);
+			final Map<SearchMatch, IMethod> patternMethods = computeCallingMethods(contentMethod);
+			for (final SearchMatch patternMethodSearchMatch : patternMethods.keySet()) {
+				IMethod patternMethod = patternMethods.get(patternMethodSearchMatch);
+				MethodInvocation contentMethodInvocation = getMethodInvocation(codegenProject, patternMethod,
+						patternMethodSearchMatch);
+				MethodDeclaration patternMethodDeclaration = getMethodDeclaration(codegenProject, patternMethod);
 
-                Map<SearchMatch, IMethod> partMethods = computeCallingMethods(patternMethod);
-                if (partMethods.size() != 1)
-                    throw new IllegalStateException("We should find only one Calling method for " + patternMethod.getElementName()); //$NON-NLS-1$
-                Entry<SearchMatch, IMethod> next = partMethods.entrySet().iterator().next();
-                SearchMatch partMethodSearchMatch = next.getKey();
-                IMethod partMethod = next.getValue();
-                MethodInvocation patternMethodInvocation = getMethodInvocation(codegenProject, partMethod, partMethodSearchMatch);
+				Map<SearchMatch, IMethod> partMethods = computeCallingMethods(patternMethod);
+				// If we have more than one match
+				if (partMethods.size() != 1) {
+					Collection<SearchMatch> inaccurateMatches = new ArrayList<SearchMatch>();
+					// Get inaccurate matches
+					for (Entry<SearchMatch, IMethod> entry : partMethods.entrySet()) {
+						if (entry.getKey().getAccuracy() == SearchMatch.A_INACCURATE) {
+							inaccurateMatches.add(entry.getKey());
+						}
+					}
+					// If we have more than one accurate match then this is an error case
+					if ((inaccurateMatches.size() == 0) || (partMethods.size() - inaccurateMatches.size() > 1)) {
+						throw new IllegalStateException(
+								"We should find only one Calling method for " + patternMethod.getElementName()); //$NON-NLS-1$
+					}
+					// Else we keep only the accurate match
+					else {
+						for (SearchMatch match : inaccurateMatches) {
+							partMethods.remove(match);
+						}
+					}	
+				}
+				
+				Entry<SearchMatch, IMethod> next = partMethods.entrySet().iterator().next();
+				SearchMatch partMethodSearchMatch = next.getKey();
+				IMethod partMethod = next.getValue();
+				MethodInvocation patternMethodInvocation = getMethodInvocation(codegenProject, partMethod,
+						partMethodSearchMatch);
 
-                PatternInfo patternInfo = createPatternInfo(contentMethod);
-                patternInfo.setPartType(computePartType(partMethod));
-                patternInfo.setMethodName(getNameWithoutGenerate(patternMethod));
-                patternInfo.setParameterType(computeParameterType(patternMethod));
-                patternInfo.setParameterName(computeParameterName(patternMethod));
-                analyseContentMethodParameters(patternInfo, contentMethod, contentMethodInvocation);
-                replaceLocalVariables(patternMethodDeclaration, patternInfo);
+				PatternInfo patternInfo = createPatternInfo(contentMethod);
+				patternInfo.setPartType(computePartType(partMethod));
+				patternInfo.setMethodName(getNameWithoutGenerate(patternMethod));
+				patternInfo.setParameterType(computeParameterType(patternMethod));
+				patternInfo.setParameterName(computeParameterName(patternMethod));
+				analyseContentMethodParameters(patternInfo, contentMethod, contentMethodInvocation);
+				replaceLocalVariables(patternMethodDeclaration, patternInfo);
 
-                if (ContentType.GIF.equals(patternInfo.getContentType()))
-                    ((GIFPatternInfo) patternInfo).setMethodContent(computeMethodContent(patternMethodDeclaration));
-                else {
-                    ArrayList<String> conditions = new ArrayList<String>();
-                    conditions.addAll(getMethodInvocationCondition(patternMethodInvocation));
-                    conditions.addAll(getMethodInvocationCondition(contentMethodInvocation));
-                    ((JetPatternInfo) patternInfo).setCondition(getConditionString(conditions));
-                }
+				if (ContentType.GIF.equals(patternInfo.getContentType()))
+					((GIFPatternInfo) patternInfo).setMethodContent(computeMethodContent(patternMethodDeclaration));
+				else {
+					ArrayList<String> conditions = new ArrayList<String>();
+					conditions.addAll(getMethodInvocationCondition(patternMethodInvocation));
+					conditions.addAll(getMethodInvocationCondition(contentMethodInvocation));
+					((JetPatternInfo) patternInfo).setCondition(getConditionString(conditions));
+				}
 
-                result.add(patternInfo);
+				result.add(patternInfo);
 
-                monitor.worked(20);
-            }
-        }
+				monitor.worked(20);
+			}
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    protected void replaceLocalVariables(MethodDeclaration methodDeclaration, final PatternInfo patternInfo) {
-        if (patternInfo instanceof GIFPatternInfo)
-            return;
+	protected void replaceLocalVariables(MethodDeclaration methodDeclaration, final PatternInfo patternInfo) {
+		if (patternInfo instanceof GIFPatternInfo)
+			return;
 
-        ASTVisitor astVisitor = new ASTVisitor() {
+		ASTVisitor astVisitor = new ASTVisitor() {
 
-            @SuppressWarnings("unchecked")
-            @Override
-            public boolean visit(VariableDeclarationStatement node) {
-                List<VariableDeclarationFragment> fragments = node.fragments();
-                for (VariableDeclarationFragment fragment : fragments) {
-                    String name = fragment.getName().toString();
-                    String expression = fragment.getInitializer().toString();
-                    List<VariableInfo> variableInfos = patternInfo.getVariableInfos();
-                    for (VariableInfo variableInfo : variableInfos) {
-                        variableInfo.setValue(variableInfo.getValue().replace(name, expression));
-                    }
-                }
-                return true;
-            }
-        };
-        methodDeclaration.accept(astVisitor);
-    }
+			@SuppressWarnings("unchecked")
+			@Override
+			public boolean visit(VariableDeclarationStatement node) {
+				List<VariableDeclarationFragment> fragments = node.fragments();
+				for (VariableDeclarationFragment fragment : fragments) {
+					String name = fragment.getName().toString();
+					String expression = fragment.getInitializer().toString();
+					List<VariableInfo> variableInfos = patternInfo.getVariableInfos();
+					for (VariableInfo variableInfo : variableInfos) {
+						variableInfo.setValue(variableInfo.getValue().replace(name, expression));
+					}
+				}
+				return true;
+			}
+		};
+		methodDeclaration.accept(astVisitor);
+	}
 
-    @SuppressWarnings("unchecked")
-    protected String computeMethodContent(MethodDeclaration methodDeclaration) {
-        StringBuffer buffer = new StringBuffer();
+	@SuppressWarnings("unchecked")
+	protected String computeMethodContent(MethodDeclaration methodDeclaration) {
+		StringBuffer buffer = new StringBuffer();
 
-        List<Statement> statements = methodDeclaration.getBody().statements();
-        for (Statement statement : statements) {
-            buffer.append(statement.toString());
-        }
+		List<Statement> statements = methodDeclaration.getBody().statements();
+		for (Statement statement : statements) {
+			buffer.append(statement.toString());
+		}
 
-        return buffer.toString();
-    }
+		return buffer.toString();
+	}
 
-    protected PartType computePartType(IMethod partMethod) {
-        String partTypeString = getNameWithoutGenerate(partMethod);
-        return PartType.valueOf(partTypeString);
-    }
+	protected PartType computePartType(IMethod partMethod) {
+		String partTypeString = getNameWithoutGenerate(partMethod);
+		return PartType.valueOf(partTypeString);
+	}
 
-    protected PatternInfo createPatternInfo(IMethod contentMethod) {
-        String contentString = getNameWithoutGenerate(contentMethod);
-        ContentType contentType = ContentType.valueOf(contentString);
+	protected PatternInfo createPatternInfo(IMethod contentMethod) {
+		String contentString = getNameWithoutGenerate(contentMethod);
+		ContentType contentType = ContentType.valueOf(contentString);
 
-        PatternInfo patternInfo = null;
-        if (ContentType.GIF.equals(contentType)) {
-            patternInfo = new GIFPatternInfo();
-        } else {
-            patternInfo = new JetPatternInfo();
-        }
+		PatternInfo patternInfo = null;
+		if (ContentType.GIF.equals(contentType)) {
+			patternInfo = new GIFPatternInfo();
+		} else {
+			patternInfo = new JetPatternInfo();
+		}
 
-        patternInfo.setContentType(contentType);
-        return patternInfo;
-    }
+		patternInfo.setContentType(contentType);
+		return patternInfo;
+	}
 
-    protected String computeParameterName(IMethod patternMethod) throws JavaModelException {
-        return patternMethod.getParameterNames()[0];
-    }
+	protected String computeParameterName(IMethod patternMethod) throws JavaModelException {
+		return patternMethod.getParameterNames()[0];
+	}
 
-    protected String computeParameterType(final IMethod patternMethod) {
-        String patternMethodObjectType = patternMethod.getParameterTypes()[0];
-        return patternMethodObjectType.substring(1, patternMethodObjectType.length() - 1);
-    }
+	protected String computeParameterType(final IMethod patternMethod) {
+		String patternMethodObjectType = patternMethod.getParameterTypes()[0];
+		return patternMethodObjectType.substring(1, patternMethodObjectType.length() - 1);
+	}
 
     protected void analyseContentMethodParameters(PatternInfo patternInfo, final IMethod contentMethod, MethodInvocation contentMethodInvocation) throws JavaModelException {
-        if (contentMethodInvocation.arguments().size() != contentMethod.getParameterTypes().length)
-            throw new IllegalStateException("Method and Method invocations should have the same number of arguments"); //$NON-NLS-1$
-        for (int i = 0; i < contentMethod.getParameterTypes().length; i++) {
-            String parameterType = contentMethod.getParameterTypes()[i];
-            String parameterName = contentMethod.getParameterNames()[i];
-            Expression argumentExpression = (Expression) contentMethodInvocation.arguments().get(i);
+		if (contentMethodInvocation.arguments().size() != contentMethod.getParameterTypes().length)
+			throw new IllegalStateException("Method and Method invocations should have the same number of arguments"); //$NON-NLS-1$
+		for (int i = 0; i < contentMethod.getParameterTypes().length; i++) {
+			String parameterType = contentMethod.getParameterTypes()[i];
+			String parameterName = contentMethod.getParameterNames()[i];
+			Expression argumentExpression = (Expression) contentMethodInvocation.arguments().get(i);
 
-            if (TYPE_MONITOR.equals(parameterType)) {
-                // ignore the monitor argument
-            } else if (TYPE_JET_EMITTER.equals(parameterType)) {
-                computeTemplatePath((JetPatternInfo) patternInfo, argumentExpression);
-            } else if (TYPE_GIF_EMITTER.equals(parameterType)) {
-                computeGIFPath((GIFPatternInfo) patternInfo, argumentExpression);
-            } else {
-                patternInfo.getVariableInfos().add(computeVariable(parameterType, parameterName, argumentExpression));
-            }
-        }
-    }
+			if (TYPE_MONITOR.equals(parameterType)) {
+				// ignore the monitor argument
+			} else if (TYPE_JET_EMITTER.equals(parameterType)) {
+				computeTemplatePath((JetPatternInfo) patternInfo, argumentExpression);
+			} else if (TYPE_GIF_EMITTER.equals(parameterType)) {
+				computeGIFPath((GIFPatternInfo) patternInfo, argumentExpression);
+			} else {
+				patternInfo.getVariableInfos().add(computeVariable(parameterType, parameterName, argumentExpression));
+			}
+		}
+	}
 
-    protected VariableInfo computeVariable(String parameterType, String parameterName, Expression argumentExpression) {
-        String value = null;
+	protected VariableInfo computeVariable(String parameterType, String parameterName, Expression argumentExpression) {
+		String value = null;
 
-        Object resolveConstantExpressionValue = argumentExpression.resolveConstantExpressionValue();
-        if (resolveConstantExpressionValue != null && argumentExpression instanceof SimpleName)
-            value = "\"" + resolveConstantExpressionValue + "\""; //$NON-NLS-1$ //$NON-NLS-2$
-        else if (resolveConstantExpressionValue != null)
-            value = resolveConstantExpressionValue.toString();
-        else
-            value = argumentExpression.toString();
+		Object resolveConstantExpressionValue = argumentExpression.resolveConstantExpressionValue();
+		if (resolveConstantExpressionValue != null && argumentExpression instanceof SimpleName)
+			value = "\"" + resolveConstantExpressionValue + "\""; //$NON-NLS-1$ //$NON-NLS-2$
+		else if (resolveConstantExpressionValue != null)
+			value = resolveConstantExpressionValue.toString();
+		else
+			value = argumentExpression.toString();
 
-        return new VariableInfo(parameterType, parameterName, value);
-    }
+		return new VariableInfo(parameterType, parameterName, value);
+	}
 
-    protected void computeGIFPath(GIFPatternInfo patternInfo, Expression argumentExpression) {
-        int idValue = getArrayIndex(argumentExpression);
+	protected void computeGIFPath(GIFPatternInfo patternInfo, Expression argumentExpression) {
+		int idValue = getArrayIndex(argumentExpression);
 
-        List<Expression> arrayValues = new ArrayList<Expression>();
-        computeArrayValues(argumentExpression, INPUT_PATH_NAMES, arrayValues);
+		List<Expression> arrayValues = new ArrayList<Expression>();
+		computeArrayValues(argumentExpression, INPUT_PATH_NAMES, arrayValues);
 
-        String gifPath = ((StringLiteral) arrayValues.get(idValue)).getLiteralValue();
+		String gifPath = ((StringLiteral) arrayValues.get(idValue)).getLiteralValue();
 
-        patternInfo.setGifPath(gifPath);
-    }
+		patternInfo.setGifPath(gifPath);
+	}
 
-    protected void computeTemplatePath(JetPatternInfo patternInfo, Expression argumentExpression) {
-        int idValue = getArrayIndex(argumentExpression);
+	protected void computeTemplatePath(JetPatternInfo patternInfo, Expression argumentExpression) {
+		int idValue = getArrayIndex(argumentExpression);
 
-        List<Expression> arrayValues = new ArrayList<Expression>();
-        computeArrayValues(argumentExpression, JET_EMITTER_DESCRIPTORS, arrayValues);
+		List<Expression> arrayValues = new ArrayList<Expression>();
+		computeArrayValues(argumentExpression, JET_EMITTER_DESCRIPTORS, arrayValues);
 
-        ClassInstanceCreation arrayValue = (ClassInstanceCreation) arrayValues.get(idValue);
-        String templatePath = ((StringLiteral) arrayValue.arguments().get(0)).getLiteralValue();
-        String className = ((StringLiteral) arrayValue.arguments().get(1)).getLiteralValue();
+		ClassInstanceCreation arrayValue = (ClassInstanceCreation) arrayValues.get(idValue);
+		String templatePath = ((StringLiteral) arrayValue.arguments().get(0)).getLiteralValue();
+		String className = ((StringLiteral) arrayValue.arguments().get(1)).getLiteralValue();
 
-        patternInfo.setJetTemplatePath(templatePath);
-        patternInfo.setJetClassName(className);
-    }
+		patternInfo.setJetTemplatePath(templatePath);
+		patternInfo.setJetClassName(className);
+	}
 
     protected void computeArrayValues(Expression argumentExpression, final String VariableName, final List<Expression> arrayValues) {
-        ASTVisitor astVisitor = new ASTVisitor() {
+		ASTVisitor astVisitor = new ASTVisitor() {
 
-            @Override
-            @SuppressWarnings("unchecked")
-            public boolean visit(VariableDeclarationFragment node) {
-                if (VariableName.equals(node.getName().getIdentifier())) {
-                    if (node.getInitializer() != null && node.getInitializer() instanceof ArrayInitializer) {
-                        ArrayInitializer arrayInitializer = (ArrayInitializer) node.getInitializer();
-                        for (Iterator<Object> iterator = arrayInitializer.expressions().iterator(); iterator.hasNext();)
-                            arrayValues.add((Expression) iterator.next());
-                    }
-                }
-                return true;
-            }
-        };
-        CompilationUnit compilationUnit = (CompilationUnit) argumentExpression.getRoot();
-        compilationUnit.accept(astVisitor);
-    }
+			@Override
+			@SuppressWarnings("unchecked")
+			public boolean visit(VariableDeclarationFragment node) {
+				if (VariableName.equals(node.getName().getIdentifier())) {
+					if (node.getInitializer() != null && node.getInitializer() instanceof ArrayInitializer) {
+						ArrayInitializer arrayInitializer = (ArrayInitializer) node.getInitializer();
+						for (Iterator<Object> iterator = arrayInitializer.expressions().iterator(); iterator.hasNext();)
+							arrayValues.add((Expression) iterator.next());
+					}
+				}
+				return true;
+			}
+		};
+		CompilationUnit compilationUnit = (CompilationUnit) argumentExpression.getRoot();
+		compilationUnit.accept(astVisitor);
+	}
 
-    protected int getArrayIndex(Expression argumentExpression) {
-        SimpleName id = (SimpleName) ((MethodInvocation) argumentExpression).arguments().get(1);
-        return (Integer) id.resolveConstantExpressionValue();
-    }
+	protected int getArrayIndex(Expression argumentExpression) {
+		SimpleName id = (SimpleName) ((MethodInvocation) argumentExpression).arguments().get(1);
+		return (Integer) id.resolveConstantExpressionValue();
+	}
 
-    protected List<String> getMethodInvocationCondition(ASTNode node) {
-        List<String> conditions = new ArrayList<String>();
-        while (true) {
-            ASTNode parent = node.getParent();
-            if (parent == null)
-                throw new IllegalStateException("We should have found a Method Declaration as a parent"); //$NON-NLS-1$
+	protected List<String> getMethodInvocationCondition(ASTNode node) {
+		List<String> conditions = new ArrayList<String>();
+		while (true) {
+			ASTNode parent = node.getParent();
+			if (parent == null)
+				throw new IllegalStateException("We should have found a Method Declaration as a parent"); //$NON-NLS-1$
 
-            if (node instanceof MethodDeclaration) {
-                return conditions;
-            }
+			if (node instanceof MethodDeclaration) {
+				return conditions;
+			}
 
-            if (parent instanceof IfStatement) {
-                IfStatement ifStatement = (IfStatement) parent;
-                if (ifStatement.getThenStatement() == node)
-                    conditions.add(CONDITION_BEGIN + ifStatement.getExpression() + CONDITION_END);
-                else if (ifStatement.getElseStatement() == node)
-                    conditions.add(CONDITION_NOT_BEGIN + ifStatement.getExpression() + CONDITION_NOT_END);
-                else
-                    throw new IllegalStateException("Node should be part of the parent IfStatement"); //$NON-NLS-1$
-            }
+			if (parent instanceof IfStatement) {
+				IfStatement ifStatement = (IfStatement) parent;
+				if (ifStatement.getThenStatement() == node)
+					conditions.add(CONDITION_BEGIN + ifStatement.getExpression() + CONDITION_END);
+				else if (ifStatement.getElseStatement() == node)
+					conditions.add(CONDITION_NOT_BEGIN + ifStatement.getExpression() + CONDITION_NOT_END);
+				else
+					throw new IllegalStateException("Node should be part of the parent IfStatement"); //$NON-NLS-1$
+			}
 
-            node = parent;
-        }
-    }
+			node = parent;
+		}
+	}
 
-    protected String getConditionString(List<String> conditions) {
-        if (conditions.size() == 0)
-            return null;
+	protected String getConditionString(List<String> conditions) {
+		if (conditions.size() == 0)
+			return null;
 
-        StringBuffer buffer = new StringBuffer();
-        for (String string : conditions) {
-            if (buffer.length() > 0)
-                buffer.append(CONDITION_AND);
-            buffer.append(string);
-        }
-        return buffer.toString();
-    }
+		StringBuffer buffer = new StringBuffer();
+		for (String string : conditions) {
+			if (buffer.length() > 0)
+				buffer.append(CONDITION_AND);
+			buffer.append(string);
+		}
+		return buffer.toString();
+	}
 
     protected MethodInvocation getMethodInvocation(IProject codegenProject, final IMethod patternMethod, final SearchMatch searchMatch) throws JavaModelException {
-        MethodDeclaration methodDeclaration = getMethodDeclaration(codegenProject, patternMethod);
+		MethodDeclaration methodDeclaration = getMethodDeclaration(codegenProject, patternMethod);
 
-        final List<MethodInvocation> invocations = new ArrayList<MethodInvocation>();
+		final List<MethodInvocation> invocations = new ArrayList<MethodInvocation>();
 
-        ASTVisitor astVisitor = new ASTVisitor() {
+		ASTVisitor astVisitor = new ASTVisitor() {
 
-            @Override
-            public boolean visit(MethodInvocation node) {
-                if (node.getStartPosition() == searchMatch.getOffset() && node.getLength() == searchMatch.getLength()) {
-                    invocations.add(node);
-                }
-                return true;
-            }
-        };
-        methodDeclaration.accept(astVisitor);
+			@Override
+			public boolean visit(MethodInvocation node) {
+				if (node.getStartPosition() == searchMatch.getOffset() && node.getLength() == searchMatch.getLength()) {
+					invocations.add(node);
+				}
+				return true;
+			}
+		};
+		methodDeclaration.accept(astVisitor);
 
-        if (invocations.size() != 1)
-            throw new IllegalStateException("One method invocation should be found"); //$NON-NLS-1$
+		if (invocations.size() != 1)
+			throw new IllegalStateException("One method invocation should be found"); //$NON-NLS-1$
 
-        return invocations.get(0);
-    }
+		return invocations.get(0);
+	}
 
-    protected String getNameWithoutGenerate(IMethod method) {
-        if (!method.getElementName().startsWith(GENERATE))
-            throw new IllegalStateException("The method name should start with " + GENERATE); //$NON-NLS-1$
-        return method.getElementName().substring(GENERATE.length());
-    }
+	protected String getNameWithoutGenerate(IMethod method) {
+		if (!method.getElementName().startsWith(GENERATE))
+			throw new IllegalStateException("The method name should start with " + GENERATE); //$NON-NLS-1$
+		return method.getElementName().substring(GENERATE.length());
+	}
 
     protected MethodDeclaration getMethodDeclaration(IProject codegenProject, final IMethod method) throws JavaModelException {
-        CompilationUnit compilationUnit = compilationUnitHelper.getCompilationUnit(codegenProject, method);
-        return ASTNodeSearchUtil.getMethodDeclarationNode(method, compilationUnit);
-    }
+		CompilationUnit compilationUnit = compilationUnitHelper.getCompilationUnit(codegenProject, method);
+		return ASTNodeSearchUtil.getMethodDeclarationNode(method, compilationUnit);
+	}
 
-    protected Map<SearchMatch, IMethod> computeCallingMethods(final IMethod method) throws CoreException {
-        final Map<SearchMatch, IMethod> callingMethods = new HashMap<SearchMatch, IMethod>();
+	protected Map<SearchMatch, IMethod> computeCallingMethods(final IMethod method) throws CoreException {
+		final Map<SearchMatch, IMethod> callingMethods = new HashMap<SearchMatch, IMethod>();
         IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[] {
             method.getJavaProject()
         }, IJavaSearchScope.SOURCES);
-        SearchPattern pattern = SearchPattern.createPattern(method, IJavaSearchConstants.REFERENCES);
-        SearchRequestor requestor = new SearchRequestor() {
+		SearchPattern pattern = SearchPattern.createPattern(method, IJavaSearchConstants.REFERENCES);
+		SearchRequestor requestor = new SearchRequestor() {
 
-            @Override
-            public void acceptSearchMatch(SearchMatch match) throws CoreException {
-                if (match.isInsideDocComment()) {
-                	//avoid references in javadoc
-                	return;
-                }
-                
-                Object element = match.getElement();
-                if (element instanceof IMethod) {
-                    IMethod callingMethod = (IMethod) element;
-                    callingMethods.put(match, callingMethod);
-                }
-            }
+			@Override
+			public void acceptSearchMatch(SearchMatch match) throws CoreException {
+				if (match.isInsideDocComment()) {
+					// avoid references in javadoc
+					return;
+				}
 
-        };
+				Object element = match.getElement();
+				if (element instanceof IMethod) {
+					IMethod callingMethod = (IMethod) element;
+					callingMethods.put(match, callingMethod);
+				}
+			}
+
+		};
         new SearchEngine().search(pattern, new SearchParticipant[] {
             new JavaSearchParticipant()
         }, scope, requestor, null);
-        return callingMethods;
-    }
+		return callingMethods;
+	}
 
-    protected Collection<IMethod> computeContentMethods(IJavaProject javaProject) throws JavaModelException {
-        IType type = javaProject.findType(GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME);
-        Collection<IMethod> generateContentMethods = new ArrayList<IMethod>();
-        for (IMethod method : type.getMethods()) {
-            if (method.getElementName().startsWith(GENERATE) && method.getElementName().length() > GENERATE.length()) {
-                generateContentMethods.add(method);
-            }
-        }
-        return generateContentMethods;
-    }
+	protected Collection<IMethod> computeContentMethods(IJavaProject javaProject) throws JavaModelException {
+		IType type = javaProject.findType(GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME);
+		Collection<IMethod> generateContentMethods = new ArrayList<IMethod>();
+		for (IMethod method : type.getMethods()) {
+			if (method.getElementName().startsWith(GENERATE) && method.getElementName().length() > GENERATE.length()) {
+				generateContentMethods.add(method);
+			}
+		}
+		return generateContentMethods;
+	}
 
 }

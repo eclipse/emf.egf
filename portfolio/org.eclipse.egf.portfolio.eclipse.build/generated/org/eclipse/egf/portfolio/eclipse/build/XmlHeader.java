@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,8 +22,6 @@ public class XmlHeader {
 	protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + NL + "<!--";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL + "-->" + NL;
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
 	public XmlHeader() {
 		//Here is the constructor
@@ -51,8 +49,8 @@ public class XmlHeader {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

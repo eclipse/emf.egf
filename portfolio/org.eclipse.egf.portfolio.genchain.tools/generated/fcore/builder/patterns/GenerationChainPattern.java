@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:18 CET 2012 with EGF 0.6.1.qualifier
+//Generated with EGF 1.6.3.202110181143
 package fcore.builder.patterns;
 
 import java.util.Collection;
@@ -21,6 +21,7 @@ public class GenerationChainPattern {
 	public GenerationChainPattern() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -62,11 +63,13 @@ public class GenerationChainPattern {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
+				.getValue(FcoreBuilderConstants.CURRENT_FCORE);
 
 		FactoryComponent parentFC = fcs.get((GenerationElement) (parameter.eContainer()));
 
-		Collection<FactoryComponent> unused = (Collection<FactoryComponent>) ctx.getValue(FcoreBuilderConstants.UNUSED_FCORE);
+		Collection<FactoryComponent> unused = (Collection<FactoryComponent>) ctx
+				.getValue(FcoreBuilderConstants.UNUSED_FCORE);
 		FactoryComponent fc = FCMatcher.getFC(unused, parameter);
 		if (fc == null) {
 			fc = ActivityInvocationHelper.createDefaultFC(parameter.getName());

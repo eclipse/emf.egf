@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -23,7 +23,6 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
 	protected final String TEXT_1 = "\t\t<location path=\"";
 	protected final String TEXT_2 = "\" type=\"Profile\"/>" + NL;
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public buildtargetinstallStep() {
 		//Here is the constructor
@@ -41,9 +40,12 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("installStepBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStepBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("installStepBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStepBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> installStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> installStepBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object installStepBuildLocationParameter : installStepBuildLocationList) {
 
@@ -61,7 +63,7 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
 		}
 
 		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -82,7 +84,8 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation installStepBuildLocation = null;
 
-	public void set_installStepBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation object) {
+	public void set_installStepBuildLocation(
+			org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation object) {
 		this.installStepBuildLocation = object;
 	}
 
@@ -94,8 +97,8 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(), installStepBuildLocation)
-				+ installStepBuildLocation.getInstallStep().getId();
+		String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(),
+				installStepBuildLocation) + installStepBuildLocation.getInstallStep().getId();
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(location);

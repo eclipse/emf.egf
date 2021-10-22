@@ -6,21 +6,33 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _ExirQIyNEeaLRPgUbfwOUw
-Runtime-Version: 2.3.0.201804222309
-Save-Time: 4/23/18 5:08 PM
+Runtime-Version: 2.5.2.202109092356
+Save-Time: 10/18/21, 1:39 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | get-menu "New/Java Project" | click
-with [get-window "New Java Project"] {
-    get-editbox -after [get-label "Project name:"] | set-text A
-    get-button Finish | click
+try {
+	get-view "Package Explorer" | get-tree | get-menu "New/Java Project" | click
+	with [get-window "New Java Project"] {
+	    get-editbox -after [get-label "Project name:"] | set-text A
+	    get-button Finish | click
+	}
+} -catch {
+	get-view "Package Explorer" | get-link "Create a Java project" | click
+	with [get-window "New Java Project"] {
+	    get-editbox -after [get-label "Project name:"] | set-text A
+	    get-button Finish | click
+	    with [get-window "New module-info.java"] {
+	        get-editbox -after [get-label "Module name:"] | set-focus
+	        get-button "Don't Create" | click
+	    }
+	}
 }
 get-view "Package Explorer" | get-tree | select A | get-menu "New/Other..." | click
-with [get-window New] {
+with [get-window "Select a wizard"] {
     get-tree | select "EGF/EGF Activity"
     get-button "Next >" | click
     get-button Finish | click

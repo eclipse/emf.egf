@@ -1,4 +1,4 @@
-//Generated on Tue Aug 07 18:33:57 CEST 2012 with EGF 1.0.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.HashMap;
@@ -29,111 +29,113 @@ import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 
 public class addDependency {
 
-    public addDependency() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
-    }
+	public addDependency() {
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    public void generate(Object argument) throws Exception {
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        IQuery.ParameterDescription paramDesc = null;
-        Map<String, String> queryCtx = null;
-        Node.Container currentNode = ctx.getNode();
-        List<Object> genModelList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+	}
 
-        for (Object genModelParameter : genModelList) {
+	public void generate(Object argument) throws Exception {
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		IQuery.ParameterDescription paramDesc = null;
+		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
+		List<Object> genModelList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-            this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+		for (Object genModelParameter : genModelList) {
 
-            if (preCondition(ctx)) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration((PatternContext) argument);
+			this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-            }
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-        }
-    }
+			if (preCondition(ctx)) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration((PatternContext) argument);
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        Node.Container currentNode = ictx.getNode();
-        method_setPluginId(new StringBuffer(), ictx);
-        method_addDependency(new StringBuffer(), ictx);
-        ictx.setNode(currentNode);
-        if (ictx.useReporter()) {
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("genModel", this.genModel);
-            String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-            String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-        }
-        return null;
-    }
+			}
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+		}
+	}
 
-    protected void method_setPluginId(final StringBuffer out, final PatternContext ctx) throws Exception {
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		Node.Container currentNode = ictx.getNode();
+		method_setPluginId(new StringBuffer(), ictx);
+		method_addDependency(new StringBuffer(), ictx);
+		ictx.setNode(currentNode);
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("genModel", this.genModel);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+		}
+		return null;
+	}
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "setPluginId", out.toString());
-    }
+	protected void method_setPluginId(final StringBuffer out, final PatternContext ctx) throws Exception {
 
-    protected void method_addDependency(final StringBuffer out, final PatternContext ctx) throws Exception {
-        String manifestMFPathString = genModel.getModelProjectDirectory() + "/" + ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR;
-        IPath manifestMFPath = new Path(manifestMFPathString);
-        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setPluginId", out.toString());
+	}
 
-        final IProject project = workspace.getRoot().getProject(manifestMFPath.segment(0));
-        IFile manifestMFFile = project.getFile(ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR);
+	protected void method_addDependency(final StringBuffer out, final PatternContext ctx) throws Exception {
+		String manifestMFPathString = genModel.getModelProjectDirectory() + "/"
+				+ ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR;
+		IPath manifestMFPath = new Path(manifestMFPathString);
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
-        if (!manifestMFFile.exists())
-            return;
+		final IProject project = workspace.getRoot().getProject(manifestMFPath.segment(0));
+		IFile manifestMFFile = project.getFile(ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR);
 
-        PDEModelUtility.modifyModel(new ModelModification(manifestMFFile) {
+		if (!manifestMFFile.exists())
+			return;
 
-            @Override
-            protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
-                if (model instanceof IBundlePluginModelBase) {
-                    IBundlePluginModelBase bundlePluginModelBase = (IBundlePluginModelBase) model;
+		PDEModelUtility.modifyModel(new ModelModification(manifestMFFile) {
 
-                    for (IPluginImport pluginImport : bundlePluginModelBase.getPluginBase().getImports()) {
-                        if (pluginId.equals(pluginImport.getId())) {
-                            return;
-                        }
-                    }
+			@Override
+			protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
+				if (model instanceof IBundlePluginModelBase) {
+					IBundlePluginModelBase bundlePluginModelBase = (IBundlePluginModelBase) model;
 
-                    PluginImportNode pluginImportNode = new PluginImportNode(pluginId);
-                    pluginImportNode.setReexported(true);
-                    bundlePluginModelBase.getPluginBase().add(pluginImportNode);
-                }
-            }
-        }, new NullProgressMonitor());
+					for (IPluginImport pluginImport : bundlePluginModelBase.getPluginBase().getImports()) {
+						if (pluginId.equals(pluginImport.getId())) {
+							return;
+						}
+					}
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "addDependency", out.toString());
-    }
+					PluginImportNode pluginImportNode = new PluginImportNode(pluginId);
+					pluginImportNode.setReexported(true);
+					bundlePluginModelBase.getPluginBase().add(pluginImportNode);
+				}
+			}
+		}, new NullProgressMonitor());
 
-    public boolean preCondition(PatternContext ctx) throws Exception {
-        return true;
-    }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "addDependency", out.toString());
+	}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel;
+	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
 
-    public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel) {
-        this.genModel = genModel;
-    }
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel;
 
-    protected java.lang.String pluginId;
+	public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel) {
+		this.genModel = genModel;
+	}
 
-    public void set_pluginId(java.lang.String pluginId) {
-        this.pluginId = pluginId;
-    }
+	protected java.lang.String pluginId;
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("genModel", this.genModel);
-        return parameters;
-    }
+	public void set_pluginId(java.lang.String pluginId) {
+		this.pluginId = pluginId;
+	}
+
+	public Map<String, Object> getParameters() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("genModel", this.genModel);
+		return parameters;
+	}
 
 }

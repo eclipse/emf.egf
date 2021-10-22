@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,26 +24,19 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
 	protected final String TEXT_1 = "<rmap xmlns=\"http://www.eclipse.org/buckminster/RMap-1.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:mp=\"http://www.eclipse.org/buckminster/MavenProvider-1.0\""
 			+ NL
 			+ "\txmlns:pmp=\"http://www.eclipse.org/buckminster/PDEMapProvider-1.0\" xmlns:bc=\"http://www.eclipse.org/buckminster/Common-1.0\">"
-			+ NL
-			+ ""
-			+ NL
-			+ "\t<locator searchPathRef=\"buckminster\" failOnError=\"false\" />"
-			+ NL
-			+ "\t<searchPath name=\"buckminster\">"
-			+ NL
-			+ "\t\t<!-- buckminster provider for windows -->"
-			+ NL
-			+ "\t\t<provider componentTypes=\"buckminster\" readerType=\"local\" source=\"true\">"
-			+ NL
+			+ NL + "" + NL + "\t<locator searchPathRef=\"buckminster\" failOnError=\"false\" />" + NL
+			+ "\t<searchPath name=\"buckminster\">" + NL + "\t\t<!-- buckminster provider for windows -->" + NL
+			+ "\t\t<provider componentTypes=\"buckminster\" readerType=\"local\" source=\"true\">" + NL
 			+ "\t\t\t<uri format=\"file:/{0}/buckminster_";
-	protected final String TEXT_2 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"relengDir\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL
-			+ "\t\t<!-- buckminster provider for unix -->" + NL + "\t\t<provider componentTypes=\"buckminster\" readerType=\"local\" source=\"true\">" + NL
+	protected final String TEXT_2 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"relengDir\" />" + NL + "\t\t\t</uri>"
+			+ NL + "\t\t</provider>" + NL + "\t\t<!-- buckminster provider for unix -->" + NL
+			+ "\t\t<provider componentTypes=\"buckminster\" readerType=\"local\" source=\"true\">" + NL
 			+ "\t\t\t<uri format=\"file://{0}/buckminster_";
-	protected final String TEXT_3 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"relengDir\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
+	protected final String TEXT_3 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"relengDir\" />" + NL + "\t\t\t</uri>"
+			+ NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
 	protected final String TEXT_4 = NL + "\t";
 	protected final String TEXT_5 = "</rmap>" + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildrmap() {
 		//Here is the constructor
@@ -80,7 +73,7 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 
@@ -130,8 +123,9 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA", new ExecutionContext(
-					(InternalPatternContext) ctx), callParameters);
+			CallHelper.executeWithParameterInjection(
+					"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LhlsYJ5OEd-3wvN5SnesGA",
+					new ExecutionContext((InternalPatternContext) ctx), callParameters);
 			stringBuffer.setLength(0);
 		}
 
@@ -144,7 +138,8 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
 		new Node.DataLeaf(ictx.getNode(), getClass(), "begin", stringBuffer.toString());
 	}
 
-	protected void method_callBuildRmapLocationAdd(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_callBuildRmapLocationAdd(final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
 		for (AbstractBuildLocation buildLocation : buildStep.getBuildLocations()) {
 			stringBuffer.append(TEXT_4);
@@ -159,7 +154,9 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
 
 				ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 				callCtx.setValue(PatternContext.INJECTED_CONTEXT, buildLocation);
-				CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AAXisJMbEd-pjLQZUcJ3fw", callCtx);
+				CallHelper.executeWithContextInjection(
+						"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AAXisJMbEd-pjLQZUcJ3fw",
+						callCtx);
 				stringBuffer.setLength(0);
 
 			}

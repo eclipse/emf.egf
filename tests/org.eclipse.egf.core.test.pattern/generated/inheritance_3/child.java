@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.0.201901231006
+//Generated with EGF 1.6.3.202110181143
 package inheritance_3;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,6 @@ public class child extends inheritance_3.parent {
 	protected final String TEXT_1 = "//default content";
 	protected final String TEXT_2 = "// child on ";
 	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
 
 	public child() {
 		//Here is the constructor
@@ -60,8 +59,8 @@ public class child extends inheritance_3.parent {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 

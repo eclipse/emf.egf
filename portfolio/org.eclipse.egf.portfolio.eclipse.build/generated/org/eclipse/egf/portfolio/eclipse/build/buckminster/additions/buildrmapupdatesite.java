@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,12 +24,12 @@ public class buildrmapupdatesite extends org.eclipse.egf.portfolio.eclipse.build
 	protected final String TEXT_1 = "\t<locator searchPathRef=\"";
 	protected final String TEXT_2 = "\" ";
 	protected final String TEXT_3 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"";
-	protected final String TEXT_4 = "\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"p2\" source=\"false\" mutable=\"false\">" + NL
-			+ "\t\t\t<uri format=\"{0}\">" + NL + "\t\t\t\t<bc:replace>" + NL + "\t\t\t\t\t<bc:constant value=\"";
-	protected final String TEXT_5 = "\" />" + NL + "\t\t\t\t\t<bc:match pattern=\"\\\\\" replacement=\"/\" /> " + NL + "\t\t\t\t</bc:replace>" + NL + "\t\t\t</uri>" + NL
-			+ "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
+	protected final String TEXT_4 = "\">" + NL
+			+ "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"p2\" source=\"false\" mutable=\"false\">"
+			+ NL + "\t\t\t<uri format=\"{0}\">" + NL + "\t\t\t\t<bc:replace>" + NL + "\t\t\t\t\t<bc:constant value=\"";
+	protected final String TEXT_5 = "\" />" + NL + "\t\t\t\t\t<bc:match pattern=\"\\\\\" replacement=\"/\" /> " + NL
+			+ "\t\t\t\t</bc:replace>" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildrmapupdatesite() {
 		//Here is the constructor
@@ -47,9 +47,12 @@ public class buildrmapupdatesite extends org.eclipse.egf.portfolio.eclipse.build
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("updateSiteBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//UpdateSiteBuildLocation");
+		paramDesc = new IQuery.ParameterDescription("updateSiteBuildLocation",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//UpdateSiteBuildLocation");
 		queryCtx = new HashMap<String, String>();
-		List<Object> updateSiteBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> updateSiteBuildLocationList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object updateSiteBuildLocationParameter : updateSiteBuildLocationList) {
 
@@ -67,7 +70,7 @@ public class buildrmapupdatesite extends org.eclipse.egf.portfolio.eclipse.build
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 
@@ -88,7 +91,8 @@ public class buildrmapupdatesite extends org.eclipse.egf.portfolio.eclipse.build
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation updateSiteBuildLocation = null;
 
-	public void set_updateSiteBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation object) {
+	public void set_updateSiteBuildLocation(
+			org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation object) {
 		this.updateSiteBuildLocation = object;
 	}
 

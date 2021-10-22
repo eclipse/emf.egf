@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -20,10 +20,11 @@ public class buckminsterant extends org.eclipse.egf.portfolio.eclipse.build.Buil
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "<project>" + NL + "\t<import file=\"${buckminster.pdetasks}\"/>" + NL + "" + NL + "\t<target name=\"convertSiteToRuntime\">" + NL
-			+ "\t\t<buckminster.convertSiteToRuntime siteDir=\"${siteDir}\" />" + NL + "\t</target>" + NL + "</project>";
+	protected final String TEXT_1 = "<project>" + NL + "\t<import file=\"${buckminster.pdetasks}\"/>" + NL + "" + NL
+			+ "\t<target name=\"convertSiteToRuntime\">" + NL
+			+ "\t\t<buckminster.convertSiteToRuntime siteDir=\"${siteDir}\" />" + NL + "\t</target>" + NL
+			+ "</project>";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public buckminsterant() {
 		//Here is the constructor
@@ -60,7 +61,7 @@ public class buckminsterant extends org.eclipse.egf.portfolio.eclipse.build.Buil
 		}
 
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 

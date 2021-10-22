@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.validation;
 
 import java.util.*;
@@ -18,6 +18,7 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
 	public stepId() {
 		//Here is the constructor
 		// add initialisation of the pattern variables (declaration has been already done).
+
 	}
 
 	public void generate(Object argument) throws Exception {
@@ -64,7 +65,8 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
 		for (Step step : new GenerationHelper().getAllSteps(job)) {
 			String id = new GenerationHelper().getNameOrGeneratedIdString(step);
 			if (stepIds.contains(id)) {
-				BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "duplicate step Id " + id, new Object[] { job });
+				BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0,
+						"duplicate step Id " + id, new Object[] { job });
 				diagnosticChain.add(diagnostic);
 			}
 			stepIds.add(id);

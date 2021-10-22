@@ -1,0 +1,54 @@
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+  <%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+  <%}%>
+	public void eUnset(int featureID)
+	{
+		switch (featureID<%=negativeOffsetCorrection%>)
+		{
+  <%for (GenFeature genFeature : genClass.getEUnsetGenFeatures()) {%>
+			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
+    <%if (genFeature.isListType() && !genFeature.isUnsettable()) {%>
+      <%if (genFeature.isWrappedFeatureMapType()) {%>
+				((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal.Wrapper)<%=genFeature.getGetAccessor()%>()).featureMap().clear();
+      <%} else {%>
+				<%=genFeature.getGetAccessor()%>().clear();
+      <%}%>
+    <%} else if (genFeature.isUnsettable()) {%>
+				unset<%=genFeature.getAccessorName()%>();
+    <%} else if (!genFeature.hasEDefault()) {%>
+				set<%=genFeature.getAccessorName()%>((<%=genFeature.getImportedType(genClass)%>)null);
+    <%} else if (genFeature.hasSettingDelegate()) {%>
+				<%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+    <%} else {%>
+				set<%=genFeature.getAccessorName()%>(<%=genFeature.getEDefault()%>);
+    <%}%>
+				return;
+  <%}%>
+<%if (forceDefaultCase) {%>
+			default:
+<%} else { // {%>
+		}
+<%}%>
+  <%if (genModel.isMinimalReflectiveMethods()) {%>
+<%=indentDefaultCase%>		super.eUnset(featureID);
+<%if (forceDefaultCase) {%>
+				return;
+<%}%>
+  <%} else {%>
+<%=indentDefaultCase%>		eDynamicUnset(featureID);
+<%if (forceDefaultCase) {%>
+				return;
+<%}%>
+  <%}%>
+<%if (forceDefaultCase) { // {%>
+		}
+<%} // }%>
+	}
+

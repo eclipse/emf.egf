@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -26,7 +26,6 @@ public class buildxmldownloadStep extends org.eclipse.egf.portfolio.eclipse.buil
 	protected final String TEXT_4 = "\" ";
 	protected final String TEXT_5 = " >" + NL + "\t\t</get>" + NL + "\t</target>" + NL + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public buildxmldownloadStep() {
 		//Here is the constructor
@@ -44,9 +43,12 @@ public class buildxmldownloadStep extends org.eclipse.egf.portfolio.eclipse.buil
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("downloadStep", "http://www.eclipse.org/egf/1.0.0/buildfile#//DownloadStep");
+		paramDesc = new IQuery.ParameterDescription("downloadStep",
+				"http://www.eclipse.org/egf/1.0.0/buildfile#//DownloadStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> downloadStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> downloadStepList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object downloadStepParameter : downloadStepList) {
 
@@ -64,7 +66,7 @@ public class buildxmldownloadStep extends org.eclipse.egf.portfolio.eclipse.buil
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 

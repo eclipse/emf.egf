@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -29,7 +29,6 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
 	protected final String TEXT_4 = NL + "      <buildFile>";
 	protected final String TEXT_5 = "/releng/build.xml</buildFile>" + NL + "    </hudson.tasks.Ant>" + NL;
 	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
 
 	public Buildersteps() {
 		//Here is the constructor
@@ -49,7 +48,8 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
 
 		paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.1/buildcore#//Job");
 		queryCtx = new HashMap<String, String>();
-		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object jobParameter : jobList) {
 
@@ -67,7 +67,7 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
 		}
 
 		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_6);
 		return stringBuffer.toString();
 	}
 
@@ -113,14 +113,16 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
 
 			}
 			if (deployment.getGenerationLocation() instanceof SVNGenerationLocation) {
-				SVNGenerationLocation svnGenerationLocation = (SVNGenerationLocation) deployment.getGenerationLocation();
-				buildFile = "svn/" + svnGenerationLocation.getSvnLocation().getLocalPath() + "/" + svnGenerationLocation.getFolderName() + "/"
-						+ new GenerationHelper().getJobName(ctx, job);
+				SVNGenerationLocation svnGenerationLocation = (SVNGenerationLocation) deployment
+						.getGenerationLocation();
+				buildFile = "svn/" + svnGenerationLocation.getSvnLocation().getLocalPath() + "/"
+						+ svnGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
 			}
 			if (deployment.getGenerationLocation() instanceof GITGenerationLocation) {
-				GITGenerationLocation gitGenerationLocation = (GITGenerationLocation) deployment.getGenerationLocation();
-				buildFile = "git/" + gitGenerationLocation.getGitLocation().getLocalPath() + "/" + gitGenerationLocation.getFolderName() + "/"
-						+ new GenerationHelper().getJobName(ctx, job);
+				GITGenerationLocation gitGenerationLocation = (GITGenerationLocation) deployment
+						.getGenerationLocation();
+				buildFile = "git/" + gitGenerationLocation.getGitLocation().getLocalPath() + "/"
+						+ gitGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
 			}
 		}
 

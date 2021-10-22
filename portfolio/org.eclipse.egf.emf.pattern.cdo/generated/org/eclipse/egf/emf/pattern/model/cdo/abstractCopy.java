@@ -1,4 +1,4 @@
-//Generated on Wed Aug 08 15:49:13 CEST 2012 with EGF 1.0.0.qualifier
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.HashMap;
@@ -23,79 +23,80 @@ import org.eclipse.emf.common.util.URI;
 
 public class abstractCopy {
 
-    public abstractCopy() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
-    }
+	public abstractCopy() {
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    public void generate(Object argument) throws Exception {
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        IQuery.ParameterDescription paramDesc = null;
-        Map<String, String> queryCtx = null;
-        Node.Container currentNode = ctx.getNode();
+	}
 
-        if (preCondition(ctx))
-            orchestration((PatternContext) argument);
+	public void generate(Object argument) throws Exception {
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		IQuery.ParameterDescription paramDesc = null;
+		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
 
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-        }
-    }
+		if (preCondition(ctx))
+			orchestration((PatternContext) argument);
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        Node.Container currentNode = ictx.getNode();
-        method_setQualifiedName(new StringBuffer(), ictx);
-        method_copyClass(new StringBuffer(), ictx);
-        ictx.setNode(currentNode);
-        return null;
-    }
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+		}
+	}
 
-    protected void method_setQualifiedName(final StringBuffer out, final PatternContext ctx) throws Exception {
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		Node.Container currentNode = ictx.getNode();
+		method_setQualifiedName(new StringBuffer(), ictx);
+		method_copyClass(new StringBuffer(), ictx);
+		ictx.setNode(currentNode);
+		return null;
+	}
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "setQualifiedName", out.toString());
-    }
+	protected void method_setQualifiedName(final StringBuffer out, final PatternContext ctx) throws Exception {
 
-    protected void method_copyClass(final StringBuffer out, final PatternContext ctx) throws Exception {
-        List list = (List) ctx.getValue("domain");
-        GenModel genModel = (GenModel) list.get(0);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setQualifiedName", out.toString());
+	}
 
-        EMFDomain domainOut = (EMFDomain) ctx.getValue("domainOut");
-        GenModel newGenModel = (GenModel) domainOut.getContent().get(0);
+	protected void method_copyClass(final StringBuffer out, final PatternContext ctx) throws Exception {
+		List list = (List) ctx.getValue("domain");
+		GenModel genModel = (GenModel) list.get(0);
 
-        String modelDirectory = genModel.getModelDirectory();
-        String newModelDirectory = newGenModel.getModelDirectory();
+		EMFDomain domainOut = (EMFDomain) ctx.getValue("domainOut");
+		GenModel newGenModel = (GenModel) domainOut.getContent().get(0);
 
-        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		String modelDirectory = genModel.getModelDirectory();
+		String newModelDirectory = newGenModel.getModelDirectory();
 
-        Path srcPath = new Path(modelDirectory + "/" + qualifiedName.replace('.', '/') + ".java");
-        Path destPath = new Path(newModelDirectory + "/" + qualifiedName.replace('.', '/') + ".java");
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
-        IFile srcFile = root.getFile(srcPath);
-        if (srcFile.exists()) {
-            URI containerURI = URI.createURI(destPath.removeLastSegments(1).toPortableString());
-            new CodegenGeneratorAdapter(newGenModel).ensureContainerExists(containerURI, new BasicMonitor());
-            srcFile.copy(destPath, true, new NullProgressMonitor());
-        }
+		Path srcPath = new Path(modelDirectory + "/" + qualifiedName.replace('.', '/') + ".java");
+		Path destPath = new Path(newModelDirectory + "/" + qualifiedName.replace('.', '/') + ".java");
 
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "copyClass", out.toString());
-    }
+		IFile srcFile = root.getFile(srcPath);
+		if (srcFile.exists()) {
+			URI containerURI = URI.createURI(destPath.removeLastSegments(1).toPortableString());
+			new CodegenGeneratorAdapter(newGenModel).ensureContainerExists(containerURI, new BasicMonitor());
+			srcFile.copy(destPath, true, new NullProgressMonitor());
+		}
 
-    public boolean preCondition(PatternContext ctx) throws Exception {
-        return true;
-    }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "copyClass", out.toString());
+	}
 
-    protected java.lang.String qualifiedName;
+	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
 
-    public void set_qualifiedName(java.lang.String qualifiedName) {
-        this.qualifiedName = qualifiedName;
-    }
+	protected java.lang.String qualifiedName;
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        return parameters;
-    }
+	public void set_qualifiedName(java.lang.String qualifiedName) {
+		this.qualifiedName = qualifiedName;
+	}
+
+	public Map<String, Object> getParameters() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		return parameters;
+	}
 
 }

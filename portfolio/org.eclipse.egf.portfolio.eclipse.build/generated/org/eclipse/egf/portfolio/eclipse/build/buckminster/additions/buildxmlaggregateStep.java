@@ -1,4 +1,4 @@
-//Generated with EGF 1.2.0.v20140805-0858
+//Generated with EGF 1.6.3.202110181143
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -28,28 +28,26 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 	protected final String TEXT_5 = "_dropins\">";
 	protected final String TEXT_6 = NL + "\t\t<pathconvert property=\"";
 	protected final String TEXT_7 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<dirset dir=\"";
-	protected final String TEXT_8 = "\" includes=\"**/eclipse/\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL + "\t\t<copy todir=\"${publish}/";
+	protected final String TEXT_8 = "\" includes=\"**/eclipse/\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>"
+			+ NL + "\t\t<copy todir=\"${publish}/";
 	protected final String TEXT_9 = "/dropins/";
 	protected final String TEXT_10 = "/eclipse/\" >" + NL + "\t\t\t<fileset dir=\"${";
 	protected final String TEXT_11 = "}\"/>" + NL + "\t\t</copy>" + NL + "\t\t<pathconvert property=\"";
 	protected final String TEXT_12 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<fileset dir=\"";
-	protected final String TEXT_13 = "\" includes=\"**/*_version_*\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL + "\t\t<copy todir=\"${publish}/";
-	protected final String TEXT_14 = "/dropins/";
-	protected final String TEXT_15 = "/\" >" + NL + "\t\t\t<fileset file=\"${";
-	protected final String TEXT_16 = "}\"/>" + NL + "\t\t</copy>";
-	protected final String TEXT_17 = NL + "\t</target>\t" + NL + "" + NL + "\t<target name=\"";
-	protected final String TEXT_18 = "_sitep2\">" + NL + "\t\t<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->" + NL + "\t\t<p2.mirror>" + NL
-			+ "\t\t\t<repository location=\"file:/${publish}/";
-	protected final String TEXT_19 = "/site.p2\" name=\"";
-	protected final String TEXT_20 = "/";
-	protected final String TEXT_21 = "\" />" + NL + "\t\t\t<source>";
-	protected final String TEXT_22 = NL + "\t\t\t\t<repository location=\"";
-	protected final String TEXT_23 = "\" />";
-	protected final String TEXT_24 = NL + "\t\t\t\t<repository location=\"";
-	protected final String TEXT_25 = "\" />";
-	protected final String TEXT_26 = NL + "\t\t\t</source>" + NL + "\t\t</p2.mirror>" + NL + "\t</target>" + NL;
-	protected final String TEXT_27 = NL;
-	protected final String TEXT_28 = NL;
+	protected final String TEXT_13 = "\" includes=\"**/*_version_*\" />" + NL + "\t\t\t</first>" + NL
+			+ "\t\t</pathconvert>" + NL + "\t\t<copy todir=\"${publish}/";
+	protected final String TEXT_14 = "/\" >" + NL + "\t\t\t<fileset file=\"${";
+	protected final String TEXT_15 = "}\"/>" + NL + "\t\t</copy>";
+	protected final String TEXT_16 = NL + "\t</target>\t" + NL + "" + NL + "\t<target name=\"";
+	protected final String TEXT_17 = "_sitep2\">" + NL + "\t\t<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->"
+			+ NL + "\t\t<p2.mirror>" + NL + "\t\t\t<repository location=\"file:/${publish}/";
+	protected final String TEXT_18 = "/site.p2\" name=\"";
+	protected final String TEXT_19 = "/";
+	protected final String TEXT_20 = "\" />" + NL + "\t\t\t<source>";
+	protected final String TEXT_21 = NL + "\t\t\t\t<repository location=\"";
+	protected final String TEXT_22 = "\" />";
+	protected final String TEXT_23 = NL + "\t\t\t</source>" + NL + "\t\t</p2.mirror>" + NL + "\t</target>" + NL;
+	protected final String TEXT_24 = NL;
 
 	public buildxmlaggregateStep() {
 		//Here is the constructor
@@ -67,9 +65,12 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("aggregateStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//AggregateStep");
+		paramDesc = new IQuery.ParameterDescription("aggregateStep",
+				"http://www.eclipse.org/egf/1.0.2/buildstep#//AggregateStep");
 		queryCtx = new HashMap<String, String>();
-		List<Object> aggregateStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		List<Object> aggregateStepList = QueryHelper
+				.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
+				.execute(paramDesc, queryCtx, ctx);
 
 		for (Object aggregateStepParameter : aggregateStepList) {
 
@@ -86,8 +87,8 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_27);
-		stringBuffer.append(TEXT_28);
+		stringBuffer.append(TEXT_24);
+		stringBuffer.append(TEXT_24);
 		return stringBuffer.toString();
 	}
 
@@ -131,7 +132,8 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 		stringBuffer.append(TEXT_5);
 		for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
 			if (publishStep.isGenerateDropins()) {
-				String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/dropins";
+				String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep)
+						+ publishStep.getComponent().getId() + "/dropins";
 				String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getId();
 				String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getId();
 				stringBuffer.append(TEXT_6);
@@ -150,36 +152,37 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 				stringBuffer.append(location);
 				stringBuffer.append(TEXT_13);
 				stringBuffer.append(aggregateStep.getId());
-				stringBuffer.append(TEXT_14);
+				stringBuffer.append(TEXT_9);
 				stringBuffer.append(aggregateStep.getId());
-				stringBuffer.append(TEXT_15);
+				stringBuffer.append(TEXT_14);
 				stringBuffer.append(propertyName2);
-				stringBuffer.append(TEXT_16);
+				stringBuffer.append(TEXT_15);
 			}
 		}
-		stringBuffer.append(TEXT_17);
+		stringBuffer.append(TEXT_16);
 		stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
+		stringBuffer.append(TEXT_17);
+		stringBuffer.append(aggregateStep.getId());
 		stringBuffer.append(TEXT_18);
-		stringBuffer.append(aggregateStep.getId());
-		stringBuffer.append(TEXT_19);
 		stringBuffer.append(new GenerationHelper().getJob(aggregateStep).getName());
-		stringBuffer.append(TEXT_20);
+		stringBuffer.append(TEXT_19);
 		stringBuffer.append(aggregateStep.getId());
-		stringBuffer.append(TEXT_21);
+		stringBuffer.append(TEXT_20);
 		for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
 			if (publishStep.getComponent() instanceof Feature) {
-				String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";
-				stringBuffer.append(TEXT_22);
+				String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep)
+						+ publishStep.getComponent().getId() + "/site.p2";
+				stringBuffer.append(TEXT_21);
 				stringBuffer.append(location);
-				stringBuffer.append(TEXT_23);
+				stringBuffer.append(TEXT_22);
 			}
 		}
 		for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {
-			stringBuffer.append(TEXT_24);
+			stringBuffer.append(TEXT_21);
 			stringBuffer.append(updateSiteUrl);
-			stringBuffer.append(TEXT_25);
+			stringBuffer.append(TEXT_22);
 		}
-		stringBuffer.append(TEXT_26);
+		stringBuffer.append(TEXT_23);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}

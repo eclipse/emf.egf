@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.0.201901231006
+//Generated with EGF 1.6.3.202110181143
 package pattern.call2;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,6 @@ public class Caller2 {
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "Caller on ";
 	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
 
 	public Caller2() {
 		//Here is the constructor
@@ -59,8 +58,8 @@ public class Caller2 {
 			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_2);
 		return stringBuffer.toString();
 	}
 
