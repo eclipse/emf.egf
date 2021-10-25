@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.3.202110181143
+//Generated with EGF 1.6.3.202110221324
 package org.eclipse.egf.usecase.emf.libraryextension.edit.itemprovider;
 
 import org.eclipse.egf.common.helper.*;
@@ -56,6 +56,8 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> _ListList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> hasSwitchList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 		for (Object genClassParameter : genClassList) {
 			for (Object genPackageParameter : genPackageList) {
@@ -64,20 +66,23 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
 						for (Object forceDefaultCaseParameter : forceDefaultCaseList) {
 							for (Object indentDefaultCaseParameter : indentDefaultCaseList) {
 								for (Object _ListParameter : _ListList) {
+									for (Object hasSwitchParameter : hasSwitchList) {
 
-									this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-									this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-									this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-									this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-									this.forceDefaultCase = (java.lang.Boolean) forceDefaultCaseParameter;
-									this.indentDefaultCase = (java.lang.String) indentDefaultCaseParameter;
-									this._List = (java.lang.String) _ListParameter;
+										this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+										this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+										this.forceDefaultCase = (java.lang.Boolean) forceDefaultCaseParameter;
+										this.indentDefaultCase = (java.lang.String) indentDefaultCaseParameter;
+										this._List = (java.lang.String) _ListParameter;
+										this.hasSwitch = (java.lang.Boolean) hasSwitchParameter;
 
-									if (preCondition(ctx)) {
-										ctx.setNode(new Node.Container(currentNode, getClass()));
-										orchestration(ctx);
+										if (preCondition(ctx)) {
+											ctx.setNode(new Node.Container(currentNode, getClass()));
+											orchestration(ctx);
+										}
+
 									}
-
 								}
 							}
 						}
@@ -109,6 +114,7 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
 			parameterValues.put("forceDefaultCase", this.forceDefaultCase);
 			parameterValues.put("indentDefaultCase", this.indentDefaultCase);
 			parameterValues.put("_List", this._List);
+			parameterValues.put("hasSwitch", this.hasSwitch);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -125,6 +131,7 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
 		parameters.put("forceDefaultCase", this.forceDefaultCase);
 		parameters.put("indentDefaultCase", this.indentDefaultCase);
 		parameters.put("_List", this._List);
+		parameters.put("hasSwitch", this.hasSwitch);
 		return parameters;
 	}
 
