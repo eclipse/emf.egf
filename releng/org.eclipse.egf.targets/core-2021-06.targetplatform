@@ -43,14 +43,3 @@ location "https://download.eclipse.org/cbi/updates/license/" {
 location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
 	org.eclipse.acceleo.sdk.feature.group lazy
 }
-
-location amalgam "https://download.eclipse.org/modeling/amalgam/updates/stable/1.13.0-S20210909/capella/" {
-	org.eclipse.amalgam.explorer.activity.feature.group lazy
-	org.eclipse.amalgam.explorer.activity.source.feature.group lazy
-	org.eclipse.amalgam.explorer.contextual.feature.group lazy
-	org.eclipse.amalgam.explorer.contextual.source.feature.group lazy
-	org.eclipse.amalgam.explorer.contextual.sirius.feature.group lazy
-	org.eclipse.amalgam.explorer.contextual.sirius.source.feature.group lazy
-	org.eclipse.amalgam.explorer.contextual.core.feature.group lazy
-	org.eclipse.amalgam.explorer.contextual.core.source.feature.group lazy
-}
