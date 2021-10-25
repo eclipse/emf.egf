@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="core" sequenceNumber="1632841814">
+<target name="core" sequenceNumber="1635171795">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="0.0.0"/>
@@ -53,17 +53,6 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.acceleo.sdk.feature.group" version="0.0.0"/>
       <repository id="acceleo" location="https://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.amalgam.explorer.activity.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.activity.source.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.contextual.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.contextual.source.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.contextual.sirius.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.contextual.sirius.source.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.contextual.core.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.amalgam.explorer.contextual.core.source.feature.group" version="0.0.0"/>
-      <repository id="amalgam" location="https://download.eclipse.org/modeling/amalgam/updates/stable/1.13.0-S20210909/capella/"/>
     </location>
   </locations>
 </target>
