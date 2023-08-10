@@ -24,7 +24,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.emf.common.util.URI;
@@ -32,7 +31,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPersistableElement;
 
@@ -42,7 +40,7 @@ import org.eclipse.ui.IPersistableElement;
  * 
  */
 
-public class PatternEditorInput implements IEditorInput, IFileEditorInput {
+public class PatternEditorInput implements IEditorInput {
 
     public static final String PATTERN_ID = "patternId"; //$NON-NLS-1$
 
