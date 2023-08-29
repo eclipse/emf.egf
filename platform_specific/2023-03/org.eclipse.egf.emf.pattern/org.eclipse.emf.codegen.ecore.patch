@@ -1,7 +1,48 @@
-diff --git a/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet b/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
-index 48d03c8..b578b58 100644
---- a/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
-+++ b/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
+### Eclipse Workspace Patch 1.0
+#P org.eclipse.emf.codegen.ecore
+diff --git templates/edit/ItemProvider.javajet templates/edit/ItemProvider.javajet
+index 38ac899..2821f8a 100644
+--- templates/edit/ItemProvider.javajet
++++ templates/edit/ItemProvider.javajet
+@@ -137,15 +137,15 @@
+     <%}%>
+   <%} else {%>
+ 				 new String[] {
+-    <%/*}*/for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) { String filterFlag = j.next();%>
++    <%for (Iterator<String> j = genFeature.getPropertyFilterFlags().iterator(); j.hasNext();) { String filterFlag = j.next();%>
+       <%if (filterFlag != null && filterFlag.length() > 0) {%>
+ 					"<%=filterFlag%>"<%if (j.hasNext()) {%>,<%}%><%=genModel.getNonNLS()%>
+       <%}%>
+     <%}%>
+-    <%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF214_VALUE && genFeature.getPropertyEditorFactory() != null && genFeature.getPropertyEditorFactory().trim().length() != 0) { // {%>
++    <%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF214_VALUE && genFeature.getPropertyEditorFactory() != null && genFeature.getPropertyEditorFactory().trim().length() != 0) { %>
+ 				 },
+ 				 <%=genModel.getImportedName("org.eclipse.emf.common.util.URI")%>.createURI(<%=org.eclipse.emf.codegen.ecore.genmodel.impl.Literals.toStringLiteral(genFeature.getPropertyEditorFactory().trim(), genModel)%>)));
+-    <%} else { // {%>
++    <%} else { %>
+ 				 }));
+     <%}%>
+   <%}%>
+@@ -451,12 +451,12 @@
+   <%}%>
+   <%if (forceDefaultCase) {%>
+ 			default:
+-  <%} else { // {%>
++  <%} else { %>
+ 		}
+-  <%} // }%>
++  <%} %>
+ <%}%>
+ <%=hasSwitch ? indentDefaultCase : ""%>		super.notifyChanged(notification);
+-<%if (hasSwitch && forceDefaultCase) { // {%>
++<%if (hasSwitch && forceDefaultCase) { %>
+ <%=indentDefaultCase%>		return;
+ 			}
+ <%}%>
+diff --git templates/model/Class.javajet templates/model/Class.javajet
+index bb6cdfd..9d30ff3 100644
+--- templates/model/Class.javajet
++++ templates/model/Class.javajet
 @@ -16,7 +16,7 @@
  <%final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;%>
  <%final boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); final boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]); final boolean useInterfaceOverrideAnnotation = genModel.useInterfaceOverrideAnnotation() && !(isInterface && isImplementation);%>
@@ -22,3 +63,171 @@ index 48d03c8..b578b58 100644
    <%for (GenFeature genFeature : genClass.getFlagGenFeaturesWithDefault()) {%>
  		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG<%if (!genFeature.isBooleanType()) {%>_DEFAULT<%}%>;
    <%}%>
+@@ -2012,7 +2015,7 @@
+ <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+ <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2020,9 +2023,9 @@
+ <%} else {%>
+ <%=indentDefaultCase%>		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+ <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%}%>
+@@ -2046,7 +2049,7 @@
+ <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+ <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2054,9 +2057,9 @@
+ <%} else {%>
+ <%=indentDefaultCase%>		return eDynamicBasicRemoveFromContainer(msgs);
+ <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%}%>
+@@ -2106,7 +2109,7 @@
+ <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+ <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2114,9 +2117,9 @@
+ <%} else {%>
+ <%=indentDefaultCase%>		return eDynamicGet(featureID, resolve, coreType);
+ <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%}%>
+@@ -2166,7 +2169,7 @@
+   <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+   <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2180,9 +2183,9 @@
+ 				return;
+ <%}%>
+   <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%}%>
+@@ -2222,7 +2225,7 @@
+   <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+   <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2236,9 +2239,9 @@
+ 				return;
+ <%}%>
+   <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%@ end %><%//Class/eUnset.override.javajetinc%>
+@@ -2347,7 +2350,7 @@
+ <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+ <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2355,9 +2358,9 @@
+ <%} else {%>
+ <%=indentDefaultCase%>		return eDynamicIsSet(featureID);
+ <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%@ end %><%//Class/eIsSet.override.javajetinc%>
+@@ -2601,7 +2604,7 @@
+ <%}%>
+ <%if (forceDefaultCase) {%>
+ 			default:
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ <%}%>
+ <%if (genModel.isMinimalReflectiveMethods()) {%>
+@@ -2609,9 +2612,9 @@
+ <%} else {%>
+ <%=indentDefaultCase%>		return eDynamicInvoke(operationID, arguments);
+ <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 		}
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%}%>
+diff --git templates/model/EnumClass.javajet templates/model/EnumClass.javajet
+index e01c9c7..98aefb4 100644
+--- templates/model/EnumClass.javajet
++++ templates/model/EnumClass.javajet
+@@ -212,13 +212,13 @@
+ <%for (GenEnumLiteral genEnumLiteral : genEnum.getUniqueValuedGenEnumLiterals()) {%>
+ 			case <%=genEnumLiteral.getEnumLiteralValueConstantName()%>: return <%=genEnumLiteral.getEnumLiteralInstanceConstantName()%>;
+ <%}%>
+-<%if (forceDefaultCase) { // {%>
++<%if (forceDefaultCase) { %>
+ 			default: return null;
+ 		}
+-<%} else { // {%>
++<%} else { %>
+ 		}
+ 		return null;
+-<%} // }%>
++<%} %>
+ 	}
+ 
+ <%if (isEnum) {%>

@@ -17,144 +17,144 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCaseimplementedGenFeatureinsert {
-  protected static String nl;
+	protected static String nl;
 
-  public static synchronized TestCaseimplementedGenFeatureinsert create(String lineSeparator) {
-    nl = lineSeparator;
-    TestCaseimplementedGenFeatureinsert result = new TestCaseimplementedGenFeatureinsert();
-    nl = null;
-    return result;
-  }
+	public static synchronized TestCaseimplementedGenFeatureinsert create(String lineSeparator) {
+		nl = lineSeparator;
+		TestCaseimplementedGenFeatureinsert result = new TestCaseimplementedGenFeatureinsert();
+		nl = null;
+		return result;
+	}
 
-  public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "";
+	protected final String TEXT_2 = NL;
 
-  public TestCaseimplementedGenFeatureinsert() {
-    //Here is the constructor
-    StringBuffer stringBuffer = new StringBuffer();
+	public TestCaseimplementedGenFeatureinsert() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    // add initialisation of the pattern variables (declaration has been already done).
+		// add initialisation of the pattern variables (declaration has been already done).
 
-  }
+	}
 
-  public String generate(Object argument) throws Exception {
-    final StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    InternalPatternContext ctx = (InternalPatternContext) argument;
-    Map<String, String> queryCtx = null;
-    IQuery.ParameterDescription paramDesc = null;
-    Node.Container currentNode = ctx.getNode();
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-    List<Object> genFeatureList = null;
-    //this pattern can only be called by another (i.e. it's not an entry point in execution)
-    List<Object> genClassList = null;
-    //this pattern can only be called by another (i.e. it's not an entry point in execution)
-    List<Object> genPackageList = null;
-    //this pattern can only be called by another (i.e. it's not an entry point in execution)
-    List<Object> genModelList = null;
-    //this pattern can only be called by another (i.e. it's not an entry point in execution)
-    List<Object> isJDK50List = null;
-    //this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genFeatureList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genClassList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genPackageList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genModelList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> isJDK50List = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-    for (Object genFeatureParameter : genFeatureList) {
-      for (Object genClassParameter : genClassList) {
-        for (Object genPackageParameter : genPackageList) {
-          for (Object genModelParameter : genModelList) {
-            for (Object isJDK50Parameter : isJDK50List) {
+		for (Object genFeatureParameter : genFeatureList) {
+			for (Object genClassParameter : genClassList) {
+				for (Object genPackageParameter : genPackageList) {
+					for (Object genModelParameter : genModelList) {
+						for (Object isJDK50Parameter : isJDK50List) {
 
-              this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-              this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-              this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-              this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-              this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+							this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+							this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+							this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+							this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+							this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
 
-              if (preCondition(ctx)) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration(ctx);
-              }
+							if (preCondition(ctx)) {
+								ctx.setNode(new Node.Container(currentNode, getClass()));
+								orchestration(ctx);
+							}
 
-            }
-          }
-        }
-      }
-    }
-    ctx.setNode(currentNode);
-    if (ctx.useReporter()) {
-      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-    }
+						}
+					}
+				}
+			}
+		}
+		ctx.setNode(currentNode);
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+		}
 
-    stringBuffer.append(TEXT_1);
-    stringBuffer.append(TEXT_2);
-    return stringBuffer.toString();
-  }
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(TEXT_2);
+		return stringBuffer.toString();
+	}
 
-  public String orchestration(PatternContext ctx) throws Exception {
-    InternalPatternContext ictx = (InternalPatternContext) ctx;
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-    method_doGenerate(new StringBuffer(), ictx);
+		method_doGenerate(new StringBuffer(), ictx);
 
-    if (ictx.useReporter()) {
-      Map<String, Object> parameterValues = new HashMap<String, Object>();
-      parameterValues.put("genFeature", this.genFeature);
-      parameterValues.put("genClass", this.genClass);
-      parameterValues.put("genPackage", this.genPackage);
-      parameterValues.put("genModel", this.genModel);
-      parameterValues.put("isJDK50", this.isJDK50);
-      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-    }
-    return null;
-  }
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("genFeature", this.genFeature);
+			parameterValues.put("genClass", this.genClass);
+			parameterValues.put("genPackage", this.genPackage);
+			parameterValues.put("genModel", this.genModel);
+			parameterValues.put("isJDK50", this.isJDK50);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+		}
+		return null;
+	}
 
-  protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
 
-  public void set_genFeature(org.eclipse.emf.codegen.ecore.genmodel.GenFeature object) {
-    this.genFeature = object;
-  }
+	public void set_genFeature(org.eclipse.emf.codegen.ecore.genmodel.GenFeature object) {
+		this.genFeature = object;
+	}
 
-  protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass = null;
 
-  public void set_genClass(org.eclipse.emf.codegen.ecore.genmodel.GenClass object) {
-    this.genClass = object;
-  }
+	public void set_genClass(org.eclipse.emf.codegen.ecore.genmodel.GenClass object) {
+		this.genClass = object;
+	}
 
-  protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
 
-  public void set_genPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
-    this.genPackage = object;
-  }
+	public void set_genPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
+		this.genPackage = object;
+	}
 
-  protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
 
-  public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
-    this.genModel = object;
-  }
+	public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
+		this.genModel = object;
+	}
 
-  protected java.lang.Boolean isJDK50 = null;
+	protected java.lang.Boolean isJDK50 = null;
 
-  public void set_isJDK50(java.lang.Boolean object) {
-    this.isJDK50 = object;
-  }
+	public void set_isJDK50(java.lang.Boolean object) {
+		this.isJDK50 = object;
+	}
 
-  public Map<String, Object> getParameters() {
-    final Map<String, Object> parameters = new HashMap<String, Object>();
-    parameters.put("genFeature", this.genFeature);
-    parameters.put("genClass", this.genClass);
-    parameters.put("genPackage", this.genPackage);
-    parameters.put("genModel", this.genModel);
-    parameters.put("isJDK50", this.isJDK50);
-    return parameters;
-  }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("genFeature", this.genFeature);
+		parameters.put("genClass", this.genClass);
+		parameters.put("genPackage", this.genPackage);
+		parameters.put("genModel", this.genModel);
+		parameters.put("isJDK50", this.isJDK50);
+		return parameters;
+	}
 
-  protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-    InternalPatternContext ictx = (InternalPatternContext) ctx;
-    new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
-  }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
+	}
 
-  public boolean preCondition(PatternContext ctx) throws Exception {
-    return true;
-  }
+	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
 }

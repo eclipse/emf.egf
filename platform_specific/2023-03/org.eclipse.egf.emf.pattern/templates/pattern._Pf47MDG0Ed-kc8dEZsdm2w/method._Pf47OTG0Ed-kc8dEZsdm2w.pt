@@ -212,13 +212,13 @@ public <%if (isEnum) {%>enum<%} else {%>final class<%}%> <%=genEnum.getName()%> 
 <%for (GenEnumLiteral genEnumLiteral : genEnum.getUniqueValuedGenEnumLiterals()) {%>
 			case <%=genEnumLiteral.getEnumLiteralValueConstantName()%>: return <%=genEnumLiteral.getEnumLiteralInstanceConstantName()%>;
 <%}%>
-<%if (forceDefaultCase) { // {%>
+<%if (forceDefaultCase) { %>
 			default: return null;
 		}
-<%} else { // {%>
+<%} else { %>
 		}
 		return null;
-<%} // }%>
+<%} %>
 	}
 
 <%if (isEnum) {%>

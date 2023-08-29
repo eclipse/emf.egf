@@ -2085,7 +2085,7 @@ public class <%=genPackage.getEditorClassName()%>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-<%if (genModel.useClassOverrideAnnotation()) {%>
+<%if (genModel.useInterfaceOverrideAnnotation()) {%>
 	@Override
 <%}%>
 	public void doRevert()

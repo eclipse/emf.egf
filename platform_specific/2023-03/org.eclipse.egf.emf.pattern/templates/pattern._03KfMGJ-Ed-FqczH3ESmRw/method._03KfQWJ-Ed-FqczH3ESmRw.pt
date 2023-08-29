@@ -33,7 +33,7 @@
   <%}%>
 <%if (forceDefaultCase) {%>
 			default:
-<%} else { // {%>
+<%} else { %>
 		}
 <%}%>
   <%if (genModel.isMinimalReflectiveMethods()) {%>
@@ -47,8 +47,8 @@
 				return;
 <%}%>
   <%}%>
-<%if (forceDefaultCase) { // {%>
+<%if (forceDefaultCase) { %>
 		}
-<%} // }%>
+<%} %>
 	}
 

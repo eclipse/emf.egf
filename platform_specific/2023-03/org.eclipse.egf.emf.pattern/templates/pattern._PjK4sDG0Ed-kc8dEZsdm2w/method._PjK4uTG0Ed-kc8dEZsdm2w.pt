@@ -305,12 +305,12 @@ public class <%=genClass.getProviderClassName()%> <%if (genClass.getProviderImpl
   <%}%>
   <%if (forceDefaultCase) {%>
 			default:
-  <%} else { // {%>
+  <%} else { %>
 		}
-  <%} // }%>
+  <%} %>
 <%}%>
 <%=hasSwitch ? indentDefaultCase : ""%>		super.notifyChanged(notification);
-<%if (hasSwitch && forceDefaultCase) { // {%>
+<%if (hasSwitch && forceDefaultCase) { %>
 <%=indentDefaultCase%>		return;
 			}
 <%}%>

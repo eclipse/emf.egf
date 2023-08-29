@@ -101,7 +101,7 @@
 <%}%>
 <%if (forceDefaultCase) {%>
 			default:
-<%} else { // {%>
+<%} else { %>
 		}
 <%}%>
 <%if (genModel.isMinimalReflectiveMethods()) {%>
@@ -109,8 +109,8 @@
 <%} else {%>
 <%=indentDefaultCase%>		return eDynamicIsSet(featureID);
 <%}%>
-<%if (forceDefaultCase) { // {%>
+<%if (forceDefaultCase) { %>
 		}
-<%} // }%>
+<%} %>
 	}
 
