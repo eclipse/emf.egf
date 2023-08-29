@@ -1,0 +1,8 @@
+<%
+GenClass genClass = parameter;
+if (genClass.isImage()) {
+new CodegenGeneratorAdapter(parameter).generateGIF("edit/Item.gif", genClass.getItemIconFileName(), genClass.getName(), null, false);
+}
+ else {
+}
+%>
