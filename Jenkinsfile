@@ -2,7 +2,7 @@ pipeline {
   agent { label 'migration' }
   tools {
     maven 'apache-maven-latest'
-    jdk 'openjdk-jdk14-latest'
+    jdk 'openjdk-jdk17-latest'
   }
   environment {
     FROM_PR = "${BRANCH_NAME}".contains("PR-");
@@ -15,14 +15,14 @@ pipeline {
     NIGHTLY_KEY = "${BRANCH_NAME}".replaceFirst(/^v/, "").replaceAll('/','-');
     NIGHTLY_DIR = "/home/data/httpd/download.eclipse.org/egf/nightly/${NIGHTLY_KEY}"
     
-    JACOCO_VERSION = "0.8.6"
+    JACOCO_VERSION = "0.8.8"
 	JACOCO_EXEC_FILE_PATH = '${WORKSPACE}/jacoco.exec'
   }
   stages {
     stage('Package') {
       steps {
         sh 'env'
-        sh 'mvn -Dplatform-version-name=2021-06 clean install -P core -P product -P sign'
+        sh 'mvn -Dplatform-version-name=2023-03 clean install -P core -P product -P sign'
       }
     }
     stage('Publish artifacts') {
