@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.portfolio.task.ant;singleton:=true
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-Activator: org.eclipse.egf.portfolio.task.ant.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.model.ftask,
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.ant;visibility:=reexport,
  org.eclipse.ant.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.eclipse.egf.portfolio.task.ant,
  org.eclipse.egf.portfolio.task.ant.engine
 Bundle-ClassPath: .

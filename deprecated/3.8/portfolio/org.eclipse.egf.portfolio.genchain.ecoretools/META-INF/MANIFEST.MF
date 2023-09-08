@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.emf.ecoretools.diagram,
  org.eclipse.egf.portfolio.genchain.tools,
  org.eclipse.egf.portfolio.genchain.tools.ui
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.eclipse.egf.portfolio.genchain.ecoretools,
  org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension,
  org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.impl,

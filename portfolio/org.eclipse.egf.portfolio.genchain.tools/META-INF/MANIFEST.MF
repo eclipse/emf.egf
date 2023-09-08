@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.portfolio.genchain.tools;singleton:=true
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-Activator: org.eclipse.egf.portfolio.genchain.tools.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.model;visibility:=reexport,
@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.runtime,
  org.eclipse.search
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: fcore.builder.patterns,
  org.eclipse.egf.portfolio.genchain.tools,
  org.eclipse.egf.portfolio.genchain.tools.utils

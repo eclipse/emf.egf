@@ -11,7 +11,7 @@
   Contributors:
        Thales - initial API and implementation
 -->
-<product name="org.eclipse.egf.product" uid="org.eclipse.egf.product" id="org.eclipse.sdk.ide" version="1.6.3.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="org.eclipse.egf.product" uid="org.eclipse.egf.product" id="org.eclipse.sdk.ide" version="1.6.4.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>

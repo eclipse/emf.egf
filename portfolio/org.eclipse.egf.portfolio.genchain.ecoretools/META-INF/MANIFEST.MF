@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.portfolio.genchain.ecoretools;singleton:=true
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-ClassPath: .
 Require-Bundle: org.eclipse.egf.portfolio.genchain.tools,
  org.eclipse.egf.portfolio.genchain.tools.ui,
@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.egf.portfolio.genchain.tools,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.egf.portfolio.genchain;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.eclipse.egf.portfolio.genchain.ecoretools,
  org.eclipse.egf.portfolio.genchain.ecoretools.command,
  org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension,
