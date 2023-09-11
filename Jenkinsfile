@@ -55,7 +55,7 @@ pipeline {
 		  script {
 		    def jacocoPrepareAgent = "-Djacoco.destFile=$JACOCO_EXEC_FILE_PATH -Djacoco.append=true org.jacoco:jacoco-maven-plugin:$JACOCO_VERSION:prepare-agent"
 		    def ignoreTestFailure = "-Dmaven.test.failure.ignore=true"
-		    sh "mvn -Dplatform-version-name=2021-06 ${jacocoPrepareAgent} ${ignoreTestFailure} verify -P tests"
+		    sh "mvn -Dplatform-version-name=2023-03 ${jacocoPrepareAgent} ${ignoreTestFailure} verify -P tests"
 		  }
         }
       }
