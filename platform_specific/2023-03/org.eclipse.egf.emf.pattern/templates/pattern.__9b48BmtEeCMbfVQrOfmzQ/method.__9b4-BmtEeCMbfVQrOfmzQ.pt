@@ -1,0 +1,6 @@
+<%
+GenModel genModel = parameter;
+targetPath = genModel.getEditorPluginDirectory();
+packageName = genModel.getEditorPluginPackageName();
+className = genModel.getEditorEntryPointClassName();
+%>

@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.provider.EcoreToolsExtensionEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.provider
 Require-Bundle: org.eclipse.egf.portfolio.genchain.ecoretools;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,

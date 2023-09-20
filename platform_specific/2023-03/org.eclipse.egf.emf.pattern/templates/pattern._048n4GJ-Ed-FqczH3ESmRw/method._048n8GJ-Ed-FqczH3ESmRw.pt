@@ -1,0 +1,14 @@
+
+
+
+		newChildDescriptors.add
+			(createChildParameter
+				(<%=createFeature.getQualifiedFeatureAccessor()%>,
+        <%if (createFeature.isEnumBasedType()) {%>
+				 <%=createFeature.getTypeGenEnum().getStaticValue(createFeature.getEcoreFeature().getDefaultValueLiteral())%>));
+        <%} else if (createFeature.isStringBasedType()) {%>
+				 <%=createFeature.getCreateChildValueLiteral()%>));<%=genModel.getNonNLS()%>
+        <%} else { String literal = createFeature.getCreateChildValueLiteral();%>
+				 <%=createDataType.getGenPackage().getQualifiedEFactoryInstanceAccessor()%>.createFromString(<%=createDataType.getQualifiedClassifierAccessor()%>, <%=literal%>)));<%if (literal != null) {%><%=genModel.getNonNLS()%><%} else {%> // TODO: ensure this is a valid literal value<%}%>
+        <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.insert" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50"%>

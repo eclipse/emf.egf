@@ -6,14 +6,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.egf.portfolio.genchain;visibility:=reexport
 Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.egf.portfolio.genchain.cdo.cdoExtension,
  org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.impl,
  org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.util
 Bundle-Name: %pluginName
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.egf.portfolio.genchain.cdo.cdoExtension.CdoExtensionModelPlugin$Implementation

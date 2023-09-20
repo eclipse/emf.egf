@@ -1,0 +1,72 @@
+target "core"  with source, requirements
+
+
+location EEF-1.5 "https://download.eclipse.org/modeling/emft/eef/updates/releases/1.5/R201601141612" {
+        org.eclipse.emf.eef.runtime-feature.feature.group [1.5.0,2.0.0)
+}
+
+
+location EEF-Latest "https://download.eclipse.org/modeling/emft/eef/updates/nightly/latest/neon" {
+    org.eclipse.eef.sdk.feature.feature.group lazy
+    org.eclipse.eef.sdk.feature.source.feature.group lazy
+    org.eclipse.eef.ext.widgets.reference.feature.feature.group lazy
+    org.eclipse.eef.ext.widgets.reference.feature.source.feature.group lazy
+}
+
+location GMF-Notation-1.13.1 "https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202211151334" {
+    org.eclipse.gmf.runtime.notation.sdk.feature.group lazy
+}
+
+location GMF-Runtime-1.16 "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202305230839/" {
+    org.eclipse.gmf.runtime.sdk.feature.group lazy
+    org.eclipse.gmf.runtime.thirdparty.feature.group lazy
+}
+
+location GEF-Classic  "https://download.eclipse.org/tools/gef/classic/releases/3.16.0" {
+    org.eclipse.gef.feature.group lazy
+	org.eclipse.gef.source.feature.group
+    org.eclipse.gef.sdk.feature.group lazy
+    org.eclipse.draw2d.sdk.feature.group lazy
+	org.eclipse.draw2d.source.feature.group
+}
+
+location Eclipse-2023-03 "https://download.eclipse.org/releases/2023-03/" {
+	org.eclipse.emf.workspace.feature.group lazy
+	org.eclipse.emf.transaction.feature.group lazy
+	org.eclipse.emf.query.feature.group lazy
+	org.eclipse.emf.validation.feature.group lazy
+	org.eclipse.emf.codegen.ecore.feature.group lazy
+	org.eclipse.emf.workspace.source.feature.group lazy
+	org.eclipse.emf.transaction.source.feature.group lazy
+	org.eclipse.sdk.feature.group lazy
+	org.eclipse.jdt.feature.group lazy
+	org.eclipse.pde.feature.group lazy
+	org.eclipse.platform.feature.group lazy
+	org.eclipse.m2m.atl.feature.group lazy
+	org.eclipse.uml2.uml.feature.group lazy
+	org.eclipse.equinox.executable.feature.group lazy
+	org.eclipse.emf.ecoretools.sdk.feature.group lazy
+	org.eclipse.emf.ecoretools.design.feature.group lazy
+	org.eclipse.emf.sdk.feature.group lazy
+}
+
+location jet "https://download.eclipse.org/modeling/m2t/updates/" {
+	org.eclipse.jet.sdk.feature.group lazy
+}
+
+location sirius "https://download.eclipse.org/sirius/updates/stable/7.2.0-S20230616-100446/2023-03" {
+	org.eclipse.sirius.runtime.aql.feature.group lazy
+	org.eclipse.sirius.runtime.ide.eef.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.feature.group lazy
+	org.eclipse.sirius.runtime.ide.xtext.feature.group lazy
+	org.eclipse.sirius.runtime.feature.group lazy
+}
+
+
+location "https://download.eclipse.org/cbi/updates/license/" {
+	org.eclipse.license.feature.group lazy
+}
+
+location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R201705121344/" {
+	org.eclipse.acceleo.sdk.feature.group lazy
+}

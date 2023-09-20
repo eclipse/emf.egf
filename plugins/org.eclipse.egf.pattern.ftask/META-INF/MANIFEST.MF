@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-SymbolicName: org.eclipse.egf.pattern.ftask;singleton:=true
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-Activator: org.eclipse.egf.pattern.ftask.Activator
 Bundle-Localization: plugin
 Require-Bundle: 
@@ -13,7 +13,7 @@ Require-Bundle:
  org.eclipse.egf.model.ftask,
  org.eclipse.egf.domain;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: %providerName
 Export-Package: 
  org.eclipse.egf.pattern.ftask,
