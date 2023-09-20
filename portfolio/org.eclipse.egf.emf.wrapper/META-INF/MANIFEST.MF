@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.emf.wrapper;singleton:=true
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-Activator: org.eclipse.egf.emf.wrapper.Activator
 Require-Bundle: 
  org.eclipse.core.runtime,
@@ -15,6 +15,6 @@ Require-Bundle:
  org.eclipse.egf.model.fprod;visibility:=reexport,
  org.eclipse.egf.emf.docgen.html
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: 
  org.eclipse.egf.emf.wrapper

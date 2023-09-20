@@ -24,11 +24,8 @@ try {
 	get-view "Package Explorer" | get-link "Create a Java project" | click
 	with [get-window "New Java Project"] {
 	    get-editbox -after [get-label "Project name:"] | set-text A
+	    get-checkbox "Create module-info.java file" | click
 	    get-button Finish | click
-	    with [get-window "New module-info.java"] {
-	        get-editbox -after [get-label "Module name:"] | set-focus
-	        get-button "Don't Create" | click
-	    }
 	}
 }
 get-view "Package Explorer" | get-tree | select A | get-menu "New/Other..." | click

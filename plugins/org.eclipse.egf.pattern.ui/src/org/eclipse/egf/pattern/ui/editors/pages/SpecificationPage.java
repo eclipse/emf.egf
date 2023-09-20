@@ -76,7 +76,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -1039,7 +1039,7 @@ public class SpecificationPage extends PatternEditorPage {
     protected void bindNature() {
 
         final IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__NATURE);
-        final IWidgetValueProperty comboProp = WidgetProperties.selection();
+        final IWidgetValueProperty comboProp = WidgetProperties.comboSelection();
         final IObservableValue uiObs = comboProp.observeDelayed(400, natureCombo);
         final IObservableValue mObs = mprop.observe(getPattern());
 

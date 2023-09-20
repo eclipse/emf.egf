@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.egf.portfolio.emf.feature"
       label="%featureName"
-      version="1.6.3.qualifier"
+      version="1.6.4.qualifier"
 	  license-feature="org.eclipse.license"
 	  license-feature-version="0.0.0"
       provider-name="%providerName"

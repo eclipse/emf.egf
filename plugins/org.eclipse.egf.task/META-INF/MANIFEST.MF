@@ -3,10 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-Version: 1.6.3.qualifier
+Bundle-Version: 1.6.4.qualifier
 Bundle-SymbolicName: org.eclipse.egf.task;singleton:=true
 Bundle-Activator: org.eclipse.egf.task.EGFTaskPlugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.egf.model.ftask

@@ -1,0 +1,4 @@
+<%
+GenClass genClass = parameter;
+argument = ((Object[]) new Object[]{new Object[]{genClass,genClass.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}})[0];
+%>

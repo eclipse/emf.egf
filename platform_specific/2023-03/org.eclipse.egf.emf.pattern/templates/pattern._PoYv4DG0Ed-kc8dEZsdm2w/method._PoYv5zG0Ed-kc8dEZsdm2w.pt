@@ -1,0 +1,6 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getTestsProjectDirectory() + "/build.properties";
+overwrite = false;
+encoding = "ISO-8859-1";
+%>

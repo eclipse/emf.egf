@@ -20,7 +20,7 @@
 	
 	<groupId>org.eclipse.egf</groupId>
 	<artifactId>egf_root</artifactId>
-	<version>1.6.3-SNAPSHOT</version>
+	<version>1.6.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<licenses>
@@ -35,18 +35,18 @@
 	</licenses>
 	
 	<properties>
-		<tycho-version>2.2.0</tycho-version>
+		<tycho-version>2.7.5</tycho-version>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
-		<platform-version-name>2021-06</platform-version-name>
+		<platform-version-name>2023-03</platform-version-name>
 		
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/egf/org.eclipse.emf.egf</tycho.scmUrl>
 		
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 
 
 		<jacoco.coverage.skip>false</jacoco.coverage.skip>
-		<jacoco.release>0.8.6</jacoco.release>
+		<jacoco.release>0.8.8</jacoco.release>
 		<jacoco.reportPath>./target/jacoco.exec</jacoco.reportPath>
 		<jacoco.includes>org.eclipse.egf.*</jacoco.includes>
 		<jacoco.excludes>org.eclipse.egf.emf.*</jacoco.excludes>
@@ -137,7 +137,7 @@
 					<version>${tycho-version}</version>
 					<configuration>
 						<targetDefinitionIncludeSource>honor</targetDefinitionIncludeSource>
-						<executionEnvironment>JavaSE-14</executionEnvironment>
+						<executionEnvironment>JavaSE-17</executionEnvironment>
 						<dependency-resolution>
 							<optionalDependencies>ignore</optionalDependencies>
 						</dependency-resolution>
@@ -145,7 +145,7 @@
 							<artifact>
 								<groupId>org.eclipse.egf</groupId>
 								<artifactId>egf_root</artifactId>
-								<version>1.6.3-SNAPSHOT</version>
+								<version>1.6.4-SNAPSHOT</version>
 								<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 							</artifact>
 						</target>
@@ -346,7 +346,7 @@
 						<artifact>
 							<groupId>org.eclipse.egf</groupId>
 							<artifactId>egf_root</artifactId>
-							<version>1.6.3-SNAPSHOT</version>
+							<version>1.6.4-SNAPSHOT</version>
 							<classifier>releng/org.eclipse.egf.targets/core-${platform-version-name}</classifier>
 						</artifact>
 					</target>
@@ -442,7 +442,7 @@
 					<configuration>
 						<resolver>p2</resolver>
 						<pomDependencies>consider</pomDependencies>
-						<executionEnvironment>JavaSE-14</executionEnvironment>
+						<executionEnvironment>JavaSE-17</executionEnvironment>
 						<environments>
 							<environment>
 								<os>linux</os>
